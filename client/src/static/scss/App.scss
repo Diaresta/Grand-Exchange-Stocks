@@ -1,0 +1,15 @@
+@import 'config';
+
+#item-page-container {
+  display: flex;
+
+  #stats-cal-container {
+    width: 50%;
+  }
+}
+
+@import 'header';
+@import 'ticker';
+@import 'graph';
+@import 'stats';
+@import 'calculator';

@@ -1,0 +1,21 @@
+@import 'config';
+
+#stats-container {
+  width: 100%;
+  background-color: pink;
+}
+
+#stats-name {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#stats-list-container {
+  display: flex;
+}
+
+// @media screen and (asdasd){
+//     #stats-container{
+//         width: whatever;
+//     }
+// }

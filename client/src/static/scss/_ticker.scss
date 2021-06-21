@@ -1,0 +1,42 @@
+#ticker-container {
+  border: 1px solid grey;
+  overflow: hidden;
+  margin-bottom: 1rem;
+
+  p {
+    width: 100%;
+    font-size: 0.7rem;
+    margin: 0.5rem 0;
+  }
+}
+
+#moving-container {
+  display: flex;
+  justify-content: space-between;
+  transform: translateX(100%);
+  animation: moving 25s linear infinite;
+}
+
+.positive-gains {
+  color: green;
+}
+
+.negative-gains {
+  color: red;
+}
+
+@keyframes moving {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+// @media screen and (whatever pixels) {
+//   p {
+//     font-size: 0.7rem;
+//   }
+// }

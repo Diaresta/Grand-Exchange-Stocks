@@ -1,0 +1,107 @@
+#item-page-container {
+  display: flex;
+}
+
+#item-page-container #stats-cal-container {
+  width: 50%;
+}
+
+header {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  background-color: red;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header form {
+  margin: auto;
+}
+
+#navbar-left {
+  display: flex;
+}
+
+#navbar-left .logo-placeholder {
+  font-size: 2rem;
+  margin: 0;
+  border-radius: 100%;
+  background-color: blue;
+}
+
+#navbar-right {
+  display: flex;
+}
+
+#navbar-right .logo-placeholder {
+  font-size: 2rem;
+  margin: 0;
+  border-radius: 100%;
+  background-color: blue;
+}
+
+#ticker-container {
+  border: 1px solid grey;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+#ticker-container p {
+  width: 100%;
+  font-size: 0.7rem;
+  margin: 0.5rem 0;
+}
+
+#moving-container {
+  display: flex;
+  justify-content: space-between;
+  transform: translateX(100%);
+  animation: moving 25s linear infinite;
+}
+
+.positive-gains {
+  color: green;
+}
+
+.negative-gains {
+  color: red;
+}
+
+@keyframes moving {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+#graph-container {
+  width: 100%;
+  height: 100%;
+  background-color: purple;
+  border: 2px solid black;
+}
+
+#stats-container {
+  width: 100%;
+  background-color: pink;
+}
+
+#stats-name {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#stats-list-container {
+  display: flex;
+}
+
+#calculator-container {
+  width: 100%;
+  background-color: red;
+}
