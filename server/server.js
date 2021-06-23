@@ -39,7 +39,9 @@ app.get('/', async (req, res) => {
 
   // Ticker item name, price, percent change
   const tickerItem1 = `${itemName} ${apiNameChange.item.current.price} - (${item30DayChange})`;
-  console.log(tickerItem1);
+  // console.log(tickerItem1);
+
+  // --------------------------------------------------------
 
   // Grabs alch values/ge sell limit
   const alchGeLimit = async () => {
@@ -60,9 +62,30 @@ app.get('/', async (req, res) => {
     const lowAlchVal = apiGeLimit[randomMapping].lowalch;
     const geLimit = apiGeLimit[randomMapping].limit;
 
-    console.log(highAlchVal, lowAlchVal, geLimit);
+    // console.log(highAlchVal, lowAlchVal, geLimit);
   };
 
+  // --------------------------------------------------------
+
+  const fiveMinCurrOffer = async () => {
+    const urlFiveMin = await 'https://prices.runescape.wiki/api/v1/osrs/5m';
+
+    const options = {
+      method: 'GET',
+    };
+
+    const response = await fetch(urlFiveMin, options);
+    const apiFiveMin = await response.json();
+
+    const fiveMinCurrentPrice = apiFiveMin.data[2].avgHighPrice;
+    const fiveMinOfferPrice = apiFiveMin.data[2].avgLowPrice;
+
+    console.log(fiveMinCurrentPrice, fiveMinOfferPrice);
+  };
+
+  // --------------------------------------------------------
+
+  fiveMinCurrOffer();
   alchGeLimit();
 
   // const url = await 'https://prices.runescape.wiki/api/v1/osrs/latest';
