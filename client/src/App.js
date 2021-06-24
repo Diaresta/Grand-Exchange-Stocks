@@ -8,6 +8,10 @@ import Stats from './components/Stats';
 import Calculator from './components/Calculator';
 
 function App() {
+  // Testing sending data to components
+  const itemID = 4151;
+  const appAlchProfit = -927293;
+
   const [apiData, setApiData] = useState();
   const [loading, setLoading] = useState(true);
 
@@ -32,7 +36,11 @@ function App() {
       <div id='item-page-container'>
         <Graph />
         <div id='stats-cal-container'>
-          <Stats apiData={apiData} />
+          <Stats
+            apiData={apiData}
+            appAlchProfit={appAlchProfit}
+            itemID={itemID}
+          />
           <Calculator />
         </div>
       </div>

@@ -2,20 +2,61 @@
 
 #stats-container {
   width: 100%;
-  background-color: pink;
+  background-color: #fff;
+  border: 2px solid #1652f0;
+  border-radius: 1%;
+  margin: 0px 0px 5px 5px;
+  box-shadow: 3px 2px rgba(22, 82, 240, 0.3);
 }
 
 #stats-name {
   display: flex;
-  justify-content: space-evenly;
+  // justify-content: space-between;
+  align-items: center;
+  margin-left: 25px;
 }
 
 #stats-list-container {
   display: flex;
 }
 
+#item-name {
+  text-decoration: underline;
+}
+
+#item-img {
+  height: 10%;
+  width: 10%;
+}
+
+.stats-li {
+  // display: flex;
+
+  p {
+    margin: 0 0 10px 0;
+  }
+
+  #alch-prof {
+    color: green;
+  }
+
+  #alch-neg {
+    color: red;
+  }
+
+  .item-uline {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+}
+
 // @media screen and (asdasd){
 //     #stats-container{
 //         width: whatever;
 //     }
+
+// small screen vvvvvvv
+// #ul-1 {
+//   padding-left: 25px;
+// }
 // }

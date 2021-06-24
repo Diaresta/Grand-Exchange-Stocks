@@ -1,4 +1,11 @@
 const Ticker = () => {
+  // useEffect(() => {
+  //   if (highAlchProfit >= 0) {
+  //     setHighAlchColor('alch-prof');
+  //   } else if (highAlchProfit < 0) {
+  //     setHighAlchColor('alch-neg');
+  //   }
+  // }, []);
   return (
     <div id='ticker-container'>
       <div id='moving-container'>

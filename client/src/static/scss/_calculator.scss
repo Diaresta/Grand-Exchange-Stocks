@@ -3,4 +3,19 @@
 #calculator-container {
   width: 100%;
   background-color: red;
+
+  background-color: #fff;
+  border: 2px solid #1652f0;
+  border-radius: 1%;
+  margin: 0px 0px 5px 5px;
+  box-shadow: 3px 2px rgba(22, 82, 240, 0.3);
+
+  p {
+    padding-left: 25px;
+  }
+}
+
+form {
+  padding-top: 25px;
+  padding-left: 25px;
 }

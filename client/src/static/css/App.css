@@ -11,7 +11,7 @@ header {
   height: 10%;
   display: flex;
   justify-content: space-between;
-  background-color: red;
+  background-color: #fff;
 }
 
 header h1 {
@@ -48,6 +48,7 @@ header form {
   border: 1px solid grey;
   overflow: hidden;
   margin-bottom: 1rem;
+  background-color: #e1e2e3;
 }
 
 #ticker-container p {
@@ -84,24 +85,70 @@ header form {
   width: 100%;
   height: 100%;
   background-color: purple;
-  border: 2px solid black;
+  border: 1px solid black;
+  margin: 0px 5px 5px 0px;
 }
 
 #stats-container {
   width: 100%;
-  background-color: pink;
+  background-color: #fff;
+  border: 2px solid #1652f0;
+  border-radius: 1%;
+  margin: 0px 0px 5px 5px;
+  box-shadow: 3px 2px rgba(22, 82, 240, 0.3);
 }
 
 #stats-name {
   display: flex;
-  justify-content: space-evenly;
+  align-items: center;
+  margin-left: 25px;
 }
 
 #stats-list-container {
   display: flex;
 }
 
+#item-name {
+  text-decoration: underline;
+}
+
+#item-img {
+  height: 10%;
+  width: 10%;
+}
+
+.stats-li p {
+  margin: 0 0 10px 0;
+}
+
+.stats-li #alch-prof {
+  color: green;
+}
+
+.stats-li #alch-neg {
+  color: red;
+}
+
+.stats-li .item-uline {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 #calculator-container {
   width: 100%;
   background-color: red;
+  background-color: #fff;
+  border: 2px solid #1652f0;
+  border-radius: 1%;
+  margin: 0px 0px 5px 5px;
+  box-shadow: 3px 2px rgba(22, 82, 240, 0.3);
+}
+
+#calculator-container p {
+  padding-left: 25px;
+}
+
+form {
+  padding-top: 25px;
+  padding-left: 25px;
 }
