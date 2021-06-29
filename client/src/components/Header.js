@@ -9,7 +9,7 @@ const Header = () => {
         <form>
           <div>
             <input type='search\' placeholder='Search...'></input>
-            <button>Search</button>
+            <button id='input-btn'>Search</button>
           </div>
         </form>
       </div>

@@ -12,6 +12,7 @@ header {
   display: flex;
   justify-content: space-between;
   background-color: #fff;
+  align-items: center;
 }
 
 header h1 {
@@ -19,11 +20,12 @@ header h1 {
 }
 
 header form {
-  margin: auto;
+  margin: 5px 0;
 }
 
 #navbar-left {
   display: flex;
+  align-items: center;
 }
 
 #navbar-left .logo-placeholder {
@@ -31,6 +33,23 @@ header form {
   margin: 0;
   border-radius: 100%;
   background-color: blue;
+}
+
+#navbar-left #input-btn {
+  background-color: #1652f0;
+  color: #fff;
+  border: none;
+  border-radius: 10%;
+  height: 25px;
+  width: 75px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+#navbar-left #input-btn:hover {
+  background-color: #1349d8;
+  color: #e5e5e5;
 }
 
 #navbar-right {
@@ -136,7 +155,6 @@ header form {
 
 #calculator-container {
   width: 100%;
-  background-color: red;
   background-color: #fff;
   border: 2px solid #1652f0;
   border-radius: 1%;
@@ -151,4 +169,50 @@ header form {
 form {
   padding-top: 25px;
   padding-left: 25px;
+}
+
+form label {
+  font-weight: bold;
+}
+
+#input-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#price-container {
+  width: 50%;
+}
+
+#submit-container {
+  margin-left: 4em;
+  width: 50%;
+}
+
+#form-overall {
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+#price-overall {
+  margin-top: 0;
+}
+
+#input-btn {
+  background-color: #1652f0;
+  color: #fff;
+  border: none;
+  border-radius: 10%;
+  height: 25px;
+  width: 75px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+#input-btn:hover {
+  background-color: #1349d8;
+  color: #e5e5e5;
 }

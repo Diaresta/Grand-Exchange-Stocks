@@ -21,7 +21,7 @@ const Stats = ({ apiData, loading, appAlchProfit, itemID }) => {
         <h2 id='item-name'>Abyssal Whip</h2>
         <img
           id='item-img'
-          src={`https://secure.runescape.com/m=itemdb_oldschool/1624444199886_obj_big.gif?id=${itemID}`}
+          src={`https://secure.runescape.com/m=itemdb_oldschool/1624874635661_obj_big.gif?id=${itemID}`}
           alt='Item Sprite'
         />
       </div>

@@ -2,7 +2,6 @@
 
 #calculator-container {
   width: 100%;
-  background-color: red;
 
   background-color: #fff;
   border: 2px solid #1652f0;
@@ -18,4 +17,51 @@
 form {
   padding-top: 25px;
   padding-left: 25px;
+
+  label {
+    font-weight: bold;
+    // text-decoration: underline;
+  }
+}
+
+#input-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#price-container {
+  width: 50%;
+}
+
+#submit-container {
+  margin-left: 4em;
+  width: 50%;
+}
+
+#form-overall {
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+#price-overall {
+  margin-top: 0;
+}
+
+#input-btn {
+  background-color: $accent-color;
+  color: #fff;
+  border: none;
+  border-radius: 10%;
+  height: 25px;
+  width: 75px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+#input-btn:hover {
+  background-color: $hover-color;
+  color: #e5e5e5;
 }
