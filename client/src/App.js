@@ -4,6 +4,7 @@ import './static/css/App.css';
 import Header from './components/Header';
 import Ticker from './components/Ticker';
 import Graph from './components/Graph';
+import BarGraph from './components/Bar-Graph';
 import Stats from './components/Stats';
 import Calculator from './components/Calculator';
 
@@ -34,7 +35,10 @@ function App() {
       <Header />
       <Ticker />
       <div id='item-page-container'>
-        <Graph />
+        <div id='graph-container'>
+          <Graph itemID={itemID} />
+          <BarGraph />
+        </div>
         <div id='stats-cal-container'>
           <Stats
             apiData={apiData}

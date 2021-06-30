@@ -1,7 +1,9 @@
 @import 'config';
 
 #stats-container {
-  width: 100%;
+  // width: 100%;
+  width: 96%;
+
   background-color: #fff;
   border: 2px solid $accent-color;
   border-radius: 1%;
@@ -18,15 +20,6 @@
 
 #stats-list-container {
   display: flex;
-}
-
-#item-name {
-  text-decoration: underline;
-}
-
-#item-img {
-  height: 10%;
-  width: 10%;
 }
 
 .stats-li {
