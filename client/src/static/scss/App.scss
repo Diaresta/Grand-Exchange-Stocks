@@ -23,6 +23,10 @@ body,
   }
 }
 
+input::placeholder {
+  color: $placeholder-color;
+}
+
 @import 'header';
 @import 'ticker';
 @import 'graph';

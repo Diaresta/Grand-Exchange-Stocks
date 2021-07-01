@@ -15,6 +15,7 @@ function App() {
 
   const [apiData, setApiData] = useState();
   const [loading, setLoading] = useState(true);
+  const [loggedIn] = useState(true);
 
   const apiCall = async () => {
     const url = await 'https://prices.runescape.wiki/api/v1/osrs/latest';
@@ -32,7 +33,7 @@ function App() {
 
   return (
     <div className='App'>
-      <Header />
+      <Header loggedIn={loggedIn} />
       <Ticker />
       <div id='item-page-container'>
         <div id='graph-container'>

@@ -3,8 +3,8 @@
 #graphs-container {
   // width: 100%;
   height: 100%;
+  background-color: $graph-color;
 
-  background-color: #fff;
   border: 2px solid #1652f0;
   border-radius: 1%;
   margin: 0px 5px 5px 5px;
@@ -14,12 +14,21 @@
 #graph-header {
   display: flex;
   justify-content: space-between;
+  background-color: #fff;
 }
 
 canvas {
-  background-color: purple;
+  // background-color: $graph-color;
   height: 100%;
   width: 100%;
+  border-top: 1px solid grey;
+}
+
+#stats-name {
+  display: flex;
+  // justify-content: space-between;
+  align-items: center;
+  margin-left: 5px;
 }
 
 #item-name {
@@ -27,11 +36,9 @@ canvas {
   margin: 0 5px 0 5px;
 }
 
-#item-img {
-  height: 40%;
-  width: 20%;
-  margin-top: 5px;
-}
+// #item-img {
+// margin-top: 5px;
+// }
 
 #graph-btn-ul {
   display: flex;
@@ -65,8 +72,9 @@ canvas {
 #bar-graph-container {
   // width: 100%;
   height: 100%;
+  background-color: $graph-color;
 
-  background-color: #fff;
+  // background-color: #fff;
   border: 2px solid #1652f0;
   border-radius: 1%;
   margin: 0px 5px 5px 5px;

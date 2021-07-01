@@ -18,9 +18,13 @@ body,
   width: 50%;
 }
 
+input::placeholder {
+  color: #b9cbfa;
+}
+
 header {
   width: 100%;
-  height: 10%;
+  height: 8%;
   display: flex;
   justify-content: space-between;
   background-color: #fff;
@@ -29,22 +33,43 @@ header {
 
 header h1 {
   margin: 0;
+  color: black;
+}
+
+header a {
+  text-decoration: none;
 }
 
 header form {
-  margin: 5px 0;
+  margin-left: 1em;
+}
+
+header i {
+  margin: auto;
+  margin-right: 5px;
+  transition: color 0.25s ease;
+}
+
+header i:hover {
+  color: #1141c0;
+  cursor: pointer;
 }
 
 #navbar-left {
   display: flex;
   align-items: center;
+  margin-left: 5px;
 }
 
-#navbar-left .logo-placeholder {
+#navbar-left a:hover {
+  opacity: 75%;
+}
+
+#navbar-left #logo {
   font-size: 2rem;
-  margin: 0;
-  border-radius: 100%;
-  background-color: blue;
+  margin: 0 5px;
+  height: 1.5em;
+  width: 1.5em;
 }
 
 #navbar-left #input-btn {
@@ -60,12 +85,13 @@ header form {
 }
 
 #navbar-left #input-btn:hover {
-  background-color: #1349d8;
+  background-color: #1141c0;
   color: #e5e5e5;
 }
 
 #navbar-right {
   display: flex;
+  margin-right: 5px;
 }
 
 #navbar-right .logo-placeholder {
@@ -73,6 +99,44 @@ header form {
   margin: 0;
   border-radius: 100%;
   background-color: blue;
+}
+
+.log-in {
+  color: #fff;
+  background-color: #1652f0;
+  border: 2px solid #1652f0 !important;
+  text-align: center;
+}
+
+.log-in:hover {
+  color: #e5e5e5;
+  background-color: #1141c0;
+  border: 2px solid #1141c0 !important;
+}
+
+.log-btn {
+  font-size: 0.9em;
+  text-align: center;
+  border: none;
+  border-radius: 10%;
+  height: 20px;
+  width: 45px;
+  margin: 5px;
+  padding-top: 2px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease, border 0.25s ease;
+}
+
+.sign-up {
+  color: #1652f0;
+  background-color: #fff;
+  border: 2px solid #1652f0;
+  text-align: center;
+}
+
+.sign-up:hover {
+  color: #1141c0;
+  background-color: #e5e5e5;
 }
 
 #ticker-container {
@@ -114,7 +178,7 @@ header form {
 
 #graphs-container {
   height: 100%;
-  background-color: #fff;
+  background-color: #e7edfd;
   border: 2px solid #1652f0;
   border-radius: 1%;
   margin: 0px 5px 5px 5px;
@@ -124,23 +188,24 @@ header form {
 #graph-header {
   display: flex;
   justify-content: space-between;
+  background-color: #fff;
 }
 
 canvas {
-  background-color: purple;
   height: 100%;
   width: 100%;
+  border-top: 1px solid grey;
+}
+
+#stats-name {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
 }
 
 #item-name {
   text-decoration: underline;
   margin: 0 5px 0 5px;
-}
-
-#item-img {
-  height: 40%;
-  width: 20%;
-  margin-top: 5px;
 }
 
 #graph-btn-ul {
@@ -167,13 +232,13 @@ canvas {
 }
 
 .price-btn:hover {
-  background-color: #1349d8;
+  background-color: #1141c0;
   color: #e5e5e5;
 }
 
 #bar-graph-container {
   height: 100%;
-  background-color: #fff;
+  background-color: #e7edfd;
   border: 2px solid #1652f0;
   border-radius: 1%;
   margin: 0px 5px 5px 5px;
@@ -187,12 +252,6 @@ canvas {
   border-radius: 1%;
   margin: 0px 0px 5px 5px;
   box-shadow: 3px 2px rgba(22, 82, 240, 0.3);
-}
-
-#stats-name {
-  display: flex;
-  align-items: center;
-  margin-left: 25px;
 }
 
 #stats-list-container {
@@ -229,13 +288,19 @@ canvas {
   padding-left: 25px;
 }
 
-form {
+#calc-form {
   padding-top: 25px;
   padding-left: 25px;
+  padding-right: 50px;
 }
 
-form label {
+#calc-form label {
   font-weight: bold;
+}
+
+#calc-form input,
+#calc-form label {
+  display: block;
 }
 
 #input-container {
@@ -276,6 +341,6 @@ form label {
 }
 
 #input-btn:hover {
-  background-color: #1349d8;
+  background-color: #1141c0;
   color: #e5e5e5;
 }

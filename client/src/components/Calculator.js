@@ -2,7 +2,7 @@ const Calculator = () => {
   return (
     <div id='calculator-container'>
       <div id='input-container'>
-        <form>
+        <form id='calc-form'>
           <label htmlFor='buy-sell-input'>Buy/Sell Price:</label>
           {/* <br /> */}
           <input
@@ -13,7 +13,7 @@ const Calculator = () => {
           ></input>
         </form>
 
-        <form>
+        <form id='calc-form'>
           <label htmlFor='quantity-input'>Quantity:</label>
           {/* <br /> */}
           <input

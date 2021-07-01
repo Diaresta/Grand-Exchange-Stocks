@@ -1,22 +1,27 @@
-const Header = () => {
+import NavbarRight from './Navbar-Right';
+
+const Header = ({ loggedIn }) => {
   return (
     <header>
       <div id='navbar-left'>
         <a href='/'>
-          <p className='logo-placeholder'>logo</p>
+          <img id='logo' src='/images/coins.png' alt='site logo' />
         </a>
-        <h1>Site Name</h1>
-        <form>
+        <a href='/'>
+          <h1>GE Teller</h1>
+        </a>
+        <form id='header-form'>
           <div>
             <input type='search\' placeholder='Search...'></input>
-            <button id='input-btn'>Search</button>
+            <button id='input-btn'>
+              <i class='fas fa-search'></i>Search
+            </button>
           </div>
         </form>
       </div>
 
       <div id='navbar-right'>
-        <p className='logo-placeholder'>logo</p>
-        <p>Username</p>
+        <NavbarRight loggedIn={loggedIn} />
       </div>
     </header>
   );
