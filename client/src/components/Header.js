@@ -14,7 +14,7 @@ const Header = ({ loggedIn }) => {
           <div>
             <input type='search\' placeholder='Search...'></input>
             <button id='input-btn'>
-              <i class='fas fa-search'></i>Search
+              <i className='fas fa-search'></i>Search
             </button>
           </div>
         </form>

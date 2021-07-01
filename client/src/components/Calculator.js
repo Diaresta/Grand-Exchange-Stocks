@@ -1,6 +1,7 @@
 const Calculator = () => {
   return (
     <div id='calculator-container'>
+      <h4>Buy/Sell</h4>
       <div id='input-container'>
         <form id='calc-form'>
           <label htmlFor='buy-sell-input'>Buy/Sell Price:</label>

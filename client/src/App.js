@@ -7,6 +7,7 @@ import Graph from './components/Graph';
 import BarGraph from './components/Bar-Graph';
 import Stats from './components/Stats';
 import Calculator from './components/Calculator';
+import History from './components/History';
 
 function App() {
   // Testing sending data to components
@@ -47,6 +48,7 @@ function App() {
             itemID={itemID}
           />
           <Calculator />
+          <History />
         </div>
       </div>
     </div>

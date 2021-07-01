@@ -26,6 +26,7 @@ const Stats = ({ apiData, loading, appAlchProfit, itemID }) => {
         />
       </div> */}
 
+      <h4>Stats</h4>
       <div id='stats-list-container'>
         <ul id='ul-1'>
           <li className='stats-li'>
