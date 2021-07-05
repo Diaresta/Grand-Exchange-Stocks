@@ -1,3 +1,5 @@
+import { Bar, Line } from 'react-chartjs-2';
+
 const Graph = ({ itemID }) => {
   return (
     <div id='graphs-container'>
@@ -22,7 +24,7 @@ const Graph = ({ itemID }) => {
           </li>
         </ul>
       </div>
-      <canvas></canvas>
+      <canvas id='cart'></canvas>
     </div>
   );
 };
