@@ -41,12 +41,12 @@ const Stats = ({ apiData, loading, appAlchProfit, itemID }) => {
           </li>
           <li className='stats-li'>
             <p>
-              <span className='item-uline'>High Alch Value:</span> 1,372,382g
+              <span className='item-uline'>Price High:</span> 2,000,000g
             </p>
           </li>
           <li className='stats-li'>
             <p>
-              <span className='item-uline'>Price High:</span> 2,000,000g
+              <span className='item-uline'>High Alch Value:</span> 1,372,382g
             </p>
           </li>
         </ul>

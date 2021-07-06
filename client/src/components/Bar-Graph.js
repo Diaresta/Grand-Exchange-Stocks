@@ -24,17 +24,31 @@ const BarGraph = () => {
     <div id='bar-graph-container'>
       <Bar
         data={chartData}
-        height={50}
+        height={65}
         options={{
-          // maintainAspectRatio: false,
+          responsive: true,
+          maintainAspectRatio: false,
           plugins: {
             title: {
               display: true,
               text: 'Item Volume',
+              // color: 'black',
             },
             legend: {
               display: false,
               position: 'right',
+            },
+            tooltip: {
+              displayColors: false,
+              titleAlign: 'center',
+            },
+          },
+          layout: {
+            padding: {
+              top: 0,
+              left: 10,
+              right: 10,
+              bottom: 0,
             },
           },
         }}
