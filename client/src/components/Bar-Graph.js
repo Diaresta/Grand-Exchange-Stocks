@@ -24,7 +24,7 @@ const BarGraph = () => {
     <div id='bar-graph-container'>
       <Bar
         data={chartData}
-        height={65}
+        height={68}
         options={{
           responsive: true,
           maintainAspectRatio: false,

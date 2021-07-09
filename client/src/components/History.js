@@ -1,7 +1,9 @@
 const History = () => {
   return (
     <div id='history-container'>
-      <h4>History</h4>
+      <h4>
+        <a href='/history'>History </a>
+      </h4>
       <div id='table-container'>
         <table>
           <thead>
@@ -18,7 +20,7 @@ const History = () => {
               {/* <td>Abyssal Whip</td> */}
               <td>4</td>
               <td>1,372,382</td>
-              <td>5,489,528</td>
+              <td>2,534,489,528</td>
               <td>06/30/2021 - 22:30:54</td>
             </tr>
             <tr>
@@ -43,12 +45,12 @@ const History = () => {
               <td>06/30/2021 - 22:30:54</td>
             </tr>
           </tbody>
-          <div id='history-btn-div'>
-            <button>Next</button>
-            <button>Previous</button>
-            <p id='page-text'>Page 1 of 4</p>
-          </div>
         </table>
+        <div id='history-btn-div'>
+          <button id='next-btn'>Next</button>
+          <button id='prev-btn'>Previous</button>
+        </div>
+        <p id='page-text'>Page 1 of 4</p>
       </div>
     </div>
   );

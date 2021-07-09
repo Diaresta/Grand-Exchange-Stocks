@@ -359,6 +359,41 @@ h4 {
   box-shadow: 3px 2px rgba(22, 82, 240, 0.3);
 }
 
+#history-container a {
+  color: black;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+#history-container a:hover {
+  color: #1141c0;
+}
+
+#history-btn-div {
+  display: flex;
+}
+
+#history-btn-div #next-btn,
+#history-btn-div #prev-btn {
+  background-color: #1652f0;
+  font-size: 0.75em;
+  text-align: center;
+  color: #fff;
+  border: none;
+  border-radius: 10%;
+  height: 20px;
+  width: 60px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+#history-btn-div #next-btn:hover,
+#history-btn-div #prev-btn:hover {
+  background-color: #1141c0;
+  color: #e5e5e5;
+}
+
 #page-text {
   font-size: 0.7em;
   font-style: italic;
@@ -366,6 +401,16 @@ h4 {
   color: grey;
 }
 
+table {
+  margin: 25px auto 0 auto;
+  border-collapse: collapse;
+  width: 95%;
+}
+
+table th {
+  border: 1px solid #b9cbfa;
+}
+
 table td {
-  border-bottom: 1px solid #b9cbfa;
+  border: 1px solid #b9cbfa;
 }

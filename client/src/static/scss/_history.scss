@@ -6,6 +6,42 @@
   border-radius: 1%/5%;
   margin: 0px 0px 5px 5px;
   box-shadow: 3px 2px rgba(22, 82, 240, 0.3);
+
+  a {
+    color: black;
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+
+  a:hover {
+    color: $hover-color;
+    // opacity: 75%;
+  }
+}
+
+#history-btn-div {
+  display: flex;
+
+  #next-btn,
+  #prev-btn {
+    background-color: $accent-color;
+    font-size: 0.75em;
+    text-align: center;
+    color: #fff;
+    border: none;
+    border-radius: 10%;
+    height: 20px;
+    width: 60px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  #next-btn:hover,
+  #prev-btn:hover {
+    background-color: $hover-color;
+    color: #e5e5e5;
+  }
 }
 
 #page-text {
@@ -17,7 +53,15 @@
 }
 
 table {
+  margin: 25px auto 0 auto;
+  border-collapse: collapse;
+  width: 95%;
+
+  th {
+    border: 1px solid $placeholder-color;
+  }
+
   td {
-    border-bottom: 1px solid $placeholder-color;
+    border: 1px solid $placeholder-color;
   }
 }
