@@ -7,3 +7,17 @@
   margin: 0px 0px 5px 5px;
   box-shadow: 3px 2px rgba(22, 82, 240, 0.3);
 }
+
+#page-text {
+  font-size: 0.7em;
+  font-style: italic;
+  // text-align: center;
+  margin: 0 5px;
+  color: grey;
+}
+
+table {
+  td {
+    border-bottom: 1px solid $placeholder-color;
+  }
+}

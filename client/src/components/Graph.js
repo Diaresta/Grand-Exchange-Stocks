@@ -21,7 +21,7 @@ const Graph = ({ itemID }) => {
           <h2 id='item-name'>Abyssal Whip</h2>
           <img
             id='item-img'
-            src={`https://secure.runescape.com/m=itemdb_oldschool/1625481077906_obj_sprite.gif?id=${itemID}`}
+            src={`https://secure.runescape.com/m=itemdb_oldschool/1625660176290_obj_sprite.gif?id=${itemID}`}
             alt='Item Sprite'
           />
         </div>
