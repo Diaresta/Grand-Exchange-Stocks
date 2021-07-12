@@ -414,3 +414,10 @@ table th {
 table td {
   border: 1px solid #b9cbfa;
 }
+
+.log-sign-container {
+  background-color: #1652f0;
+  width: 50%;
+  height: 50%;
+  display: flex;
+}

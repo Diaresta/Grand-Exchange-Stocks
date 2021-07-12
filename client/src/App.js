@@ -8,6 +8,7 @@ import BarGraph from './components/Bar-Graph';
 import Stats from './components/Stats';
 import Calculator from './components/Calculator';
 import History from './components/History';
+import LogIn from './components/Log-In';
 
 function App() {
   // Testing sending data to components
@@ -34,23 +35,34 @@ function App() {
 
   return (
     <div className='App'>
-      <Header loggedIn={loggedIn} />
-      <Ticker />
-      <div id='item-page-container'>
-        <div id='graph-container'>
-          <Graph itemID={itemID} />
-          <BarGraph />
-        </div>
-        <div id='stats-cal-container'>
-          <Stats
-            apiData={apiData}
-            appAlchProfit={appAlchProfit}
-            itemID={itemID}
-          />
-          <Calculator />
-          <History />
-        </div>
-      </div>
+      <Router>
+        <Header loggedIn={loggedIn} />
+        <Ticker />
+        <Switch>
+          <Route path={['', '/', '/home']} exact>
+            <div id='item-page-container'>
+              <div id='graph-container'>
+                <Graph itemID={itemID} />
+                <BarGraph />
+              </div>
+              <div id='stats-cal-container'>
+                <Stats
+                  apiData={apiData}
+                  appAlchProfit={appAlchProfit}
+                  itemID={itemID}
+                />
+                <Calculator />
+                <History />
+              </div>
+            </div>
+          </Route>
+          <Route path={['/login', '/log-in']} exact>
+            <div class='log-sign-app-container'>
+              <LogIn />
+            </div>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
