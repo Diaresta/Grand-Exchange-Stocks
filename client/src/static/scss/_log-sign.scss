@@ -1,12 +1,93 @@
 @import 'config';
 
+.log-sign-app-container {
+  margin-top: 2%;
+}
+
+#log-sign-page {
+  // display: flex;
+  // justify-content: center;
+  // margin: auto;
+}
+
 .log-sign-container {
-  background-color: $accent-color;
   width: 50%;
   height: 50%;
   display: flex;
+  justify-content: center;
+  margin: auto;
+
+  h1 {
+    margin: 15px;
+  }
+
+  form {
+    background-color: $accent-color;
+    border-radius: 5px;
+    box-shadow: 0 1px 25px -4px rgba(0, 0, 0, 0.28);
+    padding: 30px 0px;
+    margin-bottom: 10px;
+  }
 
   button {
-    //   styling
+    color: $accent-color;
+    background-color: #fff;
+    border: 1px solid $placeholder-color;
+    text-align: center;
+
+    font-size: 1em;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 5px;
+    height: 35px;
+    width: 65px;
+    cursor: pointer;
+    transition: background-color 0.25s ease, color 0.25s ease, border 0.25s ease;
+  }
+
+  button:hover {
+    color: $hover-color;
+    background-color: #e5e5e5;
+    border: 1px solid #94a2c8;
+  }
+
+  input {
+    width: 75%;
+    height: 25px;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+    border-radius: 2px;
+    border: 2px solid $graph-color;
+  }
+
+  input:focus {
+    // border: 2px solid #fff;
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 3px #9ecaed;
+  }
+}
+
+.form-container {
+  display: block;
+  text-align: center;
+}
+
+.log-sign-footer {
+  text-align: center;
+
+  a {
+    margin: 0 5px;
+    color: #000;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: $hover-color;
+  }
+
+  a:nth-child(2):before,
+  a:nth-child(2):after {
+    content: ' ∙ ';
   }
 }
