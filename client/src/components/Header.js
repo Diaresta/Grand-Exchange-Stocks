@@ -12,7 +12,7 @@ const Header = ({ loggedIn }) => {
         </Link>
         <form id='header-form'>
           <div>
-            <input type='search\' placeholder='Search...'></input>
+            <input type='search' placeholder='Search...'></input>
             <button id='input-btn'>
               <i className='fas fa-search'></i>Search
             </button>

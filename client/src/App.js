@@ -9,6 +9,7 @@ import Stats from './components/Stats';
 import Calculator from './components/Calculator';
 import History from './components/History';
 import LogIn from './components/Log-In';
+import SignUp from './components/Sign-Up';
 
 function App() {
   // Testing sending data to components
@@ -59,6 +60,11 @@ function App() {
           <Route path={['/login', '/log-in']} exact>
             <div class='log-sign-app-container'>
               <LogIn />
+            </div>
+          </Route>
+          <Route path={['/signup', '/sign-up']} exact>
+            <div class='log-sign-app-container'>
+              <SignUp />
             </div>
           </Route>
         </Switch>

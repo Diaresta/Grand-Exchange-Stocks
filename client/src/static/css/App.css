@@ -429,6 +429,8 @@ table td {
 
 .log-sign-app-container {
   margin-top: 2%;
+  position: relative;
+  min-height: 83vh;
 }
 
 .log-sign-container {
@@ -461,7 +463,7 @@ table td {
   text-align: center;
   border-radius: 5px;
   height: 35px;
-  width: 65px;
+  width: 75px;
   cursor: pointer;
   transition: background-color 0.25s ease, color 0.25s ease, border 0.25s ease;
 }
@@ -509,4 +511,45 @@ table td {
 .log-sign-footer a:nth-child(2):before,
 .log-sign-footer a:nth-child(2):after {
   content: ' ∙ ';
+}
+
+.form-input-div {
+  display: flex;
+  width: 90%;
+  margin: auto;
+}
+
+.form-input-div input:nth-child(1) {
+  margin-right: 5px;
+}
+
+.form-input-div input:nth-child(2) {
+  margin-left: 5px;
+}
+
+#email-input {
+  width: 89%;
+}
+
+#footer {
+  width: 100%;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  border-top: 1px solid #adadad;
+  justify-content: center;
+}
+
+#footer p {
+  font-size: 0.9em;
+  margin: 5px 25px 0 5px;
+}
+
+#footer a {
+  color: #999;
+  text-decoration: none;
+}
+
+#footer a:hover {
+  color: #1141c0;
 }

@@ -2,13 +2,15 @@
 
 .log-sign-app-container {
   margin-top: 2%;
+  position: relative;
+  min-height: 83vh;
 }
 
-#log-sign-page {
-  // display: flex;
-  // justify-content: center;
-  // margin: auto;
-}
+// #log-sign-page {
+// display: flex;
+// justify-content: center;
+// margin: auto;
+// }
 
 .log-sign-container {
   width: 50%;
@@ -40,7 +42,7 @@
     text-align: center;
     border-radius: 5px;
     height: 35px;
-    width: 65px;
+    width: 75px;
     cursor: pointer;
     transition: background-color 0.25s ease, color 0.25s ease, border 0.25s ease;
   }
@@ -90,4 +92,24 @@
   a:nth-child(2):after {
     content: ' ∙ ';
   }
+}
+
+// Sign up component
+
+.form-input-div {
+  display: flex;
+  width: 90%;
+  margin: auto;
+
+  input:nth-child(1) {
+    margin-right: 5px;
+  }
+
+  input:nth-child(2) {
+    margin-left: 5px;
+  }
+}
+
+#email-input {
+  width: 89%;
 }

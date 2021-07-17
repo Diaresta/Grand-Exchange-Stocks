@@ -1,0 +1,27 @@
+@import 'config';
+
+#footer {
+  width: 100%;
+  display: flex;
+  //   height: 1vh;
+  position: absolute;
+  bottom: 0;
+  border-top: 1px solid #adadad;
+  justify-content: center;
+
+  p {
+    font-size: 0.9em;
+    margin: 5px 25px 0 5px;
+  }
+
+  a {
+    color: #999;
+    text-decoration: none;
+    // transition: color 0.25s ease;
+  }
+
+  a:hover {
+    color: $hover-color;
+    // opacity: 75%;
+  }
+}
