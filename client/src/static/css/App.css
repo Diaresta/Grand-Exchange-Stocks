@@ -42,7 +42,7 @@ header a {
 }
 
 header form {
-  margin-left: 1em;
+  margin-left: 1.5em;
 }
 
 header i {
@@ -62,6 +62,12 @@ header i:hover {
   margin-left: 5px;
 }
 
+#navbar-left a {
+  display: flex;
+  align-items: center;
+  width: 200px;
+}
+
 #navbar-left a:hover {
   opacity: 75%;
 }
@@ -71,6 +77,12 @@ header i:hover {
   margin: 0 5px;
   height: 1.5em;
   width: 1.5em;
+}
+
+#navbar-left #name-logo {
+  width: 75%;
+  height: 75%;
+  margin: 0 5px;
 }
 
 #navbar-left #input-btn {

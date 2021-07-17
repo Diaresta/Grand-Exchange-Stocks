@@ -1,15 +1,15 @@
+import { Link } from 'react-router-dom';
 import NavbarRight from './Navbar-Right';
 
 const Header = ({ loggedIn }) => {
   return (
     <header>
       <div id='navbar-left'>
-        <a href='/'>
+        <Link to='/home'>
           <img id='logo' src='/images/coins.png' alt='site logo' />
-        </a>
-        <a href='/'>
-          <h1>GE Teller</h1>
-        </a>
+          <img id='name-logo' src='/images/gelogo.png' alt='site name logo' />
+          {/* <h1>GE Teller</h1> */}
+        </Link>
         <form id='header-form'>
           <div>
             <input type='search\' placeholder='Search...'></input>

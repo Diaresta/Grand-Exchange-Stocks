@@ -1,8 +1,10 @@
+import { Link } from 'react-router-dom';
+
 const History = () => {
   return (
     <div id='history-container'>
       <h4>
-        <a href='/history'>History </a>
+        <Link to='/history'>History</Link>
       </h4>
       <div id='table-container'>
         <table>

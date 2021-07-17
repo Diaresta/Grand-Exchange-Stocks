@@ -1,12 +1,14 @@
+import { Link } from 'react-router-dom';
+
 const NavbarRight = ({ loggedIn }) => {
   return loggedIn ? (
     <div id='navbar-right'>
-      <a href='/login' className='log-in log-btn'>
+      <Link to='/login' className='log-in log-btn'>
         Log In
-      </a>
-      <a href='/signup' className='sign-up log-btn'>
+      </Link>
+      <Link to='/signup' className='sign-up log-btn'>
         Sign Up
-      </a>
+      </Link>
     </div>
   ) : (
     <div id='navbar-right'>

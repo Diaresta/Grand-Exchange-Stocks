@@ -18,7 +18,7 @@ header {
   }
 
   form {
-    margin-left: 1em;
+    margin-left: 1.5em;
   }
 
   i {
@@ -38,6 +38,12 @@ header {
   align-items: center;
   margin-left: 5px;
 
+  a {
+    display: flex;
+    align-items: center;
+    width: 200px;
+  }
+
   a:hover {
     opacity: 75%;
   }
@@ -49,6 +55,12 @@ header {
     // background-color: blue;
     height: 1.5em;
     width: 1.5em;
+  }
+
+  #name-logo {
+    width: 75%;
+    height: 75%;
+    margin: 0 5px;
   }
 
   #input-btn {
