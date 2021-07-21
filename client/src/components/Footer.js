@@ -7,7 +7,7 @@ const Footer = () => {
       <Link to='/copyright'>
         <p>&copy; ge.teller</p>
       </Link>
-      <Link to='/contact-us'>
+      <Link to='/contact'>
         <p>Contact Us</p>
       </Link>
       <Link to='/privacy-policy'>

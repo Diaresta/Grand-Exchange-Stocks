@@ -1,21 +1,16 @@
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 
-const SignUp = () => {
+const Contact = () => {
   return (
     <div id='log-sign-page'>
       <div class='log-sign-container'>
         <div class='form-container'>
-          <h1>Create Account</h1>
+          <h1>Contact Us</h1>
           <form>
             <div class='form-input-div'>
               <input type='text' placeholder='First Name' required />
               <input type='text' placeholder='Last Name' required />
-            </div>
-
-            <div class='form-input-div'>
-              <input type='text' placeholder='Username' required />
-              <input type='password' placeholder='Password' required />
             </div>
 
             <input
@@ -24,14 +19,14 @@ const SignUp = () => {
               placeholder='E-Mail'
               required
             />
-            {/* <input type='date' placeholder='birthday'/> */}
+            <textarea placeholder='Messsage...' />
             <br />
-            <button class=''>Sign Up</button>
+            <button class=''>Submit</button>
           </form>
         </div>
       </div>
       <div class='log-sign-footer'>
-        <a href='/account-recovery'>Forgot Password?</a>
+        <Link to='/signup'>Sign Up!</Link>
         <Link to='/login'>Log In</Link>
         <Link to='/privacy-policy'>Privacy Policy</Link>
       </div>
@@ -41,4 +36,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Contact;

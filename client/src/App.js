@@ -10,6 +10,8 @@ import Calculator from './components/Calculator';
 import History from './components/History';
 import LogIn from './components/Log-In';
 import SignUp from './components/Sign-Up';
+import Contact from './components/Contact';
+import ForgotPassword from './components/ForgotPassword';
 
 function App() {
   // Testing sending data to components
@@ -65,6 +67,16 @@ function App() {
           <Route path={['/signup', '/sign-up']} exact>
             <div class='log-sign-app-container'>
               <SignUp />
+            </div>
+          </Route>
+          <Route path={['/contact', '/contact-us']}>
+            <div class='log-sign-app-container'>
+              <Contact />
+            </div>
+          </Route>
+          <Route path={['/account-recovery', '/forgot-password']}>
+            <div class='log-sign-app-container'>
+              <ForgotPassword />
             </div>
           </Route>
         </Switch>

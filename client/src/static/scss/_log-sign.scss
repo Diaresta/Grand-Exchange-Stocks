@@ -110,6 +110,19 @@
   }
 }
 
-#email-input {
+#email-input,
+textarea {
   width: 89%;
+}
+
+textarea {
+  font-size: 0.9em;
+  height: 100px;
+  margin-bottom: 15px;
+  border-radius: 2px;
+  border: 2px solid $graph-color;
+}
+
+textarea::placeholder {
+  color: $placeholder-color;
 }
