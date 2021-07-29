@@ -12,6 +12,7 @@ import LogIn from './components/Log-In';
 import SignUp from './components/Sign-Up';
 import Contact from './components/Contact';
 import ForgotPassword from './components/ForgotPassword';
+import Terms from './components/Terms';
 
 function App() {
   // Testing sending data to components
@@ -60,24 +61,27 @@ function App() {
             </div>
           </Route>
           <Route path={['/login', '/log-in']} exact>
-            <div class='log-sign-app-container'>
+            <div className='log-sign-app-container'>
               <LogIn />
             </div>
           </Route>
           <Route path={['/signup', '/sign-up']} exact>
-            <div class='log-sign-app-container'>
+            <div className='log-sign-app-container'>
               <SignUp />
             </div>
           </Route>
-          <Route path={['/contact', '/contact-us']}>
-            <div class='log-sign-app-container'>
+          <Route path={['/contact', '/contact-us']} exact>
+            <div className='log-sign-app-container'>
               <Contact />
             </div>
           </Route>
-          <Route path={['/account-recovery', '/forgot-password']}>
-            <div class='log-sign-app-container'>
+          <Route path={['/account-recovery', '/forgot-password']} exact>
+            <div className='log-sign-app-container'>
               <ForgotPassword />
             </div>
+          </Route>
+          <Route path={['/privacy-policy']} exact>
+            <Terms />
           </Route>
         </Switch>
       </Router>

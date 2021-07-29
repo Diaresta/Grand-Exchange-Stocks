@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div id='footer'>
       {/* <hr /> */}
-      <Link to='/copyright'>
+      <Link to='/privacy-policy'>
         <p>&copy; ge.teller</p>
       </Link>
       <Link to='/contact'>

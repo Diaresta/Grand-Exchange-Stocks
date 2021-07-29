@@ -544,6 +544,10 @@ textarea::placeholder {
   color: #b9cbfa;
 }
 
+#reset-btn {
+  width: 55%;
+}
+
 #footer {
   width: 100%;
   display: flex;
@@ -564,5 +568,25 @@ textarea::placeholder {
 }
 
 #footer a:hover {
+  color: #1141c0;
+}
+
+#terms-container {
+  margin: auto;
+  padding-bottom: 5px;
+  width: 80%;
+}
+
+#terms-container h1 {
+  font-size: 1.75em;
+  text-decoration: underline;
+}
+
+#terms-container a {
+  color: #1652f0;
+  text-decoration: none;
+}
+
+#terms-container a:hover {
   color: #1141c0;
 }
