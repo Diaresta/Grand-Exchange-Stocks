@@ -4,10 +4,12 @@ import Footer from '../components/Footer';
 
 const ForgotPassword = () => {
   const [passwordAccept, setpasswordAccept] = useState(false);
+  const [passValue, setpassValue] = useState('');
 
-  const passwordboys = () => {
-    console.log('asdasdasd');
+  const passwordboys = (e) => {
+    e.preventDefault();
     setpasswordAccept(true);
+    setpassValue('');
   };
 
   return (
@@ -15,18 +17,29 @@ const ForgotPassword = () => {
       <div className='log-sign-container'>
         <div className='form-container'>
           <h1>Forgot Password?</h1>
-          <form>
+          <form id='password-reset-form'>
             <input
               id='email-input'
               type='email'
               placeholder='E-Mail'
+              value={passValue}
+              onChange={(e) => setpassValue(e.target.value)}
               required
             />
 
             <br />
-            <button id='reset-btn' onSubmit={passwordboys}>
+            <button
+              id='reset-btn'
+              onClick={passwordboys}
+              disabled={!passValue.includes('@')}
+            >
               Reset Password
             </button>
+            {passwordAccept ? (
+              <div id='password-reset-alert'>
+                <p>Password reset link sent to your e-mail!</p>
+              </div>
+            ) : null}
           </form>
         </div>
       </div>

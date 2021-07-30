@@ -130,3 +130,19 @@ textarea::placeholder {
 #reset-btn {
   width: 55%;
 }
+
+#password-reset-form {
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 300px;
+}
+
+#password-reset-alert {
+  background-color: #9dff9d;
+  display: flex;
+  justify-content: center;
+  margin: 20px 5px 0 5px;
+  height: 50px;
+  border-radius: 5px;
+  box-shadow: 0 1px 25px -4px rgba(0, 0, 0, 0.28);
+}
