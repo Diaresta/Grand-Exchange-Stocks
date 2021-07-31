@@ -1,4 +1,9 @@
+import { useState } from 'react';
+
 const Calculator = () => {
+  const [priceValue, setPriceValue] = useState('');
+  const [quantityValue, setQuantityValue] = useState('');
+
   return (
     <div id='calculator-container'>
       <h4>Buy/Sell</h4>
@@ -11,6 +16,9 @@ const Calculator = () => {
             id='buy-sell-input'
             name='buy-sell'
             placeholder='Enter price here...'
+            onChange={(e) => {
+              setPriceValue(e.target.value);
+            }}
           ></input>
         </form>
 
@@ -22,6 +30,9 @@ const Calculator = () => {
             id='quantity-input'
             name='quantity'
             placeholder='Enter quantity here...'
+            onChange={(e) => {
+              setQuantityValue(e.target.value);
+            }}
           ></input>
         </form>
       </div>
@@ -29,7 +40,7 @@ const Calculator = () => {
       <div id='input-container'>
         <div id='price-container'>
           <p id='form-overall'>Overall:</p>
-          <p id='price-overall'>100g</p>
+          <p id='price-overall'>{priceValue * quantityValue}g</p>
         </div>
         <div id='submit-container'>
           <button id='input-btn'>Buy/Sell</button>

@@ -19,6 +19,22 @@ function App() {
   const itemID = 4151;
   const appAlchProfit = -927293;
 
+  // ----------------------------
+  const itemName = 'Abyssal Whip';
+  const itemIcon =
+    'https://secure.runescape.com/m=itemdb_oldschool/1627468199533_obj_sprite.gif?id=';
+
+  const currentPrice = 2319566 + 'g';
+  const geLimit = 70;
+  const latestOfferPrice = 2313109 + 'g';
+  const avgHighHour = 2320565 + 'g';
+  // Margin instead of price high? buy price - sell price
+  const avgLowHour = 2316056 + 'g';
+
+  const highAlchVal = 1372382 + 'g';
+
+  // ----------------------------
+
   const [apiData, setApiData] = useState();
   const [loading, setLoading] = useState(true);
   const [loggedIn] = useState(true);
@@ -46,12 +62,22 @@ function App() {
           <Route path={['', '/', '/home']} exact>
             <div id='item-page-container'>
               <div id='graph-container'>
-                <Graph itemID={itemID} />
+                <Graph
+                  itemID={itemID}
+                  itemName={itemName}
+                  itemIcon={itemIcon}
+                />
                 <BarGraph />
               </div>
               <div id='stats-cal-container'>
                 <Stats
                   apiData={apiData}
+                  currentPrice={currentPrice}
+                  geLimit={geLimit}
+                  latestOfferPrice={latestOfferPrice}
+                  avgHighHour={avgHighHour}
+                  avgLowHour={avgLowHour}
+                  highAlchVal={highAlchVal}
                   appAlchProfit={appAlchProfit}
                   itemID={itemID}
                 />

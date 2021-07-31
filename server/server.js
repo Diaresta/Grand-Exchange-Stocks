@@ -31,7 +31,7 @@ app.get('/', async (req, res) => {
   const apiNameChange = await responseNameChange.json();
 
   const itemName = apiNameChange.item.name;
-  const itemIcon = apiNameChange.item.icon_large;
+  const itemIcon = apiNameChange.item.icon;
   const itemTrend = apiNameChange.item.today.trend;
   const item30DayChange = apiNameChange.item.day30.change;
   const item90DayChange = apiNameChange.item.day90.change;
@@ -174,3 +174,4 @@ app.get('/', async (req, res) => {
 export default app;
 
 // CD TO SERVER BEFORE NODEMON SERVER
+// localhost:5000 for api call

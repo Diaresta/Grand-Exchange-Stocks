@@ -1,6 +1,17 @@
 import { useState, useEffect } from 'react';
 
-const Stats = ({ apiData, loading, appAlchProfit, itemID }) => {
+const Stats = ({
+  apiData,
+  loading,
+  currentPrice,
+  geLimit,
+  latestOfferPrice,
+  avgHighHour,
+  avgLowHour,
+  highAlchVal,
+  appAlchProfit,
+  itemID,
+}) => {
   const [highAlchProfit] = useState(appAlchProfit);
 
   const [highAlchColor, setHighAlchColor] = useState();
@@ -31,22 +42,23 @@ const Stats = ({ apiData, loading, appAlchProfit, itemID }) => {
         <ul id='ul-1'>
           <li className='stats-li'>
             <p>
-              <span className='item-uline'>Current Price:</span> 1,372,382g
+              <span className='item-uline'>Current Price:</span> {currentPrice}
             </p>
           </li>
           <li className='stats-li'>
             <p>
-              <span className='item-uline'>Offer Price:</span> 1,372,382g
+              <span className='item-uline'>Offer Price:</span>{' '}
+              {latestOfferPrice}
             </p>
           </li>
           <li className='stats-li'>
             <p>
-              <span className='item-uline'>Price High:</span> 2,000,000g
+              <span className='item-uline'>Margin:</span> 2837g
             </p>
           </li>
           <li className='stats-li'>
             <p>
-              <span className='item-uline'>High Alch Value:</span> 1,372,382g
+              <span className='item-uline'>High Alch Value:</span> {highAlchVal}
             </p>
           </li>
         </ul>
@@ -54,17 +66,18 @@ const Stats = ({ apiData, loading, appAlchProfit, itemID }) => {
         <ul>
           <li className='stats-li'>
             <p>
-              <span className='item-uline'>GE Limit:</span> 5
+              <span className='item-uline'>GE Limit:</span> {geLimit}
             </p>
           </li>
           <li className='stats-li'>
             <p>
-              <span className='item-uline'>Average High/Hour:</span> 200g
+              <span className='item-uline'>Average High/Hour:</span>{' '}
+              {avgHighHour}
             </p>
           </li>
           <li className='stats-li'>
             <p>
-              <span className='item-uline'>Average Low/Hour:</span> 20,000g
+              <span className='item-uline'>Average Low/Hour:</span> {avgLowHour}
             </p>
           </li>
           <li className='stats-li'>

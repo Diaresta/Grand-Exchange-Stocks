@@ -1,7 +1,7 @@
 import { Bar, Line } from 'react-chartjs-2';
 import { useState, useEffect } from 'react';
 
-const Graph = ({ itemID }) => {
+const Graph = ({ itemID, itemName, itemIcon }) => {
   const [chartData] = useState({
     labels: ['June 5', 'June 6', 'June 7', 'June 8', 'June 9', 'June 10'],
     datasets: [
@@ -18,12 +18,8 @@ const Graph = ({ itemID }) => {
     <div id='graphs-container'>
       <div id='graph-header'>
         <div id='stats-name'>
-          <h2 id='item-name'>Abyssal Whip</h2>
-          <img
-            id='item-img'
-            src={`https://secure.runescape.com/m=itemdb_oldschool/1627468199533_obj_sprite.gif?id=${itemID}`}
-            alt='Item Sprite'
-          />
+          <h2 id='item-name'>{itemName}</h2>
+          <img id='item-img' src={itemIcon + `${itemID}`} alt='Item Sprite' />
         </div>
         <ul id='graph-btn-ul'>
           <li className='graph-btn-li'>
