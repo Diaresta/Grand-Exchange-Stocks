@@ -49,6 +49,7 @@ const Terms = () => {
           <a
             href='https://www.freeprivacypolicy.com/free-privacy-policy-generator/'
             target='_blank'
+            rel='noreferrer'
           >
             Privacy Policy Generator
           </a>
@@ -136,6 +137,7 @@ const Terms = () => {
                 href='ge-teller.com'
                 rel='external nofollow noopener'
                 target='_blank'
+                rel='noreferrer'
               >
                 ge-teller.com
               </a>
@@ -223,6 +225,7 @@ const Terms = () => {
               href='https://helpx.adobe.com/flash-player/kb/disable-local-shared-objects-flash.html#main_Where_can_I_change_the_settings_for_disabling__or_deleting_local_shared_objects_'
               rel='external nofollow noopener'
               target='_blank'
+              rel='noreferrer'
             >
               https://helpx.adobe.com/flash-player/kb/disable-local-shared-objects-flash.html#main_Where_can_I_change_the_settings_for_disabling__or_deleting_local_shared_objects_
             </a>
@@ -245,6 +248,7 @@ const Terms = () => {
           <a
             href='https://www.freeprivacypolicy.com/blog/cookies/'
             target='_blank'
+            rel='noreferrer'
           >
             Cookies: What Do They Do?
           </a>
@@ -549,7 +553,12 @@ const Terms = () => {
         <ul>
           <li>
             By visiting this page on our website:{' '}
-            <a href='/contact' rel='external nofollow noopener' target='_blank'>
+            <a
+              href='/contact'
+              rel='external nofollow noopener'
+              target='_blank'
+              rel='noreferrer'
+            >
               ge-teller.com/contact
             </a>
           </li>
