@@ -4,6 +4,14 @@ const Calculator = () => {
   const [priceValue, setPriceValue] = useState('');
   const [quantityValue, setQuantityValue] = useState('');
 
+  const calcCheck = (priceValue, quantityValue) => {
+    if (isNaN(priceValue) === true || isNaN(quantityValue) === true) {
+      return '???';
+    } else {
+      return priceValue * quantityValue;
+    }
+  };
+
   return (
     <div id='calculator-container'>
       <h4>Buy/Sell</h4>
@@ -40,7 +48,7 @@ const Calculator = () => {
       <div id='input-container'>
         <div id='price-container'>
           <p id='form-overall'>Overall:</p>
-          <p id='price-overall'>{priceValue * quantityValue}g</p>
+          <p id='price-overall'>{calcCheck(priceValue, quantityValue)}g</p>
         </div>
         <div id='submit-container'>
           <button id='input-btn'>Buy/Sell</button>
