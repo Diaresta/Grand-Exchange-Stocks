@@ -41,128 +41,98 @@ app.get('/', async (req, res) => {
   const tickerItem1 = `${itemName} ${apiNameChange.item.current.price} - (${item30DayChange})`;
   // console.log(tickerItem1);
 
-  // ------------------------- **************** -------------------------------
-  res.status(200).json({
-    name: itemName,
-    icon: itemIcon,
-    todayTrend: itemTrend,
-    item30DayTrend: item30DayChange,
-    item90DayTrend: item90DayChange,
-    item180DayTrend: item180DayChange,
-  });
-
-  // ------------------------- **************** -------------------------------
-
   // --------------------------------------------------------
 
   // Grabs alch values/ge sell limit
-  const alchGeLimit = async () => {
-    const urlAlchGeLimit =
-      await 'https://prices.runescape.wiki/api/v1/osrs/mapping';
 
-    const options = {
-      method: 'GET',
-    };
+  const urlAlchGeLimit =
+    await 'https://prices.runescape.wiki/api/v1/osrs/mapping';
 
-    const response = await fetch(urlAlchGeLimit, options);
-    const apiGeLimit = await response.json();
+  const geLimitresponse = await fetch(urlAlchGeLimit, options);
+  const apiGeLimit = await geLimitresponse.json();
 
-    // random for testing
-    const randomMapping = Math.floor(Math.random() * apiGeLimit.length);
+  // random for testing
+  const randomMapping = Math.floor(Math.random() * apiGeLimit.length);
 
-    const highAlchVal = apiGeLimit[randomMapping].highalch;
-    const lowAlchVal = apiGeLimit[randomMapping].lowalch;
-    const geLimit = apiGeLimit[randomMapping].limit;
-
-    // Extra fetch for high alch profit calculation
-    const urlFiveMin = await 'https://prices.runescape.wiki/api/v1/osrs/5m';
-    const fiveMinResponse = await fetch(urlFiveMin, options);
-    const apiFiveMin = await fiveMinResponse.json();
-    // swap [2] to whatever id number is passed in
-    const fiveMinCurrentPrice = apiFiveMin.data[2].avgHighPrice;
-    const highAlchProfit = highAlchVal - fiveMinCurrentPrice;
-
-    const testBoys = {};
-
-    testBoys['highAlchVal'] = highAlchVal;
-    testBoys['geLimit'] = geLimit;
-
-    console.log(testBoys);
-  };
+  const highAlchVal = apiGeLimit[randomMapping].highalch;
+  const lowAlchVal = apiGeLimit[randomMapping].lowalch;
+  const geLimit = apiGeLimit[randomMapping].limit;
 
   // --------------------------------------------------------
 
   // Grabs current/offer price from 5min avg
-  const fiveMinCurrOffer = async () => {
-    const urlFiveMin = await 'https://prices.runescape.wiki/api/v1/osrs/5m';
+  const urlFiveMin = await 'https://prices.runescape.wiki/api/v1/osrs/5m';
 
-    const options = {
-      method: 'GET',
-    };
+  const fiveMinresponse = await fetch(urlFiveMin, options);
+  const apiFiveMin = await fiveMinresponse.json();
 
-    const response = await fetch(urlFiveMin, options);
-    const apiFiveMin = await response.json();
-
-    const fiveMinCurrentPrice = apiFiveMin.data[2].avgHighPrice;
-    const fiveMinOfferPrice = apiFiveMin.data[2].avgLowPrice;
-    const fiveMinVolume =
-      apiFiveMin.data[2].highPriceVolume + apiFiveMin.data[2].lowPriceVolume;
-
-    // console.log(fiveMinCurrentPrice, fiveMinOfferPrice, fiveMinVolume);
-  };
+  const fiveMinCurrentPrice = apiFiveMin.data[4151].avgHighPrice;
+  const fiveMinOfferPrice = apiFiveMin.data[4151].avgLowPrice;
+  const fiveMinVolume =
+    apiFiveMin.data[4151].highPriceVolume +
+    apiFiveMin.data[4151].lowPriceVolume;
+  const highAlchProfit = highAlchVal - fiveMinCurrentPrice;
 
   // --------------------------------------------------------
 
   // Grabs current/offer/sell price from latest
-  const latestCurrOfferSell = async () => {
-    const urlLatest =
-      await 'https://prices.runescape.wiki/api/v1/osrs/latest?id=4151';
+  const urlLatest =
+    await 'https://prices.runescape.wiki/api/v1/osrs/latest?id=4151';
 
-    const options = {
-      method: 'GET',
-    };
+  const latestResponse = await fetch(urlLatest, options);
+  const apiLatest = await latestResponse.json();
 
-    const response = await fetch(urlLatest, options);
-    const apiLatest = await response.json();
-
-    const latestCurrentPrice = apiLatest.data[4151].low;
-    const latestOfferPrice = Math.floor(
-      (apiLatest.data[4151].high + apiLatest.data[4151].low) / 2
-    );
-    const latestSellPrice = apiLatest.data[4151].high;
-
-    const latestTest = {};
-
-    latestTest['currentPrice'] = latestCurrentPrice;
-  };
+  const latestCurrentPrice = apiLatest.data[4151].low;
+  const latestOfferPrice = Math.floor(
+    (apiLatest.data[4151].high + apiLatest.data[4151].low) / 2
+  );
+  const latestSellPrice = apiLatest.data[4151].high;
 
   // --------------------------------------------------------
 
   // Grabs average high/low prices/hour and hourly volume
-  const buySellHour = async () => {
-    const urlHour = await 'https://prices.runescape.wiki/api/v1/osrs/1h';
 
-    const options = {
-      method: 'GET',
-    };
+  const urlHour = await 'https://prices.runescape.wiki/api/v1/osrs/1h';
 
-    const response = await fetch(urlHour, options);
-    const apiHour = await response.json();
+  const hourResponse = await fetch(urlHour, options);
+  const apiHour = await hourResponse.json();
 
-    const avgHighHour = apiHour.data[2].avgHighPrice;
-    const avgLowHour = apiHour.data[2].avgLowPrice;
-    const hourVolume =
-      apiHour.data[2].highPriceVolume + apiHour.data[2].lowPriceVolume;
+  const avgHighHour = apiHour.data[2].avgHighPrice;
+  const avgLowHour = apiHour.data[2].avgLowPrice;
+  const hourVolume =
+    apiHour.data[2].highPriceVolume + apiHour.data[2].lowPriceVolume;
 
-    // console.log(avgHighHour, avgLowHour, hourVolume);
-  };
+  // console.log(avgHighHour, avgLowHour, hourVolume);
+  // ------------------------- **************** -------------------------------
+  try {
+    res.status(200).json({
+      name: itemName,
+      icon: itemIcon,
+      currentPrice: fiveMinCurrentPrice.toLocaleString(),
+      geLimit: geLimit.toLocaleString(),
+      offerPrice: fiveMinOfferPrice.toLocaleString(),
+      avgHighHour: avgHighHour.toLocaleString(),
+      margin: (fiveMinCurrentPrice - fiveMinOfferPrice).toLocaleString(),
+      avgLowHour: avgLowHour.toLocaleString(),
+      highAlchValue: highAlchVal.toLocaleString(),
+      highAlchProfit: parseInt(highAlchProfit).toLocaleString(),
+      todayTrend: itemTrend,
+      item30DayTrend: item30DayChange,
+      item90DayTrend: item90DayChange,
+      item180DayTrend: item180DayChange,
+    });
+  } catch {
+    res.send('reee');
+  }
+
+  // ------------------------- **************** -------------------------------
 
   // --------------------------------------------------------
 
-  buySellHour();
-  latestCurrOfferSell();
-  fiveMinCurrOffer();
-  alchGeLimit();
+  // buySellHour();
+  // latestCurrOfferSell();
+  // fiveMinCurrOffer();
+  // alchGeLimit();
 
   // const url = await 'https://prices.runescape.wiki/api/v1/osrs/latest';
 

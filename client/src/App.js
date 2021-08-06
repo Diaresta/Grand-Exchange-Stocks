@@ -15,9 +15,24 @@ import ForgotPassword from './components/ForgotPassword';
 import Terms from './components/Terms';
 
 function App() {
+  // name: itemName,
+  // icon: itemIcon,
+  // currentPrice: fiveMinCurrentPrice.toLocaleString(),
+  // geLimit: geLimit.toLocaleString(),
+  // offerPrice: fiveMinOfferPrice.toLocaleString(),
+  // avgHighHour: avgHighHour.toLocaleString(),
+  // margin: (fiveMinCurrentPrice - fiveMinOfferPrice).toLocaleString(),
+  // avgLowHour: avgLowHour.toLocaleString(),
+  // highAlchValue: highAlchVal.toLocaleString(),
+  // highAlchProfit: highAlchProfit.toLocaleString(),
+  // todayTrend: itemTrend,
+  // item30DayTrend: item30DayChange,
+  // item90DayTrend: item90DayChange,
+  // item180DayTrend: item180DayChange,
+
   // Testing sending data to components
   const itemID = 4151;
-  const appAlchProfit = -927293;
+  // const appAlchProfit = -927293;
 
   // ----------------------------
   const itemName = 'Abyssal Whip';
@@ -35,18 +50,17 @@ function App() {
 
   // ----------------------------
 
-  const [apiData, setApiData] = useState();
+  const [apiData, setApiData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loggedIn] = useState(true);
 
   const apiCall = async () => {
-    const url = await 'https://prices.runescape.wiki/api/v1/osrs/latest';
+    const url = await 'http://localhost:5000/';
 
     const response = await fetch(url);
     const data = await response.json();
-    setApiData(data.results);
+    setApiData(data);
     setLoading(false);
-    console.log(data);
   };
 
   useEffect(() => {
@@ -64,21 +78,22 @@ function App() {
               <div id='graph-container'>
                 <Graph
                   itemID={itemID}
-                  itemName={itemName}
-                  itemIcon={itemIcon}
+                  itemName={apiData.name}
+                  itemIcon={apiData.icon}
                 />
                 <BarGraph />
               </div>
               <div id='stats-cal-container'>
                 <Stats
                   apiData={apiData}
-                  currentPrice={currentPrice}
-                  geLimit={geLimit}
-                  latestOfferPrice={latestOfferPrice}
-                  avgHighHour={avgHighHour}
-                  avgLowHour={avgLowHour}
-                  highAlchVal={highAlchVal}
-                  appAlchProfit={appAlchProfit}
+                  currentPrice={apiData.currentPrice}
+                  geLimit={apiData.geLimit}
+                  latestOfferPrice={apiData.offerPrice}
+                  avgHighHour={apiData.avgHighHour}
+                  avgLowHour={apiData.avgLowHour}
+                  highAlchVal={apiData.highAlchValue}
+                  appAlchProfit={apiData.highAlchProfit}
+                  margin={apiData.margin}
                   itemID={itemID}
                 />
                 <Calculator />

@@ -19,7 +19,7 @@ const Graph = ({ itemID, itemName, itemIcon }) => {
       <div id='graph-header'>
         <div id='stats-name'>
           <h2 id='item-name'>{itemName}</h2>
-          <img id='item-img' src={itemIcon + `${itemID}`} alt='Item Sprite' />
+          <img id='item-img' src={itemIcon} alt='Item Sprite' />
         </div>
         <ul id='graph-btn-ul'>
           <li className='graph-btn-li'>

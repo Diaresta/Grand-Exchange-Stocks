@@ -8,23 +8,21 @@ const Stats = ({
   latestOfferPrice,
   avgHighHour,
   avgLowHour,
+  margin,
   highAlchVal,
   appAlchProfit,
   itemID,
 }) => {
-  const [highAlchProfit] = useState(appAlchProfit);
-
+  const [highAlchProfit, setHighAlchProfit] = useState();
   const [highAlchColor, setHighAlchColor] = useState();
 
   useEffect(() => {
-    if (highAlchProfit >= 0) {
+    if (appAlchProfit >= 0) {
       setHighAlchColor('alch-prof');
-    } else if (highAlchProfit < 0) {
+    } else if (appAlchProfit < 0) {
       setHighAlchColor('alch-neg');
     }
   }, []);
-
-  console.log(highAlchProfit);
 
   return (
     <div id='stats-container'>
@@ -42,18 +40,18 @@ const Stats = ({
         <ul id='ul-1'>
           <li className='stats-li'>
             <p>
-              <span className='item-uline'>Current Price:</span> {currentPrice}
+              <span className='item-uline'>Current Price:</span> {currentPrice}g
             </p>
           </li>
           <li className='stats-li'>
             <p>
               <span className='item-uline'>Offer Price:</span>{' '}
-              {latestOfferPrice}
+              {latestOfferPrice}g
             </p>
           </li>
           <li className='stats-li'>
             <p>
-              <span className='item-uline'>Margin:</span> 2837g
+              <span className='item-uline'>Margin:</span> {margin}g
             </p>
           </li>
           <li className='stats-li'>
@@ -83,7 +81,7 @@ const Stats = ({
           <li className='stats-li'>
             <p>
               <span className='item-uline'>High Alch Profit:</span>
-              <span id={highAlchColor}> {highAlchProfit}g</span>
+              <span id={highAlchColor}> {appAlchProfit}g</span>
             </p>
           </li>
         </ul>
