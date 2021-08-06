@@ -41,6 +41,18 @@ app.get('/', async (req, res) => {
   const tickerItem1 = `${itemName} ${apiNameChange.item.current.price} - (${item30DayChange})`;
   // console.log(tickerItem1);
 
+  // ------------------------- **************** -------------------------------
+  res.status(200).json({
+    name: itemName,
+    icon: itemIcon,
+    todayTrend: itemTrend,
+    item30DayTrend: item30DayChange,
+    item90DayTrend: item90DayChange,
+    item180DayTrend: item180DayChange,
+  });
+
+  // ------------------------- **************** -------------------------------
+
   // --------------------------------------------------------
 
   // Grabs alch values/ge sell limit
@@ -70,7 +82,12 @@ app.get('/', async (req, res) => {
     const fiveMinCurrentPrice = apiFiveMin.data[2].avgHighPrice;
     const highAlchProfit = highAlchVal - fiveMinCurrentPrice;
 
-    // console.log(highAlchVal, lowAlchVal, geLimit, highAlchProfit);
+    const testBoys = {};
+
+    testBoys['highAlchVal'] = highAlchVal;
+    testBoys['geLimit'] = geLimit;
+
+    console.log(testBoys);
   };
 
   // --------------------------------------------------------
@@ -114,7 +131,9 @@ app.get('/', async (req, res) => {
     );
     const latestSellPrice = apiLatest.data[4151].high;
 
-    // console.log(latestCurrentPrice, latestOfferPrice, latestSellPrice);
+    const latestTest = {};
+
+    latestTest['currentPrice'] = latestCurrentPrice;
   };
 
   // --------------------------------------------------------
