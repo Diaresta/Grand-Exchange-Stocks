@@ -30,23 +30,23 @@ function App() {
   // item90DayTrend: item90DayChange,
   // item180DayTrend: item180DayChange,
 
-  // Testing sending data to components
-  const itemID = 4151;
-  // const appAlchProfit = -927293;
+  // // Testing sending data to components
+  // const itemID = 4151;
+  // // const appAlchProfit = -927293;
 
-  // ----------------------------
-  const itemName = 'Abyssal Whip';
-  const itemIcon =
-    'https://secure.runescape.com/m=itemdb_oldschool/1627468199533_obj_sprite.gif?id=';
+  // // ----------------------------
+  // const itemName = 'Abyssal Whip';
+  // const itemIcon =
+  //   'https://secure.runescape.com/m=itemdb_oldschool/1627468199533_obj_sprite.gif?id=';
 
-  const currentPrice = 2319566 + 'g';
-  const geLimit = 70;
-  const latestOfferPrice = 2313109 + 'g';
-  const avgHighHour = 2320565 + 'g';
-  // Margin instead of price high? buy price - sell price
-  const avgLowHour = 2316056 + 'g';
+  // const currentPrice = 2319566 + 'g';
+  // const geLimit = 70;
+  // const latestOfferPrice = 2313109 + 'g';
+  // const avgHighHour = 2320565 + 'g';
+  // // Margin instead of price high? buy price - sell price
+  // const avgLowHour = 2316056 + 'g';
 
-  const highAlchVal = 1372382 + 'g';
+  // const highAlchVal = 1372382 + 'g';
 
   // ----------------------------
 
