@@ -103,6 +103,61 @@ app.get('/', async (req, res) => {
     apiHour.data[2].highPriceVolume + apiHour.data[2].lowPriceVolume;
 
   // console.log(avgHighHour, avgLowHour, hourVolume);
+
+  // ------------------------- **************** -------------------------------
+
+  const fiveMin = '5m';
+  const oneHour = '1h';
+  const sixHour = '6h';
+  const graphLink =
+    await `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${fiveMin}&id=4151`;
+
+  const graphFetch = await fetch(graphLink);
+
+  const graphJSON = await graphFetch.json();
+
+  const fiveMinArray = [];
+
+  fiveMinArray['5 Minute'] = {
+    price: Math.floor(
+      (graphJSON.data[0].avgHighPrice + graphJSON.data[0].avgLowPrice) / 2
+    ),
+    volume:
+      graphJSON.data[0].highPriceVolume + graphJSON.data[0].lowPriceVolume,
+  };
+  fiveMinArray['4 Minute'] = {
+    price: Math.floor(
+      (graphJSON.data[59].avgHighPrice + graphJSON.data[59].avgLowPrice) / 2
+    ),
+    volume:
+      graphJSON.data[59].highPriceVolume + graphJSON.data[59].lowPriceVolume,
+  };
+  fiveMinArray['3 minute'] = {
+    price: Math.floor(
+      (graphJSON.data[119].avgHighPrice + graphJSON.data[119].avgLowPrice) / 2
+    ),
+    volume:
+      graphJSON.data[119].highPriceVolume + graphJSON.data[119].lowPriceVolume,
+  };
+  fiveMinArray['2 Minute'] = {
+    price: Math.floor(
+      (graphJSON.data[179].avgHighPrice + graphJSON.data[179].avgLowPrice) / 2
+    ),
+    volume:
+      graphJSON.data[179].highPriceVolume + graphJSON.data[179].lowPriceVolume,
+  };
+  fiveMinArray['1 Minute'] = {
+    price: Math.floor(
+      (graphJSON.data[239].avgHighPrice + graphJSON.data[239].avgLowPrice) / 2
+    ),
+    volume:
+      graphJSON.data[239].highPriceVolume + graphJSON.data[239].lowPriceVolume,
+  };
+
+  console.log(fiveMinArray);
+  // ------------------------- **************** -------------------------------
+
+  // 5min - 60 x min || 1hr - 5 x min || 6 hr - 1.2 x min
   // ------------------------- **************** -------------------------------
   try {
     res.status(200).json({

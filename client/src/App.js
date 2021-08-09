@@ -77,7 +77,7 @@ function App() {
             <div id='item-page-container'>
               <div id='graph-container'>
                 <Graph
-                  itemID={itemID}
+                  // itemID={itemID}
                   itemName={apiData.name}
                   itemIcon={apiData.icon}
                 />
@@ -94,7 +94,7 @@ function App() {
                   highAlchVal={apiData.highAlchValue}
                   appAlchProfit={apiData.highAlchProfit}
                   margin={apiData.margin}
-                  itemID={itemID}
+                  // itemID={itemID}
                 />
                 <Calculator />
                 <History />
