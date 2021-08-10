@@ -106,58 +106,142 @@ app.get('/', async (req, res) => {
 
   // ------------------------- **************** -------------------------------
 
+  // Five minute graph fetch
+
   const fiveMin = '5m';
   const oneHour = '1h';
   const sixHour = '6h';
-  const graphLink =
+  const graphMinLink =
     await `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${fiveMin}&id=4151`;
 
-  const graphFetch = await fetch(graphLink);
+  const graphMinFetch = await fetch(graphMinLink);
 
-  const graphJSON = await graphFetch.json();
+  const graphMinJSON = await graphMinFetch.json();
 
-  const fiveMinArray = [];
+  // {
+  //   fiveMin: [{}],
+  //   oneHour: [{}],
+  //   sixHour: [{}],
+  // },
 
-  fiveMinArray['5 Minute'] = {
+  // ------------------------------------------
+
+  const graphArray = [];
+  graphArray['fiveMin'] = {};
+  graphArray['oneHour'] = {};
+
+  graphArray.fiveMin['5 Minute'] = {
     price: Math.floor(
-      (graphJSON.data[0].avgHighPrice + graphJSON.data[0].avgLowPrice) / 2
+      (graphMinJSON.data[0].avgHighPrice + graphMinJSON.data[0].avgLowPrice) / 2
     ),
     volume:
-      graphJSON.data[0].highPriceVolume + graphJSON.data[0].lowPriceVolume,
+      graphMinJSON.data[0].highPriceVolume +
+      graphMinJSON.data[0].lowPriceVolume,
   };
-  fiveMinArray['4 Minute'] = {
+  graphArray.fiveMin['4 Minute'] = {
     price: Math.floor(
-      (graphJSON.data[59].avgHighPrice + graphJSON.data[59].avgLowPrice) / 2
+      (graphMinJSON.data[59].avgHighPrice + graphMinJSON.data[59].avgLowPrice) /
+        2
     ),
     volume:
-      graphJSON.data[59].highPriceVolume + graphJSON.data[59].lowPriceVolume,
+      graphMinJSON.data[59].highPriceVolume +
+      graphMinJSON.data[59].lowPriceVolume,
   };
-  fiveMinArray['3 minute'] = {
+  graphArray.fiveMin['3 minute'] = {
     price: Math.floor(
-      (graphJSON.data[119].avgHighPrice + graphJSON.data[119].avgLowPrice) / 2
+      (graphMinJSON.data[119].avgHighPrice +
+        graphMinJSON.data[119].avgLowPrice) /
+        2
     ),
     volume:
-      graphJSON.data[119].highPriceVolume + graphJSON.data[119].lowPriceVolume,
+      graphMinJSON.data[119].highPriceVolume +
+      graphMinJSON.data[119].lowPriceVolume,
   };
-  fiveMinArray['2 Minute'] = {
+  graphArray.fiveMin['2 Minute'] = {
     price: Math.floor(
-      (graphJSON.data[179].avgHighPrice + graphJSON.data[179].avgLowPrice) / 2
+      (graphMinJSON.data[179].avgHighPrice +
+        graphMinJSON.data[179].avgLowPrice) /
+        2
     ),
     volume:
-      graphJSON.data[179].highPriceVolume + graphJSON.data[179].lowPriceVolume,
+      graphMinJSON.data[179].highPriceVolume +
+      graphMinJSON.data[179].lowPriceVolume,
   };
-  fiveMinArray['1 Minute'] = {
+  graphArray.fiveMin['1 Minute'] = {
     price: Math.floor(
-      (graphJSON.data[239].avgHighPrice + graphJSON.data[239].avgLowPrice) / 2
+      (graphMinJSON.data[239].avgHighPrice +
+        graphMinJSON.data[239].avgLowPrice) /
+        2
     ),
     volume:
-      graphJSON.data[239].highPriceVolume + graphJSON.data[239].lowPriceVolume,
+      graphMinJSON.data[239].highPriceVolume +
+      graphMinJSON.data[239].lowPriceVolume,
   };
 
-  console.log(fiveMinArray);
   // ------------------------- **************** -------------------------------
 
   // 5min - 60 x min || 1hr - 5 x min || 6 hr - 1.2 x min
+  // One hour graph fetch
+
+  const graphHourLink =
+    await `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${oneHour}&id=4151`;
+
+  const graphHourFetch = await fetch(graphMinLink);
+
+  const graphHourJSON = await graphHourFetch.json();
+
+  graphArray.oneHour['5 Minute'] = {
+    price: Math.floor(
+      (graphHourJSON.data[0].avgHighPrice + graphHourJSON.data[0].avgLowPrice) /
+        2
+    ),
+    volume:
+      graphHourJSON.data[0].highPriceVolume +
+      graphHourJSON.data[0].lowPriceVolume,
+  };
+  graphArray.oneHour['4 Minute'] = {
+    price: Math.floor(
+      (graphHourJSON.data[59].avgHighPrice +
+        graphHourJSON.data[59].avgLowPrice) /
+        2
+    ),
+    volume:
+      graphHourJSON.data[59].highPriceVolume +
+      graphHourJSON.data[59].lowPriceVolume,
+  };
+  graphArray.oneHour['3 minute'] = {
+    price: Math.floor(
+      (graphHourJSON.data[119].avgHighPrice +
+        graphHourJSON.data[119].avgLowPrice) /
+        2
+    ),
+    volume:
+      graphHourJSON.data[119].highPriceVolume +
+      graphHourJSON.data[119].lowPriceVolume,
+  };
+  graphArray.oneHour['2 Minute'] = {
+    price: Math.floor(
+      (graphHourJSON.data[179].avgHighPrice +
+        graphHourJSON.data[179].avgLowPrice) /
+        2
+    ),
+    volume:
+      graphHourJSON.data[179].highPriceVolume +
+      graphHourJSON.data[179].lowPriceVolume,
+  };
+  graphArray.oneHour['1 Minute'] = {
+    price: Math.floor(
+      (graphHourJSON.data[239].avgHighPrice +
+        graphHourJSON.data[239].avgLowPrice) /
+        2
+    ),
+    volume:
+      graphHourJSON.data[239].highPriceVolume +
+      graphHourJSON.data[239].lowPriceVolume,
+  };
+
+  console.log(graphArray);
+
   // ------------------------- **************** -------------------------------
   try {
     res.status(200).json({
