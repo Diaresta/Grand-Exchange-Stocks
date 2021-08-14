@@ -80,8 +80,15 @@ function App() {
                   // itemID={itemID}
                   itemName={apiData.name}
                   itemIcon={apiData.icon}
+                  fiveMin={apiData.fiveMinGraph}
+                  oneHour={apiData.oneHourGraph}
+                  sixHour={apiData.sixHourGraph}
                 />
-                <BarGraph />
+                <BarGraph
+                  fiveMin={apiData.fiveMinGraph}
+                  oneHour={apiData.oneHourGraph}
+                  sixHour={apiData.sixHourGraph}
+                />
               </div>
               <div id='stats-cal-container'>
                 <Stats

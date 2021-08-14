@@ -1,7 +1,7 @@
 import { Bar, Line } from 'react-chartjs-2';
 import { useState, useEffect } from 'react';
 
-const Graph = ({ itemID, itemName, itemIcon }) => {
+const Graph = ({ itemID, itemName, itemIcon, fiveMin, oneHour, sixHour }) => {
   const [chartData] = useState({
     labels: ['June 5', 'June 6', 'June 7', 'June 8', 'June 9', 'June 10'],
     datasets: [
