@@ -4,18 +4,29 @@ import { useState, useEffect } from 'react';
 const BarGraph = ({ fiveMin, oneHour, sixHour }) => {
   // -------------------- testing --------------------
   // const barGraphVolume = () => {
-  //   for (var key in fiveMin) {
-  //     if (!fiveMin.hasOwnProperty(key)) continue;
+  const [priceGraph, setPriceGraph] = useState();
+  const [volumeGraph, setVolumeGraph] = useState();
+  const tempPrice = [];
+  const tempVolume = [];
 
-  //     var object = fiveMin[key];
-  //     for (var prop in object) {
-  //       console.log(prop + ' ' + object[prop]);
-  //       return object[prop];
-  //     }
-  //   }
+  for (let key in fiveMin) {
+    tempPrice.push(fiveMin[key].price);
+    tempVolume.push(fiveMin[key].volume);
+  }
+
   // };
 
-  // barGraphVolume();
+  useEffect(() => {
+    setPriceGraph(tempPrice);
+    setVolumeGraph(tempVolume);
+    // for (let key in fiveMin) {
+    //   setPriceGraph(fiveMin[key].price);
+    //   volumeGraph.push(fiveMin[key].volume);
+    // }
+    console.log(priceGraph);
+  }, []);
+  console.log(priceGraph, volumeGraph);
+
   // -------------------- testing --------------------
 
   const [chartData] = useState({
@@ -23,7 +34,7 @@ const BarGraph = ({ fiveMin, oneHour, sixHour }) => {
     datasets: [
       {
         label: 'Volume',
-        data: [4, 6, 5, 2, 2, 7],
+        data: [{ volumeGraph }],
         backgroundColor: ['rgba(22, 82, 240, 0.6)'],
         hoverBackgroundColor: ['rgba(17, 65, 192, 0.8)'],
       },
