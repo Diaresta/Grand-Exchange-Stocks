@@ -2,17 +2,54 @@ import { Bar, Line } from 'react-chartjs-2';
 import { useState, useEffect } from 'react';
 
 const Graph = ({ itemID, itemName, itemIcon, fiveMin, oneHour, sixHour }) => {
-  const [chartData] = useState({
-    labels: ['June 5', 'June 6', 'June 7', 'June 8', 'June 9', 'June 10'],
-    datasets: [
-      {
-        label: 'Price',
-        data: [1372382, 1472382, 1872382, 1672382, 2072382, 1972382],
-        backgroundColor: ['rgba(17, 65, 192, 0.8)'],
-        hoverBackgroundColor: ['rgba(6, 24, 72, 0.8)'],
-      },
-    ],
-  });
+  // -------------------- testing --------------------
+  const [chartData, setChartData] = useState();
+  const [priceGraph, setPriceGraph] = useState();
+  const tempPrice = [];
+  const tempLabel = {
+    fiveMin: ['5 Minute', '4 Minute', '3 Minute', '2 Minute', '1 Minute'],
+    oneHour: ['1 Hour', '45 Minute', '30 Minute', '15 Minute'],
+    sixHour: ['6 Hour', '5 Hour', '4 Hour', '3 Hour', '2 Hour', '1 Hour'],
+  };
+
+  // for (let key in fiveMin) {
+  //   tempPrice.push(fiveMin[key].price);
+  // }
+
+  // };
+
+  const chart = async () => {
+    const url = await 'http://localhost:5000/';
+    const response = await fetch(url);
+    const data = await response.json();
+
+    for (let key in data.fiveMinGraph) {
+      tempPrice.push(data.fiveMinGraph[key].price);
+    }
+
+    // setPriceGraph(tempPrice);
+
+    setChartData({
+      labels: tempLabel.fiveMin,
+      datasets: [
+        {
+          label: 'Price',
+          data: tempPrice,
+          backgroundColor: ['rgba(17, 65, 192, 0.8)'],
+          hoverBackgroundColor: ['rgba(6, 24, 72, 0.8)'],
+        },
+      ],
+    });
+  };
+
+  useEffect(() => {
+    // setPriceGraph(tempPrice);
+    // for (let key in fiveMin) {
+    //   setPriceGraph(fiveMin[key].price);
+    // }
+    // console.log(priceGraph);
+    chart();
+  }, []);
 
   return (
     <div id='graphs-container'>

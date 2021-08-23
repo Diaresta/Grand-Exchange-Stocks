@@ -3,15 +3,16 @@ import { useState, useEffect } from 'react';
 
 const BarGraph = ({ fiveMin, oneHour, sixHour }) => {
   // -------------------- testing --------------------
-  // const barGraphVolume = () => {
   const [chartData, setChartData] = useState();
-  const [priceGraph, setPriceGraph] = useState();
   const [volumeGraph, setVolumeGraph] = useState();
-  const tempPrice = [];
   const tempVolume = [];
+  const tempLabel = {
+    fiveMin: ['5 Minute', '4 Minute', '3 Minute', '2 Minute', '1 Minute'],
+    oneHour: ['1 Hour', '45 Minute', '30 Minute', '15 Minute'],
+    sixHour: ['6 Hour', '5 Hour', '4 Hour', '3 Hour', '2 Hour', '1 Hour'],
+  };
 
   // for (let key in fiveMin) {
-  //   tempPrice.push(fiveMin[key].price);
   //   tempVolume.push(fiveMin[key].volume);
   // }
 
@@ -23,16 +24,13 @@ const BarGraph = ({ fiveMin, oneHour, sixHour }) => {
     const data = await response.json();
 
     for (let key in data.fiveMinGraph) {
-      tempPrice.push(data.fiveMinGraph[key].price);
       tempVolume.push(data.fiveMinGraph[key].volume);
     }
-    console.log(data.fiveMinGraph);
 
-    // setPriceGraph(tempPrice);
     // setVolumeGraph(tempVolume);
 
     setChartData({
-      labels: ['June 5', 'June 6', 'June 7', 'June 8', 'June 9', 'June 10'],
+      labels: tempLabel.fiveMin,
       datasets: [
         {
           label: 'Volume',
@@ -45,13 +43,10 @@ const BarGraph = ({ fiveMin, oneHour, sixHour }) => {
   };
 
   useEffect(() => {
-    // setPriceGraph(tempPrice);
     // setVolumeGraph(tempVolume);
     // for (let key in fiveMin) {
-    //   setPriceGraph(fiveMin[key].price);
     //   volumeGraph.push(fiveMin[key].volume);
     // }
-    // console.log(priceGraph);
     chart();
   }, []);
 
