@@ -4,50 +4,60 @@ import { useState, useEffect } from 'react';
 const BarGraph = ({ fiveMin, oneHour, sixHour }) => {
   // -------------------- testing --------------------
   // const barGraphVolume = () => {
+  const [chartData, setChartData] = useState();
   const [priceGraph, setPriceGraph] = useState();
   const [volumeGraph, setVolumeGraph] = useState();
   const tempPrice = [];
   const tempVolume = [];
 
-  for (let key in fiveMin) {
-    tempPrice.push(fiveMin[key].price);
-    tempVolume.push(fiveMin[key].volume);
-  }
+  // for (let key in fiveMin) {
+  //   tempPrice.push(fiveMin[key].price);
+  //   tempVolume.push(fiveMin[key].volume);
+  // }
 
   // };
 
+  const chart = async () => {
+    const url = await 'http://localhost:5000/';
+    const response = await fetch(url);
+    const data = await response.json();
+
+    for (let key in data.fiveMinGraph) {
+      tempPrice.push(data.fiveMinGraph[key].price);
+      tempVolume.push(data.fiveMinGraph[key].volume);
+    }
+    console.log(data.fiveMinGraph);
+
+    // setPriceGraph(tempPrice);
+    // setVolumeGraph(tempVolume);
+
+    setChartData({
+      labels: ['June 5', 'June 6', 'June 7', 'June 8', 'June 9', 'June 10'],
+      datasets: [
+        {
+          label: 'Volume',
+          data: tempVolume,
+          backgroundColor: ['rgba(22, 82, 240, 0.6)'],
+          hoverBackgroundColor: ['rgba(17, 65, 192, 0.8)'],
+        },
+      ],
+    });
+  };
+
   useEffect(() => {
-    setPriceGraph(tempPrice);
-    setVolumeGraph(tempVolume);
+    // setPriceGraph(tempPrice);
+    // setVolumeGraph(tempVolume);
     // for (let key in fiveMin) {
     //   setPriceGraph(fiveMin[key].price);
     //   volumeGraph.push(fiveMin[key].volume);
     // }
-    console.log(priceGraph);
+    // console.log(priceGraph);
+    chart();
   }, []);
-  console.log(priceGraph, volumeGraph);
 
   // -------------------- testing --------------------
 
-  const [chartData] = useState({
-    labels: ['June 5', 'June 6', 'June 7', 'June 8', 'June 9', 'June 10'],
-    datasets: [
-      {
-        label: 'Volume',
-        data: [{ volumeGraph }],
-        backgroundColor: ['rgba(22, 82, 240, 0.6)'],
-        hoverBackgroundColor: ['rgba(17, 65, 192, 0.8)'],
-      },
-    ],
-  });
-
   return (
-    // <div id='bar-graph-container'>
-    //   <p>asdasdasdasdasdasdasdasdasdasdasdasdasdas</p>
-    //   <p>asdasdasdasdasdasdasdasdasdasdasdasdasdas</p>
-    //   <p>asdasdasdasdasdasdasdasdasdasdasdasdasdas</p>
-    // </div>
-
     <div id='bar-graph-container'>
       <Bar
         data={chartData}
