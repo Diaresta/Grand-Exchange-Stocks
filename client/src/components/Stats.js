@@ -57,6 +57,7 @@ const Stats = ({
           <li className='stats-li'>
             <p>
               <span className='item-uline'>High Alch Value:</span> {highAlchVal}
+              g
             </p>
           </li>
         </ul>
@@ -70,12 +71,13 @@ const Stats = ({
           <li className='stats-li'>
             <p>
               <span className='item-uline'>Average High/Hour:</span>{' '}
-              {avgHighHour}
+              {avgHighHour}g
             </p>
           </li>
           <li className='stats-li'>
             <p>
               <span className='item-uline'>Average Low/Hour:</span> {avgLowHour}
+              g
             </p>
           </li>
           <li className='stats-li'>
