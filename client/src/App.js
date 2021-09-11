@@ -84,11 +84,11 @@ function App() {
                   oneHour={apiData.oneHourGraph}
                   sixHour={apiData.sixHourGraph}
                 />
-                <BarGraph
+                {/* <BarGraph
                   fiveMin={apiData.fiveMinGraph}
                   oneHour={apiData.oneHourGraph}
                   sixHour={apiData.sixHourGraph}
-                />
+                /> */}
               </div>
               <div id='stats-cal-container'>
                 <Stats
