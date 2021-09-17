@@ -51,12 +51,19 @@ app.get('/', async (req, res) => {
   const geLimitresponse = await fetch(urlAlchGeLimit, options);
   const apiGeLimit = await geLimitresponse.json();
 
-  // random for testing
-  const randomMapping = Math.floor(Math.random() * apiGeLimit.length);
+  // ------------------ random for testing -------------------------
+  let mappingTest;
 
-  const highAlchVal = apiGeLimit[randomMapping].highalch;
-  const lowAlchVal = apiGeLimit[randomMapping].lowalch;
-  const geLimit = apiGeLimit[randomMapping].limit;
+  for (let i = 0; i < apiGeLimit.length; i++) {
+    if (apiGeLimit[i].id === 4151) {
+      mappingTest = i;
+    }
+  }
+  // ---------------------------------------------------------------
+
+  const highAlchVal = apiGeLimit[mappingTest].highalch;
+  const lowAlchVal = apiGeLimit[mappingTest].lowalch;
+  const geLimit = apiGeLimit[mappingTest].limit;
 
   // --------------------------------------------------------
 
@@ -301,7 +308,7 @@ app.get('/', async (req, res) => {
       graphSixHourJSON.data[249].lowPriceVolume,
   };
 
-  console.log(graphArray);
+  // console.log(graphArray);
 
   // ------------------------- **************** -------------------------------
   try {
