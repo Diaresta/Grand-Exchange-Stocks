@@ -8,6 +8,7 @@ import BarGraph from './components/Bar-Graph';
 import Stats from './components/Stats';
 import Calculator from './components/Calculator';
 import History from './components/History';
+import HistoryPage from './components/HistoryPage';
 import LogIn from './components/Log-In';
 import SignUp from './components/Sign-Up';
 import Contact from './components/Contact';
@@ -106,6 +107,11 @@ function App() {
                 <Calculator />
                 <History />
               </div>
+            </div>
+          </Route>
+          <Route path={'/history'} exact>
+            <div className='history-page-container'>
+              <HistoryPage />
             </div>
           </Route>
           <Route path={['/login', '/log-in']} exact>
