@@ -23,9 +23,11 @@ app.get('/', async (req, res) => {
     method: 'GET',
   };
 
+  var itemID = 4151;
+
   // Grabs item name, photo, trend, 30-180day price changes
   const urlNameChange =
-    await 'https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=4151';
+    await `https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=${itemID}`;
 
   const responseNameChange = await fetch(urlNameChange, options);
   const apiNameChange = await responseNameChange.json();
@@ -55,7 +57,7 @@ app.get('/', async (req, res) => {
   let mappingTest;
 
   for (let i = 0; i < apiGeLimit.length; i++) {
-    if (apiGeLimit[i].id === 4151) {
+    if (apiGeLimit[i].id === itemID) {
       mappingTest = i;
     }
   }
@@ -73,27 +75,27 @@ app.get('/', async (req, res) => {
   const fiveMinresponse = await fetch(urlFiveMin, options);
   const apiFiveMin = await fiveMinresponse.json();
 
-  const fiveMinCurrentPrice = apiFiveMin.data[4151].avgHighPrice;
-  const fiveMinOfferPrice = apiFiveMin.data[4151].avgLowPrice;
+  const fiveMinCurrentPrice = apiFiveMin.data[itemID].avgHighPrice;
+  const fiveMinOfferPrice = apiFiveMin.data[itemID].avgLowPrice;
   const fiveMinVolume =
-    apiFiveMin.data[4151].highPriceVolume +
-    apiFiveMin.data[4151].lowPriceVolume;
+    apiFiveMin.data[itemID].highPriceVolume +
+    apiFiveMin.data[itemID].lowPriceVolume;
   const highAlchProfit = highAlchVal - fiveMinCurrentPrice;
 
   // --------------------------------------------------------
 
   // Grabs current/offer/sell price from latest
   const urlLatest =
-    await 'https://prices.runescape.wiki/api/v1/osrs/latest?id=4151';
+    await `https://prices.runescape.wiki/api/v1/osrs/latest?id=${itemID}`;
 
   const latestResponse = await fetch(urlLatest, options);
   const apiLatest = await latestResponse.json();
 
-  const latestCurrentPrice = apiLatest.data[4151].low;
+  const latestCurrentPrice = apiLatest.data[itemID].low;
   const latestOfferPrice = Math.floor(
-    (apiLatest.data[4151].high + apiLatest.data[4151].low) / 2
+    (apiLatest.data[itemID].high + apiLatest.data[itemID].low) / 2
   );
-  const latestSellPrice = apiLatest.data[4151].high;
+  const latestSellPrice = apiLatest.data[itemID].high;
 
   // --------------------------------------------------------
 
@@ -125,7 +127,7 @@ app.get('/', async (req, res) => {
   // Five minute graph fetch
 
   const graphMinLink =
-    await `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${fiveMin}&id=4151`;
+    await `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${fiveMin}&id=${itemID}`;
 
   const graphMinFetch = await fetch(graphMinLink);
 
@@ -182,7 +184,7 @@ app.get('/', async (req, res) => {
   // One hour graph fetch
 
   const graphHourLink =
-    await `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${oneHour}&id=4151`;
+    await `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${oneHour}&id=${itemID}`;
 
   const graphHourFetch = await fetch(graphHourLink);
 
@@ -241,7 +243,7 @@ app.get('/', async (req, res) => {
   // Six hour graph fetch
 
   const graphSixHourLink =
-    await `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${sixHour}&id=4151`;
+    await `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${sixHour}&id=${itemID}`;
 
   const graphSixHourFetch = await fetch(graphSixHourLink);
 
