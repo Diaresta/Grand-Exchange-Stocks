@@ -41,7 +41,6 @@ app.get('/', async (req, res) => {
 
   // Ticker item name, price, percent change
   const tickerItem1 = `${itemName} ${apiNameChange.item.current.price} - (${item30DayChange})`;
-  // console.log(tickerItem1);
 
   // --------------------------------------------------------
 
@@ -53,13 +52,19 @@ app.get('/', async (req, res) => {
   const geLimitresponse = await fetch(urlAlchGeLimit, options);
   const apiGeLimit = await geLimitresponse.json();
 
-  // ------------------ random for testing -------------------------
   let mappingTest;
+  // let itemUpdateObject = [];
 
   for (let i = 0; i < apiGeLimit.length; i++) {
     if (apiGeLimit[i].id === itemID) {
       mappingTest = i;
     }
+
+    // ----- Update Item Database -----
+    // itemUpdateObject.push({
+    //   id: apiGeLimit[i].id,
+    //   name: apiGeLimit[i].name,
+    // });
   }
   // ---------------------------------------------------------------
 
@@ -229,16 +234,6 @@ app.get('/', async (req, res) => {
       graphHourJSON.data[224].highPriceVolume +
       graphHourJSON.data[224].lowPriceVolume,
   };
-  // graphArray.oneHour['1 Minute'] = {
-  //   price: Math.floor(
-  //     (graphHourJSON.data[239].avgHighPrice +
-  //       graphHourJSON.data[239].avgLowPrice) /
-  //       2
-  //   ),
-  //   volume:
-  //     graphHourJSON.data[239].highPriceVolume +
-  //     graphHourJSON.data[239].lowPriceVolume,
-  // };
 
   // Six hour graph fetch
 
@@ -310,8 +305,6 @@ app.get('/', async (req, res) => {
       graphSixHourJSON.data[249].lowPriceVolume,
   };
 
-  // console.log(graphArray);
-
   // ------------------------- **************** -------------------------------
   try {
     res.status(200).json({
@@ -332,45 +325,12 @@ app.get('/', async (req, res) => {
       fiveMinGraph: graphArray.fiveMin,
       oneHourGraph: graphArray.oneHour,
       sixHourGraph: graphArray.sixHour,
+      // itemUpdate: itemUpdateObject,
     });
   } catch {
     res.send('reee');
   }
-
-  // ------------------------- **************** -------------------------------
-
-  // --------------------------------------------------------
-
-  // buySellHour();
-  // latestCurrOfferSell();
-  // fiveMinCurrOffer();
-  // alchGeLimit();
-
-  // const url = await 'https://prices.runescape.wiki/api/v1/osrs/latest';
-
-  // const header = new Headers({
-  //   Accept: 'application/json',
-  //   'Content-Type': 'application/json',
-  //   'User-Agent':
-  //     'Hi, using for personal project to learn APIs. Thank you! @Diaresta#4220',
-  // });
-
-  // res.json(response);
-
-  let itemIDS = [];
-
-  // for (let i = 0; i < Object.keys(apiData.data).length; i++) {
-  // const itemsArray = itemIDS.push(apiData.data[i]);
-  // return itemsArray;
-  // const stringAPI = JSON.stringify(apiData);
-  // itemIDS.push(apiData.data[i]);
-  // }
-
-  // console.log(apiData.item.current.price);
-
-  // console.log(itemIDS);
 });
-// ^^^^ when the route is reached, the api is called and logs data. Maybe add headers
 
 export default app;
 

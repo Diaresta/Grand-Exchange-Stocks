@@ -10,13 +10,11 @@ const Header = ({ loggedIn }) => {
           <img id='name-logo' src='/images/gelogo.png' alt='site name logo' />
           {/* <h1>GE Teller</h1> */}
         </Link>
-        <form id='header-form'>
-          <div>
-            <input type='search' placeholder='Search...'></input>
-            <button id='input-btn'>
-              <i className='fas fa-search'></i>Search
-            </button>
-          </div>
+        <form id='header-form' action='/search/' method='GET'>
+          <input type='text' placeholder='Search...' name='s'></input>
+          <button id='input-btn' type='submit'>
+            <i className='fas fa-search'></i>Search
+          </button>
         </form>
       </div>
 
