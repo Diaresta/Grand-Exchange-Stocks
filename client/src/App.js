@@ -7,6 +7,7 @@ import Graph from './components/Graph';
 import BarGraph from './components/Bar-Graph';
 import Stats from './components/Stats';
 import Calculator from './components/Calculator';
+import SearchPage from './components/Search-Page';
 import History from './components/History';
 import HistoryPage from './components/HistoryPage';
 import LogIn from './components/Log-In';
@@ -108,6 +109,9 @@ function App() {
                 <History />
               </div>
             </div>
+          </Route>
+          <Route path='/search/'>
+            <SearchPage />
           </Route>
           <Route path={'/history'} exact>
             <div className='history-page-container'>
