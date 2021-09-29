@@ -111,10 +111,10 @@ app.get('/', async (req, res) => {
   const hourResponse = await fetch(urlHour, options);
   const apiHour = await hourResponse.json();
 
-  const avgHighHour = apiHour.data[4151].avgHighPrice;
-  const avgLowHour = apiHour.data[4151].avgLowPrice;
+  const avgHighHour = apiHour.data[itemID].avgHighPrice;
+  const avgLowHour = apiHour.data[itemID].avgLowPrice;
   const hourVolume =
-    apiHour.data[4151].highPriceVolume + apiHour.data[4151].lowPriceVolume;
+    apiHour.data[itemID].highPriceVolume + apiHour.data[itemID].lowPriceVolume;
 
   // console.log(avgHighHour, avgLowHour, hourVolume);
 
