@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const SearchPage = () => {
   const { search } = window.location;
@@ -6,7 +7,6 @@ const SearchPage = () => {
 
   const [itemData, setitemData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [loggedIn] = useState(true);
 
   const itemSearch = async () => {
     const url = await '../itemDB.json';
@@ -30,19 +30,30 @@ const SearchPage = () => {
 
   const filteredItems = filteritemData(itemData, query);
 
+  const [itemToSever, setItemToSever] = useState();
+  const sendItemToSever = (send) => {
+    setItemToSever(send);
+    console.log(send);
+  };
+
   useEffect(() => {
     itemSearch();
   }, []);
 
   return (
     <div>
-      <p>Search Results: ''</p>
+      <p>Search Results: '{query}'</p>
       {/* <small>REEE</small> */}
-      <p>reeeeeeee</p>
 
       <ul>
         {filteredItems.map((item) => (
-          <li key={item.id}>{item.name}</li>
+          <Link
+            to={`/item/${item.name}`}
+            key={item.id}
+            onClick={() => sendItemToSever(item.id)}
+          >
+            <li key={item.id}>{item.name}</li>
+          </Link>
         ))}
       </ul>
     </div>
