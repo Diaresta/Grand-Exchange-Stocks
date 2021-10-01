@@ -14,21 +14,21 @@ app.use(express.json());
 // app.use('/api', itemData);
 app.use('/api/v1/restaurants', restaurants);
 
-var itemID = 4151;
+var itemID = 2;
 
 // app.use('*', (req, res) => {
 //   res.status(404).json({ error: 'Route not found' });
 // });
 
 app.get('/', async (req, res) => {
-  itemApiCall(req, res);
+  itemApiCall(req, res, itemID);
 });
 
 app.get(`/item/${itemID}`, (req, res) => {
-  console.log('reeeAA');
+  itemApiCall(req, res, itemID);
 });
 
-const itemApiCall = async (req, res) => {
+const itemApiCall = async (req, res, itemID) => {
   const options = {
     method: 'GET',
   };
