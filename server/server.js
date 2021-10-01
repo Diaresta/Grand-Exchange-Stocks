@@ -14,16 +14,24 @@ app.use(express.json());
 // app.use('/api', itemData);
 app.use('/api/v1/restaurants', restaurants);
 
+var itemID = 4151;
+
 // app.use('*', (req, res) => {
 //   res.status(404).json({ error: 'Route not found' });
 // });
 
 app.get('/', async (req, res) => {
+  itemApiCall(req, res);
+});
+
+app.get(`/item/${itemID}`, (req, res) => {
+  console.log('reeeAA');
+});
+
+const itemApiCall = async (req, res) => {
   const options = {
     method: 'GET',
   };
-
-  var itemID = 4151;
 
   // Grabs item name, photo, trend, 30-180day price changes
   const urlNameChange =
@@ -330,7 +338,7 @@ app.get('/', async (req, res) => {
   } catch {
     res.send('reee');
   }
-});
+};
 
 export default app;
 
