@@ -14,18 +14,23 @@ app.use(express.json());
 // app.use('/api', itemData);
 app.use('/api/v1/restaurants', restaurants);
 
-var itemID = 2;
+var itemArray = [2, 4151, 11832, 1073, 6585];
+// var itemID = itemArray[Math.floor(Math.random() * itemArray.length)];
 
 // app.use('*', (req, res) => {
 //   res.status(404).json({ error: 'Route not found' });
 // });
 
 app.get('/', async (req, res) => {
-  itemApiCall(req, res, itemID);
+  itemApiCall(
+    req,
+    res,
+    itemArray[Math.floor(Math.random() * itemArray.length)]
+  );
 });
 
-app.get(`/item/${itemID}`, (req, res) => {
-  itemApiCall(req, res, itemID);
+app.get(`/item/:itemID`, (req, res) => {
+  itemApiCall(req, res, itemArray);
 });
 
 const itemApiCall = async (req, res, itemID) => {
@@ -339,6 +344,14 @@ const itemApiCall = async (req, res, itemID) => {
     res.send('reee');
   }
 };
+
+// ------------ MOVED HERE FOR TESTING ------------
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
+});
 
 export default app;
 
