@@ -30,7 +30,7 @@ app.get('/', async (req, res) => {
 });
 
 app.get(`/item/:itemID`, (req, res) => {
-  itemApiCall(req, res, itemArray);
+  itemApiCall(req, res, parseInt(req.params.itemID));
 });
 
 const itemApiCall = async (req, res, itemID) => {

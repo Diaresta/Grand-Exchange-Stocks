@@ -113,7 +113,7 @@ function App() {
           <Route path='/search/'>
             <SearchPage />
           </Route>
-          <Route path={['/item/']}>
+          <Route path={['/item/:itemName/:itemID']}>
             <div id='item-page-container'>
               <div id='graph-container'>
                 <Graph
