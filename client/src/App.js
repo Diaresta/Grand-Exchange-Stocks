@@ -113,6 +113,41 @@ function App() {
           <Route path='/search/'>
             <SearchPage />
           </Route>
+          <Route path={['/item/']}>
+            <div id='item-page-container'>
+              <div id='graph-container'>
+                <Graph
+                  // itemID={itemID}
+                  itemName={apiData.name}
+                  itemIcon={apiData.icon}
+                  fiveMin={apiData.fiveMinGraph}
+                  oneHour={apiData.oneHourGraph}
+                  sixHour={apiData.sixHourGraph}
+                />
+                {/* <BarGraph
+                  fiveMin={apiData.fiveMinGraph}
+                  oneHour={apiData.oneHourGraph}
+                  sixHour={apiData.sixHourGraph}
+                /> */}
+              </div>
+              <div id='stats-cal-container'>
+                <Stats
+                  apiData={apiData}
+                  currentPrice={apiData.currentPrice}
+                  geLimit={apiData.geLimit}
+                  latestOfferPrice={apiData.offerPrice}
+                  avgHighHour={apiData.avgHighHour}
+                  avgLowHour={apiData.avgLowHour}
+                  highAlchVal={apiData.highAlchValue}
+                  appAlchProfit={apiData.highAlchProfit}
+                  margin={apiData.margin}
+                  // itemID={itemID}
+                />
+                <Calculator />
+                <History />
+              </div>
+            </div>
+          </Route>
           <Route path={'/history'} exact>
             <div className='history-page-container'>
               <HistoryPage />

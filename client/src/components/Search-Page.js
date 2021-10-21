@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const SearchPage = () => {
   const { search } = window.location;
-  const query = new URLSearchParams(search).get('s');
+  const query = new URLSearchParams(search).get('s').toLowerCase();
 
   const [itemData, setitemData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -48,7 +48,7 @@ const SearchPage = () => {
       <ul>
         {filteredItems.map((item) => (
           <Link
-            to={`/item/${item.name}`}
+            to={`/item/${item.name}/${item.id}`}
             key={item.id}
             onClick={() => sendItemToSever(item.id)}
           >
