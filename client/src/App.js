@@ -56,8 +56,17 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [loggedIn] = useState(true);
 
-  const apiCall = async () => {
-    const url = await 'http://localhost:5000/';
+  const apiCall = async (itemID) => {
+    const defaultWindow = window.location.pathname.split('/')[1];
+    const itemLinkID = window.location.pathname.split('/')[3];
+
+    if (defaultWindow === '' || defaultWindow === 'home') {
+      var url = await `http://localhost:5000/${itemID}`;
+    } else {
+      var url = await `http://localhost:5000/item/${itemLinkID}`;
+    }
+
+    console.log(url);
 
     const response = await fetch(url);
     const data = await response.json();
@@ -65,8 +74,11 @@ function App() {
     setLoading(false);
   };
 
+  // Maybe have apiCall function call like below vvvvvvv. Find a way to useEffect on new components
+  // {apiCall('item/11808')}
+
   useEffect(() => {
-    apiCall();
+    apiCall('');
   }, []);
 
   return (
@@ -116,6 +128,7 @@ function App() {
           <Route path={['/item/:itemName/:itemID']}>
             <div id='item-page-container'>
               <div id='graph-container'>
+                <div>TEST REMOVE WHEN DONE</div>
                 <Graph
                   // itemID={itemID}
                   itemName={apiData.name}
