@@ -1,7 +1,15 @@
 import { Bar, Line } from 'react-chartjs-2';
 import { useState, useEffect } from 'react';
 
-const Graph = ({ itemID, itemName, itemIcon, fiveMin, oneHour, sixHour }) => {
+const Graph = ({
+  itemID,
+  itemName,
+  itemIcon,
+  fiveMin,
+  oneHour,
+  sixHour,
+  itemArray,
+}) => {
   const [lineChartData, setLineChartData] = useState();
   const [barChartData, setBarChartData] = useState();
 
@@ -68,7 +76,7 @@ const Graph = ({ itemID, itemName, itemIcon, fiveMin, oneHour, sixHour }) => {
     const itemLinkID = window.location.pathname.split('/')[3];
 
     if (defaultWindow === '' || defaultWindow === 'home') {
-      var url = await `http://localhost:5000/`;
+      var url = await `http://localhost:5000/item/${itemArray}`;
     } else {
       var url = await `http://localhost:5000/item/${itemLinkID}`;
     }

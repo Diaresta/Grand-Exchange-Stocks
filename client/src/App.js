@@ -56,12 +56,15 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [loggedIn] = useState(true);
 
+  var itemArray = [2, 4151, 11832, 1073, 6585];
+  var homeGraphItem = itemArray[Math.floor(Math.random() * itemArray.length)];
+
   const apiCall = async (itemID) => {
     const defaultWindow = window.location.pathname.split('/')[1];
     const itemLinkID = window.location.pathname.split('/')[3];
 
     if (defaultWindow === '' || defaultWindow === 'home') {
-      var url = await `http://localhost:5000/${itemID}`;
+      var url = await `http://localhost:5000/item/${homeGraphItem}`;
     } else {
       var url = await `http://localhost:5000/item/${itemLinkID}`;
     }
@@ -97,6 +100,7 @@ function App() {
                   fiveMin={apiData.fiveMinGraph}
                   oneHour={apiData.oneHourGraph}
                   sixHour={apiData.sixHourGraph}
+                  itemArray={homeGraphItem}
                 />
                 {/* <BarGraph
                   fiveMin={apiData.fiveMinGraph}
