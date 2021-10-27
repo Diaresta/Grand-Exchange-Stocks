@@ -132,7 +132,6 @@ function App() {
           <Route path={['/item/:itemName/:itemID']}>
             <div id='item-page-container'>
               <div id='graph-container'>
-                <div>TEST REMOVE WHEN DONE</div>
                 <Graph
                   // itemID={itemID}
                   itemName={apiData.name}

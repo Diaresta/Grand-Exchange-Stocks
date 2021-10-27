@@ -1,17 +1,12 @@
 import { Bar, Line } from 'react-chartjs-2';
 import { useState, useEffect } from 'react';
 
-const Graph = ({
-  itemID,
-  itemName,
-  itemIcon,
-  fiveMin,
-  oneHour,
-  sixHour,
-  itemArray,
-}) => {
+const Graph = ({ itemID, fiveMin, oneHour, sixHour, itemArray }) => {
   const [lineChartData, setLineChartData] = useState();
   const [barChartData, setBarChartData] = useState();
+
+  const [itemName, setItemName] = useState();
+  const [itemIcon, setItemIcon] = useState();
 
   const [priceGraph, setPriceGraph] = useState();
   const [volumeGraph, setVolumeGraph] = useState();
@@ -83,6 +78,11 @@ const Graph = ({
 
     const response = await fetch(url);
     const data = await response.json();
+
+    console.log(data.name);
+
+    setItemName(data.name);
+    setItemIcon(data.icon);
 
     for (let key in data.fiveMinGraph) {
       fiveMinPrice.push(data.fiveMinGraph[key].price);
