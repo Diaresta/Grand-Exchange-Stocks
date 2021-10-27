@@ -64,7 +64,15 @@ const Graph = ({ itemID, itemName, itemIcon, fiveMin, oneHour, sixHour }) => {
   };
 
   const chart = async () => {
-    const url = await 'http://localhost:5000/';
+    const defaultWindow = window.location.pathname.split('/')[1];
+    const itemLinkID = window.location.pathname.split('/')[3];
+
+    if (defaultWindow === '' || defaultWindow === 'home') {
+      var url = await `http://localhost:5000/`;
+    } else {
+      var url = await `http://localhost:5000/item/${itemLinkID}`;
+    }
+
     const response = await fetch(url);
     const data = await response.json();
 
