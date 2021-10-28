@@ -17,41 +17,6 @@ import ForgotPassword from './components/ForgotPassword';
 import Terms from './components/Terms';
 
 function App() {
-  // name: itemName,
-  // icon: itemIcon,
-  // currentPrice: fiveMinCurrentPrice.toLocaleString(),
-  // geLimit: geLimit.toLocaleString(),
-  // offerPrice: fiveMinOfferPrice.toLocaleString(),
-  // avgHighHour: avgHighHour.toLocaleString(),
-  // margin: (fiveMinCurrentPrice - fiveMinOfferPrice).toLocaleString(),
-  // avgLowHour: avgLowHour.toLocaleString(),
-  // highAlchValue: highAlchVal.toLocaleString(),
-  // highAlchProfit: highAlchProfit.toLocaleString(),
-  // todayTrend: itemTrend,
-  // item30DayTrend: item30DayChange,
-  // item90DayTrend: item90DayChange,
-  // item180DayTrend: item180DayChange,
-
-  // // Testing sending data to components
-  // const itemID = 4151;
-  // // const appAlchProfit = -927293;
-
-  // // ----------------------------
-  // const itemName = 'Abyssal Whip';
-  // const itemIcon =
-  //   'https://secure.runescape.com/m=itemdb_oldschool/1627468199533_obj_sprite.gif?id=';
-
-  // const currentPrice = 2319566 + 'g';
-  // const geLimit = 70;
-  // const latestOfferPrice = 2313109 + 'g';
-  // const avgHighHour = 2320565 + 'g';
-  // // Margin instead of price high? buy price - sell price
-  // const avgLowHour = 2316056 + 'g';
-
-  // const highAlchVal = 1372382 + 'g';
-
-  // ----------------------------
-
   const [apiData, setApiData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loggedIn] = useState(true);
@@ -69,16 +34,11 @@ function App() {
       var url = await `http://localhost:5000/item/${itemLinkID}`;
     }
 
-    console.log(url);
-
     const response = await fetch(url);
     const data = await response.json();
     setApiData(data);
     setLoading(false);
   };
-
-  // Maybe have apiCall function call like below vvvvvvv. Find a way to useEffect on new components
-  // {apiCall('item/11808')}
 
   useEffect(() => {
     apiCall('');
@@ -93,15 +53,7 @@ function App() {
           <Route path={['', '/', '/home']} exact>
             <div id='item-page-container'>
               <div id='graph-container'>
-                <Graph
-                  // itemID={itemID}
-                  itemName={apiData.name}
-                  itemIcon={apiData.icon}
-                  fiveMin={apiData.fiveMinGraph}
-                  oneHour={apiData.oneHourGraph}
-                  sixHour={apiData.sixHourGraph}
-                  itemArray={homeGraphItem}
-                />
+                <Graph itemArray={homeGraphItem} />
                 {/* <BarGraph
                   fiveMin={apiData.fiveMinGraph}
                   oneHour={apiData.oneHourGraph}
@@ -110,15 +62,7 @@ function App() {
               </div>
               <div id='stats-cal-container'>
                 <Stats
-                  apiData={apiData}
-                  currentPrice={apiData.currentPrice}
-                  geLimit={apiData.geLimit}
-                  latestOfferPrice={apiData.offerPrice}
-                  avgHighHour={apiData.avgHighHour}
-                  avgLowHour={apiData.avgLowHour}
-                  highAlchVal={apiData.highAlchValue}
-                  appAlchProfit={apiData.highAlchProfit}
-                  margin={apiData.margin}
+                  itemArray={homeGraphItem}
                   // itemID={itemID}
                 />
                 <Calculator />
@@ -132,14 +76,7 @@ function App() {
           <Route path={['/item/:itemName/:itemID']}>
             <div id='item-page-container'>
               <div id='graph-container'>
-                <Graph
-                  // itemID={itemID}
-                  itemName={apiData.name}
-                  itemIcon={apiData.icon}
-                  fiveMin={apiData.fiveMinGraph}
-                  oneHour={apiData.oneHourGraph}
-                  sixHour={apiData.sixHourGraph}
-                />
+                <Graph />
                 {/* <BarGraph
                   fiveMin={apiData.fiveMinGraph}
                   oneHour={apiData.oneHourGraph}
@@ -148,15 +85,7 @@ function App() {
               </div>
               <div id='stats-cal-container'>
                 <Stats
-                  apiData={apiData}
-                  currentPrice={apiData.currentPrice}
-                  geLimit={apiData.geLimit}
-                  latestOfferPrice={apiData.offerPrice}
-                  avgHighHour={apiData.avgHighHour}
-                  avgLowHour={apiData.avgLowHour}
-                  highAlchVal={apiData.highAlchValue}
-                  appAlchProfit={apiData.highAlchProfit}
-                  margin={apiData.margin}
+                  itemArray={homeGraphItem}
                   // itemID={itemID}
                 />
                 <Calculator />

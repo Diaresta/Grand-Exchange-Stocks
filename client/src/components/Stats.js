@@ -1,25 +1,48 @@
 import { useState, useEffect } from 'react';
 
-const Stats = ({
-  apiData,
-  loading,
-  currentPrice,
-  geLimit,
-  latestOfferPrice,
-  avgHighHour,
-  avgLowHour,
-  margin,
-  highAlchVal,
-  appAlchProfit,
-  itemID,
-}) => {
-  const [highAlchProfit, setHighAlchProfit] = useState();
+const Stats = ({ loading, itemArray, itemID }) => {
   const [highAlchColor, setHighAlchColor] = useState();
 
+  const [currentPrice, setCurrentPrice] = useState();
+  const [geLimit, setGeLimit] = useState();
+  const [latestOfferPrice, setLatestOfferPrice] = useState();
+  const [avgHighHour, setAvgHighHour] = useState();
+  const [avgLowHour, setAvgLowHour] = useState();
+  const [highAlchVal, setHighAlchVal] = useState();
+  const [highAlchProfit, setHighAlchProfit] = useState();
+  const [margin, setMargin] = useState();
+
+  const apiCall = async (itemArray) => {
+    const defaultWindow = window.location.pathname.split('/')[1];
+    const itemLinkID = window.location.pathname.split('/')[3];
+
+    if (defaultWindow === '' || defaultWindow === 'home') {
+      var url = await `http://localhost:5000/item/${itemArray}`;
+    } else {
+      var url = await `http://localhost:5000/item/${itemLinkID}`;
+    }
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    console.log(itemLinkID);
+
+    setCurrentPrice(data.currentPrice);
+    setGeLimit(data.geLimit);
+    setLatestOfferPrice(data.offerPrice);
+    setAvgHighHour(data.avgHighHour);
+    setAvgLowHour(data.avgLowHour);
+    setHighAlchVal(data.highAlchValue);
+    setHighAlchProfit(data.highAlchProfit);
+    setMargin(data.margin);
+  };
+
   useEffect(() => {
-    if (appAlchProfit >= 0) {
+    apiCall(itemArray);
+
+    if (highAlchProfit >= 0) {
       setHighAlchColor('alch-prof');
-    } else if (appAlchProfit < 0) {
+    } else if (highAlchProfit < 0) {
       setHighAlchColor('alch-neg');
     }
   }, []);
@@ -83,7 +106,7 @@ const Stats = ({
           <li className='stats-li'>
             <p>
               <span className='item-uline'>High Alch Profit:</span>
-              <span id={highAlchColor}> {appAlchProfit}g</span>
+              <span id={highAlchColor}> {highAlchProfit}g</span>
             </p>
           </li>
         </ul>
