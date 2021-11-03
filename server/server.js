@@ -58,7 +58,6 @@ const itemApiCall = async (req, res, itemID) => {
   // --------------------------------------------------------
 
   // Grabs alch values/ge sell limit
-
   const urlAlchGeLimit =
     await 'https://prices.runescape.wiki/api/v1/osrs/mapping';
 
@@ -93,13 +92,36 @@ const itemApiCall = async (req, res, itemID) => {
   const fiveMinresponse = await fetch(urlFiveMin, options);
   const apiFiveMin = await fiveMinresponse.json();
 
-  const fiveMinCurrentPrice = apiFiveMin.data[itemID].avgHighPrice;
-  const fiveMinOfferPrice = apiFiveMin.data[itemID].avgLowPrice;
-  const fiveMinVolume =
-    apiFiveMin.data[itemID].highPriceVolume +
-    apiFiveMin.data[itemID].lowPriceVolume;
+  if (apiFiveMin.data[itemID].avgHighPrice === null) {
+    var fiveMinCurrentPrice = '???';
+  } else {
+    var fiveMinCurrentPrice = apiFiveMin.data[itemID].avgHighPrice;
+  }
+
+  if (apiFiveMin.data[itemID].avgLowPrice === null) {
+    var fiveMinOfferPrice = '???';
+  } else {
+    var fiveMinOfferPrice = apiFiveMin.data[itemID].avgLowPrice;
+  }
+
+  if (
+    apiFiveMin.data[itemID].highPriceVolume === null ||
+    apiFiveMin.data[itemID].lowPriceVolume === null
+  ) {
+    var fiveMinVolume = '???';
+  } else {
+    var fiveMinVolume =
+      apiFiveMin.data[itemID].highPriceVolume +
+      apiFiveMin.data[itemID].lowPriceVolume;
+  }
+
   const highAlchProfit = highAlchVal - fiveMinCurrentPrice;
 
+  // const fiveMinCurrentPrice = apiFiveMin.data[itemID].avgHighPrice;
+  // const fiveMinOfferPrice = apiFiveMin.data[itemID].avgLowPrice;
+  // const fiveMinVolume =
+  //   apiFiveMin.data[itemID].highPriceVolume +
+  //   apiFiveMin.data[itemID].lowPriceVolume;
   // --------------------------------------------------------
 
   // Grabs current/offer/sell price from latest
@@ -118,19 +140,38 @@ const itemApiCall = async (req, res, itemID) => {
   // --------------------------------------------------------
 
   // Grabs average high/low prices/hour and hourly volume
-
   const urlHour = await 'https://prices.runescape.wiki/api/v1/osrs/1h';
 
   const hourResponse = await fetch(urlHour, options);
   const apiHour = await hourResponse.json();
 
-  const avgHighHour = apiHour.data[itemID].avgHighPrice;
-  const avgLowHour = apiHour.data[itemID].avgLowPrice;
-  const hourVolume =
-    apiHour.data[itemID].highPriceVolume + apiHour.data[itemID].lowPriceVolume;
+  if (apiHour.data[itemID].avgHighPrice === null) {
+    var avgHighHour = '???';
+  } else {
+    var avgHighHour = apiHour.data[itemID].avgHighPrice;
+  }
 
-  // console.log(avgHighHour, avgLowHour, hourVolume);
+  if (apiHour.data[itemID].avgLowPrice === null) {
+    var avgLowHour = '???';
+  } else {
+    var avgLowHour = apiHour.data[itemID].avgLowPrice;
+  }
 
+  if (
+    apiHour.data[itemID].highPriceVolume === null ||
+    apiHour.data[itemID].lowPriceVolume === null
+  ) {
+    var hourVolume = '???';
+  } else {
+    var hourVolume =
+      apiHour.data[itemID].highPriceVolume +
+      apiHour.data[itemID].lowPriceVolume;
+  }
+
+  // const avgHighHour = apiHour.data[itemID].avgHighPrice;
+  // const avgLowHour = apiHour.data[itemID].avgLowPrice;
+  // const hourVolume =
+  //   apiHour.data[itemID].highPriceVolume + apiHour.data[itemID].lowPriceVolume;
   // ------------------------- **************** -------------------------------
 
   const fiveMin = '5m';
@@ -143,7 +184,6 @@ const itemApiCall = async (req, res, itemID) => {
   graphArray['sixHour'] = {};
 
   // Five minute graph fetch
-
   const graphMinLink =
     await `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${fiveMin}&id=${itemID}`;
 
@@ -200,7 +240,6 @@ const itemApiCall = async (req, res, itemID) => {
   };
 
   // One hour graph fetch
-
   const graphHourLink =
     await `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${oneHour}&id=${itemID}`;
 
@@ -249,7 +288,6 @@ const itemApiCall = async (req, res, itemID) => {
   };
 
   // Six hour graph fetch
-
   const graphSixHourLink =
     await `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${sixHour}&id=${itemID}`;
 
@@ -318,28 +356,70 @@ const itemApiCall = async (req, res, itemID) => {
       graphSixHourJSON.data[249].lowPriceVolume,
   };
 
+  // Fixing graph null values
+  const fiveMinGraphFix = graphArray.fiveMin;
+  const oneHourGraphFix = graphArray.oneHour;
+  const sixHourGraphFix = graphArray.sixHour;
+
+  console.log(fiveMinGraphFix);
+  console.log(oneHourGraphFix);
+  console.log(sixHourGraphFix);
+  console.log('--------');
+
+  for (const key in fiveMinGraphFix) {
+    if (fiveMinGraphFix[key].price === null) {
+      fiveMinGraphFix[key].price = '???';
+    }
+
+    if (fiveMinGraphFix[key].volume === null) {
+      fiveMinGraphFix[key].volume = '???';
+    }
+  }
+
+  for (const key in oneHourGraphFix) {
+    if (oneHourGraphFix[key].price === null) {
+      oneHourGraphFix[key].price = '???';
+    }
+
+    if (oneHourGraphFix[key].volume === null) {
+      oneHourGraphFix[key].volume = '???';
+    }
+  }
+
+  for (const key in sixHourGraphFix) {
+    if (sixHourGraphFix[key].price === null) {
+      sixHourGraphFix[key].price = '???';
+    }
+
+    if (sixHourGraphFix[key].volume === null) {
+      sixHourGraphFix[key].volume = '???';
+    }
+  }
+
+  const itemExport = {
+    name: itemName,
+    icon: itemIcon,
+    currentPrice: fiveMinCurrentPrice.toLocaleString(),
+    geLimit: geLimit.toLocaleString(),
+    offerPrice: fiveMinOfferPrice.toLocaleString(),
+    avgHighHour: avgHighHour.toLocaleString(),
+    margin: (fiveMinCurrentPrice - fiveMinOfferPrice).toLocaleString(),
+    avgLowHour: avgLowHour.toLocaleString(),
+    highAlchValue: highAlchVal.toLocaleString(),
+    highAlchProfit: parseInt(highAlchProfit).toLocaleString(),
+    todayTrend: itemTrend,
+    item30DayTrend: item30DayChange,
+    item90DayTrend: item90DayChange,
+    item180DayTrend: item180DayChange,
+    fiveMinGraph: graphArray.fiveMin,
+    oneHourGraph: graphArray.oneHour,
+    sixHourGraph: graphArray.sixHour,
+    // itemUpdate: itemUpdateObject,
+  };
+
   // ------------------------- **************** -------------------------------
   try {
-    res.status(200).json({
-      name: itemName,
-      icon: itemIcon,
-      currentPrice: fiveMinCurrentPrice.toLocaleString(),
-      geLimit: geLimit.toLocaleString(),
-      offerPrice: fiveMinOfferPrice.toLocaleString(),
-      avgHighHour: avgHighHour.toLocaleString(),
-      margin: (fiveMinCurrentPrice - fiveMinOfferPrice).toLocaleString(),
-      avgLowHour: avgLowHour.toLocaleString(),
-      highAlchValue: highAlchVal.toLocaleString(),
-      highAlchProfit: parseInt(highAlchProfit).toLocaleString(),
-      todayTrend: itemTrend,
-      item30DayTrend: item30DayChange,
-      item90DayTrend: item90DayChange,
-      item180DayTrend: item180DayChange,
-      fiveMinGraph: graphArray.fiveMin,
-      oneHourGraph: graphArray.oneHour,
-      sixHourGraph: graphArray.sixHour,
-      // itemUpdate: itemUpdateObject,
-    });
+    res.status(200).json(itemExport);
   } catch {
     res.send('reee');
   }
