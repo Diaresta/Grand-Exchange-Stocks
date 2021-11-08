@@ -133,7 +133,7 @@ const itemApiCall = async (req, res, itemID) => {
   const latestResponse = await fetch(urlLatest, options);
   const apiLatest = await latestResponse.json();
 
-  const latestCurrentPrice = apiLatest.data[itemID].low;
+  const latestCurrentPrice = apiLatest.data[itemID].high;
   const latestOfferPrice = Math.floor(
     (apiLatest.data[itemID].high + apiLatest.data[itemID].low) / 2
   );
@@ -402,11 +402,11 @@ const itemApiCall = async (req, res, itemID) => {
   const itemExport = {
     name: itemName,
     icon: itemIcon,
-    currentPrice: fiveMinCurrentPrice.toLocaleString(),
+    currentPrice: latestCurrentPrice.toLocaleString(),
     geLimit: geLimit.toLocaleString(),
-    offerPrice: fiveMinOfferPrice.toLocaleString(),
+    offerPrice: latestOfferPrice.toLocaleString(),
     avgHighHour: avgHighHour.toLocaleString(),
-    margin: (fiveMinCurrentPrice - fiveMinOfferPrice).toLocaleString(),
+    margin: (latestCurrentPrice - latestOfferPrice).toLocaleString(),
     avgLowHour: avgLowHour.toLocaleString(),
     highAlchValue: highAlchVal.toLocaleString(),
     highAlchProfit: parseInt(highAlchProfit).toLocaleString(),
