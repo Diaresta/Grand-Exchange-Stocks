@@ -440,6 +440,44 @@ table td {
   padding: 5px 0px 5px 10px;
 }
 
+#search-container {
+  margin: 15px;
+}
+
+#search-container p {
+  font-size: 1.2em;
+  margin-bottom: 0;
+}
+
+#search-container small {
+  margin-left: 15px;
+  color: #1141c0;
+}
+
+#item-search-ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-search-li {
+  display: flex;
+  color: black;
+  font-size: 1.2em;
+  text-decoration: none;
+}
+
+.item-search-li:hover {
+  color: #1141c0;
+  font-size: 1.25em;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.item-search-li::before {
+  margin-right: 8px;
+  color: black;
+}
+
 .log-sign-app-container {
   margin-top: 2%;
   position: relative;

@@ -41,18 +41,22 @@ const SearchPage = () => {
   }, []);
 
   return (
-    <div>
+    <div id='search-container'>
       <p>Search Results: '{query}'</p>
+      <small>{filteredItems.length} Results</small>
       {/* <small>REEE</small> */}
 
-      <ul>
+      <ul id='item-search-ul'>
         {filteredItems.map((item) => (
           <Link
             to={`/item/${item.name}/${item.id}`}
+            className='item-search-li'
             key={item.id}
             onClick={() => sendItemToSever(item.id)}
           >
-            <li key={item.id}>{item.name}</li>
+            <li key={item.id}>
+              {item.name[0].toUpperCase() + item.name.slice(1)}
+            </li>
           </Link>
         ))}
       </ul>
