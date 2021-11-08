@@ -87,32 +87,34 @@ const itemApiCall = async (req, res, itemID) => {
   // --------------------------------------------------------
 
   // Grabs current/offer price from 5min avg
-  const urlFiveMin = await 'https://prices.runescape.wiki/api/v1/osrs/5m';
+
+  // const urlFiveMin = await 'https://prices.runescape.wiki/api/v1/osrs/5m';
+  const urlFiveMin =
+    await `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=5m&id=${itemID}`;
 
   const fiveMinresponse = await fetch(urlFiveMin, options);
   const apiFiveMin = await fiveMinresponse.json();
 
-  if (apiFiveMin.data[itemID].avgHighPrice === null) {
+  if (apiFiveMin.data[0].avgHighPrice === null) {
     var fiveMinCurrentPrice = '???';
   } else {
-    var fiveMinCurrentPrice = apiFiveMin.data[itemID].avgHighPrice;
+    var fiveMinCurrentPrice = apiFiveMin.data[0].avgHighPrice;
   }
 
-  if (apiFiveMin.data[itemID].avgLowPrice === null) {
+  if (apiFiveMin.data[0].avgLowPrice === null) {
     var fiveMinOfferPrice = '???';
   } else {
-    var fiveMinOfferPrice = apiFiveMin.data[itemID].avgLowPrice;
+    var fiveMinOfferPrice = apiFiveMin.data[0].avgLowPrice;
   }
 
   if (
-    apiFiveMin.data[itemID].highPriceVolume === null ||
-    apiFiveMin.data[itemID].lowPriceVolume === null
+    apiFiveMin.data[0].highPriceVolume === null ||
+    apiFiveMin.data[0].lowPriceVolume === null
   ) {
     var fiveMinVolume = '???';
   } else {
     var fiveMinVolume =
-      apiFiveMin.data[itemID].highPriceVolume +
-      apiFiveMin.data[itemID].lowPriceVolume;
+      apiFiveMin.data[0].highPriceVolume + apiFiveMin.data[0].lowPriceVolume;
   }
 
   const highAlchProfit = highAlchVal - fiveMinCurrentPrice;
@@ -140,32 +142,33 @@ const itemApiCall = async (req, res, itemID) => {
   // --------------------------------------------------------
 
   // Grabs average high/low prices/hour and hourly volume
-  const urlHour = await 'https://prices.runescape.wiki/api/v1/osrs/1h';
+  // const urlHour = await 'https://prices.runescape.wiki/api/v1/osrs/1h';
+  const urlHour =
+    await `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=5m&id=${itemID}`;
 
   const hourResponse = await fetch(urlHour, options);
   const apiHour = await hourResponse.json();
 
-  if (apiHour.data[itemID].avgHighPrice === null) {
+  if (apiHour.data[0].avgHighPrice === null) {
     var avgHighHour = '???';
   } else {
-    var avgHighHour = apiHour.data[itemID].avgHighPrice;
+    var avgHighHour = apiHour.data[0].avgHighPrice;
   }
 
-  if (apiHour.data[itemID].avgLowPrice === null) {
+  if (apiHour.data[0].avgLowPrice === null) {
     var avgLowHour = '???';
   } else {
-    var avgLowHour = apiHour.data[itemID].avgLowPrice;
+    var avgLowHour = apiHour.data[0].avgLowPrice;
   }
 
   if (
-    apiHour.data[itemID].highPriceVolume === null ||
-    apiHour.data[itemID].lowPriceVolume === null
+    apiHour.data[0].highPriceVolume === null ||
+    apiHour.data[0].lowPriceVolume === null
   ) {
     var hourVolume = '???';
   } else {
     var hourVolume =
-      apiHour.data[itemID].highPriceVolume +
-      apiHour.data[itemID].lowPriceVolume;
+      apiHour.data[0].highPriceVolume + apiHour.data[0].lowPriceVolume;
   }
 
   // const avgHighHour = apiHour.data[itemID].avgHighPrice;
