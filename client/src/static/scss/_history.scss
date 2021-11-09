@@ -23,6 +23,10 @@
     color: $hover-color;
     // opacity: 75%;
   }
+
+  a:active {
+    color: $placeholder-color;
+  }
 }
 
 #history-btn-div {

@@ -1,10 +1,10 @@
 @import 'config';
 
 #search-container {
+  display: flex;
   margin: 15px;
 
-  p {
-    font-size: 1.2em;
+  h2 {
     margin-bottom: 0;
   }
 
@@ -12,6 +12,10 @@
     margin-left: 15px;
     color: $hover-color;
   }
+}
+
+#query-container {
+  width: 50%;
 }
 
 #item-search-ul {
@@ -34,11 +38,37 @@
   font-weight: bold;
 }
 
-.item-search-li::before {
-  //   content: '\2022';
-  margin-right: 8px;
-  color: black;
+.item-search-li:active {
+  color: $placeholder-color;
 }
 
-.item-search-li:hover::before {
+#alphabet-container {
+  width: 50%;
+
+  ul {
+    position: fixed;
+    right: 0;
+
+    margin-right: 20px;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: #818eaf;
+  }
+
+  a:hover {
+    color: $hover-color;
+    // font-size: 1.25em;
+    // text-decoration: underline;
+    font-weight: bold;
+  }
+
+  a:active {
+    color: $placeholder-color;
+  }
 }

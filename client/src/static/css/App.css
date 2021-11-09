@@ -385,6 +385,10 @@ h4 {
   color: #1141c0;
 }
 
+#history-container a:active {
+  color: #b9cbfa;
+}
+
 #history-btn-div {
   display: flex;
 }
@@ -441,17 +445,21 @@ table td {
 }
 
 #search-container {
+  display: flex;
   margin: 15px;
 }
 
-#search-container p {
-  font-size: 1.2em;
+#search-container h2 {
   margin-bottom: 0;
 }
 
 #search-container small {
   margin-left: 15px;
   color: #1141c0;
+}
+
+#query-container {
+  width: 50%;
 }
 
 #item-search-ul {
@@ -473,9 +481,36 @@ table td {
   font-weight: bold;
 }
 
-.item-search-li::before {
-  margin-right: 8px;
-  color: black;
+.item-search-li:active {
+  color: #b9cbfa;
+}
+
+#alphabet-container {
+  width: 50%;
+}
+
+#alphabet-container ul {
+  position: fixed;
+  right: 0;
+  margin-right: 20px;
+}
+
+#alphabet-container li {
+  list-style: none;
+}
+
+#alphabet-container a {
+  text-decoration: none;
+  color: #818eaf;
+}
+
+#alphabet-container a:hover {
+  color: #1141c0;
+  font-weight: bold;
+}
+
+#alphabet-container a:active {
+  color: #b9cbfa;
 }
 
 .log-sign-app-container {
