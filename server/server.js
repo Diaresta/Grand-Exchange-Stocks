@@ -14,26 +14,55 @@ app.use(express.json());
 // app.use('/api', itemData);
 app.use('/api/v1/restaurants', restaurants);
 
-var itemArray = [2, 4151, 11832, 1073, 6585];
+var itemArray = [2, 4151, 11832, 1073, 6585, 11802, 4587];
+var tickerArray = [];
 // var itemID = itemArray[Math.floor(Math.random() * itemArray.length)];
 
 // app.use('*', (req, res) => {
 //   res.status(404).json({ error: 'Route not found' });
 // });
 
+const setTickerArray = async (itemID) => {
+  const options = {
+    method: 'GET',
+  };
+
+  const url =
+    await `https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=${itemID}`;
+
+  const response = await fetch(url, options);
+  const data = await response.json();
+
+  var item = {};
+
+  item.name = data.item.name;
+  item.trend = data.item.current.trend;
+  item.price = data.item.current.price;
+  item.percent = data.item.day30.change;
+
+  tickerArray.push(item);
+
+  return item;
+};
+
 app.get('/', async (req, res) => {
+  for (let i = 0; i < 7; i++) {
+    setTickerArray(itemArray[i]);
+  }
+
   itemApiCall(
     req,
     res,
-    itemArray[Math.floor(Math.random() * itemArray.length)]
+    itemArray[Math.floor(Math.random() * itemArray.length)],
+    tickerArray
   );
 });
 
 app.get(`/item/:itemID`, (req, res) => {
-  itemApiCall(req, res, parseInt(req.params.itemID));
+  itemApiCall(req, res, parseInt(req.params.itemID), tickerArray);
 });
 
-const itemApiCall = async (req, res, itemID) => {
+const itemApiCall = async (req, res, itemID, tickerArray) => {
   const options = {
     method: 'GET',
   };
@@ -364,11 +393,6 @@ const itemApiCall = async (req, res, itemID) => {
   const oneHourGraphFix = graphArray.oneHour;
   const sixHourGraphFix = graphArray.sixHour;
 
-  console.log(fiveMinGraphFix);
-  console.log(oneHourGraphFix);
-  console.log(sixHourGraphFix);
-  console.log('--------');
-
   for (const key in fiveMinGraphFix) {
     if (fiveMinGraphFix[key].price === null) {
       fiveMinGraphFix[key].price = '???';
@@ -417,6 +441,7 @@ const itemApiCall = async (req, res, itemID) => {
     fiveMinGraph: graphArray.fiveMin,
     oneHourGraph: graphArray.oneHour,
     sixHourGraph: graphArray.sixHour,
+    ticker: tickerArray,
     // itemUpdate: itemUpdateObject,
   };
 
