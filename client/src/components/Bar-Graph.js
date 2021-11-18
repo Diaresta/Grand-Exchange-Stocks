@@ -19,7 +19,7 @@ const BarGraph = ({ fiveMin, oneHour, sixHour }) => {
   // };
 
   const chart = async () => {
-    const url = await 'http://localhost:5000/';
+    const url = await 'http://localhost:8000/';
     const response = await fetch(url);
     const data = await response.json();
 

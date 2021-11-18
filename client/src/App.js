@@ -29,9 +29,9 @@ function App() {
     const itemLinkID = window.location.pathname.split('/')[3];
 
     if (defaultWindow === '' || defaultWindow === 'home') {
-      var url = await `http://localhost:5000/item/${homeGraphItem}`;
+      var url = await `http://localhost:8000/item/${homeGraphItem}`;
     } else {
-      var url = await `http://localhost:5000/item/${itemLinkID}`;
+      var url = await `http://localhost:8000/item/${itemLinkID}`;
     }
 
     const response = await fetch(url);
