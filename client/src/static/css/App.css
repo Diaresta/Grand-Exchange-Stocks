@@ -172,11 +172,11 @@ header i:hover {
   animation: moving 25s linear infinite;
 }
 
-.positive-gains {
+.positive {
   color: green;
 }
 
-.negative-gains {
+.negative {
   color: red;
 }
 

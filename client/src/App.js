@@ -18,6 +18,7 @@ import Terms from './components/Terms';
 
 function App() {
   const [apiData, setApiData] = useState([]);
+  // const [tickerData, setTicker] = useState();
   const [loading, setLoading] = useState(true);
   const [loggedIn] = useState(true);
 
@@ -40,8 +41,19 @@ function App() {
     setLoading(false);
   };
 
+  // const tickerCall = async () => {
+  //   const url = await 'http://localhost:8000/';
+  //   const response = await fetch(url);
+  //   const data = await response.json();
+
+  //   setTicker(data.ticker);
+
+  //   console.log(data.ticker);
+  // };
+
   useEffect(() => {
     apiCall('');
+    // tickerCall();
   }, []);
 
   return (
