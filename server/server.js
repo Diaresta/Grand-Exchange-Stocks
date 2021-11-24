@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import axios from 'axios';
 // import itemData from './api/itemData.route.js';
 import restaurants from './api/restaurants.route.js';
 
@@ -27,22 +28,28 @@ const setTickerArray = async (itemID) => {
     method: 'GET',
   };
 
-  const url =
-    await `https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=${itemID}`;
-
-  const response = await fetch(url, options);
-  const data = await response.json();
+  const url = await axios.get(
+    `https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=${itemID}`
+  );
 
   var item = {};
 
-  item.name = data.item.name;
-  item.trend = data.item.current.trend;
-  item.price = data.item.current.price;
-  item.percent = data.item.day30.change;
+  item.name = url.data.item.name;
+  item.trend = url.data.item.current.trend;
+  item.price = url.data.item.current.price;
+  item.percent = url.data.item.day30.change;
 
   tickerArray.push(item);
 
   return item;
+};
+
+const axiosTest = async () => {
+  const url = await axios.get(
+    'https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=4151'
+  );
+
+  console.log(url.data);
 };
 
 app.get('/', async (req, res) => {
@@ -68,11 +75,11 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
   };
 
   // Grabs item name, photo, trend, 30-180day price changes
-  const urlNameChange =
-    await `https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=${itemID}`;
+  const urlNameChange = await axios.get(
+    `https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=${itemID}`
+  );
 
-  const responseNameChange = await fetch(urlNameChange, options);
-  const apiNameChange = await responseNameChange.json();
+  const apiNameChange = await urlNameChange.data;
 
   const itemName = apiNameChange.item.name;
   const itemIcon = apiNameChange.item.icon;
@@ -87,11 +94,11 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
   // --------------------------------------------------------
 
   // Grabs alch values/ge sell limit
-  const urlAlchGeLimit =
-    await 'https://prices.runescape.wiki/api/v1/osrs/mapping';
+  const urlAlchGeLimit = await axios.get(
+    'https://prices.runescape.wiki/api/v1/osrs/mapping'
+  );
 
-  const geLimitresponse = await fetch(urlAlchGeLimit, options);
-  const apiGeLimit = await geLimitresponse.json();
+  const apiGeLimit = await urlAlchGeLimit.data;
 
   let mappingTest;
   // let itemUpdateObject = [];
@@ -118,11 +125,11 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
   // Grabs current/offer price from 5min avg
 
   // const urlFiveMin = await 'https://prices.runescape.wiki/api/v1/osrs/5m';
-  const urlFiveMin =
-    await `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=5m&id=${itemID}`;
+  const urlFiveMin = await axios.get(
+    `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=5m&id=${itemID}`
+  );
 
-  const fiveMinresponse = await fetch(urlFiveMin, options);
-  const apiFiveMin = await fiveMinresponse.json();
+  const apiFiveMin = await urlFiveMin.data;
 
   if (apiFiveMin.data[0].avgHighPrice === null) {
     var fiveMinCurrentPrice = '???';
@@ -156,11 +163,11 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
   // --------------------------------------------------------
 
   // Grabs current/offer/sell price from latest
-  const urlLatest =
-    await `https://prices.runescape.wiki/api/v1/osrs/latest?id=${itemID}`;
+  const urlLatest = await axios.get(
+    `https://prices.runescape.wiki/api/v1/osrs/latest?id=${itemID}`
+  );
 
-  const latestResponse = await fetch(urlLatest, options);
-  const apiLatest = await latestResponse.json();
+  const apiLatest = await urlLatest.data;
 
   const latestCurrentPrice = apiLatest.data[itemID].high;
   const latestOfferPrice = Math.floor(
@@ -172,11 +179,11 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
 
   // Grabs average high/low prices/hour and hourly volume
   // const urlHour = await 'https://prices.runescape.wiki/api/v1/osrs/1h';
-  const urlHour =
-    await `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=5m&id=${itemID}`;
+  const urlHour = await axios.get(
+    `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=5m&id=${itemID}`
+  );
 
-  const hourResponse = await fetch(urlHour, options);
-  const apiHour = await hourResponse.json();
+  const apiHour = await urlHour.data;
 
   if (apiHour.data[0].avgHighPrice === null) {
     var avgHighHour = '???';
@@ -216,12 +223,11 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
   graphArray['sixHour'] = {};
 
   // Five minute graph fetch
-  const graphMinLink =
-    await `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${fiveMin}&id=${itemID}`;
+  const graphMinLink = await axios.get(
+    `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${fiveMin}&id=${itemID}`
+  );
 
-  const graphMinFetch = await fetch(graphMinLink);
-
-  const graphMinJSON = await graphMinFetch.json();
+  const graphMinJSON = graphMinLink.data;
 
   graphArray.fiveMin['5 Minute'] = {
     price: Math.floor(
@@ -272,12 +278,11 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
   };
 
   // One hour graph fetch
-  const graphHourLink =
-    await `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${oneHour}&id=${itemID}`;
+  const graphHourLink = await axios.get(
+    `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${oneHour}&id=${itemID}`
+  );
 
-  const graphHourFetch = await fetch(graphHourLink);
-
-  const graphHourJSON = await graphHourFetch.json();
+  const graphHourJSON = await graphHourLink.data;
 
   graphArray.oneHour['1 Hour'] = {
     price: Math.floor(
@@ -320,12 +325,11 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
   };
 
   // Six hour graph fetch
-  const graphSixHourLink =
-    await `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${sixHour}&id=${itemID}`;
+  const graphSixHourLink = await axios.get(
+    `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${sixHour}&id=${itemID}`
+  );
 
-  const graphSixHourFetch = await fetch(graphSixHourLink);
-
-  const graphSixHourJSON = await graphSixHourFetch.json();
+  const graphSixHourJSON = await graphSixHourLink.data;
 
   graphArray.sixHour['6 Hour'] = {
     price: Math.floor(

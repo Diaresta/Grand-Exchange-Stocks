@@ -10,7 +10,7 @@ const Ticker = () => {
 
     setTicker(data.ticker);
     console.log(tickerData);
-    console.log(tickerData);
+    console.log(data.ticker);
   };
 
   useEffect(() => {
