@@ -7,7 +7,7 @@
   background-color: #e1e2e3;
 
   p {
-    width: 100%;
+    // width: 100%;
     font-size: 0.7rem;
     margin: 0.5rem 0;
   }
@@ -20,7 +20,8 @@
   animation: moving 25s linear infinite;
 }
 
-.positive {
+.positive,
+.neutral {
   color: green;
 }
 
