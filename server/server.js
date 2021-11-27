@@ -35,11 +35,15 @@ const setTickerArray = async (itemID) => {
   var item = {};
 
   item.name = url.data.item.name;
-  item.trend = url.data.item.current.trend;
-  item.price = url.data.item.current.price;
+  item.trend = url.data.item.day30.trend;
+  item.price = url.data.item.current.price.toString();
   item.percent = url.data.item.day30.change;
 
   tickerArray.push(item);
+
+  if (tickerArray.length > 7) {
+    tickerArray.pop();
+  }
 
   return item;
 };
