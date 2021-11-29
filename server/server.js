@@ -46,7 +46,10 @@ const setTickerArray = async (itemID) => {
   };
 
   const url = await axios.get(
-    `https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=${itemID}`
+    `https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=${itemID}`,
+    {
+      headers: { 'User-Agent': 'Learning using APIs - @Diaresta#4220' },
+    }
   );
 
   var item = {};
@@ -94,7 +97,10 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
 
   // Grabs alch values/ge sell limit
   const urlAlchGeLimit = await axios.get(
-    'https://prices.runescape.wiki/api/v1/osrs/mapping'
+    'https://prices.runescape.wiki/api/v1/osrs/mapping',
+    {
+      headers: { 'User-Agent': 'Learning using APIs - @Diaresta#4220' },
+    }
   );
 
   const apiGeLimit = await urlAlchGeLimit.data;
@@ -166,7 +172,10 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
 
   // Grabs current/offer/sell price from latest
   const urlLatest = await axios.get(
-    `https://prices.runescape.wiki/api/v1/osrs/latest?id=${itemID}`
+    `https://prices.runescape.wiki/api/v1/osrs/latest?id=${itemID}`,
+    {
+      headers: { 'User-Agent': 'Learning using APIs - @Diaresta#4220' },
+    }
   );
 
   const apiLatest = await urlLatest.data;
@@ -182,7 +191,10 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
   // Grabs average high/low prices/hour and hourly volume
   // const urlHour = await 'https://prices.runescape.wiki/api/v1/osrs/1h';
   const urlHour = await axios.get(
-    `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=5m&id=${itemID}`
+    `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=5m&id=${itemID}`,
+    {
+      headers: { 'User-Agent': 'Learning using APIs - @Diaresta#4220' },
+    }
   );
 
   const apiHour = await urlHour.data;
@@ -227,7 +239,10 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
   try {
     // Five minute graph fetch
     const graphMinLink = await axios.get(
-      `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${fiveMin}&id=${itemID}`
+      `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${fiveMin}&id=${itemID}`,
+      {
+        headers: { 'User-Agent': 'Learning using APIs - @Diaresta#4220' },
+      }
     );
 
     const graphMinJSON = graphMinLink.data;
@@ -284,7 +299,10 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
 
     // One hour graph fetch
     const graphHourLink = await axios.get(
-      `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${oneHour}&id=${itemID}`
+      `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${oneHour}&id=${itemID}`,
+      {
+        headers: { 'User-Agent': 'Learning using APIs - @Diaresta#4220' },
+      }
     );
 
     const graphHourJSON = await graphHourLink.data;
@@ -332,7 +350,10 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
 
     // Six hour graph fetch
     const graphSixHourLink = await axios.get(
-      `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${sixHour}&id=${itemID}`
+      `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${sixHour}&id=${itemID}`,
+      {
+        headers: { 'User-Agent': 'Learning using APIs - @Diaresta#4220' },
+      }
     );
 
     const graphSixHourJSON = await graphSixHourLink.data;
