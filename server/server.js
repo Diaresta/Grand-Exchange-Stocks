@@ -23,6 +23,23 @@ var tickerArray = [];
 //   res.status(404).json({ error: 'Route not found' });
 // });
 
+app.get('/', async (req, res) => {
+  for (let i = 0; i < 7; i++) {
+    setTickerArray(itemArray[i]);
+  }
+
+  itemApiCall(
+    req,
+    res,
+    itemArray[Math.floor(Math.random() * itemArray.length)],
+    tickerArray
+  );
+});
+
+app.get(`/item/:itemID`, (req, res) => {
+  itemApiCall(req, res, parseInt(req.params.itemID), tickerArray);
+});
+
 const setTickerArray = async (itemID) => {
   const options = {
     method: 'GET',
@@ -48,31 +65,6 @@ const setTickerArray = async (itemID) => {
   return item;
 };
 
-const axiosTest = async () => {
-  const url = await axios.get(
-    'https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=4151'
-  );
-
-  console.log(url.data);
-};
-
-app.get('/', async (req, res) => {
-  for (let i = 0; i < 7; i++) {
-    setTickerArray(itemArray[i]);
-  }
-
-  itemApiCall(
-    req,
-    res,
-    itemArray[Math.floor(Math.random() * itemArray.length)],
-    tickerArray
-  );
-});
-
-app.get(`/item/:itemID`, (req, res) => {
-  itemApiCall(req, res, parseInt(req.params.itemID), tickerArray);
-});
-
 const itemApiCall = async (req, res, itemID, tickerArray) => {
   const options = {
     method: 'GET',
@@ -80,7 +72,10 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
 
   // Grabs item name, photo, trend, 30-180day price changes
   const urlNameChange = await axios.get(
-    `https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=${itemID}`
+    `https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=${itemID}`,
+    {
+      headers: { 'User-Agent': 'Learning using APIs - @Diaresta#4220' },
+    }
   );
 
   const apiNameChange = await urlNameChange.data;
@@ -130,7 +125,10 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
 
   // const urlFiveMin = await 'https://prices.runescape.wiki/api/v1/osrs/5m';
   const urlFiveMin = await axios.get(
-    `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=5m&id=${itemID}`
+    `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=5m&id=${itemID}`,
+    {
+      headers: { 'User-Agent': 'Learning using APIs - @Diaresta#4220' },
+    }
   );
 
   const apiFiveMin = await urlFiveMin.data;
