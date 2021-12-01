@@ -54,11 +54,18 @@ const setTickerArray = async (itemID) => {
 
   var item = {};
 
-  item.name = url.data.item.name;
-  item.trend = url.data.item.day30.trend;
-  item.price = url.data.item.current.price.toString();
-  item.percent = url.data.item.day30.change;
-
+  // error: cannot read property that's 'undefined'
+  try {
+    item.name = await url.data.item.name;
+    item.trend = await url.data.item.day30.trend;
+    item.price = await url.data.item.current.price.toString();
+    item.percent = await url.data.item.day30.change;
+  } catch {
+    item.name = '';
+    item.trend = '';
+    item.price = '';
+    item.percent = '';
+  }
   tickerArray.push(item);
 
   if (tickerArray.length > 7) {
@@ -83,15 +90,16 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
 
   const apiNameChange = await urlNameChange.data;
 
-  const itemName = apiNameChange.item.name;
-  const itemIcon = apiNameChange.item.icon;
-  const itemTrend = apiNameChange.item.today.trend;
-  const item30DayChange = apiNameChange.item.day30.change;
-  const item90DayChange = apiNameChange.item.day90.change;
-  const item180DayChange = apiNameChange.item.day180.change;
-
-  // Ticker item name, price, percent change
-  const tickerItem1 = `${itemName} ${apiNameChange.item.current.price} - (${item30DayChange})`;
+  // FIX: Moved itemName to 3.2.1 to fix undefined from API || Fix icon sometimes returning undefined
+  try {
+    var itemIcon = await apiNameChange.item.icon;
+  } catch {
+    var itemIcon = '';
+  }
+  // const itemTrend = apiNameChange.item.today.trend;
+  // const item30DayChange = apiNameChange.item.day30.change;
+  // const item90DayChange = apiNameChange.item.day90.change;
+  // const item180DayChange = apiNameChange.item.day180.change;
 
   // --------------------------------------------------------
 
@@ -121,6 +129,8 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
   }
   // ---------------------------------------------------------------
 
+  // FIX: Moved itemName from 3.2.1 to fix undefined from API
+  const itemName = apiGeLimit[mappingTest].name;
   const highAlchVal = apiGeLimit[mappingTest].highalch;
   const lowAlchVal = apiGeLimit[mappingTest].lowalch;
   const geLimit = apiGeLimit[mappingTest].limit;
@@ -532,10 +542,10 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
     avgLowHour: avgLowHour.toLocaleString(),
     highAlchValue: highAlchVal.toLocaleString(),
     highAlchProfit: parseInt(highAlchProfit).toLocaleString(),
-    todayTrend: itemTrend,
-    item30DayTrend: item30DayChange,
-    item90DayTrend: item90DayChange,
-    item180DayTrend: item180DayChange,
+    // todayTrend: itemTrend,
+    // item30DayTrend: item30DayChange,
+    // item90DayTrend: item90DayChange,
+    // item180DayTrend: item180DayChange,
     fiveMinGraph: graphArray.fiveMin,
     oneHourGraph: graphArray.oneHour,
     sixHourGraph: graphArray.sixHour,
