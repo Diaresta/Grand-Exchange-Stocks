@@ -6,6 +6,47 @@ body,
   height: 100%;
 }
 
+#true {
+  opacity: 0;
+}
+
+#loading-span-true {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  text-align: center;
+  border: 12px solid #b9cbfa;
+  /* Light grey */
+  border-top: 12px solid #1652f0;
+  /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+    border-top: 12px solid #1652f0;
+  }
+  50% {
+    transform: rotate(180deg);
+    border-top: 12px solid #b9cbfa;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-top: 12px solid #1652f0;
+  }
+}
+
+#loading-span-false {
+  display: none;
+}
+
 #graph-container {
   width: 100%;
   height: 100%;

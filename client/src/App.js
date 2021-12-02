@@ -60,6 +60,8 @@ function App() {
     <div className='App'>
       <Router>
         <Header loggedIn={loggedIn} />
+        {/* <span id={`loading-span-${loading.toString()}`} />
+        <div id={loading.toString()}> */}
         <Ticker />
         <Switch>
           <Route path={['', '/', '/home']} exact>
@@ -134,6 +136,7 @@ function App() {
             <Terms />
           </Route>
         </Switch>
+        {/* </div> */}
       </Router>
     </div>
   );
