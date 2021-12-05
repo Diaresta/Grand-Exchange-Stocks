@@ -61,7 +61,7 @@ const Ticker = () => {
   };
 
   useEffect(() => {
-    // tickerCall();
+    tickerCall();
   }, []);
   return (
     <div id='ticker-container'>
