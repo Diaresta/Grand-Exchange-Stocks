@@ -25,8 +25,6 @@ const Stats = ({ loading, itemArray, itemID }) => {
     const response = await fetch(url);
     const data = await response.json();
 
-    console.log(itemLinkID);
-
     setCurrentPrice(data.currentPrice);
     setGeLimit(data.geLimit);
     setLatestOfferPrice(data.offerPrice);

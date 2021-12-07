@@ -79,8 +79,6 @@ const Graph = ({ itemArray }) => {
     const response = await fetch(url);
     const data = await response.json();
 
-    console.log(data.name);
-
     setItemName(data.name);
     setItemIcon(data.icon);
 
