@@ -24,19 +24,22 @@ var tickerArray = [];
 // });
 
 app.get('/', async (req, res) => {
+  // for (let i = 0; i < 7; i++) {
+  //   setTickerArray(itemArray[i]);
+  // }
+  // itemApiCall(
+  //   req,
+  //   res,
+  //   itemArray[Math.floor(Math.random() * itemArray.length)],
+  //   tickerArray
+  // );
+});
+
+app.get(`/item/:itemID`, (req, res) => {
   for (let i = 0; i < 7; i++) {
     setTickerArray(itemArray[i]);
   }
 
-  itemApiCall(
-    req,
-    res,
-    itemArray[Math.floor(Math.random() * itemArray.length)],
-    tickerArray
-  );
-});
-
-app.get(`/item/:itemID`, (req, res) => {
   itemApiCall(req, res, parseInt(req.params.itemID), tickerArray);
 });
 
@@ -60,11 +63,13 @@ const setTickerArray = async (itemID) => {
     item.trend = await url.data.item.day30.trend;
     item.price = await url.data.item.current.price.toString();
     item.percent = await url.data.item.day30.change;
+    item.id = await url.data.item.id;
   } catch {
     item.name = '';
     item.trend = '';
     item.price = '';
     item.percent = '';
+    item.id = '';
   }
   tickerArray.push(item);
 
@@ -88,11 +93,9 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
     }
   );
 
-  const apiNameChange = await urlNameChange.data;
-
   // FIX: Moved itemName to 3.2.1 to fix undefined from API || Fix icon sometimes returning undefined
   try {
-    var itemIcon = await apiNameChange.item.icon;
+    var itemIcon = await urlNameChange.data.item.icon;
   } catch {
     var itemIcon = '';
   }
