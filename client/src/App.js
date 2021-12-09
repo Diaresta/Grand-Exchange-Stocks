@@ -18,6 +18,7 @@ import Terms from './components/Terms';
 
 function App() {
   const [apiData, setApiData] = useState([]);
+  const [tickerData, setTickerData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loggedIn] = useState(true);
 
@@ -25,18 +26,15 @@ function App() {
   var homeGraphItem = itemArray[Math.floor(Math.random() * itemArray.length)];
 
   const apiCall = async (itemID) => {
-    if (
-      window.location.pathname === '/' ||
-      window.location.pathname === '/home'
-    ) {
-      setLoading(true);
-    }
-
     const defaultWindow = window.location.pathname.split('/')[1];
     const itemLinkID = window.location.pathname.split('/')[3];
 
     if (defaultWindow === '' || defaultWindow === 'home') {
+      setLoading(true);
       var url = await `http://localhost:8000/item/${homeGraphItem}`;
+    } else if (defaultWindow === 'item') {
+      setLoading(true);
+      var url = await `http://localhost:8000/item/${itemLinkID}`;
     } else {
       var url = await `http://localhost:8000/item/${itemLinkID}`;
     }
@@ -44,6 +42,7 @@ function App() {
     const response = await fetch(url);
     const data = await response.json();
     setApiData(data);
+    setTickerData(data.ticker);
     setLoading(false);
   };
 
@@ -57,7 +56,7 @@ function App() {
         <Header loggedIn={loggedIn} />
         <span id={`loading-span-${loading.toString()}`} />
         <div id={loading.toString()}>
-          <Ticker />
+          <Ticker tickerData={tickerData} />
           <Switch>
             <Route path={['', '/', '/home']} exact>
               <div id='item-page-container'>
