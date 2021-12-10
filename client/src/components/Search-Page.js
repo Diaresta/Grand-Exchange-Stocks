@@ -49,8 +49,8 @@ const SearchPage = () => {
 
         <ul id='item-search-ul'>
           {filteredItems.map((item) => (
-            <Link
-              to={`/item/${item.name}/${item.id}`}
+            <a
+              href={`/item/${item.name}/${item.id}`}
               className='item-search-li'
               key={item.id}
               onClick={() => sendItemToSever(item.id)}
@@ -58,7 +58,7 @@ const SearchPage = () => {
               <li key={item.id} id={item.name[0]}>
                 {item.name[0].toUpperCase() + item.name.slice(1)}
               </li>
-            </Link>
+            </a>
           ))}
         </ul>
       </div>

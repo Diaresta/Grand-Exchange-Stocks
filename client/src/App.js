@@ -12,6 +12,7 @@ import History from './components/History';
 import HistoryPage from './components/HistoryPage';
 import LogIn from './components/Log-In';
 import SignUp from './components/Sign-Up';
+import AccountPage from './components/Account-Page';
 import Contact from './components/Contact';
 import ForgotPassword from './components/ForgotPassword';
 import Terms from './components/Terms';
@@ -114,6 +115,14 @@ function App() {
             <Route path={['/signup', '/sign-up']} exact>
               <div className='log-sign-app-container'>
                 <SignUp />
+              </div>
+            </Route>
+            <Route path={'/account'}>
+              <div className='account-container'>
+                <AccountPage
+                  testName='Test Name'
+                  testEmail='Test Email@gmail.com'
+                />
               </div>
             </Route>
             <Route path={['/contact', '/contact-us']} exact>

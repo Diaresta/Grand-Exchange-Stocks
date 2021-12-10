@@ -4,16 +4,16 @@ import Footer from '../components/Footer';
 const SignUp = () => {
   return (
     <div id='log-sign-page'>
-      <div class='log-sign-container'>
-        <div class='form-container'>
+      <div className='log-sign-container'>
+        <div className='form-container'>
           <h1>Create Account</h1>
           <form>
-            <div class='form-input-div'>
+            <div className='form-input-div'>
               <input type='text' placeholder='First Name' required />
               <input type='text' placeholder='Last Name' required />
             </div>
 
-            <div class='form-input-div'>
+            <div className='form-input-div'>
               <input type='text' placeholder='Username' required />
               <input type='password' placeholder='Password' required />
             </div>
@@ -26,11 +26,11 @@ const SignUp = () => {
             />
             {/* <input type='date' placeholder='birthday'/> */}
             <br />
-            <button class=''>Sign Up</button>
+            <button className=''>Sign Up</button>
           </form>
         </div>
       </div>
-      <div class='log-sign-footer'>
+      <div className='log-sign-footer'>
         <a href='/account-recovery'>Forgot Password?</a>
         <Link to='/login'>Log In</Link>
         <Link to='/privacy-policy'>Privacy Policy</Link>

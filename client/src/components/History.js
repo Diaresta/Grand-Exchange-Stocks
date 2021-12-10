@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const History = () => {
+const History = (testName) => {
   return (
     <div id='history-container'>
       <h4>
