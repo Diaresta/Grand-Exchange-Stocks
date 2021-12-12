@@ -5,6 +5,10 @@ const SearchPage = () => {
   const { search } = window.location;
   const query = new URLSearchParams(search).get('s').toLowerCase();
 
+  const alphabet = Array.from(Array(26))
+    .map((e, i) => i + 65)
+    .map((x) => String.fromCharCode(x));
+
   const [itemData, setitemData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -45,7 +49,6 @@ const SearchPage = () => {
       <div id='query-container'>
         <h2>Search Results: '{query}'</h2>
         <small>{filteredItems.length} Results</small>
-        {/* <small>REEE</small> */}
 
         <ul id='item-search-ul'>
           {filteredItems.map((item) => (
@@ -68,84 +71,11 @@ const SearchPage = () => {
           <li>
             <a href='#3'>0</a>
           </li>
-          <li>
-            <a href='#a'>A</a>
-          </li>
-          <li>
-            <a href='#b'>B</a>
-          </li>
-          <li>
-            <a href='#c'>C</a>
-          </li>
-          <li>
-            <a href='#d'>D</a>
-          </li>
-          <li>
-            <a href='#e'>E</a>
-          </li>
-          <li>
-            <a href='#f'>F</a>
-          </li>
-          <li>
-            <a href='#g'>G</a>
-          </li>
-          <li>
-            <a href='#h'>H</a>
-          </li>
-          <li>
-            <a href='#i'>I</a>
-          </li>
-          <li>
-            <a href='#j'>J</a>
-          </li>
-          <li>
-            <a href='#k'>K</a>
-          </li>
-          <li>
-            <a href='#l'>L</a>
-          </li>
-          <li>
-            <a href='#m'>M</a>
-          </li>
-          <li>
-            <a href='#n'>N</a>
-          </li>
-          <li>
-            <a href='#o'>O</a>
-          </li>
-          <li>
-            <a href='#p'>P</a>
-          </li>
-          <li>
-            <a href='#q'>Q</a>
-          </li>
-          <li>
-            <a href='#r'>R</a>
-          </li>
-          <li>
-            <a href='#s'>S</a>
-          </li>
-          <li>
-            <a href='#t'>T</a>
-          </li>
-          <li>
-            <a href='#u'>U</a>
-          </li>
-          <li>
-            <a href='#v'>V</a>
-          </li>
-          <li>
-            <a href='#w'>W</a>
-          </li>
-          <li>
-            <a href='#x'>X</a>
-          </li>
-          <li>
-            <a href='#y'>Y</a>
-          </li>
-          <li>
-            <a href='#z'>Z</a>
-          </li>
+          {alphabet.map((alphabet) => (
+            <li>
+              <a href={'#' + alphabet.toLowerCase()}>{alphabet}</a>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
