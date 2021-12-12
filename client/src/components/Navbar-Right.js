@@ -13,7 +13,7 @@ const NavbarRight = ({ loggedIn }) => {
   ) : (
     <div id='navbar-right'>
       <i class='fas fa-user-circle fa-2x' />
-      <p>Username</p>
+      <Link to='/account'>Username</Link>
     </div>
   );
 };

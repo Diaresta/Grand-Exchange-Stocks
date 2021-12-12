@@ -1,0 +1,14 @@
+@import 'config';
+
+#account-page {
+  display: flex;
+  flex-direction: column;
+
+  th {
+    background-color: rgba(22, 82, 240, 0.6);
+  }
+
+  td {
+    background-color: $graph-color;
+  }
+}

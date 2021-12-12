@@ -742,3 +742,16 @@ textarea::placeholder {
 #terms-container a:hover {
   color: #1141c0;
 }
+
+#account-page {
+  display: flex;
+  flex-direction: column;
+}
+
+#account-page th {
+  background-color: rgba(22, 82, 240, 0.6);
+}
+
+#account-page td {
+  background-color: #e7edfd;
+}

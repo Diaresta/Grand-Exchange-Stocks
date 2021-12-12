@@ -3,37 +3,89 @@ import Footer from './Footer';
 
 const AccountPage = ({ testName, testEmail }) => {
   return (
-    <div id='log-sign-page'>
-      <div className='log-sign-container'>
-        <div className='form-container'>
-          <h2>{testName}</h2>
-          <form>
-            <h2>Update E-Mail</h2>
-            <input
-              type='text'
-              placeholder='Update Email'
-              value={testEmail}
-              required
-            />
-            <input type='text' placeholder='Current Password' required />
-            <br />
-            <button>Save</button>
-          </form>
+    <div id='account-page'>
+      <h2>Account Info</h2>
 
-          <form>
-            <h2>Update Password</h2>
-            <input type='text' placeholder='Current Password' required></input>
-            <input type='text' placeholder='New Password' required></input>
-            <input
-              type='text'
-              placeholder='Verify New Password'
-              required
-            ></input>
-            <br />
-            <button>Save</button>
-          </form>
-        </div>
-      </div>
+      {/* <div className='log-sign-container'> */}
+      <table>
+        <tbody>
+          <tr>
+            <th>Account</th>
+          </tr>
+          <tr>
+            <td>Diaresta</td>
+          </tr>
+          <tr>
+            <th>Account ID</th>
+          </tr>
+          <tr>
+            <td>000000</td>
+          </tr>
+          <tr>
+            <th>Sign-up Date</th>
+          </tr>
+          <tr>
+            <td>06/30/2021 - 22:33:23</td>
+          </tr>
+          <tr>
+            <th>Email</th>
+          </tr>
+          <tr>
+            <td>testemail123.@gmail.com</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table>
+        <tbody>
+          <tr>
+            <th>Email</th>
+          </tr>
+          <tr>
+            <td>New Email:</td>
+            <td>
+              <input type='text' required />
+            </td>
+          </tr>
+          <tr>
+            <td>Verify Email:</td>
+            <td>
+              <input type='text' required />
+            </td>
+          </tr>
+        </tbody>
+        <button>Save</button>
+      </table>
+
+      <table>
+        <tbody>
+          <thead>
+            <tr>
+              <th>Password</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>Current Password:</td>
+            <td>
+              <input type='text' required />
+            </td>
+          </tr>
+          <tr>
+            <td>New Password:</td>
+            <td>
+              <input type='text' required />
+            </td>
+          </tr>
+          <tr>
+            <td>Verify New Password:</td>
+            <td>
+              <input type='text' required />
+            </td>
+          </tr>
+        </tbody>
+        <button>Save</button>
+      </table>
+      {/* </div> */}
 
       <Footer />
     </div>
