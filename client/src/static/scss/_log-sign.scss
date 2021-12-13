@@ -53,6 +53,11 @@
     border: 1px solid #94a2c8;
   }
 
+  button:active {
+    background-color: #94a2c8;
+    border: 1px solid #9495c8;
+  }
+
   input {
     width: 75%;
     height: 25px;
