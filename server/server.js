@@ -23,6 +23,12 @@ var tickerArray = [];
 //   res.status(404).json({ error: 'Route not found' });
 // });
 
+// app.use('/login', (req, res) => {
+//   res.send({
+//     token: 'testtoken0',
+//   });
+// });
+
 app.get('/', async (req, res) => {
   // for (let i = 0; i < 7; i++) {
   //   setTickerArray(itemArray[i]);

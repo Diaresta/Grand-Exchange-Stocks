@@ -21,7 +21,12 @@ function App() {
   const [apiData, setApiData] = useState([]);
   const [tickerData, setTickerData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [loggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [token, setToken] = useState();
+
+  // if (!token) {
+  //   return <Login setToken={setToken} />;
+  // }
 
   var itemArray = [2, 4151, 11832, 1073, 6585];
   var homeGraphItem = itemArray[Math.floor(Math.random() * itemArray.length)];
@@ -104,17 +109,17 @@ function App() {
             </Route>
             <Route path={'/history'} exact>
               <div className='history-page-container'>
-                <HistoryPage />
+                <HistoryPage loggedIn={loggedIn} />
               </div>
             </Route>
             <Route path={['/login', '/log-in']} exact>
               <div className='log-sign-app-container'>
-                <LogIn />
+                <LogIn loggedIn={loggedIn} />
               </div>
             </Route>
             <Route path={['/signup', '/sign-up']} exact>
               <div className='log-sign-app-container'>
-                <SignUp />
+                <SignUp loggedIn={loggedIn} />
               </div>
             </Route>
             <Route path={'/account'}>
@@ -122,6 +127,7 @@ function App() {
                 <AccountPage
                   testName='Test Name'
                   testEmail='Test Email@gmail.com'
+                  loggedIn={loggedIn}
                 />
               </div>
             </Route>

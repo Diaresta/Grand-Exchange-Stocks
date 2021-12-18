@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
+import LogIn from './Log-In';
 
-const HistoryPage = () => {
-  return (
+const HistoryPage = ({ loggedIn }) => {
+  return loggedIn ? (
     <div id='history-container'>
       <h1>Buy/Sell History{/* <Link to='/history'>History</Link> */}</h1>
       <div id='table-container'>
@@ -54,6 +55,8 @@ const HistoryPage = () => {
         <p id='page-text'>Page 1 of 4</p> */}
       </div>
     </div>
+  ) : (
+    <LogIn loggedIn={loggedIn} />
   );
 };
 

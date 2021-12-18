@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 
-const SignUp = () => {
-  return (
+const SignUp = ({ loggedIn }) => {
+  return loggedIn ? (
+    (window.location.href = '/')
+  ) : (
     <div id='log-sign-page'>
       <div className='log-sign-container'>
         <div className='form-container'>
@@ -26,7 +28,9 @@ const SignUp = () => {
             />
             {/* <input type='date' placeholder='birthday'/> */}
             <br />
-            <button className=''>Sign Up</button>
+            <button className='' type='submit'>
+              Sign Up
+            </button>
           </form>
         </div>
       </div>

@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import LogIn from './Log-In';
 import Footer from './Footer';
 
-const AccountPage = ({ testName, testEmail }) => {
+const AccountPage = ({ testName, testEmail, loggedIn }) => {
   const [newEmail, setNewEmail] = useState('');
   const [newEmailVerify, setNewEmailVerify] = useState('');
 
@@ -11,7 +12,7 @@ const AccountPage = ({ testName, testEmail }) => {
   const [newPasswordVerify, setNewPasswordVerify] = useState('');
   const passwordPlaceholder = 'placeholder';
 
-  return (
+  return loggedIn ? (
     <div id='account-container'>
       <h2>Account Info</h2>
 
@@ -157,6 +158,8 @@ const AccountPage = ({ testName, testEmail }) => {
         <Footer />
       </div>
     </div>
+  ) : (
+    <LogIn loggedIn={loggedIn} />
   );
 };
 
