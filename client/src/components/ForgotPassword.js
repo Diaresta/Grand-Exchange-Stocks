@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 
-const ForgotPassword = () => {
+const ForgotPassword = ({ loggedIn }) => {
   const [passwordAccept, setpasswordAccept] = useState(false);
   const [passValue, setpassValue] = useState('');
 
@@ -12,7 +12,9 @@ const ForgotPassword = () => {
     setpassValue('');
   };
 
-  return (
+  return loggedIn ? (
+    (window.location.href = '/')
+  ) : (
     <div id='log-sign-page'>
       <div className='log-sign-container'>
         <div className='form-container'>

@@ -138,7 +138,7 @@ function App() {
             </Route>
             <Route path={['/account-recovery', '/forgot-password']} exact>
               <div className='log-sign-app-container'>
-                <ForgotPassword />
+                <ForgotPassword loggedIn={loggedIn} />
               </div>
             </Route>
             <Route path={['/privacy-policy']} exact>

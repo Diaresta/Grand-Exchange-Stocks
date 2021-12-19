@@ -144,7 +144,7 @@ const Graph = ({ itemArray }) => {
         <div id='graph-header'>
           <div id='stats-name'>
             <h2 id='item-name'>{itemName}</h2>
-            <img id='item-img' src={itemIcon} alt='Item Sprite' />
+            <img id='item-img' src={itemIcon} alt='' />
           </div>
           <ul id='graph-btn-ul'>
             <li className='graph-btn-li'>
