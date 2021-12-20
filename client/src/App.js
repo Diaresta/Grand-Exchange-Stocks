@@ -16,17 +16,15 @@ import AccountPage from './components/Account-Page';
 import Contact from './components/Contact';
 import ForgotPassword from './components/ForgotPassword';
 import Terms from './components/Terms';
+import useToken from './components/useToken';
 
 function App() {
   const [apiData, setApiData] = useState([]);
   const [tickerData, setTickerData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [token, setToken] = useState();
 
-  // if (!token) {
-  //   return <Login setToken={setToken} />;
-  // }
+  const { token, setToken } = useToken();
 
   var itemArray = [2, 4151, 11832, 1073, 6585];
   var homeGraphItem = itemArray[Math.floor(Math.random() * itemArray.length)];
@@ -52,8 +50,21 @@ function App() {
     setLoading(false);
   };
 
+  const childLogin = (childData) => {
+    // setLoggedIn(true);
+  };
+
+  const logIn = () => {
+    if (!token) {
+      setLoggedIn(false);
+    } else {
+      setLoggedIn(true);
+    }
+  };
+
   useEffect(() => {
     apiCall('');
+    logIn();
   }, []);
 
   return (
@@ -114,7 +125,11 @@ function App() {
             </Route>
             <Route path={['/login', '/log-in']} exact>
               <div className='log-sign-app-container'>
-                <LogIn loggedIn={loggedIn} />
+                <LogIn
+                  loggedIn={loggedIn}
+                  setToken={setToken}
+                  parentCallback={childLogin}
+                />
               </div>
             </Route>
             <Route path={['/signup', '/sign-up']} exact>
