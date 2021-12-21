@@ -155,6 +155,7 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
           </table>
         </div>
 
+        {/* <button onClick={localStorage.removeItem('token')}>Log Out</button> */}
         <Footer />
       </div>
     </div>
