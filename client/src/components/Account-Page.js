@@ -12,6 +12,11 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
   const [newPasswordVerify, setNewPasswordVerify] = useState('');
   const passwordPlaceholder = 'placeholder';
 
+  const logOut = () => {
+    localStorage.removeItem('token');
+    window.location.href = '/';
+  };
+
   return loggedIn ? (
     <div id='account-container'>
       <h2>Account Info</h2>
@@ -155,12 +160,12 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
           </table>
         </div>
 
-        {/* <button onClick={localStorage.removeItem('token')}>Log Out</button> */}
+        <button onClick={logOut}>Log Out</button>
         <Footer />
       </div>
     </div>
   ) : (
-    <LogIn loggedIn={loggedIn} />
+    (window.location.href = '/login')
   );
 };
 

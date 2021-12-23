@@ -32,6 +32,8 @@ const LogIn = ({ loggedIn, setToken }) => {
     console.log('login test');
     console.log(token);
 
+    window.location.href = '/';
+
     // button onSubmit
     // if (username/password match) }
     // window.location.href = '/';}

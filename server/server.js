@@ -4,8 +4,8 @@ import axios from 'axios';
 // import itemData from './api/itemData.route.js';
 import restaurants from './api/restaurants.route.js';
 
-import fetch from 'node-fetch';
-import fs from 'fs';
+// import fetch from 'node-fetch';
+// import fs from 'fs';
 
 const app = express();
 

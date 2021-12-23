@@ -56,7 +56,7 @@ const HistoryPage = ({ loggedIn }) => {
       </div>
     </div>
   ) : (
-    <LogIn loggedIn={loggedIn} />
+    (window.location.href = '/login')
   );
 };
 
