@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const NavbarRight = ({ loggedIn }) => {
   return loggedIn ? (
     <div id='navbar-right'>
-      <i class='fas fa-user-circle fa-2x' />
+      <i className='fas fa-user-circle fa-2x' />
       <Link to='/account'>Username</Link>
     </div>
   ) : (

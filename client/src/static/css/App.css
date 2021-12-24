@@ -146,6 +146,7 @@ header i:hover {
 #navbar-right {
   display: flex;
   margin-right: 5px;
+  align-items: center;
 }
 
 #navbar-right .logo-placeholder {
@@ -754,6 +755,50 @@ textarea::placeholder {
   margin-bottom: 10px;
 }
 
+#account-container button {
+  color: #1652f0;
+  background-color: #fff;
+  border: 1px solid #b9cbfa;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  margin: 5px;
+  border-radius: 5px;
+  height: 30px;
+  width: 55px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease, border 0.25s ease;
+}
+
+#account-container button:hover {
+  color: #1141c0;
+  background-color: #e5e5e5;
+  border: 1px solid #94a2c8;
+}
+
+#account-container button:active {
+  background-color: #94a2c8;
+  border: 1px solid #9495c8;
+}
+
+#account-container #account-delete-btn:hover {
+  color: #ff0000;
+  background-color: #e5e5e5;
+  border: 1px solid #e60000;
+}
+
+#account-container #account-delete-btn:active {
+  color: #e60000;
+  background-color: #94a2c8;
+  border: 1px solid #cc0000;
+}
+
+#account-container a {
+  text-decoration: none;
+  color: #1652f0;
+}
+
 #account-page {
   display: flex;
   justify-content: center;
@@ -785,37 +830,58 @@ textarea::placeholder {
   width: 65%;
 }
 
-#account-page button {
-  color: #1652f0;
-  background-color: #fff;
-  border: 1px solid #b9cbfa;
-  text-align: center;
-  font-size: 1rem;
-  font-weight: 500;
-  text-align: center;
-  margin: 5px;
-  border-radius: 5px;
-  height: 30px;
-  width: 55px;
-  cursor: pointer;
-  transition: background-color 0.25s ease, color 0.25s ease, border 0.25s ease;
-}
-
-#account-page button:hover {
-  color: #1141c0;
-  background-color: #e5e5e5;
-  border: 1px solid #94a2c8;
-}
-
-#account-page button:active {
-  background-color: #94a2c8;
-  border: 1px solid #9495c8;
-}
-
 #account-page #table-left {
   margin-right: 2.5%;
 }
 
 #account-page #table-right {
   margin-left: 2.5%;
+}
+
+#account-button-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0 0 0;
+}
+
+#account-button-div div {
+  display: flex;
+}
+
+#account-button-div button {
+  width: 75px;
+  height: 50px;
+  margin: 0 15px;
+}
+
+#account-button-div::before {
+  content: '';
+  width: 30%;
+  border-top: solid 1px #b9cbfa;
+  margin-bottom: 20px;
+}
+
+#account-delete-window {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 175px;
+  width: 500px;
+  background-color: #e7edfd;
+  border: 3px solid #1652f0;
+  border-radius: 5px;
+  box-shadow: 3px 2px rgba(6, 41, 128, 0.6);
+}
+
+#account-delete-window button {
+  width: 100px;
+  margin-top: 15px;
 }

@@ -6,6 +6,51 @@
     text-decoration: underline;
     margin-bottom: 10px;
   }
+
+  button {
+    color: $accent-color;
+    background-color: #fff;
+    border: 1px solid $placeholder-color;
+    text-align: center;
+
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    margin: 5px;
+    border-radius: 5px;
+    height: 30px;
+    width: 55px;
+    cursor: pointer;
+    transition: background-color 0.25s ease, color 0.25s ease, border 0.25s ease;
+  }
+
+  button:hover {
+    color: $hover-color;
+    background-color: #e5e5e5;
+    border: 1px solid #94a2c8;
+  }
+
+  button:active {
+    background-color: #94a2c8;
+    border: 1px solid #9495c8;
+  }
+
+  #account-delete-btn:hover {
+    color: #ff0000;
+    background-color: #e5e5e5;
+    border: 1px solid #e60000;
+  }
+
+  #account-delete-btn:active {
+    color: #e60000;
+    background-color: #94a2c8;
+    border: 1px solid #cc0000;
+  }
+
+  a {
+    text-decoration: none;
+    color: $accent-color;
+  }
 }
 
 #account-page {
@@ -39,39 +84,59 @@
     width: 65%;
   }
 
-  button {
-    color: $accent-color;
-    background-color: #fff;
-    border: 1px solid $placeholder-color;
-    text-align: center;
-
-    font-size: 1rem;
-    font-weight: 500;
-    text-align: center;
-    margin: 5px;
-    border-radius: 5px;
-    height: 30px;
-    width: 55px;
-    cursor: pointer;
-    transition: background-color 0.25s ease, color 0.25s ease, border 0.25s ease;
-  }
-
-  button:hover {
-    color: $hover-color;
-    background-color: #e5e5e5;
-    border: 1px solid #94a2c8;
-  }
-
-  button:active {
-    background-color: #94a2c8;
-    border: 1px solid #9495c8;
-  }
-
   #table-left {
     margin-right: 2.5%;
   }
 
   #table-right {
     margin-left: 2.5%;
+  }
+}
+
+#account-button-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0 0 0;
+
+  div {
+    display: flex;
+  }
+
+  button {
+    width: 75px;
+    height: 50px;
+    margin: 0 15px;
+  }
+}
+
+#account-button-div::before {
+  content: '';
+  width: 30%;
+  border-top: solid 1px $placeholder-color;
+  margin-bottom: 20px;
+}
+
+#account-delete-window {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 175px;
+  width: 500px;
+  background-color: $graph-color;
+  border: 3px solid $accent-color;
+  border-radius: 5px;
+  box-shadow: 3px 2px rgba(6, 41, 128, 0.6);
+
+  button {
+    width: 100px;
+    margin-top: 15px;
   }
 }

@@ -12,10 +12,22 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
   const [newPasswordVerify, setNewPasswordVerify] = useState('');
   const passwordPlaceholder = 'placeholder';
 
+  const [showDiv, setShowDiv] = useState('none');
+
   const logOut = () => {
     localStorage.removeItem('token');
     window.location.href = '/';
   };
+
+  const showDeleteAccount = () => {
+    if (showDiv === 'none') {
+      setShowDiv('flex');
+    } else {
+      setShowDiv('none');
+    }
+  };
+
+  const deleteAccount = () => {};
 
   return loggedIn ? (
     <div id='account-container'>
@@ -57,7 +69,7 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
           <table>
             <tbody>
               <tr>
-                <th colspan='2'>Email</th>
+                <th colSpan='2'>Email</th>
               </tr>
               <tr>
                 <td>New Email:</td>
@@ -101,7 +113,7 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
           <table>
             <tbody>
               <tr>
-                <th colspan='2'>Password</th>
+                <th colSpan='2'>Password</th>
               </tr>
               <tr>
                 <td>Current Password:</td>
@@ -159,10 +171,36 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
             </button>
           </table>
         </div>
-
-        <button onClick={logOut}>Log Out</button>
-        <Footer />
       </div>
+
+      <div id='account-button-div'>
+        <div>
+          <button>
+            <Link to='/history'>Item History</Link>
+          </button>
+          <button onClick={logOut}>Log Out</button>
+          <button id='account-delete-btn' onClick={showDeleteAccount}>
+            Delete Account
+          </button>
+        </div>
+      </div>
+
+      <div
+        id='account-delete-window'
+        style={{
+          display: `${showDiv}`,
+        }}
+      >
+        <div>
+          <h2>Are you sure you want to delete your account?</h2>
+          <small>(It'll be like you were never here)</small>
+        </div>
+        <div>
+          <button id='account-delete-btn'>Yes, delete</button>
+          <button onClick={showDeleteAccount}>No, I'll stay</button>
+        </div>
+      </div>
+      <Footer />
     </div>
   ) : (
     (window.location.href = '/login')
