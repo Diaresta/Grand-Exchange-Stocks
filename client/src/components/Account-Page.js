@@ -175,9 +175,9 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
 
       <div id='account-button-div'>
         <div>
-          <button>
-            <Link to='/history'>Item History</Link>
-          </button>
+          <Link to='/history'>
+            <button>Item History</button>
+          </Link>
           <button onClick={logOut}>Log Out</button>
           <button id='account-delete-btn' onClick={showDeleteAccount}>
             Delete Account
