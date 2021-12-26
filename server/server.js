@@ -2,12 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import axios from 'axios';
 // import itemData from './api/itemData.route.js';
-import restaurants from './api/restaurants.route.js';
 
 // ---------- testing start ----------
+import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import Transactions from './db/dbTransactions.js';
-const connection_url = `IMPORT THIS FROM .ENV`;
 // ---------- testing end ------------
 
 // import fetch from 'node-fetch';
@@ -19,8 +18,10 @@ app.use(cors());
 app.use(express.json());
 
 // ---------- testing start ----------
+dotenv.config();
+
 // maybe await below vvvv
-mongoose.connect(connection_url, {});
+mongoose.connect(process.env.GETELLERDB, {});
 
 app.post('/api/transaction', (req, res) => {
   const dbTransaction = req.body;
@@ -44,9 +45,6 @@ app.get('/api/transaction', (req, res) => {
   });
 });
 // ---------- testing end ------------
-
-// app.use('/api', itemData);
-app.use('/api/v1/restaurants', restaurants);
 
 var itemArray = [2, 4151, 11832, 1073, 6585, 11802, 4587];
 var tickerArray = [];
