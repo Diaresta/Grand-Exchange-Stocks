@@ -4,6 +4,12 @@ import axios from 'axios';
 // import itemData from './api/itemData.route.js';
 import restaurants from './api/restaurants.route.js';
 
+// ---------- testing start ----------
+import mongoose from 'mongoose';
+import Transactions from './db/dbTransactions.js';
+const connection_url = `IMPORT THIS FROM .ENV`;
+// ---------- testing end ------------
+
 // import fetch from 'node-fetch';
 // import fs from 'fs';
 
@@ -11,6 +17,33 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+// ---------- testing start ----------
+// maybe await below vvvv
+mongoose.connect(connection_url, {});
+
+app.post('/api/transaction', (req, res) => {
+  const dbTransaction = req.body;
+
+  Transactions.create(dbTransaction, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(201).send(data);
+    }
+  });
+});
+
+app.get('/api/transaction', (req, res) => {
+  Transactions.find((err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+// ---------- testing end ------------
 
 // app.use('/api', itemData);
 app.use('/api/v1/restaurants', restaurants);
@@ -29,17 +62,19 @@ app.use('/login', (req, res) => {
   });
 });
 
-app.get('/', async (req, res) => {
-  // for (let i = 0; i < 7; i++) {
-  //   setTickerArray(itemArray[i]);
-  // }
-  // itemApiCall(
-  //   req,
-  //   res,
-  //   itemArray[Math.floor(Math.random() * itemArray.length)],
-  //   tickerArray
-  // );
-});
+app.get('/', (req, res) => res.status(200).send('welcome gamers'));
+
+// app.get('/', async (req, res) => {
+// for (let i = 0; i < 7; i++) {
+//   setTickerArray(itemArray[i]);
+// }
+// itemApiCall(
+//   req,
+//   res,
+//   itemArray[Math.floor(Math.random() * itemArray.length)],
+//   tickerArray
+// );
+// });
 
 app.get(`/item/:itemID`, (req, res) => {
   for (let i = 0; i < 7; i++) {
