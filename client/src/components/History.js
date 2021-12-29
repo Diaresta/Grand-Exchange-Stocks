@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
-const History = (testName) => {
-  return (
+const History = ({ testName, loggedIn }) => {
+  return loggedIn ? (
     <div id='history-container'>
       <h4>
         <Link to='/history'>History</Link>
@@ -53,6 +53,31 @@ const History = (testName) => {
           <button id='prev-btn'>Previous</button>
         </div>
         <p id='page-text'>Page 1 of 4</p>
+      </div>
+    </div>
+  ) : (
+    <div id='history-container'>
+      <h4>
+        <Link to='/history'>History</Link>
+      </h4>
+
+      <div id='history-log-container'>
+        <p>
+          Create an account to track your purchases and get full access to
+          <span id='site-name'>
+            &nbsp;ge<span id='period-color'>.</span>teller's
+          </span>{' '}
+          features!
+        </p>
+
+        <div id='log-sign-button-container'>
+          <Link to='/login' className='log-in log-btn'>
+            Log In
+          </Link>
+          <Link to='/signup' className='sign-up log-btn'>
+            Sign Up
+          </Link>
+        </div>
       </div>
     </div>
   );

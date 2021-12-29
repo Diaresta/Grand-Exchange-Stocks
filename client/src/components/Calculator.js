@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const Calculator = () => {
+const Calculator = ({ loggedIn }) => {
   const [priceValue, setPriceValue] = useState('');
   const [quantityValue, setQuantityValue] = useState('');
+  const [btnDisable, setBtnDisable] = useState(true);
 
   const calcCheck = (priceValue, quantityValue) => {
     if (isNaN(priceValue) === true || isNaN(quantityValue) === true) {
@@ -11,6 +12,28 @@ const Calculator = () => {
       return priceValue * quantityValue;
     }
   };
+
+  const buttonEnable = (priceValue, quantityValue) => {
+    if (priceValue === '' || quantityValue === '') {
+      setBtnDisable(true);
+    } else {
+      setBtnDisable(false);
+    }
+
+    // add check if inputs are strings and disable btn
+  };
+
+  const itemPurchase = () => {
+    if (loggedIn === false) {
+      window.location.href = '/login';
+    } else {
+      console.log('test');
+    }
+  };
+
+  useEffect(() => {
+    // buttonEnable();
+  }, []);
 
   return (
     <div id='calculator-container'>
@@ -26,7 +49,9 @@ const Calculator = () => {
             placeholder='Enter price here...'
             onChange={(e) => {
               setPriceValue(e.target.value);
+              buttonEnable();
             }}
+            required
           ></input>
         </form>
 
@@ -40,7 +65,9 @@ const Calculator = () => {
             placeholder='Enter quantity here...'
             onChange={(e) => {
               setQuantityValue(e.target.value);
+              buttonEnable();
             }}
+            required
           ></input>
         </form>
       </div>
@@ -51,7 +78,9 @@ const Calculator = () => {
           <p id='price-overall'>{calcCheck(priceValue, quantityValue)}g</p>
         </div>
         <div id='submit-container'>
-          <button id='input-btn'>Buy/Sell</button>
+          <button id='input-btn' onClick={itemPurchase} disabled={btnDisable}>
+            Buy/Sell
+          </button>
         </div>
       </div>
     </div>

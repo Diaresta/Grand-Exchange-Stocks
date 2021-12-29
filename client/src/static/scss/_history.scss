@@ -14,7 +14,7 @@
   }
 
   a {
-    color: black;
+    color: $accent-color;
     text-decoration: none;
     // transition: color 0.25s ease;
   }
@@ -60,6 +60,43 @@
   // text-align: center;
   margin: 0 5px;
   color: grey;
+}
+
+#history-log-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+
+  p {
+    font-size: 1.2em;
+
+    #site-name {
+      font-weight: bold;
+    }
+
+    #period-color {
+      color: $accent-color;
+    }
+  }
+
+  #log-sign-button-container {
+    margin: 10px auto 20px auto;
+
+    a {
+      padding: 5px 10px;
+      font-size: 1.05em;
+    }
+
+    .log-in {
+      color: #fff;
+    }
+
+    .log-in:hover {
+      color: #e5e5e5;
+    }
+  }
 }
 
 table {
