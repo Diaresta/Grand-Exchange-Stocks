@@ -1,9 +1,25 @@
 import { useEffect, useState } from 'react';
 
-const Calculator = ({ loggedIn }) => {
+const Calculator = ({ loggedIn, itemArray }) => {
+  const [itemName, setItemName] = useState();
   const [priceValue, setPriceValue] = useState('');
   const [quantityValue, setQuantityValue] = useState('');
-  const [btnDisable, setBtnDisable] = useState(true);
+
+  const itemNameCall = async () => {
+    const defaultWindow = window.location.pathname.split('/')[1];
+    const itemLinkID = window.location.pathname.split('/')[3];
+
+    if (defaultWindow === '' || defaultWindow === 'home') {
+      var url = await `http://localhost:8000/item/${itemArray}`;
+    } else {
+      var url = await `http://localhost:8000/item/${itemLinkID}`;
+    }
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    setItemName(data.name);
+  };
 
   const calcCheck = (priceValue, quantityValue) => {
     if (isNaN(priceValue) === true || isNaN(quantityValue) === true) {
@@ -13,26 +29,26 @@ const Calculator = ({ loggedIn }) => {
     }
   };
 
-  const buttonEnable = (priceValue, quantityValue) => {
-    if (priceValue === '' || quantityValue === '') {
-      setBtnDisable(true);
-    } else {
-      setBtnDisable(false);
-    }
-
-    // add check if inputs are strings and disable btn
-  };
-
-  const itemPurchase = () => {
+  const itemPurchase = async () => {
     if (loggedIn === false) {
       window.location.href = '/login';
+    } else if (priceValue + quantityValue === '') {
+      // Alert 'You need both a Price and Quantity'
+    } else if (isNaN(parseInt(priceValue + quantityValue)) === true) {
+      // Alert 'Price and Quantity '
     } else {
-      console.log('test');
+      // Post to mongodb
+      console.log(`name: ${itemName}`);
+      console.log(`price: ${priceValue}`);
+      console.log(`quantity: ${quantityValue}`);
+      console.log(`overall: ${priceValue * quantityValue}`);
+
+      // Maybe add timer to purcahse again
     }
   };
 
   useEffect(() => {
-    // buttonEnable();
+    itemNameCall();
   }, []);
 
   return (
@@ -49,7 +65,6 @@ const Calculator = ({ loggedIn }) => {
             placeholder='Enter price here...'
             onChange={(e) => {
               setPriceValue(e.target.value);
-              buttonEnable();
             }}
             required
           ></input>
@@ -65,7 +80,6 @@ const Calculator = ({ loggedIn }) => {
             placeholder='Enter quantity here...'
             onChange={(e) => {
               setQuantityValue(e.target.value);
-              buttonEnable();
             }}
             required
           ></input>
@@ -78,9 +92,10 @@ const Calculator = ({ loggedIn }) => {
           <p id='price-overall'>{calcCheck(priceValue, quantityValue)}g</p>
         </div>
         <div id='submit-container'>
-          <button id='input-btn' onClick={itemPurchase} disabled={btnDisable}>
+          <button id='input-btn' onClick={itemPurchase}>
             Buy/Sell
           </button>
+          <p></p>
         </div>
       </div>
     </div>
