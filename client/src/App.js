@@ -90,7 +90,7 @@ function App() {
                     itemArray={homeGraphItem}
                     // itemID={itemID}
                   />
-                  <Calculator loggedIn={loggedIn} itemArray={itemArray} />
+                  <Calculator loggedIn={loggedIn} itemArray={homeGraphItem} />
                   <History loggedIn={loggedIn} />
                 </div>
               </div>
@@ -113,7 +113,7 @@ function App() {
                     itemArray={homeGraphItem}
                     // itemID={itemID}
                   />
-                  <Calculator loggedIn={loggedIn} itemArray={itemArray} />
+                  <Calculator loggedIn={loggedIn} itemArray={homeGraphItem} />
                   <History loggedIn={loggedIn} />
                 </div>
               </div>
