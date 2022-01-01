@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Calculator = ({ loggedIn, itemArray }) => {
   const [itemName, setItemName] = useState();
+  const [itemID, setItemID] = useState();
   const [priceValue, setPriceValue] = useState('');
   const [quantityValue, setQuantityValue] = useState('');
 
@@ -11,8 +13,10 @@ const Calculator = ({ loggedIn, itemArray }) => {
 
     if (defaultWindow === '' || defaultWindow === 'home') {
       var url = await `http://localhost:8000/item/${itemArray}`;
+      setItemID(itemArray);
     } else {
       var url = await `http://localhost:8000/item/${itemLinkID}`;
+      setItemID(itemLinkID);
     }
 
     const response = await fetch(url);
@@ -37,12 +41,22 @@ const Calculator = ({ loggedIn, itemArray }) => {
     } else if (isNaN(parseInt(priceValue + quantityValue)) === true) {
       // Alert 'Price and Quantity '
     } else {
-      // Post to mongodb
-      console.log(`name: ${itemName}`);
-      console.log(`price: ${priceValue}`);
-      console.log(`quantity: ${quantityValue}`);
-      console.log(`overall: ${priceValue * quantityValue}`);
-
+      axios
+        .post('http://localhost:8000/api/transaction', {
+          name: itemName,
+          id: itemID,
+          price: priceValue,
+          quantity: quantityValue,
+          overall: priceValue * quantityValue,
+          date: new Date().toLocaleString(),
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+          alert(error);
+        });
       // Maybe add timer to purcahse again
     }
   };
@@ -55,7 +69,12 @@ const Calculator = ({ loggedIn, itemArray }) => {
     <div id='calculator-container'>
       <h4>Buy/Sell</h4>
       <div id='input-container'>
-        <form id='calc-form'>
+        <form
+          id='calc-form'
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
           <label htmlFor='buy-sell-input'>Buy/Sell Price:</label>
           {/* <br /> */}
           <input
@@ -70,7 +89,12 @@ const Calculator = ({ loggedIn, itemArray }) => {
           ></input>
         </form>
 
-        <form id='calc-form'>
+        <form
+          id='calc-form'
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
           <label htmlFor='quantity-input'>Quantity:</label>
           {/* <br /> */}
           <input

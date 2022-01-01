@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const History = ({ testName, loggedIn }) => {
+const History = ({ loggedIn, itemArray }) => {
   return loggedIn ? (
     <div id='history-container'>
       <h4>
