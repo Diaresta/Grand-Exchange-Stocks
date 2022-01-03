@@ -6,7 +6,11 @@ const Calculator = ({ loggedIn, itemArray }) => {
   const [itemID, setItemID] = useState();
   const [priceValue, setPriceValue] = useState('');
   const [quantityValue, setQuantityValue] = useState('');
+  const [btnDisable, setBtnDisable] = useState();
+  const [alertText, setAlertText] = useState('');
+  const [alertStyle, setAlertStyle] = useState();
 
+  // Item API call - (Name and ID)
   const itemNameCall = async () => {
     const defaultWindow = window.location.pathname.split('/')[1];
     const itemLinkID = window.location.pathname.split('/')[3];
@@ -25,6 +29,41 @@ const Calculator = ({ loggedIn, itemArray }) => {
     setItemName(data.name);
   };
 
+  // Purchase/Error alert animation
+  const fadeOutAlert = (background, border) => {
+    setAlertStyle({
+      display: 'flex',
+      opacity: '1',
+      backgroundColor: background,
+      borderColor: border,
+    });
+
+    setTimeout(() => {
+      setAlertStyle({
+        display: 'flex',
+        opacity: '0',
+        backgroundColor: background,
+        borderColor: border,
+        transition: 'opacity .75s linear',
+      });
+    }, 750);
+
+    setTimeout(() => {
+      setAlertStyle({
+        display: 'none',
+      });
+    }, 1500);
+  };
+
+  // Buy/Sell button disable timer (stops spam purchase of items)
+  const disableButton = () => {
+    setBtnDisable(true);
+    setTimeout(() => {
+      setBtnDisable(false);
+    }, 1750);
+  };
+
+  // Returns product of item Price and Quantity
   const calcCheck = (priceValue, quantityValue) => {
     if (isNaN(priceValue) === true || isNaN(quantityValue) === true) {
       return '???';
@@ -33,13 +72,20 @@ const Calculator = ({ loggedIn, itemArray }) => {
     }
   };
 
+  // Database API call - posts data of purchased item
   const itemPurchase = async () => {
     if (loggedIn === false) {
       window.location.href = '/login';
-    } else if (priceValue + quantityValue === '') {
-      // Alert 'You need both a Price and Quantity'
+    } else if (
+      priceValue + quantityValue === '' ||
+      priceValue === '' ||
+      quantityValue === ''
+    ) {
+      setAlertText('Price and Quantity required');
+      fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red');
     } else if (isNaN(parseInt(priceValue + quantityValue)) === true) {
-      // Alert 'Price and Quantity '
+      setAlertText('Price and Quantity must be a number');
+      fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red');
     } else {
       axios
         .post('http://localhost:8000/api/transaction', {
@@ -51,13 +97,15 @@ const Calculator = ({ loggedIn, itemArray }) => {
           date: new Date().toLocaleString(),
         })
         .then((response) => {
-          console.log(response);
+          setAlertText('Purchased!');
+          fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green');
+          disableButton();
         })
         .catch((error) => {
           console.log(error);
-          alert(error);
+          setAlertText('Error, try again');
+          fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red');
         });
-      // Maybe add timer to purcahse again
     }
   };
 
@@ -76,7 +124,6 @@ const Calculator = ({ loggedIn, itemArray }) => {
           }}
         >
           <label htmlFor='buy-sell-input'>Buy/Sell Price:</label>
-          {/* <br /> */}
           <input
             type=''
             id='buy-sell-input'
@@ -85,6 +132,7 @@ const Calculator = ({ loggedIn, itemArray }) => {
             onChange={(e) => {
               setPriceValue(e.target.value);
             }}
+            autocomplete='off'
             required
           ></input>
         </form>
@@ -105,6 +153,7 @@ const Calculator = ({ loggedIn, itemArray }) => {
             onChange={(e) => {
               setQuantityValue(e.target.value);
             }}
+            autocomplete='off'
             required
           ></input>
         </form>
@@ -116,10 +165,12 @@ const Calculator = ({ loggedIn, itemArray }) => {
           <p id='price-overall'>{calcCheck(priceValue, quantityValue)}g</p>
         </div>
         <div id='submit-container'>
-          <button id='input-btn' onClick={itemPurchase}>
+          <button id='input-btn' onClick={itemPurchase} disabled={btnDisable}>
             Buy/Sell
           </button>
-          <p></p>
+          <span id='calc-alert' style={alertStyle}>
+            {alertText}
+          </span>
         </div>
       </div>
     </div>
