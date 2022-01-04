@@ -1,7 +1,28 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import LogIn from './Log-In';
 
+const itemHistoryCall = async () => {
+  return axios
+    .get('http://localhost:8000/api/transaction')
+    .then(({ data }) => {
+      return data;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
 const HistoryPage = ({ loggedIn }) => {
+  const [itemHistory, setItemHistory] = useState([{}]);
+
+  useEffect(() => {
+    itemHistoryCall().then((data) => {
+      setItemHistory(data);
+    });
+  }, []);
+
   return loggedIn ? (
     <div id='history-container'>
       <h1>Buy/Sell History{/* <Link to='/history'>History</Link> */}</h1>
@@ -18,34 +39,17 @@ const HistoryPage = ({ loggedIn }) => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Abyssal Whip</td>
-              <td>4</td>
-              <td>1,372,382g</td>
-              <td>2,534,489,528g</td>
-              <td>06/30/2021 - 22:30:54</td>
-            </tr>
-            <tr>
-              <td>Bandos Chestplate</td>
-              <td>1</td>
-              <td>14,571,116g</td>
-              <td>14,571,116g</td>
-              <td>06/30/2021 - 22:33:23</td>
-            </tr>
-            <tr>
-              <td>Bandos Chestplate</td>
-              <td>1</td>
-              <td>14,571,116g</td>
-              <td>14,571,116g</td>
-              <td>06/30/2021 - 22:33:23</td>
-            </tr>
-            <tr>
-              <td>Abyssal Whip</td>
-              <td>4</td>
-              <td>1,372,382g</td>
-              <td>5,489,528g</td>
-              <td>06/30/2021 - 22:30:54</td>
-            </tr>
+            {itemHistory.map((item) => (
+              <tr>
+                <td>
+                  <a href={`/item/${item.name}/${item.id}`}>{item.name}</a>
+                </td>
+                <td>{item.quantity}</td>
+                <td>{item.price}g</td>
+                <td>{item.overall}g</td>
+                <td>{item.date}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
         {/* <div id='history-btn-div'>

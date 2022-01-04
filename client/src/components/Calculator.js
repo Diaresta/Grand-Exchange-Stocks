@@ -23,8 +23,8 @@ const Calculator = ({ loggedIn, itemArray }) => {
       setItemID(itemLinkID);
     }
 
-    const response = await fetch(url);
-    const data = await response.json();
+    const res = await fetch(url);
+    const data = await res.json();
 
     setItemName(data.name);
   };
@@ -96,13 +96,13 @@ const Calculator = ({ loggedIn, itemArray }) => {
           overall: priceValue * quantityValue,
           date: new Date().toLocaleString(),
         })
-        .then((response) => {
+        .then((res) => {
           setAlertText('Purchased!');
           fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green');
           disableButton();
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
           setAlertText('Error, try again');
           fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red');
         });
