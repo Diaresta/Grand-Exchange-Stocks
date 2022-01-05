@@ -1,31 +1,45 @@
 import express from 'express';
 import cors from 'cors';
 import axios from 'axios';
-// import itemData from './api/itemData.route.js';
 
-// ---------- testing start ----------
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import Account from './db/dbAccounts.js';
 import Transactions from './db/dbTransactions.js';
-// ---------- testing end ------------
-
-// import fetch from 'node-fetch';
-// import fs from 'fs';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-
-// ---------- testing start ----------
 dotenv.config();
-
-// maybe await below vvvv
 mongoose.connect(process.env.GETELLERDB, {});
 
+// Create account in db
+app.post('/api/account', (req, res) => {
+  const dbAccount = req.body;
+  Account.create(dbAccount, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(201).send(data);
+    }
+  });
+});
+
+// Parse db for account(s)
+app.get('/api/account', (req, res) => {
+  Account.find((err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+// Create item transtion in db
 app.post('/api/transaction', (req, res) => {
   const dbTransaction = req.body;
-
   Transactions.create(dbTransaction, (err, data) => {
     if (err) {
       res.status(500).send(err);
@@ -35,6 +49,7 @@ app.post('/api/transaction', (req, res) => {
   });
 });
 
+// Parse db for transaction(s)
 app.get('/api/transaction', (req, res) => {
   Transactions.find((err, data) => {
     if (err) {
@@ -44,7 +59,6 @@ app.get('/api/transaction', (req, res) => {
     }
   });
 });
-// ---------- testing end ------------
 
 var itemArray = [2, 4151, 11832, 1073, 6585, 11802, 4587];
 var tickerArray = [];

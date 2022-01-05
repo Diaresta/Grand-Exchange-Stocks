@@ -101,8 +101,8 @@ const Calculator = ({ loggedIn, itemArray }) => {
           fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green');
           disableButton();
         })
-        .catch((error) => {
-          console.error(error);
+        .catch((err) => {
+          console.error(err);
           setAlertText('Error, try again');
           fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red');
         });

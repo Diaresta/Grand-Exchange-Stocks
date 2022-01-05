@@ -25,7 +25,7 @@ const HistoryPage = ({ loggedIn }) => {
 
   return loggedIn ? (
     <div id='history-container'>
-      <h1>Buy/Sell History{/* <Link to='/history'>History</Link> */}</h1>
+      <h1>Buy/Sell History</h1>
       <div id='table-container'>
         <table id='page-table'>
           <thead>
