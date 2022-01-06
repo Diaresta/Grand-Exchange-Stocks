@@ -1,9 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import LogIn from './Log-In';
 import Footer from './Footer';
 
+const testUsername = 'Diaresta';
+
+const logOut = () => {
+  localStorage.removeItem('token');
+  window.location.href = '/';
+};
+
 const AccountPage = ({ testName, testEmail, loggedIn }) => {
+  const [accountData, setAccountData] = useState([{}]);
   const [newEmail, setNewEmail] = useState('');
   const [newEmailVerify, setNewEmailVerify] = useState('');
 
@@ -14,9 +23,27 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
 
   const [showDiv, setShowDiv] = useState('none');
 
-  const logOut = () => {
-    localStorage.removeItem('token');
-    window.location.href = '/';
+  const accountInfoCall = async (username) => {
+    axios
+      .get(`http://localhost:8000/api/account/${username}`)
+      .then(({ data }) => {
+        setAccountData(data);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  // ------------ Working ------------
+  const updateEmail = async (userID) => {
+    axios
+      .put(`http://localhost:8000/api/account/${userID}`, {
+        email: newEmail,
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   const showDeleteAccount = () => {
@@ -28,6 +55,10 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
   };
 
   const deleteAccount = () => {};
+
+  useEffect(() => {
+    accountInfoCall(testUsername);
+  }, []);
 
   return loggedIn ? (
     <div id='account-container'>
@@ -41,25 +72,25 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
                 <th>Account</th>
               </tr>
               <tr>
-                <td>Diaresta</td>
+                <td>{accountData[0].username}</td>
               </tr>
               <tr>
                 <th>Account ID</th>
               </tr>
               <tr>
-                <td>000000</td>
+                <td>{accountData[0]._id}</td>
               </tr>
               <tr>
                 <th>Sign-up Date</th>
               </tr>
               <tr>
-                <td>06/30/2021 - 22:33:23</td>
+                <td>{accountData[0].signUpDate}</td>
               </tr>
               <tr>
                 <th>Email</th>
               </tr>
               <tr>
-                <td>testemail123.@gmail.com</td>
+                <td>{accountData[0].email}</td>
               </tr>
             </tbody>
           </table>
@@ -103,6 +134,7 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
                   console.log('Email(s) Missing');
                 } else {
                   console.log('Woo');
+                  updateEmail(accountData[0]._id);
                 }
               }}
             >

@@ -37,6 +37,46 @@ app.get('/api/account', (req, res) => {
   });
 });
 
+// Parse db for account(s) by username
+app.get('/api/account/:accountUsername', (req, res) => {
+  Account.find({ username: req.params.accountUsername }, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+// ------------------------------------ Testing Start ------------------------------------
+
+// app.put('/api/account/:accountUsername', (req, res) => {
+//   Account.findOneAndUpdate(
+//     ({ username: req.params.accountUsername }, req.body).then((err, data) => {
+//       if (err) {
+//         res.status(500).send(err);
+//       } else {
+//         res.status(200).send(data);
+//       }
+//     })
+//   );
+// });
+
+// app.put('/api/account/:accountUsername', (req, res) => {
+//   Account.findOneAndUpdate(
+//     ({ username: req.params.accountUsername }, req.body),
+//     (err, data) => {
+//       if (err) {
+//         res.status(500).send(err);
+//       } else {
+//         res.status(200).send(data);
+//       }
+//     }
+//   );
+// });
+
+// ------------------------------------ Testing End ------------------------------------
+
 // Create item transtion in db
 app.post('/api/transaction', (req, res) => {
   const dbTransaction = req.body;

@@ -7,7 +7,7 @@ const accountSchema = mongoose.Schema({
   lastName: String,
   email: String,
   signUpDate: Date,
-  id: Number,
+  // id: Number,
 });
 
 export default mongoose.model('Account', accountSchema);

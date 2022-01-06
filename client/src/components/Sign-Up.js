@@ -12,7 +12,7 @@ const SignUp = ({ loggedIn }) => {
 
   const accountSignUp = async (e) => {
     // set conditions if inputs are empty
-    // e.preventDefault();
+    e.preventDefault();
     axios
       .post('http://localhost:8000/api/account', {
         username: accountUsername,
@@ -21,7 +21,6 @@ const SignUp = ({ loggedIn }) => {
         lastName: accountLastName,
         email: accountEmail,
         signUpDate: new Date().toLocaleDateString(),
-        id: 0,
       })
       .then((res) => {
         console.log('Account created!');
