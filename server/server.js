@@ -48,34 +48,14 @@ app.get('/api/account/:accountUsername', (req, res) => {
   });
 });
 
-// ------------------------------------ Testing Start ------------------------------------
-
-// app.put('/api/account/:accountUsername', (req, res) => {
-//   Account.findOneAndUpdate(
-//     ({ username: req.params.accountUsername }, req.body).then((err, data) => {
-//       if (err) {
-//         res.status(500).send(err);
-//       } else {
-//         res.status(200).send(data);
-//       }
-//     })
-//   );
-// });
-
-// app.put('/api/account/:accountUsername', (req, res) => {
-//   Account.findOneAndUpdate(
-//     ({ username: req.params.accountUsername }, req.body),
-//     (err, data) => {
-//       if (err) {
-//         res.status(500).send(err);
-//       } else {
-//         res.status(200).send(data);
-//       }
-//     }
-//   );
-// });
-
-// ------------------------------------ Testing End ------------------------------------
+// Parse db for account and update account info
+app.put('/api/account/:accountUsername', (req, res) => {
+  Account.findOneAndUpdate({ username: req.params.accountUsername }, req.body, {
+    new: true,
+  })
+    .then((data) => res.status(200).send(data))
+    .catch((err) => res.status(500).send(err));
+});
 
 // Create item transtion in db
 app.post('/api/transaction', (req, res) => {

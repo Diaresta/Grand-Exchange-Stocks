@@ -35,10 +35,9 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
       });
   };
 
-  // ------------ Working ------------
-  const updateEmail = async (userID) => {
+  const updateEmail = async (username) => {
     axios
-      .put(`http://localhost:8000/api/account/${userID}`, {
+      .put(`http://localhost:8000/api/account/${username}`, {
         email: newEmail,
       })
       .catch((err) => {
@@ -128,13 +127,14 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
             <button
               type='submit'
               onClick={() => {
+                // add check for @ and .com
                 if (newEmail !== newEmailVerify) {
                   console.log(`New Emails Don't Match`);
                 } else if (newEmail === '' || newEmailVerify === '') {
                   console.log('Email(s) Missing');
                 } else {
                   console.log('Woo');
-                  updateEmail(accountData[0]._id);
+                  updateEmail(accountData[0].username);
                 }
               }}
             >
