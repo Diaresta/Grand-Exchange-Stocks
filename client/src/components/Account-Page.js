@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import LogIn from './Log-In';
 import Footer from './Footer';
+import { emailValidate, dateFormat } from '../static/scripts/Utilities';
 
 const testUsername = 'Diaresta';
 
@@ -28,7 +29,6 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
       .get(`http://localhost:8000/api/account/${username}`)
       .then(({ data }) => {
         setAccountData(data);
-        console.log(data);
       })
       .catch((err) => {
         console.error(err);
@@ -36,13 +36,18 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
   };
 
   const updateEmail = async (username) => {
-    axios
-      .put(`http://localhost:8000/api/account/${username}`, {
-        email: newEmail,
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    if (emailValidate(newEmail) === false) {
+      console.log('Please use a valid email');
+    } else {
+      axios
+        .put(`http://localhost:8000/api/account/${username}`, {
+          email: newEmail.toLowerCase(),
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+      console.log('Woo');
+    }
   };
 
   const showDeleteAccount = () => {
@@ -80,10 +85,10 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
                 <td>{accountData[0]._id}</td>
               </tr>
               <tr>
-                <th>Sign-up Date</th>
+                <th>Sign-up Date (Y/M/D)</th>
               </tr>
               <tr>
-                <td>{accountData[0].signUpDate}</td>
+                <td>{dateFormat(accountData[0].signUpDate)}</td>
               </tr>
               <tr>
                 <th>Email</th>
@@ -96,51 +101,54 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
         </div>
 
         <div id='table-right'>
-          <table>
-            <tbody>
-              <tr>
-                <th colSpan='2'>Email</th>
-              </tr>
-              <tr>
-                <td>New Email:</td>
-                <td>
-                  <input
-                    type='text'
-                    value={newEmail}
-                    onInput={(e) => setNewEmail(e.target.value)}
-                    required
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Verify Email:</td>
-                <td>
-                  <input
-                    type='text'
-                    value={newEmailVerify}
-                    onInput={(e) => setNewEmailVerify(e.target.value)}
-                    required
-                  />
-                </td>
-              </tr>
-            </tbody>
-            <button
-              type='submit'
-              onClick={() => {
-                // add check for @ and .com
-                if (newEmail !== newEmailVerify) {
-                  console.log(`New Emails Don't Match`);
-                } else if (newEmail === '' || newEmailVerify === '') {
-                  console.log('Email(s) Missing');
-                } else {
-                  console.log('Woo');
-                  updateEmail(accountData[0].username);
-                }
-              }}
-            >
-              Save
-            </button>
-          </table>
+          <form>
+            <table>
+              <tbody>
+                <tr>
+                  <th colSpan='2'>Email</th>
+                </tr>
+                <tr>
+                  <td>New Email:</td>
+                  <td>
+                    <input
+                      type='email'
+                      value={newEmail}
+                      onInput={(e) => setNewEmail(e.target.value)}
+                      required
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Verify Email:</td>
+                  <td>
+                    <input
+                      type='email'
+                      value={newEmailVerify}
+                      onInput={(e) => setNewEmailVerify(e.target.value)}
+                      required
+                    />
+                  </td>
+                </tr>
+              </tbody>
+              <button
+                type='submit'
+                onClick={(e) => {
+                  // add check for @ and .com
+                  if (newEmail !== newEmailVerify) {
+                    console.log(`New Emails Don't Match`);
+                    e.preventDefault();
+                  } else if (newEmail === '' || newEmailVerify === '') {
+                    console.log('Email(s) Missing');
+                  } else {
+                    e.preventDefault();
+                    updateEmail(accountData[0].username);
+                  }
+                }}
+              >
+                Save
+              </button>
+            </table>
+          </form>
 
           <table>
             <tbody>
@@ -151,7 +159,7 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
                 <td>Current Password:</td>
                 <td>
                   <input
-                    type='text'
+                    type='password'
                     value={currentPassword}
                     onInput={(e) => setCurrentPassword(e.target.value)}
                     required
@@ -162,7 +170,7 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
                 <td>New Password:</td>
                 <td>
                   <input
-                    type='text'
+                    type='password'
                     value={newPassword}
                     onInput={(e) => {
                       setNewPassword(e.target.value);
@@ -175,7 +183,7 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
                 <td>Verify New Password:</td>
                 <td>
                   <input
-                    type='text'
+                    type='password'
                     value={newPasswordVerify}
                     onInput={(e) => setNewPasswordVerify(e.target.value)}
                     required

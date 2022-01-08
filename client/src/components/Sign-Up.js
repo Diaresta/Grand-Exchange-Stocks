@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import axios from 'axios';
+import { emailValidate } from '../static/scripts/Utilities';
 
 const SignUp = ({ loggedIn }) => {
   const [accountFirstName, setAccountFirstName] = useState('');
@@ -15,11 +16,11 @@ const SignUp = ({ loggedIn }) => {
     e.preventDefault();
     axios
       .post('http://localhost:8000/api/account', {
-        username: accountUsername,
+        username: accountUsername.toLowerCase(),
         password: accountPassword,
         firstName: accountFirstName,
         lastName: accountLastName,
-        email: accountEmail,
+        email: accountEmail.toLowerCase(),
         signUpDate: new Date().toLocaleDateString(),
       })
       .then((res) => {

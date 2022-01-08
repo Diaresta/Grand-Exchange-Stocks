@@ -39,20 +39,27 @@ app.get('/api/account', (req, res) => {
 
 // Parse db for account(s) by username
 app.get('/api/account/:accountUsername', (req, res) => {
-  Account.find({ username: req.params.accountUsername }, (err, data) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(200).send(data);
+  Account.find(
+    { username: req.params.accountUsername.toLowerCase() },
+    (err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).send(data);
+      }
     }
-  });
+  );
 });
 
 // Parse db for account and update account info
 app.put('/api/account/:accountUsername', (req, res) => {
-  Account.findOneAndUpdate({ username: req.params.accountUsername }, req.body, {
-    new: true,
-  })
+  Account.findOneAndUpdate(
+    { username: req.params.accountUsername.toLowerCase() },
+    req.body,
+    {
+      new: true,
+    }
+  )
     .then((data) => res.status(200).send(data))
     .catch((err) => res.status(500).send(err));
 });
