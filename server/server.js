@@ -64,6 +64,31 @@ app.put('/api/account/:accountUsername', (req, res) => {
     .catch((err) => res.status(500).send(err));
 });
 
+// Parse db for account(s) by email
+app.get('/api/account/email/:accountEmail', (req, res) => {
+  Account.findOne(
+    { email: req.params.accountEmail.toLowerCase() },
+    (err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).send(data);
+      }
+    }
+  );
+});
+
+// Parse db for account(s) by _id
+app.get('/api/account/id/:accountID', (req, res) => {
+  Account.find({ _id: req.params.accountID.toLowerCase() }, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
 // Create item transtion in db
 app.post('/api/transaction', (req, res) => {
   const dbTransaction = req.body;

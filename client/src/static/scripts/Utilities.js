@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const itemNameCall = async (itemArray) => {
   const defaultWindow = window.location.pathname.split('/')[1];
   const itemLinkID = window.location.pathname.split('/')[3];
@@ -23,6 +25,20 @@ export const emailValidate = (email) => {
 
   return regex.test(email.toLowerCase());
 };
+
+// ---------- Potential check if provided email is in database ----------
+// export const emailInUseCheck = (emailToCheck) => {
+//   axios
+//     .get(`http://localhost:8000/api/account/email/${emailToCheck}`)
+//     .then((emailData) => {
+//       if (emailData.data !== '') {
+//         return true;
+//       }
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//     });
+// };
 
 export const dateFormat = (date) => {
   return date.split('T')[0];

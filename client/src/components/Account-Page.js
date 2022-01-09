@@ -16,11 +16,14 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
   const [accountData, setAccountData] = useState([{}]);
   const [newEmail, setNewEmail] = useState('');
   const [newEmailVerify, setNewEmailVerify] = useState('');
-
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [newPasswordVerify, setNewPasswordVerify] = useState('');
   const passwordPlaceholder = 'placeholder';
+  const [formatDate, setFormatDate] = useState('');
+  const [emailAlertText, setEmailAlertText] = useState('');
+  const [passAlertText, setPassAlertText] = useState('');
+  const [alertStyle, setAlertStyle] = useState({ email: {}, pass: {} });
 
   const [showDiv, setShowDiv] = useState('none');
 
@@ -29,24 +32,111 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
       .get(`http://localhost:8000/api/account/${username}`)
       .then(({ data }) => {
         setAccountData(data);
+        setFormatDate(dateFormat(data[0].signUpDate));
       })
       .catch((err) => {
         console.error(err);
       });
   };
 
-  const updateEmail = async (username) => {
-    if (emailValidate(newEmail) === false) {
-      console.log('Please use a valid email');
-    } else {
+  const updateEmail = async (username, dbEmail) => {
+    const emailInUseCheck = (emailToCheck) => {
       axios
-        .put(`http://localhost:8000/api/account/${username}`, {
-          email: newEmail.toLowerCase(),
+        .get(`http://localhost:8000/api/account/email/${emailToCheck}`)
+        .then((emailData) => {
+          if (emailData.data !== '') {
+            setEmailAlertText('Email is currently in use');
+            fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'email');
+          } else {
+            axios
+              .put(`http://localhost:8000/api/account/${username}`, {
+                email: newEmail.toLowerCase(),
+              })
+              .catch((err) => {
+                console.error(err);
+              });
+            setEmailAlertText('Email Successfully Changed');
+            fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green', 'email');
+          }
         })
         .catch((err) => {
           console.error(err);
         });
-      console.log('Woo');
+    };
+
+    if (emailValidate(newEmail) === false) {
+      setEmailAlertText('Please use a valid email');
+      fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'email');
+    } else {
+      emailInUseCheck(dbEmail);
+    }
+  };
+
+  const fadeOutAlert = (background, border, element) => {
+    if (element === 'email') {
+      setAlertStyle({
+        email: {
+          display: 'flex',
+          opacity: '1',
+          backgroundColor: background,
+          borderColor: border,
+        },
+        pass: {
+          display: 'none',
+        },
+      });
+
+      setTimeout(() => {
+        setAlertStyle({
+          email: {
+            display: 'flex',
+            opacity: '0',
+            backgroundColor: background,
+            borderColor: border,
+            transition: 'opacity .75s linear',
+          },
+        });
+      }, 750);
+
+      setTimeout(() => {
+        setAlertStyle({
+          email: {
+            display: 'none',
+          },
+        });
+      }, 1500);
+    } else if (element === 'pass') {
+      setAlertStyle({
+        pass: {
+          display: 'flex',
+          opacity: '1',
+          backgroundColor: background,
+          borderColor: border,
+        },
+        email: {
+          display: 'none',
+        },
+      });
+
+      setTimeout(() => {
+        setAlertStyle({
+          pass: {
+            display: 'flex',
+            opacity: '0',
+            backgroundColor: background,
+            borderColor: border,
+            transition: 'opacity .75s linear',
+          },
+        });
+      }, 750);
+
+      setTimeout(() => {
+        setAlertStyle({
+          pass: {
+            display: 'none',
+          },
+        });
+      }, 1500);
     }
   };
 
@@ -88,7 +178,7 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
                 <th>Sign-up Date (Y/M/D)</th>
               </tr>
               <tr>
-                <td>{dateFormat(accountData[0].signUpDate)}</td>
+                <td>{formatDate}</td>
               </tr>
               <tr>
                 <th>Email</th>
@@ -135,18 +225,27 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
                 onClick={(e) => {
                   // add check for @ and .com
                   if (newEmail !== newEmailVerify) {
-                    console.log(`New Emails Don't Match`);
                     e.preventDefault();
+                    setEmailAlertText(`New Emails Don't Match`);
+                    fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'email');
                   } else if (newEmail === '' || newEmailVerify === '') {
-                    console.log('Email(s) Missing');
+                    setEmailAlertText('Email(s) Missing');
+                    fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'email');
                   } else {
                     e.preventDefault();
-                    updateEmail(accountData[0].username);
+                    updateEmail(
+                      accountData[0].username,
+                      newEmailVerify,
+                      accountData[0].email
+                    );
                   }
                 }}
               >
                 Save
               </button>
+              <span id='calc-alert' style={alertStyle.email}>
+                {emailAlertText}
+              </span>
             </table>
           </form>
 
@@ -195,20 +294,29 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
               type='submit'
               onClick={() => {
                 if (currentPassword !== passwordPlaceholder) {
-                  console.log('Wrong Password');
+                  setPassAlertText('Wrong Password');
+                  fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
                 } else if (
                   currentPassword === '' ||
                   newPassword === '' ||
                   newPasswordVerify === ''
                 ) {
-                  console.log('Password(s) Missing');
+                  setPassAlertText('Password(s) Missing');
+                  fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
                 } else if (newPassword !== newPasswordVerify) {
-                  console.log(`New Passwords Don't Match`);
-                } else console.log('Woo');
+                  setPassAlertText(`New Passwords Don't Match`);
+                  fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
+                } else {
+                  setPassAlertText('Password Successfully Changed');
+                  fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green', 'pass]');
+                }
               }}
             >
               Save
             </button>
+            <span id='calc-alert' style={alertStyle.pass}>
+              {passAlertText}
+            </span>
           </table>
         </div>
       </div>
