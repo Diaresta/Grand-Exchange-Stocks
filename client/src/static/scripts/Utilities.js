@@ -40,6 +40,16 @@ export const emailValidate = (email) => {
 //     });
 // };
 
+export const updatePassword = (currPass, newPass) => {
+  if (newPass === currPass) {
+    console.log('Please use a new password');
+    return false;
+  } else if (newPass !== currPass) {
+    console.log('Password acceptable');
+    return true;
+  }
+};
+
 export const dateFormat = (date) => {
   return date.split('T')[0];
 };

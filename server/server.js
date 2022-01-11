@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
 import Account from './db/dbAccounts.js';
 import Transactions from './db/dbTransactions.js';
 
@@ -15,8 +16,17 @@ dotenv.config();
 mongoose.connect(process.env.GETELLERDB, {});
 
 // Create account in db
-app.post('/api/account', (req, res) => {
-  const dbAccount = req.body;
+app.post('/api/account', async (req, res) => {
+  const passHash = await bcrypt.hash(req.body.password, 10);
+  const dbAccount = {
+    username: req.body.username,
+    password: passHash,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    signUpDate: req.body.signUpDate,
+  };
+
   Account.create(dbAccount, (err, data) => {
     if (err) {
       res.status(500).send(err);

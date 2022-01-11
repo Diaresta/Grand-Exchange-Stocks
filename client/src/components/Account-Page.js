@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import LogIn from './Log-In';
 import Footer from './Footer';
-import { emailValidate, dateFormat } from '../static/scripts/Utilities';
+import {
+  emailValidate,
+  dateFormat,
+  updatePassword,
+} from '../static/scripts/Utilities';
 
 const testUsername = 'Diaresta';
 
@@ -40,47 +44,28 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
   };
 
   // maybe remove async and go back to if return true/false
-  const updateEmail = async (username, dbEmail) => {
-    const emailInUseCheck = (emailToCheck) => {
-      axios
-        .get(`http://localhost:8000/api/account/email/${emailToCheck}`)
-        .then((emailData) => {
-          if (emailData.data !== '') {
-            setEmailAlertText('Email is currently in use');
-            fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'email');
-          } else {
-            axios
-              .put(`http://localhost:8000/api/account/${username}`, {
-                email: newEmail.toLowerCase(),
-              })
-              .catch((err) => {
-                console.error(err);
-              });
-            setEmailAlertText('Email Successfully Changed');
-            fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green', 'email');
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    };
-
-    if (emailValidate(newEmail) === false) {
-      setEmailAlertText('Please use a valid email');
-      fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'email');
-    } else {
-      emailInUseCheck(dbEmail);
-    }
-  };
-
-  const updatePassword = (currPass, newPass) => {
-    if (newPass === currPass) {
-      console.log('Please use a new password');
-      return false;
-    } else if (newPass !== currPass) {
-      console.log('Password acceptable');
-      return true;
-    }
+  const updateEmail = async (username, emailToCheck, dbEmail) => {
+    axios
+      .get(`http://localhost:8000/api/account/email/${emailToCheck}`)
+      .then((emailData) => {
+        if (emailData.data !== '') {
+          setEmailAlertText('Email is currently in use');
+          fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'email');
+        } else {
+          axios
+            .put(`http://localhost:8000/api/account/${username}`, {
+              email: newEmail.toLowerCase(),
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+          setEmailAlertText('Email Successfully Changed');
+          fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green', 'email');
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   const fadeOutAlert = (background, border, element) => {
@@ -163,6 +148,8 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
 
   useEffect(() => {
     accountInfoCall(testUsername);
+
+    console.log(updatePassword(accountData[0].password, 'asaasdasdsdas'));
   }, []);
 
   return loggedIn ? (
@@ -241,6 +228,10 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
                     fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'email');
                   } else if (newEmail === '' || newEmailVerify === '') {
                     setEmailAlertText('Email(s) Missing');
+                    fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'email');
+                  } else if (emailValidate(newEmail) === false) {
+                    e.preventDefault();
+                    setEmailAlertText('Please use a valid email');
                     fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'email');
                   } else {
                     e.preventDefault();
