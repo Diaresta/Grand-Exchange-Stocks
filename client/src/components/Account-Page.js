@@ -19,7 +19,6 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [newPasswordVerify, setNewPasswordVerify] = useState('');
-  const passwordPlaceholder = 'placeholder';
   const [formatDate, setFormatDate] = useState('');
   const [emailAlertText, setEmailAlertText] = useState('');
   const [passAlertText, setPassAlertText] = useState('');
@@ -32,6 +31,7 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
       .get(`http://localhost:8000/api/account/${username}`)
       .then(({ data }) => {
         setAccountData(data);
+        console.log(data);
         setFormatDate(dateFormat(data[0].signUpDate));
       })
       .catch((err) => {
@@ -39,6 +39,7 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
       });
   };
 
+  // maybe remove async and go back to if return true/false
   const updateEmail = async (username, dbEmail) => {
     const emailInUseCheck = (emailToCheck) => {
       axios
@@ -69,6 +70,16 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
       fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'email');
     } else {
       emailInUseCheck(dbEmail);
+    }
+  };
+
+  const updatePassword = (currPass, newPass) => {
+    if (newPass === currPass) {
+      console.log('Please use a new password');
+      return false;
+    } else if (newPass !== currPass) {
+      console.log('Password acceptable');
+      return true;
     }
   };
 
@@ -292,23 +303,32 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
             </tbody>
             <button
               type='submit'
-              onClick={() => {
-                if (currentPassword !== passwordPlaceholder) {
-                  setPassAlertText('Wrong Password');
-                  fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
-                } else if (
+              onClick={(e) => {
+                if (
                   currentPassword === '' ||
                   newPassword === '' ||
                   newPasswordVerify === ''
                 ) {
                   setPassAlertText('Password(s) Missing');
                   fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
+                } else if (currentPassword !== accountData[0].password) {
+                  setPassAlertText('Current Password Incorrect');
+                  fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
                 } else if (newPassword !== newPasswordVerify) {
                   setPassAlertText(`New Passwords Don't Match`);
                   fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
-                } else {
+                } else if (
+                  updatePassword(accountData[0].password, newPasswordVerify) ===
+                  false
+                ) {
+                  setPassAlertText('Please Use a New Password');
+                  fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
+                } else if (
+                  updatePassword(accountData[0].password, newPasswordVerify) ===
+                  true
+                ) {
                   setPassAlertText('Password Successfully Changed');
-                  fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green', 'pass]');
+                  fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green', 'pass');
                 }
               }}
             >
