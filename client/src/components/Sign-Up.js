@@ -15,7 +15,7 @@ const SignUp = ({ loggedIn }) => {
     // set conditions if inputs are empty
     e.preventDefault();
     axios
-      .post('http://localhost:8000/api/account', {
+      .post('http://localhost:8000/api/account/create', {
         username: accountUsername.toLowerCase(),
         password: accountPassword,
         firstName: accountFirstName,

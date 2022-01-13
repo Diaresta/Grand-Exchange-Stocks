@@ -16,7 +16,7 @@ dotenv.config();
 mongoose.connect(process.env.GETELLERDB, {});
 
 // Create account in db
-app.post('/api/account', async (req, res) => {
+app.post('/api/account/create', async (req, res) => {
   const passHash = await bcrypt.hash(req.body.password, 10);
   const dbAccount = {
     username: req.body.username,
@@ -29,7 +29,19 @@ app.post('/api/account', async (req, res) => {
 
   Account.create(dbAccount, (err, data) => {
     if (err) {
-      res.status(500).send(err);
+      if (err.code === 11000) {
+        res
+          .status(409)
+          .send({ status: 'Error', error: 'Username/Email already in use' });
+
+        console.log('REEEE');
+      } else {
+        // console.log(JSON.stringify(err.errors.username.properties.type));
+        // console.log(JSON.stringify(err.errors.email.properties.type));
+
+        res.status(500).send(err);
+        // throw error;
+      }
     } else {
       res.status(201).send(data);
     }
