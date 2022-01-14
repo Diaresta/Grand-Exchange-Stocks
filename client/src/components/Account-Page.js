@@ -229,6 +229,13 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
                   } else if (newEmail === '' || newEmailVerify === '') {
                     setEmailAlertText('Email(s) Missing');
                     fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'email');
+                  } else if (
+                    newEmailVerify.length < 12 ||
+                    newEmailVerify.length > 40
+                  ) {
+                    e.preventDefault();
+                    setEmailAlertText('Email must be 12- 40 characters');
+                    fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'email');
                   } else if (emailValidate(newEmail) === false) {
                     e.preventDefault();
                     setEmailAlertText('Please use a valid email');
@@ -301,6 +308,14 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
                   newPasswordVerify === ''
                 ) {
                   setPassAlertText('Password(s) Missing');
+                  fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
+                } else if (
+                  currentPassword.length < 5 ||
+                  newPassword.length < 5 ||
+                  newPasswordVerify.length < 5
+                ) {
+                  e.preventDefault();
+                  setPassAlertText('Password must be >5 characters');
                   fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
                 } else if (currentPassword !== accountData[0].password) {
                   setPassAlertText('Current Password Incorrect');

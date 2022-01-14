@@ -18,7 +18,7 @@ mongoose.connect(process.env.GETELLERDB, {});
 // Create account in db
 app.post('/api/account/create', async (req, res) => {
   const passHash = await bcrypt.hash(req.body.password, 10);
-  const dbAccount = {
+  const dbAccount = await {
     username: req.body.username,
     password: passHash,
     firstName: req.body.firstName,
@@ -27,20 +27,70 @@ app.post('/api/account/create', async (req, res) => {
     signUpDate: req.body.signUpDate,
   };
 
+  // Cackend check for form parameters ----------
+  if (!dbAccount.username || typeof dbAccount.username !== 'string') {
+    console.log('ree username');
+    return res
+      .status(400)
+      .send({ status: 'Error', error: 'Please enter a valid username' });
+  }
+
+  if (dbAccount.username.length < 3 || dbAccount.username.length > 20) {
+    console.log('ree username length');
+    return res.status(400).send({
+      status: 'Error',
+      error: 'Username must be between 3 and 20 characters',
+    });
+  }
+
+  if (!dbAccount.email || typeof dbAccount.email !== 'string') {
+    console.log('ree email');
+    return res
+      .status(400)
+      .send({ status: 'Error', error: 'Please enter a valid email' });
+  }
+
+  if (dbAccount.email.length < 12 || dbAccount.email.length > 40) {
+    console.log('ree email length');
+    return res.status(400).send({
+      status: 'Error',
+      error: 'Email must be between 12 and 40 characters',
+    });
+  }
+
+  if (!dbAccount.firstName || typeof dbAccount.firstName !== 'string') {
+    console.log('ree first name');
+    return res
+      .status(400)
+      .send({ status: 'Error', error: 'Please enter a valid first name' });
+  }
+
+  if (!dbAccount.lastName || typeof dbAccount.lastName !== 'string') {
+    console.log('ree last name');
+    return res
+      .status(400)
+      .send({ status: 'Error', error: 'Please enter a valid last name' });
+  }
+
+  if (!dbAccount.password || typeof dbAccount.password !== 'string') {
+    console.log('ree password');
+
+    return res.status(400).send({
+      status: 'Error',
+      error: 'Please enter a valid password',
+    });
+  }
+  // --------------------------------------------
+
   Account.create(dbAccount, (err, data) => {
     if (err) {
       if (err.code === 11000) {
+        console.log(JSON.stringify(err));
         res
           .status(409)
           .send({ status: 'Error', error: 'Username/Email already in use' });
-
-        console.log('REEEE');
       } else {
-        // console.log(JSON.stringify(err.errors.username.properties.type));
-        // console.log(JSON.stringify(err.errors.email.properties.type));
-
         res.status(500).send(err);
-        // throw error;
       }
     } else {
       res.status(201).send(data);

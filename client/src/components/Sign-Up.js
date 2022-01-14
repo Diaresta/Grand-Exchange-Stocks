@@ -13,6 +13,7 @@ const SignUp = ({ loggedIn }) => {
 
   const accountSignUp = async (e) => {
     // set conditions if inputs are empty
+
     e.preventDefault();
     axios
       .post('http://localhost:8000/api/account/create', {
@@ -25,6 +26,9 @@ const SignUp = ({ loggedIn }) => {
       })
       .then((res) => {
         console.log('Account created!');
+
+        // Alert 'Account Created!'
+        // Redirect to home logged in
       })
       .catch((err) => {
         console.error(err);
