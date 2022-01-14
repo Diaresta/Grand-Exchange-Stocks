@@ -10,6 +10,33 @@ const SignUp = ({ loggedIn }) => {
   const [accountUsername, setAccountUsername] = useState('');
   const [accountPassword, setAccountPassword] = useState('');
   const [accountEmail, setAccountEmail] = useState('');
+  const [alertText, setAlertText] = useState('');
+  const [alertStyle, setAlertStyle] = useState();
+
+  const fadeOutAlert = (background, border) => {
+    setAlertStyle({
+      display: 'flex',
+      opacity: '1',
+      backgroundColor: background,
+      borderColor: border,
+    });
+
+    setTimeout(() => {
+      setAlertStyle({
+        display: 'flex',
+        opacity: '0',
+        backgroundColor: background,
+        borderColor: border,
+        transition: 'opacity .75s linear',
+      });
+    }, 750);
+
+    setTimeout(() => {
+      setAlertStyle({
+        display: 'none',
+      });
+    }, 1500);
+  };
 
   const accountSignUp = async (e) => {
     // set conditions if inputs are empty
@@ -25,13 +52,17 @@ const SignUp = ({ loggedIn }) => {
         signUpDate: new Date().toLocaleDateString(),
       })
       .then((res) => {
-        console.log('Account created!');
+        setAlertText('Account Created!');
+        fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green');
 
         // Alert 'Account Created!'
         // Redirect to home logged in
       })
       .catch((err) => {
-        console.error(err);
+        setAlertText(err.response.data.error);
+        fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red');
+
+        console.error(err.response.data.error);
       });
   };
 
@@ -42,6 +73,9 @@ const SignUp = ({ loggedIn }) => {
       <div className='log-sign-container'>
         <div className='form-container'>
           <h1>Create Account</h1>
+          <span id='calc-alert' style={alertStyle}>
+            {alertText}
+          </span>
           <form>
             <div className='form-input-div'>
               <input

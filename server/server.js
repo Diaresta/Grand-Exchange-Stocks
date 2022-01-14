@@ -32,14 +32,14 @@ app.post('/api/account/create', async (req, res) => {
     console.log('ree username');
     return res
       .status(400)
-      .send({ status: 'Error', error: 'Please enter a valid username' });
+      .json({ status: 'Error', error: 'Please enter a valid username' });
   }
 
   if (dbAccount.username.length < 3 || dbAccount.username.length > 20) {
     console.log('ree username length');
-    return res.status(400).send({
+    return res.status(400).json({
       status: 'Error',
-      error: 'Username must be between 3 and 20 characters',
+      error: 'Username must be 3- 20 characters',
     });
   }
 
@@ -54,7 +54,7 @@ app.post('/api/account/create', async (req, res) => {
     console.log('ree email length');
     return res.status(400).send({
       status: 'Error',
-      error: 'Email must be between 12 and 40 characters',
+      error: 'Email must be 12- 40 characters',
     });
   }
 
@@ -72,7 +72,7 @@ app.post('/api/account/create', async (req, res) => {
       .send({ status: 'Error', error: 'Please enter a valid last name' });
   }
 
-  if (!dbAccount.password || typeof dbAccount.password !== 'string') {
+  if (!req.body.password || typeof req.body.password !== 'string') {
     console.log('ree password');
 
     return res.status(400).send({
@@ -80,6 +80,14 @@ app.post('/api/account/create', async (req, res) => {
       error: 'Please enter a valid password',
     });
   }
+
+  if (req.body.password.length < 5) {
+    return res.status(400).send({
+      status: 'Error',
+      error: 'Password must be >5 characters',
+    });
+  }
+
   // --------------------------------------------
 
   Account.create(dbAccount, (err, data) => {
@@ -88,7 +96,7 @@ app.post('/api/account/create', async (req, res) => {
         console.log(JSON.stringify(err));
         res
           .status(409)
-          .send({ status: 'Error', error: 'Username/Email already in use' });
+          .json({ status: 'Error', error: 'Username/Email already in use' });
       } else {
         res.status(500).send(err);
       }

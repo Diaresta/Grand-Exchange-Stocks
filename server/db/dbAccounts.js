@@ -8,7 +8,7 @@ const accountSchema = mongoose.Schema({
     minLength: 3,
     maxLength: 20,
   },
-  password: { type: String, required: true },
+  password: { type: String, required: true, minLength: 6 },
   firstName: { type: String, required: true, maxLength: 50 },
   lastName: { type: String, required: true, maxLength: 75 },
   email: {
