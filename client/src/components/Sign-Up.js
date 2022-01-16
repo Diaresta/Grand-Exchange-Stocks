@@ -55,14 +55,15 @@ const SignUp = ({ loggedIn }) => {
         setAlertText('Account Created!');
         fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green');
 
+        setTimeout(() => {
+          window.location.href = '/login';
+        }, 500);
         // Alert 'Account Created!'
         // Redirect to home logged in
       })
       .catch((err) => {
         setAlertText(err.response.data.error);
         fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red');
-
-        console.error(err.response.data.error);
       });
   };
 

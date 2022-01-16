@@ -15,12 +15,37 @@ const appLogin = async (creds) => {
     .then(console.log(creds));
 };
 
+// const testLogin = async (e, username, password) => {
+//   e.preventDefault();
+
+//   const result = await fetch('http://localhost:8000/api/account/login', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({
+//       username,
+//       password,
+//     }),
+//   }).then((res) => {
+//     res.json();
+//   });
+
+//   if (result.status === 'ok') {
+//     console.log('SUCCESS', result.data);
+//   } else {
+//     console.log(result.error);
+//   }
+// };
+
 const LogIn = ({ loggedIn, setToken }) => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
   const loginSubmit = async (e) => {
     e.preventDefault();
+
+    // testLogin(e, username, password);
 
     const token = await appLogin({
       username,

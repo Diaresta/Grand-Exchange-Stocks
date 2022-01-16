@@ -118,7 +118,7 @@ app.get('/api/account', (req, res) => {
 });
 
 // Parse db for account(s) by username
-app.get('/api/account/:accountUsername', (req, res) => {
+app.get('/api/account/search/:accountUsername', (req, res) => {
   Account.find(
     { username: req.params.accountUsername.toLowerCase() },
     (err, data) => {
@@ -132,20 +132,16 @@ app.get('/api/account/:accountUsername', (req, res) => {
 });
 
 // Parse db for account and update account info
-app.put('/api/account/:accountUsername', (req, res) => {
-  Account.findOneAndUpdate(
-    { username: req.params.accountUsername.toLowerCase() },
-    req.body,
-    {
-      new: true,
-    }
-  )
+app.put('/api/account/search/:accountID', (req, res) => {
+  Account.findOneAndUpdate({ _id: req.params.accountID }, req.body, {
+    new: true,
+  })
     .then((data) => res.status(200).send(data))
     .catch((err) => res.status(500).send(err));
 });
 
 // Parse db for account(s) by email
-app.get('/api/account/email/:accountEmail', (req, res) => {
+app.get('/api/account/email/search/:accountEmail', (req, res) => {
   Account.findOne(
     { email: req.params.accountEmail.toLowerCase() },
     (err, data) => {
@@ -156,17 +152,6 @@ app.get('/api/account/email/:accountEmail', (req, res) => {
       }
     }
   );
-});
-
-// Parse db for account(s) by _id
-app.get('/api/account/id/:accountID', (req, res) => {
-  Account.find({ _id: req.params.accountID.toLowerCase() }, (err, data) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(200).send(data);
-    }
-  });
 });
 
 // Create item transtion in db
@@ -205,6 +190,13 @@ app.use('/login', (req, res) => {
     token: 'testtoken0',
   });
 });
+
+// app.post('/api/account/login', async (req, res) => {
+//   res.json({ status: 'ok', data: "I'm data" });
+// res.send({
+//   token: 'testtoken0',
+// });
+// });
 
 app.get('/', (req, res) => res.status(200).send('welcome gamers'));
 

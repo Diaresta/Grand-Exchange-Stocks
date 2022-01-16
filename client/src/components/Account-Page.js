@@ -30,12 +30,12 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
 
   const [showDiv, setShowDiv] = useState('none');
 
+  // Swap to pulling account id from login token
   const accountInfoCall = async (username) => {
     axios
-      .get(`http://localhost:8000/api/account/${username}`)
+      .get(`http://localhost:8000/api/account/search/${username}`)
       .then(({ data }) => {
         setAccountData(data);
-        console.log(data);
         setFormatDate(dateFormat(data[0].signUpDate));
       })
       .catch((err) => {
@@ -46,14 +46,14 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
   // maybe remove async and go back to if return true/false
   const updateEmail = async (username, emailToCheck, dbEmail) => {
     axios
-      .get(`http://localhost:8000/api/account/email/${emailToCheck}`)
+      .get(`http://localhost:8000/api/account/email/search/${emailToCheck}`)
       .then((emailData) => {
         if (emailData.data !== '') {
           setEmailAlertText('Email is currently in use');
           fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'email');
         } else {
           axios
-            .put(`http://localhost:8000/api/account/${username}`, {
+            .put(`http://localhost:8000/api/account/search/${username}`, {
               email: newEmail.toLowerCase(),
             })
             .catch((err) => {
@@ -148,8 +148,6 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
 
   useEffect(() => {
     accountInfoCall(testUsername);
-
-    console.log(updatePassword(accountData[0].password, 'asaasdasdsdas'));
   }, []);
 
   return loggedIn ? (
@@ -243,7 +241,7 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
                   } else {
                     e.preventDefault();
                     updateEmail(
-                      accountData[0].username,
+                      accountData[0]._id,
                       newEmailVerify,
                       accountData[0].email
                     );
@@ -335,6 +333,7 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
                 ) {
                   setPassAlertText('Password Successfully Changed');
                   fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green', 'pass');
+                  // Update account pass in db
                 }
               }}
             >
