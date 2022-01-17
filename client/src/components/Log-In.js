@@ -3,66 +3,63 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Footer from '../components/Footer';
 
-const appLogin = async (creds) => {
-  return fetch('http://localhost:8000/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(creds),
-  })
-    .then((data) => data.json())
-    .then(console.log(creds));
-};
-
-// const testLogin = async (e, username, password) => {
-//   e.preventDefault();
-
-//   const result = await fetch('http://localhost:8000/api/account/login', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({
-//       username,
-//       password,
-//     }),
-//   }).then((res) => {
-//     res.json();
-//   });
-
-//   if (result.status === 'ok') {
-//     console.log('SUCCESS', result.data);
-//   } else {
-//     console.log(result.error);
-//   }
-// };
-
 const LogIn = ({ loggedIn, setToken }) => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
+  const [alertText, setAlertText] = useState('');
+  const [alertStyle, setAlertStyle] = useState();
 
-  const loginSubmit = async (e) => {
-    e.preventDefault();
-
-    // testLogin(e, username, password);
-
-    const token = await appLogin({
-      username,
-      password,
+  const fadeOutAlert = (background, border) => {
+    setAlertStyle({
+      display: 'flex',
+      opacity: '1',
+      backgroundColor: background,
+      borderColor: border,
     });
 
-    setToken(token);
+    setTimeout(() => {
+      setAlertStyle({
+        display: 'flex',
+        opacity: '0',
+        backgroundColor: background,
+        borderColor: border,
+        transition: 'opacity .75s linear',
+      });
+    }, 750);
 
-    console.log('login test');
-    console.log(token);
+    setTimeout(() => {
+      setAlertStyle({
+        display: 'none',
+      });
+    }, 1500);
+  };
 
-    window.location.href = '/';
+  const loginBoys = async (e, username, password) => {
+    e.preventDefault();
 
-    // button onSubmit
-    // if (username/password match) }
-    // window.location.href = '/';}
-    // else {'wrong password@@@'}
+    const logResult = await fetch('http://localhost:8000/api/account/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.log(err));
+
+    if (logResult.user) {
+      setAlertText('Logging In!');
+      fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green');
+
+      setToken(logResult.token);
+
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 750);
+    } else {
+      setAlertText(logResult.error);
+      fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red');
+    }
   };
 
   return loggedIn ? (
@@ -72,7 +69,10 @@ const LogIn = ({ loggedIn, setToken }) => {
       <div className='log-sign-container'>
         <div className='form-container'>
           <h1>Log In</h1>
-          <form onSubmit={loginSubmit}>
+          <span id='calc-alert' style={alertStyle}>
+            {alertText}
+          </span>
+          <form onSubmit={(e) => loginBoys(e, username, password)}>
             <input
               type='text'
               placeholder='Username'
@@ -103,8 +103,8 @@ const LogIn = ({ loggedIn, setToken }) => {
   );
 };
 
-LogIn.propTypes = {
-  setToken: PropTypes.func.isRequired,
-};
+// LogIn.propTypes = {
+//   setToken: PropTypes.func.isRequired,
+// };
 
 export default LogIn;

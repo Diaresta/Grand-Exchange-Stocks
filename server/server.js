@@ -5,6 +5,7 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import Account from './db/dbAccounts.js';
 import Transactions from './db/dbTransactions.js';
 
@@ -29,14 +30,12 @@ app.post('/api/account/create', async (req, res) => {
 
   // Cackend check for form parameters ----------
   if (!dbAccount.username || typeof dbAccount.username !== 'string') {
-    console.log('ree username');
     return res
       .status(400)
       .json({ status: 'Error', error: 'Please enter a valid username' });
   }
 
   if (dbAccount.username.length < 3 || dbAccount.username.length > 20) {
-    console.log('ree username length');
     return res.status(400).json({
       status: 'Error',
       error: 'Username must be 3- 20 characters',
@@ -44,14 +43,12 @@ app.post('/api/account/create', async (req, res) => {
   }
 
   if (!dbAccount.email || typeof dbAccount.email !== 'string') {
-    console.log('ree email');
     return res
       .status(400)
       .send({ status: 'Error', error: 'Please enter a valid email' });
   }
 
   if (dbAccount.email.length < 12 || dbAccount.email.length > 40) {
-    console.log('ree email length');
     return res.status(400).send({
       status: 'Error',
       error: 'Email must be 12- 40 characters',
@@ -59,22 +56,18 @@ app.post('/api/account/create', async (req, res) => {
   }
 
   if (!dbAccount.firstName || typeof dbAccount.firstName !== 'string') {
-    console.log('ree first name');
     return res
       .status(400)
       .send({ status: 'Error', error: 'Please enter a valid first name' });
   }
 
   if (!dbAccount.lastName || typeof dbAccount.lastName !== 'string') {
-    console.log('ree last name');
     return res
       .status(400)
       .send({ status: 'Error', error: 'Please enter a valid last name' });
   }
 
   if (!req.body.password || typeof req.body.password !== 'string') {
-    console.log('ree password');
-
     return res.status(400).send({
       status: 'Error',
       error: 'Please enter a valid password',
@@ -93,7 +86,6 @@ app.post('/api/account/create', async (req, res) => {
   Account.create(dbAccount, (err, data) => {
     if (err) {
       if (err.code === 11000) {
-        console.log(JSON.stringify(err));
         res
           .status(409)
           .json({ status: 'Error', error: 'Username/Email already in use' });
@@ -191,12 +183,44 @@ app.use('/login', (req, res) => {
   });
 });
 
-// app.post('/api/account/login', async (req, res) => {
-//   res.json({ status: 'ok', data: "I'm data" });
-// res.send({
-//   token: 'testtoken0',
-// });
-// });
+app.post('/api/account/login', async (req, res) => {
+  const loginAttempt = await {
+    logUsername: req.body.username.toLowerCase(),
+    logPassword: req.body.password,
+  };
+
+  const account = await Account.findOne({
+    username: loginAttempt.logUsername,
+  });
+
+  if (!account) {
+    return res.json({
+      status: 'error',
+      error: 'No Account Found',
+      user: false,
+    });
+  }
+
+  if (
+    (await bcrypt.compare(loginAttempt.logPassword, account.password)) === true
+  ) {
+    const token = jwt.sign(
+      {
+        id: account._id,
+        username: account.username,
+      },
+      process.env.JWT_KEY
+    );
+
+    return res.json({ status: 200, token: token, user: true });
+  } else {
+    return res.json({
+      status: 'error',
+      error: 'Incorrect Password',
+      user: false,
+    });
+  }
+});
 
 app.get('/', (req, res) => res.status(200).send('welcome gamers'));
 
