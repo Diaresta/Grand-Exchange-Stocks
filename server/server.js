@@ -146,6 +146,61 @@ app.get('/api/account/email/search/:accountEmail', (req, res) => {
   );
 });
 
+app.use('/login', (req, res) => {
+  res.send({
+    token: 'testtoken0',
+  });
+});
+
+app.post('/api/account/login', async (req, res) => {
+  const loginAttempt = await {
+    logUsername: req.body.username.toLowerCase(),
+    logPassword: req.body.password,
+  };
+
+  const account = await Account.findOne({
+    username: loginAttempt.logUsername,
+  });
+
+  if (!account) {
+    return res.json({
+      status: 'error',
+      error: 'No Account Found',
+      user: false,
+    });
+  }
+
+  app.delete('/api/account/delete', async (req, res) => {
+    Account.findOneAndDelete({ _id: req.params.accountID })
+      .then((data) => {
+        return res.json({ status: 'Account Deleted!' });
+      })
+      .catch((err) => {
+        res.status(500).send(err);
+      });
+  });
+
+  if (
+    (await bcrypt.compare(loginAttempt.logPassword, account.password)) === true
+  ) {
+    const token = jwt.sign(
+      {
+        id: account._id,
+        username: account.username,
+      },
+      process.env.JWT_KEY
+    );
+
+    return res.json({ status: 200, token: token, user: true });
+  } else {
+    return res.json({
+      status: 'error',
+      error: 'Incorrect Password',
+      user: false,
+    });
+  }
+});
+
 // Create item transtion in db
 app.post('/api/transaction', (req, res) => {
   const dbTransaction = req.body;
@@ -176,51 +231,6 @@ var tickerArray = [];
 // app.use('*', (req, res) => {
 //   res.status(404).json({ error: 'Route not found' });
 // });
-
-app.use('/login', (req, res) => {
-  res.send({
-    token: 'testtoken0',
-  });
-});
-
-app.post('/api/account/login', async (req, res) => {
-  const loginAttempt = await {
-    logUsername: req.body.username.toLowerCase(),
-    logPassword: req.body.password,
-  };
-
-  const account = await Account.findOne({
-    username: loginAttempt.logUsername,
-  });
-
-  if (!account) {
-    return res.json({
-      status: 'error',
-      error: 'No Account Found',
-      user: false,
-    });
-  }
-
-  if (
-    (await bcrypt.compare(loginAttempt.logPassword, account.password)) === true
-  ) {
-    const token = jwt.sign(
-      {
-        id: account._id,
-        username: account.username,
-      },
-      process.env.JWT_KEY
-    );
-
-    return res.json({ status: 200, token: token, user: true });
-  } else {
-    return res.json({
-      status: 'error',
-      error: 'Incorrect Password',
-      user: false,
-    });
-  }
-});
 
 app.get('/', (req, res) => res.status(200).send('welcome gamers'));
 

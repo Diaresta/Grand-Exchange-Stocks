@@ -144,7 +144,18 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
     }
   };
 
-  const deleteAccount = () => {};
+  const deleteAccount = async (ID) => {
+    // const accountDelete = await axios.deleteAccount('/api/account/delete', {
+    //   headers: {},
+    //   body: {
+    //     accountID: ID,
+    //   },
+    // });
+
+    console.log('asdasdasd');
+    // logOut();
+    // accountData[0]._id
+  };
 
   useEffect(() => {
     accountInfoCall(testUsername);
@@ -369,7 +380,9 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
           <small>(It'll be like you were never here)</small>
         </div>
         <div>
-          <button id='account-delete-btn'>Yes, delete</button>
+          <button id='account-delete-btn' onClick={deleteAccount}>
+            Yes, delete
+          </button>
           <button onClick={showDeleteAccount}>No, I'll stay</button>
         </div>
       </div>
