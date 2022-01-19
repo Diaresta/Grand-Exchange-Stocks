@@ -50,10 +50,6 @@ function App() {
     setLoading(false);
   };
 
-  const childLogin = (childData) => {
-    // setLoggedIn(true);
-  };
-
   const logIn = () => {
     if (!token) {
       setLoggedIn(false);
@@ -125,11 +121,7 @@ function App() {
             </Route>
             <Route path={['/login', '/log-in']} exact>
               <div className='log-sign-app-container'>
-                <LogIn
-                  loggedIn={loggedIn}
-                  setToken={setToken}
-                  parentCallback={childLogin}
-                />
+                <LogIn loggedIn={loggedIn} setToken={setToken} />
               </div>
             </Route>
             <Route path={['/signup', '/sign-up']} exact>

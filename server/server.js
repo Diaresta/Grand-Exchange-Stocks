@@ -196,8 +196,7 @@ app.post('/api/account/login', async (req, res) => {
 app.delete('/api/account/delete/:accountID', async (req, res) => {
   Account.findByIdAndRemove({ _id: req.params.accountID })
     .then((data) => {
-      // console.log(req.params.accountID);
-      return res.json({ status: 'Account Deleted!', data: data });
+      return res.json({ status: 'Account Deleted!', info: data });
     })
     .catch((err) => {
       res.status(404).send(err);

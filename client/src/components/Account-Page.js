@@ -162,7 +162,7 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
 
       setTimeout(() => {
         setAlertStyle({
-          pass: {
+          delete: {
             display: 'none',
           },
         });
@@ -184,10 +184,15 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
         accountID: ID,
       })
       .then((data) => {
-        console.log(data);
+        setDeleteAlertText(data.data.status);
+        fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green', 'delete');
+        setTimeout(() => {
+          logOut();
+        }, 1500);
       })
       .catch((err) => {
-        console.log(err);
+        setDeleteAlertText("Account couldn't be deleted");
+        fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'delete');
       });
   };
 
@@ -410,7 +415,7 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
         }}
       >
         <div>
-          <span id='calc-alert' style={alertStyle.pass}>
+          <span id='calc-alert' style={alertStyle.delete}>
             {deleteAlertText}
           </span>
           <h2>Are you sure you want to delete your account?</h2>
