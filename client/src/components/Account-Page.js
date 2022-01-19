@@ -26,7 +26,12 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
   const [formatDate, setFormatDate] = useState('');
   const [emailAlertText, setEmailAlertText] = useState('');
   const [passAlertText, setPassAlertText] = useState('');
-  const [alertStyle, setAlertStyle] = useState({ email: {}, pass: {} });
+  const [deleteAlertText, setDeleteAlertText] = useState('');
+  const [alertStyle, setAlertStyle] = useState({
+    email: {},
+    pass: {},
+    delete: {},
+  });
 
   const [showDiv, setShowDiv] = useState('none');
 
@@ -133,6 +138,35 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
           },
         });
       }, 1500);
+    } else if (element === 'delete') {
+      setAlertStyle({
+        delete: {
+          display: 'flex',
+          opacity: '1',
+          backgroundColor: background,
+          borderColor: border,
+        },
+      });
+
+      setTimeout(() => {
+        setAlertStyle({
+          delete: {
+            display: 'flex',
+            opacity: '0',
+            backgroundColor: background,
+            borderColor: border,
+            transition: 'opacity .75s linear',
+          },
+        });
+      }, 750);
+
+      setTimeout(() => {
+        setAlertStyle({
+          pass: {
+            display: 'none',
+          },
+        });
+      }, 1500);
     }
   };
 
@@ -144,17 +178,17 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
     }
   };
 
-  const deleteAccount = async (ID) => {
-    // const accountDelete = await axios.deleteAccount('/api/account/delete', {
-    //   headers: {},
-    //   body: {
-    //     accountID: ID,
-    //   },
-    // });
-
-    console.log('asdasdasd');
-    // logOut();
-    // accountData[0]._id
+  const deleteAccount = (ID) => {
+    axios
+      .delete(`http://localhost:8000/api/account/delete/${ID}`, {
+        accountID: ID,
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
@@ -376,11 +410,19 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
         }}
       >
         <div>
+          <span id='calc-alert' style={alertStyle.pass}>
+            {deleteAlertText}
+          </span>
           <h2>Are you sure you want to delete your account?</h2>
           <small>(It'll be like you were never here)</small>
         </div>
         <div>
-          <button id='account-delete-btn' onClick={deleteAccount}>
+          <button
+            id='account-delete-btn'
+            onClick={() => {
+              deleteAccount(accountData[0]._id);
+            }}
+          >
             Yes, delete
           </button>
           <button onClick={showDeleteAccount}>No, I'll stay</button>

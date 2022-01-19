@@ -146,12 +146,13 @@ app.get('/api/account/email/search/:accountEmail', (req, res) => {
   );
 });
 
-app.use('/login', (req, res) => {
-  res.send({
-    token: 'testtoken0',
-  });
-});
+// app.use('/login', (req, res) => {
+//   res.send({
+//     token: 'testtoken0',
+//   });
+// });
 
+// Parse db for account and log in
 app.post('/api/account/login', async (req, res) => {
   const loginAttempt = await {
     logUsername: req.body.username.toLowerCase(),
@@ -169,16 +170,6 @@ app.post('/api/account/login', async (req, res) => {
       user: false,
     });
   }
-
-  app.delete('/api/account/delete', async (req, res) => {
-    Account.findOneAndDelete({ _id: req.params.accountID })
-      .then((data) => {
-        return res.json({ status: 'Account Deleted!' });
-      })
-      .catch((err) => {
-        res.status(500).send(err);
-      });
-  });
 
   if (
     (await bcrypt.compare(loginAttempt.logPassword, account.password)) === true
@@ -199,6 +190,18 @@ app.post('/api/account/login', async (req, res) => {
       user: false,
     });
   }
+});
+
+// Parse db for account and delete
+app.delete('/api/account/delete/:accountID', async (req, res) => {
+  Account.findByIdAndRemove({ _id: req.params.accountID })
+    .then((data) => {
+      // console.log(req.params.accountID);
+      return res.json({ status: 'Account Deleted!', data: data });
+    })
+    .catch((err) => {
+      res.status(404).send(err);
+    });
 });
 
 // Create item transtion in db
