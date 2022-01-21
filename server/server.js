@@ -146,11 +146,7 @@ app.get('/api/account/email/search/:accountEmail', (req, res) => {
   );
 });
 
-// app.use('/login', (req, res) => {
-//   res.send({
-//     token: 'testtoken0',
-//   });
-// });
+app.post('/api/account/password/change', async (req, res) => {});
 
 // Parse db for account and log in
 app.post('/api/account/login', async (req, res) => {

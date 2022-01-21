@@ -49,7 +49,7 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
   };
 
   // maybe remove async and go back to if return true/false
-  const updateEmail = async (username, emailToCheck, dbEmail) => {
+  const updateEmail = async (accountID, emailToCheck, dbEmail) => {
     axios
       .get(`http://localhost:8000/api/account/email/search/${emailToCheck}`)
       .then((emailData) => {
@@ -58,13 +58,13 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
           fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'email');
         } else {
           axios
-            .put(`http://localhost:8000/api/account/search/${username}`, {
+            .put(`http://localhost:8000/api/account/search/${accountID}`, {
               email: newEmail.toLowerCase(),
             })
             .catch((err) => {
               console.error(err);
             });
-          setEmailAlertText('Email Successfully Changed');
+          setEmailAlertText('Email Successfully emd');
           fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green', 'email');
         }
       })
@@ -350,41 +350,42 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
             <button
               type='submit'
               onClick={(e) => {
-                if (
-                  currentPassword === '' ||
-                  newPassword === '' ||
-                  newPasswordVerify === ''
-                ) {
-                  setPassAlertText('Password(s) Missing');
-                  fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
-                } else if (
-                  currentPassword.length < 5 ||
-                  newPassword.length < 5 ||
-                  newPasswordVerify.length < 5
-                ) {
-                  e.preventDefault();
-                  setPassAlertText('Password must be >5 characters');
-                  fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
-                } else if (currentPassword !== accountData[0].password) {
-                  setPassAlertText('Current Password Incorrect');
-                  fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
-                } else if (newPassword !== newPasswordVerify) {
-                  setPassAlertText(`New Passwords Don't Match`);
-                  fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
-                } else if (
-                  updatePassword(accountData[0].password, newPasswordVerify) ===
-                  false
-                ) {
-                  setPassAlertText('Please Use a New Password');
-                  fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
-                } else if (
-                  updatePassword(accountData[0].password, newPasswordVerify) ===
-                  true
-                ) {
-                  setPassAlertText('Password Successfully Changed');
-                  fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green', 'pass');
-                  // Update account pass in db
-                }
+                updatePassword(accountData[0].password, newPasswordVerify);
+                // if (
+                //   currentPassword === '' ||
+                //   newPassword === '' ||
+                //   newPasswordVerify === ''
+                // ) {
+                //   setPassAlertText('Password(s) Missing');
+                //   fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
+                // } else if (
+                //   currentPassword.length < 5 ||
+                //   newPassword.length < 5 ||
+                //   newPasswordVerify.length < 5
+                // ) {
+                //   e.preventDefault();
+                //   setPassAlertText('Password must be >5 characters');
+                //   fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
+                // } else if (currentPassword !== accountData[0].password) {
+                //   setPassAlertText('Current Password Incorrect');
+                //   fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
+                // } else if (newPassword !== newPasswordVerify) {
+                //   setPassAlertText(`New Passwords Don't Match`);
+                //   fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
+                // } else if (
+                //   updatePassword(accountData[0].password, newPasswordVerify) ===
+                //   false
+                // ) {
+                //   setPassAlertText('Please Use a New Password');
+                //   fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
+                // } else if (
+                //   updatePassword(accountData[0].password, newPasswordVerify) ===
+                //   true
+                // ) {
+                //   setPassAlertText('Password Successfully Changed');
+                //   fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green', 'pass');
+                //   // Update account pass in db
+                // }
               }}
             >
               Save
