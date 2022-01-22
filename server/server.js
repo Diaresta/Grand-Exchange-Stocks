@@ -146,7 +146,68 @@ app.get('/api/account/email/search/:accountEmail', (req, res) => {
   );
 });
 
-app.post('/api/account/password/change', async (req, res) => {});
+app.post('/api/account/password/change', async (req, res) => {
+  const { token, newPassword, currentPassword, passwordToCheck } = req.body;
+
+  if (!newPassword || typeof newPassword !== 'string') {
+    return res.status(400).send({
+      status: 'Error',
+      error: 'Please enter a valid password',
+    });
+  }
+
+  if (newPassword.length < 5) {
+    return res.status(400).send({
+      status: 'Error',
+      error: 'Password must be >5 characters',
+    });
+  }
+
+  if ((await bcrypt.compare(passwordToCheck, currentPassword)) === false) {
+    return res.json({
+      status: 'error',
+      error: `Current Password is Incorrect`,
+      text: `Current Password is Incorrect`,
+      success: false,
+    });
+  } else if ((await bcrypt.compare(newPassword, currentPassword)) === true) {
+    return res.json({
+      status: 'error',
+      error: `Please Use a New Password`,
+      text: `Please Use a New Password`,
+      success: false,
+    });
+  } else if (
+    (await bcrypt.compare(passwordToCheck, currentPassword)) === true
+  ) {
+    try {
+      const account = jwt.verify(JSON.parse(token), process.env.JWT_KEY);
+      const passHash = await bcrypt.hash(newPassword, 10);
+
+      await Account.updateOne(
+        { _id: account.id },
+        {
+          $set: { password: passHash },
+        }
+      )
+        .then((data) => {})
+        .catch((err) => res.send(err));
+
+      res.json({
+        status: 'ok',
+        data: token,
+        text: `Password Successfully Changed!`,
+        success: true,
+      });
+    } catch (err) {
+      res.json({
+        status: 'error',
+        error: `Couldn't verify log-in authenticity `,
+        success: false,
+      });
+    }
+  }
+});
 
 // Parse db for account and log in
 app.post('/api/account/login', async (req, res) => {

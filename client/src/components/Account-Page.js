@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import LogIn from './Log-In';
 import Footer from './Footer';
-import {
-  emailValidate,
-  dateFormat,
-  updatePassword,
-} from '../static/scripts/Utilities';
+import { emailValidate, dateFormat } from '../static/scripts/Utilities';
 
 const testUsername = 'Diaresta';
 
@@ -49,7 +45,7 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
   };
 
   // maybe remove async and go back to if return true/false
-  const updateEmail = async (accountID, emailToCheck, dbEmail) => {
+  const updateEmail = async (accountID, emailToCheck) => {
     axios
       .get(`http://localhost:8000/api/account/email/search/${emailToCheck}`)
       .then((emailData) => {
@@ -66,6 +62,28 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
             });
           setEmailAlertText('Email Successfully emd');
           fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green', 'email');
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  const updatePassword = (checkPass, currPass, newPass) => {
+    axios
+      .post(`http://localhost:8000/api/account/password/change`, {
+        passwordToCheck: checkPass,
+        currentPassword: currPass,
+        newPassword: newPass,
+        token: localStorage.getItem('token'),
+      })
+      .then((res) => {
+        if (res.data.success === false) {
+          fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
+          setPassAlertText(res.data.text);
+        } else if (res.data.success === true) {
+          fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green', 'pass');
+          setPassAlertText(res.data.text);
         }
       })
       .catch((err) => {
@@ -270,8 +288,8 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
                 type='submit'
                 onClick={(e) => {
                   // add check for @ and .com
+                  e.preventDefault();
                   if (newEmail !== newEmailVerify) {
-                    e.preventDefault();
                     setEmailAlertText(`New Emails Don't Match`);
                     fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'email');
                   } else if (newEmail === '' || newEmailVerify === '') {
@@ -281,15 +299,12 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
                     newEmailVerify.length < 12 ||
                     newEmailVerify.length > 40
                   ) {
-                    e.preventDefault();
                     setEmailAlertText('Email must be 12- 40 characters');
                     fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'email');
                   } else if (emailValidate(newEmail) === false) {
-                    e.preventDefault();
                     setEmailAlertText('Please use a valid email');
                     fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'email');
                   } else {
-                    e.preventDefault();
                     updateEmail(
                       accountData[0]._id,
                       newEmailVerify,
@@ -306,94 +321,86 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
             </table>
           </form>
 
-          <table>
-            <tbody>
-              <tr>
-                <th colSpan='2'>Password</th>
-              </tr>
-              <tr>
-                <td>Current Password:</td>
-                <td>
-                  <input
-                    type='password'
-                    value={currentPassword}
-                    onInput={(e) => setCurrentPassword(e.target.value)}
-                    required
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>New Password:</td>
-                <td>
-                  <input
-                    type='password'
-                    value={newPassword}
-                    onInput={(e) => {
-                      setNewPassword(e.target.value);
-                    }}
-                    required
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Verify New Password:</td>
-                <td>
-                  <input
-                    type='password'
-                    value={newPasswordVerify}
-                    onInput={(e) => setNewPasswordVerify(e.target.value)}
-                    required
-                  />
-                </td>
-              </tr>
-            </tbody>
-            <button
-              type='submit'
-              onClick={(e) => {
-                updatePassword(accountData[0].password, newPasswordVerify);
-                // if (
-                //   currentPassword === '' ||
-                //   newPassword === '' ||
-                //   newPasswordVerify === ''
-                // ) {
-                //   setPassAlertText('Password(s) Missing');
-                //   fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
-                // } else if (
-                //   currentPassword.length < 5 ||
-                //   newPassword.length < 5 ||
-                //   newPasswordVerify.length < 5
-                // ) {
-                //   e.preventDefault();
-                //   setPassAlertText('Password must be >5 characters');
-                //   fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
-                // } else if (currentPassword !== accountData[0].password) {
-                //   setPassAlertText('Current Password Incorrect');
-                //   fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
-                // } else if (newPassword !== newPasswordVerify) {
-                //   setPassAlertText(`New Passwords Don't Match`);
-                //   fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
-                // } else if (
-                //   updatePassword(accountData[0].password, newPasswordVerify) ===
-                //   false
-                // ) {
-                //   setPassAlertText('Please Use a New Password');
-                //   fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
-                // } else if (
-                //   updatePassword(accountData[0].password, newPasswordVerify) ===
-                //   true
-                // ) {
-                //   setPassAlertText('Password Successfully Changed');
-                //   fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green', 'pass');
-                //   // Update account pass in db
-                // }
-              }}
-            >
-              Save
-            </button>
-            <span id='calc-alert' style={alertStyle.pass}>
-              {passAlertText}
-            </span>
-          </table>
+          <form>
+            <table>
+              <tbody>
+                <tr>
+                  <th colSpan='2'>Password</th>
+                </tr>
+                <tr>
+                  <td>Current Password:</td>
+                  <td>
+                    <input
+                      type='password'
+                      value={currentPassword}
+                      onInput={(e) => setCurrentPassword(e.target.value)}
+                      required
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>New Password:</td>
+                  <td>
+                    <input
+                      type='password'
+                      value={newPassword}
+                      onInput={(e) => {
+                        setNewPassword(e.target.value);
+                      }}
+                      required
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Verify New Password:</td>
+                  <td>
+                    <input
+                      type='password'
+                      value={newPasswordVerify}
+                      onInput={(e) => setNewPasswordVerify(e.target.value)}
+                      required
+                    />
+                  </td>
+                </tr>
+              </tbody>
+              <button
+                type='submit'
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (
+                    currentPassword === '' ||
+                    newPassword === '' ||
+                    newPasswordVerify === ''
+                  ) {
+                    setPassAlertText('Password(s) Missing');
+                    fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
+                  } else if (
+                    currentPassword.length < 5 ||
+                    newPassword.length < 5 ||
+                    newPasswordVerify.length < 5
+                  ) {
+                    setPassAlertText('Password must be >5 characters');
+                    fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
+                  } else if (newPassword !== newPasswordVerify) {
+                    e.preventDefault();
+                    setPassAlertText(`New Passwords Don't Match`);
+                    fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'pass');
+                  } else {
+                    updatePassword(
+                      currentPassword,
+                      accountData[0].password,
+                      newPasswordVerify
+                    );
+                  }
+                }}
+              >
+                Save
+              </button>
+              <span id='calc-alert' style={alertStyle.pass}>
+                {passAlertText}
+              </span>
+            </table>
+          </form>
         </div>
       </div>
 

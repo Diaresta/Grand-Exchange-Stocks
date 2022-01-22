@@ -40,29 +40,21 @@ export const emailValidate = (email) => {
 //     });
 // };
 
-export const updatePassword = (currPass, newPass) => {
-  // if (newPass === currPass) {
-  //   console.log('Please use a new password');
-  //   return false;
-  // } else if (newPass !== currPass) {
-  //   console.log('Password acceptable');
-  //   return true;
-  // }
-
-  axios
-    .post(`http://localhost:8000/api/account/password/change`, {
-      body: JSON.stringify({
-        newPassword: newPass,
-        token: localStorage.getItem('token'),
-      }),
-    })
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-};
+// export const updatePassword = (checkPass, currPass, newPass) => {
+//   axios
+//     .post(`http://localhost:8000/api/account/password/change`, {
+//       passwordToCheck: checkPass,
+//       currentPassword: currPass,
+//       newPassword: newPass,
+//       token: localStorage.getItem('token'),
+//     })
+//     .then((res) => {
+//       console.log(res.data);
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//     });
+// };
 
 export const dateFormat = (date) => {
   return date.split('T')[0];
