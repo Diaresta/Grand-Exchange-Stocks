@@ -10,10 +10,8 @@ import {
   dateFormat,
 } from '../static/scripts/Utilities';
 
-const testUsername = 'Diaresta';
-
-const AccountPage = ({ testName, testEmail, loggedIn }) => {
-  const [accountData, setAccountData] = useState([{}]);
+const AccountPage = ({ loggedIn }) => {
+  const [accountData, setAccountData] = useState({});
   const [newEmail, setNewEmail] = useState('');
   const [newEmailVerify, setNewEmailVerify] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
@@ -32,12 +30,14 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
   const [showDiv, setShowDiv] = useState('none');
 
   // Swap to pulling account id from login token
-  const accountInfoCall = async (username) => {
+  const accountInfoCall = async () => {
     axios
-      .get(`http://localhost:8000/api/account/search/${username}`)
+      .post(`http://localhost:8000/api/account/search/`, {
+        token: localStorage.getItem('token'),
+      })
       .then(({ data }) => {
         setAccountData(data);
-        setFormatDate(dateFormat(data[0].signUpDate));
+        setFormatDate(dateFormat(data.signUpDate));
       })
       .catch((err) => {
         console.error(err);
@@ -215,7 +215,7 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
   };
 
   useEffect(() => {
-    accountInfoCall(testUsername);
+    accountInfoCall();
   }, []);
 
   return checkToken() ? (
@@ -230,13 +230,13 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
                 <th>Account</th>
               </tr>
               <tr>
-                <td>{accountData[0].username}</td>
+                <td>{accountData.username}</td>
               </tr>
               <tr>
                 <th>Account ID</th>
               </tr>
               <tr>
-                <td>{accountData[0]._id}</td>
+                <td>{accountData._id}</td>
               </tr>
               <tr>
                 <th>Sign-up Date (Y/M/D)</th>
@@ -248,7 +248,7 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
                 <th>Email</th>
               </tr>
               <tr>
-                <td>{accountData[0].email}</td>
+                <td>{accountData.email}</td>
               </tr>
             </tbody>
           </table>
@@ -306,9 +306,9 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
                     fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'email');
                   } else {
                     updateEmail(
-                      accountData[0]._id,
+                      accountData._id,
                       newEmailVerify,
-                      accountData[0].email
+                      accountData.email
                     );
                   }
                 }}
@@ -388,7 +388,7 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
                   } else {
                     updatePassword(
                       currentPassword,
-                      accountData[0].password,
+                      accountData.password,
                       newPasswordVerify
                     );
                   }
@@ -433,7 +433,7 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
           <button
             id='account-delete-btn'
             onClick={() => {
-              deleteAccount(accountData[0]._id);
+              deleteAccount(accountData._id);
             }}
           >
             Yes, delete

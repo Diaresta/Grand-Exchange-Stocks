@@ -131,11 +131,7 @@ function App() {
             </Route>
             <Route path={'/account'}>
               <div className='account-container'>
-                <AccountPage
-                  testName='Test Name'
-                  testEmail='Test Email@gmail.com'
-                  loggedIn={loggedIn}
-                />
+                <AccountPage loggedIn={loggedIn} />
               </div>
             </Route>
             <Route path={['/contact', '/contact-us']} exact>

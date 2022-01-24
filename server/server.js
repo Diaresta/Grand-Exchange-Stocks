@@ -109,18 +109,32 @@ app.get('/api/account', (req, res) => {
   });
 });
 
-// Parse db for account(s) by username
-app.get('/api/account/search/:accountUsername', (req, res) => {
-  Account.find(
-    { username: req.params.accountUsername.toLowerCase() },
-    (err, data) => {
-      if (err) {
-        res.status(500).send(err);
-      } else {
-        res.status(200).send(data);
-      }
+// Parse db for account(s) by username /* replaced with search id from jwt */
+// app.get('/api/account/search/:accountUsername', (req, res) => {
+//   Account.find(
+//     { username: req.params.accountUsername.toLowerCase() },
+//     (err, data) => {
+//       if (err) {
+//         res.status(500).send(err);
+//       } else {
+//         res.status(200).send(data);
+//       }
+//     }
+//   );
+// });
+
+// Parse db for account by id and return data
+app.post('/api/account/search/', (req, res) => {
+  const { token } = req.body;
+  const account = jwt.verify(JSON.parse(token), process.env.JWT_KEY);
+
+  Account.findById({ _id: account.id }, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
     }
-  );
+  });
 });
 
 // Parse db for account and update account info
