@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import LogIn from './Log-In';
 import Footer from './Footer';
-import { emailValidate, dateFormat } from '../static/scripts/Utilities';
+import {
+  emailValidate,
+  checkToken,
+  logOut,
+  dateFormat,
+} from '../static/scripts/Utilities';
 
 const testUsername = 'Diaresta';
-
-const logOut = () => {
-  localStorage.removeItem('token');
-  window.location.href = '/';
-};
 
 const AccountPage = ({ testName, testEmail, loggedIn }) => {
   const [accountData, setAccountData] = useState([{}]);
@@ -218,7 +218,7 @@ const AccountPage = ({ testName, testEmail, loggedIn }) => {
     accountInfoCall(testUsername);
   }, []);
 
-  return loggedIn ? (
+  return checkToken() ? (
     <div id='account-container'>
       <h2>Account Info</h2>
 

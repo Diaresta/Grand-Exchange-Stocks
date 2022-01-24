@@ -19,11 +19,27 @@ export const itemNameCall = async (itemArray) => {
   return item;
 };
 
+// Regex to check if input is a valid email
 export const emailValidate = (email) => {
   const regex =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   return regex.test(email.toLowerCase());
+};
+
+// Check for login token
+export const checkToken = () => {
+  if (localStorage.getItem('token') != null) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+// Logout of account
+export const logOut = () => {
+  localStorage.removeItem('token');
+  window.location.href = '/';
 };
 
 // ---------- Potential check if provided email is in database ----------
@@ -56,6 +72,7 @@ export const emailValidate = (email) => {
 //     });
 // };
 
+// Formats date to Y/M/D
 export const dateFormat = (date) => {
   return date.split('T')[0];
 };
