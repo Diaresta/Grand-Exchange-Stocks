@@ -3,7 +3,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Footer from '../components/Footer';
 
-const LogIn = ({ loggedIn, setToken }) => {
+const LogIn = ({ checkToken, setToken }) => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [alertText, setAlertText] = useState('');
@@ -62,7 +62,7 @@ const LogIn = ({ loggedIn, setToken }) => {
     }
   };
 
-  return loggedIn ? (
+  return checkToken ? (
     (window.location.href = '/')
   ) : (
     <div id='log-sign-page'>

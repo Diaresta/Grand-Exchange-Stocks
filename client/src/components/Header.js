@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import NavbarRight from './Navbar-Right';
 
-const Header = ({ loggedIn }) => {
+const Header = ({ checkToken }) => {
   return (
     <header>
       <div id='navbar-left'>
@@ -19,7 +19,7 @@ const Header = ({ loggedIn }) => {
       </div>
 
       <div id='navbar-right'>
-        <NavbarRight loggedIn={loggedIn} />
+        <NavbarRight checkToken={checkToken} />
       </div>
     </header>
   );

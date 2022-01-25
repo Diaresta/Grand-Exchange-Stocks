@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import LogIn from './Log-In';
-import { checkToken } from '../static/scripts/Utilities';
 
 const itemHistoryCall = async () => {
   return axios
@@ -15,7 +14,7 @@ const itemHistoryCall = async () => {
     });
 };
 
-const HistoryPage = ({ loggedIn }) => {
+const HistoryPage = ({ checkToken }) => {
   const [itemHistory, setItemHistory] = useState([{}]);
 
   useEffect(() => {
@@ -24,7 +23,7 @@ const HistoryPage = ({ loggedIn }) => {
     });
   }, []);
 
-  return checkToken() ? (
+  return checkToken ? (
     <div id='history-container'>
       <h1>Buy/Sell History</h1>
       <div id='table-container'>

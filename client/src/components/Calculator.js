@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Calculator = ({ loggedIn, itemArray }) => {
+const Calculator = ({ checkToken, itemArray }) => {
   const [itemName, setItemName] = useState();
   const [itemID, setItemID] = useState();
   const [priceValue, setPriceValue] = useState('');
@@ -74,7 +74,7 @@ const Calculator = ({ loggedIn, itemArray }) => {
 
   // Database API call - posts data of purchased item
   const itemPurchase = async () => {
-    if (loggedIn === false) {
+    if (checkToken === false) {
       window.location.href = '/login';
     } else if (
       priceValue + quantityValue === '' ||

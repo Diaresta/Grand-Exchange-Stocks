@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
-const History = ({ loggedIn, itemArray }) => {
-  return loggedIn ? (
+const History = ({ checkToken, itemArray }) => {
+  return checkToken ? (
     <div id='history-container'>
       <h4>
         <Link to='/history'>History</Link>

@@ -3,14 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import LogIn from './Log-In';
 import Footer from './Footer';
-import {
-  emailValidate,
-  checkToken,
-  logOut,
-  dateFormat,
-} from '../static/scripts/Utilities';
+import { emailValidate, logOut, dateFormat } from '../static/scripts/Utilities';
 
-const AccountPage = ({ loggedIn }) => {
+const AccountPage = ({ checkToken }) => {
   const [accountData, setAccountData] = useState({});
   const [newEmail, setNewEmail] = useState('');
   const [newEmailVerify, setNewEmailVerify] = useState('');
@@ -29,7 +24,7 @@ const AccountPage = ({ loggedIn }) => {
 
   const [showDiv, setShowDiv] = useState('none');
 
-  // Swap to pulling account id from login token
+  // Pulls account data from db
   const accountInfoCall = async () => {
     axios
       .post(`http://localhost:8000/api/account/search/`, {
@@ -218,7 +213,7 @@ const AccountPage = ({ loggedIn }) => {
     accountInfoCall();
   }, []);
 
-  return checkToken() ? (
+  return checkToken ? (
     <div id='account-container'>
       <h2>Account Info</h2>
 

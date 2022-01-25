@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+// import { checkToken } from '../static/scripts/Utilities';
 import Footer from '../components/Footer';
 
-const ForgotPassword = ({ loggedIn }) => {
+const ForgotPassword = ({ checkToken }) => {
   const [passwordAccept, setpasswordAccept] = useState(false);
   const [passValue, setpassValue] = useState('');
 
@@ -12,7 +13,7 @@ const ForgotPassword = ({ loggedIn }) => {
     setpassValue('');
   };
 
-  return loggedIn ? (
+  return checkToken ? (
     (window.location.href = '/')
   ) : (
     <div id='log-sign-page'>

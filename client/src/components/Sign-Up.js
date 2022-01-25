@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import axios from 'axios';
 import { emailValidate } from '../static/scripts/Utilities';
 
-const SignUp = ({ loggedIn }) => {
+const SignUp = ({ checkToken }) => {
   const [accountFirstName, setAccountFirstName] = useState('');
   const [accountLastName, setAccountLastName] = useState('');
   const [accountUsername, setAccountUsername] = useState('');
@@ -67,7 +67,7 @@ const SignUp = ({ loggedIn }) => {
       });
   };
 
-  return loggedIn ? (
+  return checkToken ? (
     (window.location.href = '/')
   ) : (
     <div id='log-sign-page'>

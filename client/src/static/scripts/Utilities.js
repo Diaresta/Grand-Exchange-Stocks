@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export const itemNameCall = async (itemArray) => {
   const defaultWindow = window.location.pathname.split('/')[1];
   const itemLinkID = window.location.pathname.split('/')[3];

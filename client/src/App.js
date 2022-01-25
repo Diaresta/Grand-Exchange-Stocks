@@ -17,12 +17,12 @@ import Contact from './components/Contact';
 import ForgotPassword from './components/ForgotPassword';
 import Terms from './components/Terms';
 import useToken from './components/useToken';
+import { checkToken } from './static/scripts/Utilities';
 
 function App() {
   const [apiData, setApiData] = useState([]);
   const [tickerData, setTickerData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
 
   const { token, setToken } = useToken();
 
@@ -50,23 +50,14 @@ function App() {
     setLoading(false);
   };
 
-  const logIn = () => {
-    if (!token) {
-      setLoggedIn(false);
-    } else {
-      setLoggedIn(true);
-    }
-  };
-
   useEffect(() => {
     apiCall('');
-    logIn();
   }, []);
 
   return (
     <div className='App'>
       <Router>
-        <Header loggedIn={loggedIn} />
+        <Header checkToken={checkToken()} />
         <span id={`loading-span-${loading.toString()}`} />
         <div id={loading.toString()}>
           <Ticker tickerData={tickerData} />
@@ -86,8 +77,14 @@ function App() {
                     itemArray={homeGraphItem}
                     // itemID={itemID}
                   />
-                  <Calculator loggedIn={loggedIn} itemArray={homeGraphItem} />
-                  <History loggedIn={loggedIn} itemArray={homeGraphItem} />
+                  <Calculator
+                    checkToken={checkToken()}
+                    itemArray={homeGraphItem}
+                  />
+                  <History
+                    checkToken={checkToken()}
+                    itemArray={homeGraphItem}
+                  />
                 </div>
               </div>
             </Route>
@@ -109,29 +106,35 @@ function App() {
                     itemArray={homeGraphItem}
                     // itemID={itemID}
                   />
-                  <Calculator loggedIn={loggedIn} itemArray={homeGraphItem} />
-                  <History loggedIn={loggedIn} itemArray={homeGraphItem} />
+                  <Calculator
+                    checkToken={checkToken()}
+                    itemArray={homeGraphItem}
+                  />
+                  <History
+                    checkToken={checkToken()}
+                    itemArray={homeGraphItem}
+                  />
                 </div>
               </div>
             </Route>
             <Route path={'/history'} exact>
               <div className='history-page-container'>
-                <HistoryPage loggedIn={loggedIn} />
+                <HistoryPage checkToken={checkToken()} />
               </div>
             </Route>
             <Route path={['/login', '/log-in']} exact>
               <div className='log-sign-app-container'>
-                <LogIn loggedIn={loggedIn} setToken={setToken} />
+                <LogIn checkToken={checkToken()} setToken={setToken} />
               </div>
             </Route>
             <Route path={['/signup', '/sign-up']} exact>
               <div className='log-sign-app-container'>
-                <SignUp loggedIn={loggedIn} />
+                <SignUp checkToken={checkToken()} />
               </div>
             </Route>
             <Route path={'/account'}>
               <div className='account-container'>
-                <AccountPage loggedIn={loggedIn} />
+                <AccountPage checkToken={checkToken()} />
               </div>
             </Route>
             <Route path={['/contact', '/contact-us']} exact>
@@ -141,7 +144,7 @@ function App() {
             </Route>
             <Route path={['/account-recovery', '/forgot-password']} exact>
               <div className='log-sign-app-container'>
-                <ForgotPassword loggedIn={loggedIn} />
+                <ForgotPassword checkToken={checkToken()} />
               </div>
             </Route>
             <Route path={['/privacy-policy']} exact>
