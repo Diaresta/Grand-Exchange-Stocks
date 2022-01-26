@@ -15,11 +15,11 @@ const itemHistoryCall = async () => {
 };
 
 const HistoryPage = ({ checkToken }) => {
-  const [itemHistory, setItemHistory] = useState([{}]);
+  const [itemHistory, setItemHistory] = useState([]);
 
   useEffect(() => {
     itemHistoryCall().then((data) => {
-      setItemHistory(data);
+      setItemHistory(data.reverse());
     });
   }, []);
 
@@ -35,7 +35,7 @@ const HistoryPage = ({ checkToken }) => {
               <th>Quantity</th>
               <th>Buy/Sell Price</th>
               <th>Overall</th>
-              <th>Date</th>
+              <th>Date(M/D/Y)</th>
             </tr>
           </thead>
           <tbody>
@@ -44,9 +44,9 @@ const HistoryPage = ({ checkToken }) => {
                 <td>
                   <a href={`/item/${item.name}/${item.id}`}>{item.name}</a>
                 </td>
-                <td>{item.quantity}</td>
-                <td>{item.price}g</td>
-                <td>{item.overall}g</td>
+                <td>{item.quantity.toLocaleString()}</td>
+                <td>{item.price.toLocaleString()}g</td>
+                <td>{item.overall.toLocaleString()}g</td>
                 <td>{item.date}</td>
               </tr>
             ))}

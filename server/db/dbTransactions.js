@@ -6,7 +6,7 @@ const transactionSchema = mongoose.Schema({
   price: Number,
   quantity: Number,
   overall: Number,
-  date: Date,
+  date: String,
 });
 
 export default mongoose.model('Transactions', transactionSchema);
