@@ -10,6 +10,21 @@ const Calculator = ({ checkToken, itemArray }) => {
   const [alertText, setAlertText] = useState('');
   const [alertStyle, setAlertStyle] = useState();
 
+  // Move to App component?
+  const [userID, setUserID] = useState('');
+  const accountInfoCall = async () => {
+    axios
+      .post(`http://localhost:8000/api/account/search/`, {
+        token: localStorage.getItem('token'),
+      })
+      .then(({ data }) => {
+        setUserID(data._id);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   // Item API call - (Name and ID)
   const itemNameCall = async () => {
     const defaultWindow = window.location.pathname.split('/')[1];
@@ -73,7 +88,7 @@ const Calculator = ({ checkToken, itemArray }) => {
   };
 
   // Database API call - posts data of purchased item
-  const itemPurchase = async () => {
+  const itemPurchase = async (userID) => {
     if (checkToken === false) {
       window.location.href = '/login';
     } else if (
@@ -89,12 +104,17 @@ const Calculator = ({ checkToken, itemArray }) => {
     } else {
       axios
         .post('http://localhost:8000/api/transaction', {
-          name: itemName,
-          id: itemID,
-          price: priceValue,
-          quantity: quantityValue,
-          overall: priceValue * quantityValue,
-          date: new Date().toLocaleString(),
+          accountID: userID,
+          transactions: [
+            {
+              name: itemName,
+              id: itemID,
+              price: priceValue,
+              quantity: quantityValue,
+              overall: priceValue * quantityValue,
+              date: new Date().toLocaleString(),
+            },
+          ],
         })
         .then((res) => {
           setAlertText('Purchased!');
@@ -111,6 +131,7 @@ const Calculator = ({ checkToken, itemArray }) => {
 
   useEffect(() => {
     itemNameCall();
+    accountInfoCall();
   }, []);
 
   return (
@@ -165,7 +186,13 @@ const Calculator = ({ checkToken, itemArray }) => {
           <p id='price-overall'>{calcCheck(priceValue, quantityValue)}g</p>
         </div>
         <div id='submit-container'>
-          <button id='input-btn' onClick={itemPurchase} disabled={btnDisable}>
+          <button
+            id='input-btn'
+            onClick={(e) => {
+              itemPurchase(userID);
+            }}
+            disabled={btnDisable}
+          >
             Buy/Sell
           </button>
           <span id='calc-alert' style={alertStyle}>

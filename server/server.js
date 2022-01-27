@@ -274,16 +274,45 @@ app.delete('/api/account/delete/:accountID', async (req, res) => {
     });
 });
 
-// Create item transtion in db
-app.post('/api/transaction', (req, res) => {
+// Create item transaction in db
+app.post('/api/transaction', async (req, res) => {
   const dbTransaction = req.body;
-  Transactions.create(dbTransaction, (err, data) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(201).send(data);
-    }
-  });
+  // Transactions.findOneAndUpdate(dbTransaction.accountID, (err, data) => {
+  //   if (err) {
+  //     res.status(500).send(err);
+  //   } else {
+  //     res.status(201).send(data);
+  //   }
+  // });
+
+  const findAccount = await Transactions.find({
+    accountID: dbTransaction.accountID,
+  }).count();
+
+  if (findAccount === 1) {
+    Transactions.findOneAndUpdate(
+      { accountID: dbTransaction.accountID },
+      {
+        $addToSet: {
+          transactions: dbTransaction.transactions,
+        },
+      }
+    )
+      .then((data) => {
+        res.status(201).send(data);
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  } else if (findAccount !== 1) {
+    Transactions.create(dbTransaction, (err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(201).send(data);
+      }
+    });
+  }
 });
 
 // Parse db for transaction(s)
