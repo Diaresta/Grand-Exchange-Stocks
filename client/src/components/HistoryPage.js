@@ -3,11 +3,14 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import LogIn from './Log-In';
 
-const itemHistoryCall = async () => {
+let accountID = '61ee1b17ab3f197d1a52150a';
+
+const itemHistoryCall = async (accountID) => {
   return axios
-    .get('http://localhost:8000/api/transaction')
+    .get(`http://localhost:8000/api/transaction/${accountID}`)
     .then(({ data }) => {
-      return data;
+      // console.log(data[0].transactions);
+      return data[0].transactions;
     })
     .catch((err) => {
       console.error(err);
@@ -18,7 +21,7 @@ const HistoryPage = ({ checkToken }) => {
   const [itemHistory, setItemHistory] = useState([]);
 
   useEffect(() => {
-    itemHistoryCall().then((data) => {
+    itemHistoryCall(accountID).then((data) => {
       setItemHistory(data.reverse());
     });
   }, []);

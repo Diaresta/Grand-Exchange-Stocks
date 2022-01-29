@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import './static/css/App.css';
 import Header from './components/Header';
 import Ticker from './components/Ticker';
@@ -23,8 +24,30 @@ function App() {
   const [apiData, setApiData] = useState([]);
   const [tickerData, setTickerData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [logData, setLogData] = useState();
 
   const { token, setToken } = useToken();
+
+  // Updating to send data to components
+  const accountInfoCall = async () => {
+    axios
+      .post(`http://localhost:8000/api/account/search/`, {
+        token: localStorage.getItem('token'),
+      })
+      .then(({ data }) => {
+        setLogData(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  // Check if logged in and sends data to components
+  const logDataCheck = () => {
+    if (checkToken() === true) {
+      accountInfoCall();
+    }
+  };
 
   var itemArray = [2, 4151, 11832, 1073, 6585];
   var homeGraphItem = itemArray[Math.floor(Math.random() * itemArray.length)];
@@ -52,12 +75,13 @@ function App() {
 
   useEffect(() => {
     apiCall('');
+    logDataCheck();
   }, []);
 
   return (
     <div className='App'>
       <Router>
-        <Header checkToken={checkToken()} />
+        <Header checkToken={checkToken()} logData={logData} />
         <span id={`loading-span-${loading.toString()}`} />
         <div id={loading.toString()}>
           <Ticker tickerData={tickerData} />

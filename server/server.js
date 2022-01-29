@@ -315,7 +315,7 @@ app.post('/api/transaction', async (req, res) => {
   }
 });
 
-// Parse db for transaction(s)
+// Parse db for all transactions
 app.get('/api/transaction', (req, res) => {
   Transactions.find((err, data) => {
     if (err) {
@@ -324,6 +324,21 @@ app.get('/api/transaction', (req, res) => {
       res.status(200).send(data);
     }
   });
+});
+
+// Parse db for transactions by account
+app.get('/api/transaction/:accountID', (req, res) => {
+  const dbTransaction = req.params.accountID;
+
+  Transactions.find({ accountID: dbTransaction }, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+
+  Transactions.find((err, data) => {});
 });
 
 var itemArray = [2, 4151, 11832, 1073, 6585, 11802, 4587];
