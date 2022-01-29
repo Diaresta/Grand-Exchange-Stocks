@@ -143,7 +143,7 @@ function App() {
             </Route>
             <Route path={'/history'} exact>
               <div className='history-page-container'>
-                <HistoryPage checkToken={checkToken()} />
+                <HistoryPage checkToken={checkToken()} logData={logData} />
               </div>
             </Route>
             <Route path={['/login', '/log-in']} exact>
@@ -158,7 +158,7 @@ function App() {
             </Route>
             <Route path={'/account'}>
               <div className='account-container'>
-                <AccountPage checkToken={checkToken()} />
+                <AccountPage checkToken={checkToken()} logData={logData} />
               </div>
             </Route>
             <Route path={['/contact', '/contact-us']} exact>

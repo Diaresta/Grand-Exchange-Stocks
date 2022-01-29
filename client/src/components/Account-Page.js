@@ -5,7 +5,7 @@ import LogIn from './Log-In';
 import Footer from './Footer';
 import { emailValidate, logOut, dateFormat } from '../static/scripts/Utilities';
 
-const AccountPage = ({ checkToken }) => {
+const AccountPage = ({ checkToken, logData }) => {
   const [accountData, setAccountData] = useState({});
   const [newEmail, setNewEmail] = useState('');
   const [newEmailVerify, setNewEmailVerify] = useState('');
@@ -16,29 +16,20 @@ const AccountPage = ({ checkToken }) => {
   const [emailAlertText, setEmailAlertText] = useState('');
   const [passAlertText, setPassAlertText] = useState('');
   const [deleteAlertText, setDeleteAlertText] = useState('');
+  const [showDiv, setShowDiv] = useState('none');
   const [alertStyle, setAlertStyle] = useState({
     email: {},
     pass: {},
     delete: {},
   });
 
-  const [showDiv, setShowDiv] = useState('none');
-
   // Pulls account data from db
-  const accountInfoCall = async () => {
-    axios
-      .post(`http://localhost:8000/api/account/search/`, {
-        token: localStorage.getItem('token'),
-      })
-      .then(({ data }) => {
-        setAccountData(data);
-        setFormatDate(dateFormat(data.signUpDate));
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+  const setData = (logData) => {
+    setAccountData(logData);
+    setFormatDate(dateFormat(logData.signUpDate));
   };
 
+  // Updates logged in account email
   // maybe remove async and go back to if return true/false
   const updateEmail = async (accountID, emailToCheck) => {
     axios
@@ -64,6 +55,7 @@ const AccountPage = ({ checkToken }) => {
       });
   };
 
+  // Updates logged in account password
   const updatePassword = (checkPass, currPass, newPass) => {
     axios
       .post(`http://localhost:8000/api/account/password/change`, {
@@ -86,6 +78,7 @@ const AccountPage = ({ checkToken }) => {
       });
   };
 
+  // Pop up alert for forms/input elements
   const fadeOutAlert = (background, border, element) => {
     if (element === 'email') {
       setAlertStyle({
@@ -183,6 +176,7 @@ const AccountPage = ({ checkToken }) => {
     }
   };
 
+  // Shows/hides confirm account deletion div
   const showDeleteAccount = () => {
     if (showDiv === 'none') {
       setShowDiv('flex');
@@ -191,6 +185,7 @@ const AccountPage = ({ checkToken }) => {
     }
   };
 
+  // Deletes current logged in account from db
   const deleteAccount = (ID) => {
     axios
       .delete(`http://localhost:8000/api/account/delete/${ID}`, {
@@ -210,7 +205,7 @@ const AccountPage = ({ checkToken }) => {
   };
 
   useEffect(() => {
-    accountInfoCall();
+    setData(logData);
   }, []);
 
   return checkToken ? (

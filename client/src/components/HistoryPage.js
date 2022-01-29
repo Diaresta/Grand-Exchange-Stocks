@@ -3,13 +3,11 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import LogIn from './Log-In';
 
-let accountID = '61ee1b17ab3f197d1a52150a';
-
+// Gets transactions from server by account
 const itemHistoryCall = async (accountID) => {
   return axios
     .get(`http://localhost:8000/api/transaction/${accountID}`)
     .then(({ data }) => {
-      // console.log(data[0].transactions);
       return data[0].transactions;
     })
     .catch((err) => {
@@ -17,11 +15,11 @@ const itemHistoryCall = async (accountID) => {
     });
 };
 
-const HistoryPage = ({ checkToken }) => {
+const HistoryPage = ({ checkToken, logData }) => {
   const [itemHistory, setItemHistory] = useState([]);
 
   useEffect(() => {
-    itemHistoryCall(accountID).then((data) => {
+    itemHistoryCall(logData._id).then((data) => {
       setItemHistory(data.reverse());
     });
   }, []);
