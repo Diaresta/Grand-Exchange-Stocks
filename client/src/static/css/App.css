@@ -149,6 +149,21 @@ header i:hover {
   align-items: center;
 }
 
+#navbar-right a {
+  color: #1652f0;
+  font-weight: bold;
+}
+
+#navbar-right a:hover {
+  color: #1141c0;
+  text-decoration: underline;
+}
+
+#navbar-right a:active {
+  color: #1141c0;
+  text-decoration: underline;
+}
+
 #navbar-right .logo-placeholder {
   font-size: 2rem;
   margin: 0;

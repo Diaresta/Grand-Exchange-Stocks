@@ -81,8 +81,6 @@ app.post('/api/account/create', async (req, res) => {
     });
   }
 
-  // --------------------------------------------
-
   Account.create(dbAccount, (err, data) => {
     if (err) {
       if (err.code === 11000) {
@@ -160,6 +158,7 @@ app.get('/api/account/email/search/:accountEmail', (req, res) => {
   );
 });
 
+// Parse db for account and change password
 app.post('/api/account/password/change', async (req, res) => {
   const { token, newPassword, currentPassword, passwordToCheck } = req.body;
 
@@ -277,13 +276,6 @@ app.delete('/api/account/delete/:accountID', async (req, res) => {
 // Create item transaction in db
 app.post('/api/transaction', async (req, res) => {
   const dbTransaction = req.body;
-  // Transactions.findOneAndUpdate(dbTransaction.accountID, (err, data) => {
-  //   if (err) {
-  //     res.status(500).send(err);
-  //   } else {
-  //     res.status(201).send(data);
-  //   }
-  // });
 
   const findAccount = await Transactions.find({
     accountID: dbTransaction.accountID,
@@ -337,8 +329,22 @@ app.get('/api/transaction/:accountID', (req, res) => {
       res.status(200).send(data);
     }
   });
+});
 
-  Transactions.find((err, data) => {});
+// Parse db for transaction by account and item
+app.get('/api/transaction/:accountID/:itemID', (req, res) => {
+  const dbTransaction = req.params.accountID;
+  const itemID = parseInt(req.params.itemID);
+
+  Transactions.find({ accountID: dbTransaction }, (err, data) => {
+    for (let i = 0; i < data[0].transactions.length; i++) {
+      var parseData = data[0].transactions[i];
+      if (parseData.id === itemID) {
+        res.status(200).send(parseData);
+      }
+      // Add error handling if item not found
+    }
+  });
 });
 
 var itemArray = [2, 4151, 11832, 1073, 6585, 11802, 4587];

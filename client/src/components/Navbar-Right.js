@@ -24,7 +24,9 @@ const NavbarRight = ({ checkToken }) => {
 
   return checkToken ? (
     <div id='navbar-right'>
-      <i className='fas fa-user-circle fa-2x' />
+      <Link to='/account'>
+        <i className='fas fa-user-circle fa-2x' />
+      </Link>
       <Link to='/account'>{accountUsername}</Link>
     </div>
   ) : (
