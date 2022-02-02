@@ -8,6 +8,7 @@ const itemHistoryCall = async (accountID) => {
   return axios
     .get(`http://localhost:8000/api/transaction/${accountID}`)
     .then(({ data }) => {
+      console.log(data[0].transactions);
       return data[0].transactions;
     })
     .catch((err) => {

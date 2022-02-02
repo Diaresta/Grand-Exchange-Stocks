@@ -335,14 +335,25 @@ app.get('/api/transaction/:accountID', (req, res) => {
 app.get('/api/transaction/:accountID/:itemID', (req, res) => {
   const dbTransaction = req.params.accountID;
   const itemID = parseInt(req.params.itemID);
+  let itemReturn = [];
 
   Transactions.find({ accountID: dbTransaction }, (err, data) => {
-    for (let i = 0; i < data[0].transactions.length; i++) {
-      var parseData = data[0].transactions[i];
-      if (parseData.id === itemID) {
-        res.status(200).send(parseData);
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      for (let i = 0; i < data[0].transactions.length; i++) {
+        var parseData = data[0].transactions[i];
+        if (parseData.id === itemID) {
+          itemReturn.push(parseData);
+        }
       }
-      // Add error handling if item not found
+
+      // Maybe add different error check if no items found. Currently breaking feth call in History component
+      // if (itemReturn.length === 0) {
+      //   res.status(500).send('No items found');
+      // } else if (itemReturn.length > 0) {
+      res.status(200).send(itemReturn);
+      // }
     }
   });
 });

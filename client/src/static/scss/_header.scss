@@ -110,14 +110,14 @@ header {
 }
 
 .log-in {
-  color: #fff;
+  color: #fff !important;
   background-color: $accent-color;
   border: 2px solid $accent-color !important;
   text-align: center;
 }
 
 .log-in:hover {
-  color: #e5e5e5;
+  color: #e5e5e5 !important;
   background-color: $hover-color;
   border: 2px solid $hover-color !important;
 }

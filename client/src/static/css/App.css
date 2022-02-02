@@ -172,14 +172,14 @@ header i:hover {
 }
 
 .log-in {
-  color: #fff;
+  color: #fff !important;
   background-color: #1652f0;
   border: 2px solid #1652f0 !important;
   text-align: center;
 }
 
 .log-in:hover {
-  color: #e5e5e5;
+  color: #e5e5e5 !important;
   background-color: #1141c0;
   border: 2px solid #1141c0 !important;
 }

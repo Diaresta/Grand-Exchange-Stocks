@@ -4,7 +4,6 @@ import axios from 'axios';
 
 const History = ({ checkToken, itemArray }) => {
   const [itemHistory, setItemHistory] = useState([]);
-  const test = false;
 
   const accountInfoCall = async () => {
     axios
@@ -31,10 +30,14 @@ const History = ({ checkToken, itemArray }) => {
         await `http://localhost:8000/api/transaction/${accountID}/${itemLinkID}`;
     }
 
-    const response = await fetch(url);
-    const data = await response.json();
-
-    setItemHistory(data);
+    axios
+      .get(url)
+      .then(({ data }) => {
+        setItemHistory(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   useEffect(() => {
@@ -42,8 +45,7 @@ const History = ({ checkToken, itemArray }) => {
   }, []);
 
   return checkToken ? (
-    // If item history returns null
-    test ? (
+    itemHistory.length ? (
       <div id='history-container'>
         <h4>
           <Link to='/history'>History</Link>
@@ -52,7 +54,7 @@ const History = ({ checkToken, itemArray }) => {
           <table>
             <thead>
               <tr>
-                {/* <th>Item</th> */}
+                <th>Item</th>
                 <th>Quantity</th>
                 <th>Buy/Sell Price</th>
                 <th>Overall</th>
@@ -60,34 +62,15 @@ const History = ({ checkToken, itemArray }) => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                {/* <td>Abyssal Whip</td> */}
-                <td>4</td>
-                <td>1,372,382</td>
-                <td>2,534,489,528</td>
-                <td>06/30/2021 - 22:30:54</td>
-              </tr>
-              <tr>
-                {/* <td>Bandos Chestplate</td> */}
-                <td>1</td>
-                <td>14,571,116</td>
-                <td>14,571,116</td>
-                <td>06/30/2021 - 22:33:23</td>
-              </tr>
-              <tr>
-                {/* <td>Bandos Chestplate</td> */}
-                <td>1</td>
-                <td>14,571,116</td>
-                <td>14,571,116</td>
-                <td>06/30/2021 - 22:33:23</td>
-              </tr>
-              <tr>
-                {/* <td>Abyssal Whip</td> */}
-                <td>4</td>
-                <td>1,372,382</td>
-                <td>5,489,528</td>
-                <td>06/30/2021 - 22:30:54</td>
-              </tr>
+              {itemHistory.map((item) => (
+                <tr>
+                  <td>{item.name}</td>
+                  <td>{item.quantity.toLocaleString()}</td>
+                  <td>{item.price.toLocaleString()}g</td>
+                  <td>{item.overall.toLocaleString()}g</td>
+                  <td>{item.date}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
           <div id='history-btn-div'>
