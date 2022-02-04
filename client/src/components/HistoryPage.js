@@ -8,12 +8,19 @@ const itemHistoryCall = async (accountID) => {
   return axios
     .get(`http://localhost:8000/api/transaction/${accountID}`)
     .then(({ data }) => {
-      console.log(data[0].transactions);
       return data[0].transactions;
     })
     .catch((err) => {
       console.error(err);
     });
+};
+
+const sortItems = (arrayToSort, sortBy) => {
+  if (sortBy === 'itemName') {
+    return arrayToSort.sort((a, b) => a.name > b.name);
+  }
+
+  return sortBy;
 };
 
 const HistoryPage = ({ checkToken, logData }) => {
@@ -29,6 +36,22 @@ const HistoryPage = ({ checkToken, logData }) => {
     <div id='history-container'>
       <h1>Buy/Sell History</h1>
       <div id='table-container'>
+        <div>
+          <select value='Sort'>
+            <option
+              onChange={(e) => {
+                setItemHistory(sortItems([...itemHistory], 'itemName'));
+                console.log(itemHistory);
+              }}
+            >
+              Item
+            </option>
+            <option>Quantity</option>
+            <option>Price</option>
+            <option>Overall</option>
+            <option>Date</option>
+          </select>
+        </div>
         <table id='page-table'>
           <thead>
             <tr>
