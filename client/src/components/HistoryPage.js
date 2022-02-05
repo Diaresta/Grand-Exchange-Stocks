@@ -15,9 +15,18 @@ const itemHistoryCall = async (accountID) => {
     });
 };
 
+// Sort array by its object key/values
 const sortItems = (arrayToSort, sortBy) => {
   if (sortBy === 'itemName') {
     return arrayToSort.sort((a, b) => a.name > b.name);
+  } else if (sortBy === 'itemQuantity') {
+    return arrayToSort.sort((a, b) => a.quantity < b.quantity);
+  } else if (sortBy === 'itemPrice') {
+    return arrayToSort.sort((a, b) => a.price < b.price);
+  } else if (sortBy === 'itemOverall') {
+    return arrayToSort.sort((a, b) => a.overall < b.overall);
+  } else if (sortBy === 'itemDate') {
+    return arrayToSort.sort((a, b) => a.date > b.date);
   }
 
   return sortBy;
@@ -36,21 +45,55 @@ const HistoryPage = ({ checkToken, logData }) => {
     <div id='history-container'>
       <h1>Buy/Sell History</h1>
       <div id='table-container'>
-        <div>
-          <select value='Sort'>
-            <option
-              onChange={(e) => {
+        <div id='sort-menu'>
+          <button className='drop-btn'>Sort</button>
+          <div id='sort-content'>
+            <button
+              className='sort-btn'
+              onClick={(e) => {
                 setItemHistory(sortItems([...itemHistory], 'itemName'));
-                console.log(itemHistory);
               }}
             >
-              Item
-            </option>
-            <option>Quantity</option>
-            <option>Price</option>
-            <option>Overall</option>
-            <option>Date</option>
-          </select>
+              Item &nbsp;
+              <i class='fas fa-sort-amount-up' />
+            </button>
+            <button
+              className='sort-btn'
+              onClick={(e) => {
+                setItemHistory(sortItems([...itemHistory], 'itemQuantity'));
+              }}
+            >
+              Quantity&nbsp;
+              <i class='fas fa-sort-amount-up' />
+            </button>
+            <button
+              className='sort-btn'
+              onClick={(e) => {
+                setItemHistory(sortItems([...itemHistory], 'itemPrice'));
+              }}
+            >
+              Price&nbsp;
+              <i class='fas fa-sort-amount-up' />
+            </button>
+            <button
+              className='sort-btn'
+              onClick={(e) => {
+                setItemHistory(sortItems([...itemHistory], 'itemOverall'));
+              }}
+            >
+              Overall&nbsp;
+              <i class='fas fa-sort-amount-up' />
+            </button>
+            <button
+              className='sort-btn'
+              onClick={(e) => {
+                setItemHistory(sortItems([...itemHistory], 'itemDate'));
+              }}
+            >
+              Date&nbsp;
+              <i class='fas fa-sort-amount-down-alt' />
+            </button>
+          </div>
         </div>
         <table id='page-table'>
           <thead>
@@ -73,6 +116,7 @@ const HistoryPage = ({ checkToken, logData }) => {
                 <td>{item.price.toLocaleString()}g</td>
                 <td>{item.overall.toLocaleString()}g</td>
                 <td>{item.date}</td>
+                <i class='fas fa-times' />
               </tr>
             ))}
           </tbody>

@@ -559,11 +559,82 @@ table td {
 
 #page-table {
   font-size: 1.1rem;
-  margin-bottom: 25px;
+  margin: 15px auto 25px auto;
+}
+
+#page-table tr {
+  vertical-align: baseline;
 }
 
 #page-table td {
   padding: 5px 0px 5px 10px;
+}
+
+#page-table .fa-times {
+  color: red;
+  padding-left: 5px;
+}
+
+#page-table .fa-times:hover {
+  color: #af0000;
+  cursor: pointer;
+}
+
+#page-table .fa-times:active {
+  color: black;
+}
+
+#sort-menu {
+  position: relative;
+  display: inline-block;
+  margin: 5px 5px 0 2.5%;
+  width: 7%;
+}
+
+#sort-menu button {
+  border: none;
+  height: 25px;
+  width: 100%;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.75em;
+}
+
+#sort-menu .drop-btn {
+  background-color: #1652f0;
+  color: #fff;
+}
+
+#sort-menu #sort-content {
+  display: none;
+  position: absolute;
+  background-color: #b9cbfa;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  width: 100%;
+}
+
+#sort-menu #sort-content .sort-btn {
+  color: #1652f0;
+  background-color: #e7edfd;
+  display: block;
+}
+
+#sort-menu #sort-content .sort-btn:hover {
+  background-color: #b9cbfa;
+}
+
+#sort-menu #sort-content .sort-btn:active {
+  background-color: #93b2ff;
+}
+
+#sort-menu:hover #sort-content {
+  display: block;
+}
+
+#sort-menu:hover .drop-btn {
+  background-color: #1141c0;
+  color: #e5e5e5;
 }
 
 #search-container {
