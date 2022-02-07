@@ -36,7 +36,6 @@ const History = ({ checkToken, itemArray }) => {
     axios
       .get(url)
       .then(({ data }) => {
-        console.log(data);
         setItemHistory(data);
       })
       .catch((err) => {

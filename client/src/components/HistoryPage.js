@@ -38,7 +38,11 @@ const HistoryPage = ({ checkToken, logData }) => {
 
   useEffect(() => {
     itemHistoryCall(logData._id).then((data) => {
-      setItemHistory(data.reverse());
+      if (!data) {
+        return;
+      } else {
+        setItemHistory(data.reverse());
+      }
     });
   }, []);
 

@@ -340,6 +340,8 @@ app.get('/api/transaction/:accountID/:itemID', (req, res) => {
   Transactions.find({ accountID: dbTransaction }, (err, data) => {
     if (err) {
       res.status(500).send(err);
+    } else if (data.length === 0) {
+      return;
     } else {
       for (let i = 0; i < data[0].transactions.length; i++) {
         var parseData = data[0].transactions[i];
@@ -347,13 +349,7 @@ app.get('/api/transaction/:accountID/:itemID', (req, res) => {
           itemReturn.push(parseData);
         }
       }
-
-      // Maybe add different error check if no items found. Currently breaking feth call in History component
-      // if (itemReturn.length === 0) {
-      //   res.status(500).send('No items found');
-      // } else if (itemReturn.length > 0) {
       res.status(200).send(itemReturn);
-      // }
     }
   });
 });
