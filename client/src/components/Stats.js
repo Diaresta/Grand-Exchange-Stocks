@@ -47,15 +47,6 @@ const Stats = ({ loading, itemArray, itemID }) => {
 
   return (
     <div id='stats-container'>
-      {/* <div id='stats-name'>
-        <h2 id='item-name'>Abyssal Whip</h2>
-        <img
-          id='item-img'
-          src={`https://secure.runescape.com/m=itemdb_oldschool/1624874635661_obj_big.gif?id=${itemID}`}
-          alt='Item Sprite'
-        />
-      </div> */}
-
       <h4>Stats</h4>
       <div id='stats-list-container'>
         <ul id='ul-1'>

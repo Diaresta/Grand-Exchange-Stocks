@@ -6,16 +6,19 @@ const NavbarRight = ({ checkToken }) => {
   const [accountUsername, setAccountUsername] = useState('');
 
   const accountInfoCall = async () => {
-    axios
-      .post(`http://localhost:8000/api/account/search/`, {
-        token: localStorage.getItem('token'),
-      })
-      .then(({ data }) => {
-        setAccountUsername(data.username);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    if (checkToken === false) {
+    } else {
+      axios
+        .post(`http://localhost:8000/api/account/search/`, {
+          token: localStorage.getItem('token'),
+        })
+        .then(({ data }) => {
+          setAccountUsername(data.username);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
   };
 
   useEffect(() => {

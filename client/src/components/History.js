@@ -6,16 +6,19 @@ const History = ({ checkToken, itemArray }) => {
   const [itemHistory, setItemHistory] = useState([]);
 
   const accountInfoCall = async () => {
-    axios
-      .post(`http://localhost:8000/api/account/search/`, {
-        token: localStorage.getItem('token'),
-      })
-      .then(({ data }) => {
-        itemLinkCheck(data._id);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    if (checkToken === false) {
+    } else {
+      axios
+        .post(`http://localhost:8000/api/account/search/`, {
+          token: localStorage.getItem('token'),
+        })
+        .then(({ data }) => {
+          itemLinkCheck(data._id);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
   };
 
   const itemLinkCheck = async (accountID) => {
@@ -33,6 +36,7 @@ const History = ({ checkToken, itemArray }) => {
     axios
       .get(url)
       .then(({ data }) => {
+        console.log(data);
         setItemHistory(data);
       })
       .catch((err) => {

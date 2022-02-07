@@ -27,9 +27,10 @@ const sortItems = (arrayToSort, sortBy) => {
     return arrayToSort.sort((a, b) => a.overall < b.overall);
   } else if (sortBy === 'itemDate') {
     return arrayToSort.sort((a, b) => a.date > b.date);
+  } else if (sortBy === 'default') {
+    return arrayToSort.sort((a, b) => a.date < b.date);
   }
-
-  return sortBy;
+  return arrayToSort;
 };
 
 const HistoryPage = ({ checkToken, logData }) => {
@@ -92,6 +93,14 @@ const HistoryPage = ({ checkToken, logData }) => {
             >
               Date&nbsp;
               <i class='fas fa-sort-amount-down-alt' />
+            </button>
+            <button
+              className='sort-btn'
+              onClick={(e) => {
+                setItemHistory(sortItems([...itemHistory], 'default'));
+              }}
+            >
+              Default
             </button>
           </div>
         </div>

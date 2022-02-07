@@ -13,35 +13,41 @@ const Calculator = ({ checkToken, itemArray }) => {
   // Move to App component?
   const [userID, setUserID] = useState('');
   const accountInfoCall = async () => {
-    axios
-      .post(`http://localhost:8000/api/account/search/`, {
-        token: localStorage.getItem('token'),
-      })
-      .then(({ data }) => {
-        setUserID(data._id);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    if (checkToken === false) {
+    } else {
+      axios
+        .post(`http://localhost:8000/api/account/search/`, {
+          token: localStorage.getItem('token'),
+        })
+        .then(({ data }) => {
+          setUserID(data._id);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
   };
 
   // Item API call - (Name and ID)
   const itemNameCall = async () => {
-    const defaultWindow = window.location.pathname.split('/')[1];
-    const itemLinkID = window.location.pathname.split('/')[3];
-
-    if (defaultWindow === '' || defaultWindow === 'home') {
-      var url = await `http://localhost:8000/item/${itemArray}`;
-      setItemID(itemArray);
+    if (checkToken === false) {
     } else {
-      var url = await `http://localhost:8000/item/${itemLinkID}`;
-      setItemID(itemLinkID);
+      const defaultWindow = window.location.pathname.split('/')[1];
+      const itemLinkID = window.location.pathname.split('/')[3];
+
+      if (defaultWindow === '' || defaultWindow === 'home') {
+        var url = await `http://localhost:8000/item/${itemArray}`;
+        setItemID(itemArray);
+      } else {
+        var url = await `http://localhost:8000/item/${itemLinkID}`;
+        setItemID(itemLinkID);
+      }
+
+      const res = await fetch(url);
+      const data = await res.json();
+
+      setItemName(data.name);
     }
-
-    const res = await fetch(url);
-    const data = await res.json();
-
-    setItemName(data.name);
   };
 
   // Purchase/Error alert animation
