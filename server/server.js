@@ -354,6 +354,26 @@ app.get('/api/transaction/:accountID/:itemID', (req, res) => {
   });
 });
 
+// Parses item API and updates our item db to parity
+app.get('/admin/api/items/itemupdate/', async (req, res) => {
+  let itemDB = [];
+
+  let getItemData = await axios.get(
+    'https://prices.runescape.wiki/api/v1/osrs/mapping'
+  );
+
+  let itemReponse = await getItemData.data;
+
+  for (let i = 0; i < itemReponse.length; i++) {
+    itemDB.push({
+      id: itemReponse[i].id,
+      name: itemReponse[i].name.toLowerCase(),
+    });
+  }
+
+  res.send(itemDB);
+});
+
 var itemArray = [2, 4151, 11832, 1073, 6585, 11802, 4587];
 var tickerArray = [];
 // var itemID = itemArray[Math.floor(Math.random() * itemArray.length)];
