@@ -18,15 +18,20 @@ import Contact from './components/Contact';
 import ForgotPassword from './components/ForgotPassword';
 import Terms from './components/Terms';
 import useToken from './components/useToken';
+import useInterval from './components/useInterval';
 import { checkToken } from './static/scripts/Utilities';
 
 function App() {
   const [apiData, setApiData] = useState([]);
   const [tickerData, setTickerData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [refreshCheck, setRefreshCheck] = useState(false);
   const [logData, setLogData] = useState();
 
   const { token, setToken } = useToken();
+
+  var itemArray = [2, 4151, 11832, 1073, 6585];
+  var homeGraphItem = itemArray[Math.floor(Math.random() * itemArray.length)];
 
   // Updating to send data to components
   const accountInfoCall = async () => {
@@ -49,9 +54,6 @@ function App() {
     }
   };
 
-  var itemArray = [2, 4151, 11832, 1073, 6585];
-  var homeGraphItem = itemArray[Math.floor(Math.random() * itemArray.length)];
-
   const apiCall = async (itemID) => {
     const defaultWindow = window.location.pathname.split('/')[1];
     const itemLinkID = window.location.pathname.split('/')[3];
@@ -70,11 +72,25 @@ function App() {
     const data = await response.json();
     setApiData(data);
     setTickerData(data.ticker);
-    setLoading(false);
   };
 
+  // Check for loading state then prompts user to refresh page if loading !== false
+  useInterval(
+    () => {
+      if (loading !== false) {
+        setRefreshCheck(true);
+      } else {
+        setRefreshCheck(false);
+      }
+    },
+    10000,
+    []
+  );
+
   useEffect(() => {
-    apiCall('');
+    apiCall('').then(() => {
+      setLoading(false);
+    });
     logDataCheck();
   }, []);
 
@@ -82,6 +98,17 @@ function App() {
     <div className='App'>
       <Router>
         <Header checkToken={checkToken()} logData={logData} />
+        <div id={`refresh-span-${refreshCheck.toString()}`}>
+          <h2>Page Not Responding?</h2>
+          <button
+            id='input-btn'
+            onClick={(e) => {
+              window.location.reload();
+            }}
+          >
+            Click to Refesh
+          </button>
+        </div>
         <span id={`loading-span-${loading.toString()}`} />
         <div id={loading.toString()}>
           <Ticker tickerData={tickerData} />
