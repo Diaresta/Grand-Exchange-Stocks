@@ -1,3 +1,6 @@
+import axios from 'axios';
+
+// Gets item info from server
 export const itemNameCall = async (itemArray) => {
   const defaultWindow = window.location.pathname.split('/')[1];
   const itemLinkID = window.location.pathname.split('/')[3];
@@ -15,6 +18,20 @@ export const itemNameCall = async (itemArray) => {
 
   console.log(item);
   return item;
+};
+
+// Gets account info from server by account
+export const accountInfoCall = () => {
+  return axios
+    .post(`http://localhost:8000/api/account/search/`, {
+      token: localStorage.getItem('token'),
+    })
+    .then(({ data }) => {
+      return data;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 };
 
 // Regex to check if input is a valid email
@@ -38,6 +55,11 @@ export const checkToken = () => {
 export const logOut = () => {
   localStorage.removeItem('token');
   window.location.href = '/';
+};
+
+// Formats date to Y/M/D
+export const dateFormat = (date) => {
+  return date.split('T')[0];
 };
 
 // ---------- Potential check if provided email is in database ----------
@@ -69,8 +91,3 @@ export const logOut = () => {
 //       console.error(err);
 //     });
 // };
-
-// Formats date to Y/M/D
-export const dateFormat = (date) => {
-  return date.split('T')[0];
-};

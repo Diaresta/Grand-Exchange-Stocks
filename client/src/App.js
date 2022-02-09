@@ -33,7 +33,7 @@ function App() {
   var itemArray = [2, 4151, 11832, 1073, 6585];
   var homeGraphItem = itemArray[Math.floor(Math.random() * itemArray.length)];
 
-  // Updating to send data to components
+  // Gets account info from server by account
   const accountInfoCall = async () => {
     axios
       .post(`http://localhost:8000/api/account/search/`, {
@@ -170,7 +170,7 @@ function App() {
             </Route>
             <Route path={'/history'} exact>
               <div className='history-page-container'>
-                <HistoryPage checkToken={checkToken()} logData={logData} />
+                <HistoryPage checkToken={checkToken()} />
               </div>
             </Route>
             <Route path={['/login', '/log-in']} exact>
@@ -185,7 +185,7 @@ function App() {
             </Route>
             <Route path={'/account'}>
               <div className='account-container'>
-                <AccountPage checkToken={checkToken()} logData={logData} />
+                <AccountPage checkToken={checkToken()} />
               </div>
             </Route>
             <Route path={['/contact', '/contact-us']} exact>

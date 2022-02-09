@@ -3,9 +3,14 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import LogIn from './Log-In';
 import Footer from './Footer';
-import { emailValidate, logOut, dateFormat } from '../static/scripts/Utilities';
+import {
+  accountInfoCall,
+  emailValidate,
+  logOut,
+  dateFormat,
+} from '../static/scripts/Utilities';
 
-const AccountPage = ({ checkToken, logData }) => {
+const AccountPage = ({ checkToken }) => {
   const [accountData, setAccountData] = useState({});
   const [newEmail, setNewEmail] = useState('');
   const [newEmailVerify, setNewEmailVerify] = useState('');
@@ -205,7 +210,7 @@ const AccountPage = ({ checkToken, logData }) => {
   };
 
   useEffect(() => {
-    setData(logData);
+    accountInfoCall().then((data) => setData(data));
   }, []);
 
   return checkToken ? (

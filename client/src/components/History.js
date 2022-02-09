@@ -1,25 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { accountInfoCall } from '../static/scripts/Utilities';
 
 const History = ({ checkToken, itemArray }) => {
   const [itemHistory, setItemHistory] = useState([]);
-
-  const accountInfoCall = async () => {
-    if (checkToken === false) {
-    } else {
-      axios
-        .post(`http://localhost:8000/api/account/search/`, {
-          token: localStorage.getItem('token'),
-        })
-        .then(({ data }) => {
-          itemLinkCheck(data._id);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
-  };
 
   const itemLinkCheck = async (accountID) => {
     const defaultWindow = window.location.pathname.split('/')[1];
@@ -44,7 +29,7 @@ const History = ({ checkToken, itemArray }) => {
   };
 
   useEffect(() => {
-    accountInfoCall();
+    accountInfoCall().then((data) => itemLinkCheck(data._id));
   }, []);
 
   return checkToken ? (
