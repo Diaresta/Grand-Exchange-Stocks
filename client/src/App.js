@@ -30,7 +30,11 @@ function App() {
 
   const { token, setToken } = useToken();
 
-  var itemArray = [2, 4151, 11832, 1073, 6585];
+  // Items to show on page load
+  var itemArray = [
+    2, 385, 444, 536, 560, 561, 1073, 4151, 6585, 10034, 11284, 11832, 13652,
+    20097, 21012, 21021, 21024, 21034, 21079,
+  ];
   var homeGraphItem = itemArray[Math.floor(Math.random() * itemArray.length)];
 
   // Gets account info from server by account

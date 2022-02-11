@@ -374,8 +374,15 @@ app.get('/admin/api/items/itemupdate/', async (req, res) => {
   res.send(itemDB);
 });
 
-var itemArray = [2, 4151, 11832, 1073, 6585, 11802, 4587];
+// Array of items for ticker
+var itemArray = [
+  [24626, 4156, 12998, 1397, 573, 5631, 11836],
+  [2, 4151, 11832, 1073, 6585, 11802, 4587],
+  [2434, 12924, 19544, 4749, 9242, 13237, 20997],
+  [561, 20097, 21012, 21021, 21024, 21034, 21079],
+];
 var tickerArray = [];
+
 // var itemID = itemArray[Math.floor(Math.random() * itemArray.length)];
 
 // app.use('*', (req, res) => {
@@ -396,9 +403,11 @@ app.get('/', (req, res) => res.status(200).send('welcome gamers'));
 // );
 // });
 
-app.get(`/item/:itemID`, (req, res) => {
+app.get(`/item/:itemID`, async (req, res) => {
+  let parsedArray = itemArray[Math.floor(Math.random() * 4)];
+
   for (let i = 0; i < 7; i++) {
-    setTickerArray(itemArray[i]);
+    setTickerArray(parsedArray[i]);
   }
 
   itemApiCall(req, res, parseInt(req.params.itemID), tickerArray);
