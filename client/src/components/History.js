@@ -29,7 +29,11 @@ const History = ({ checkToken, itemArray }) => {
   };
 
   useEffect(() => {
-    accountInfoCall().then((data) => itemLinkCheck(data._id));
+    accountInfoCall().then((data) => {
+      if (!data) {
+        return;
+      } else itemLinkCheck(data._id);
+    });
   }, []);
 
   return checkToken ? (
