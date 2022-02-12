@@ -8,6 +8,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import Account from './db/dbAccounts.js';
 import Transactions from './db/dbTransactions.js';
+import Contact from './db/dbContact.js';
 
 const app = express();
 
@@ -372,6 +373,58 @@ app.get('/admin/api/items/itemupdate/', async (req, res) => {
   }
 
   res.send(itemDB);
+});
+
+// Create contact message in db
+app.post('/api/contact/create', async (req, res) => {
+  const dbContact = await {
+    username: req.body.username,
+    email: req.body.email,
+    message: req.body.message,
+    contactDate: req.body.contactDate,
+  };
+
+  // Cackend check for form parameters ----------
+  if (!dbContact.username || typeof dbContact.username !== 'string') {
+    return res
+      .status(400)
+      .json({ status: 'Error', error: 'Please enter a valid username' });
+  }
+
+  if (dbContact.username.length < 3 || dbContact.username.length > 20) {
+    return res.status(400).json({
+      status: 'Error',
+      error: 'Username must be 3- 20 characters',
+    });
+  }
+
+  if (!dbContact.email || typeof dbContact.email !== 'string') {
+    return res
+      .status(400)
+      .send({ status: 'Error', error: 'Please enter a valid email' });
+  }
+
+  if (dbContact.email.length < 12 || dbContact.email.length > 40) {
+    return res.status(400).send({
+      status: 'Error',
+      error: 'Email must be 12- 40 characters',
+    });
+  }
+
+  if (dbContact.message.length < 5) {
+    return res.status(400).json({
+      status: 'Error',
+      error: 'Message must be at least 5 characters',
+    });
+  }
+
+  Contact.create(dbContact, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(201).send(data);
+    }
+  });
 });
 
 // Array of items for ticker

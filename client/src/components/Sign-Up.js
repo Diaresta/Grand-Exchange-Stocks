@@ -39,8 +39,6 @@ const SignUp = ({ checkToken }) => {
   };
 
   const accountSignUp = async (e) => {
-    // set conditions if inputs are empty
-
     e.preventDefault();
     axios
       .post('http://localhost:8000/api/account/create', {
@@ -58,8 +56,6 @@ const SignUp = ({ checkToken }) => {
         setTimeout(() => {
           window.location.href = '/login';
         }, 500);
-        // Alert 'Account Created!'
-        // Redirect to home logged in
       })
       .catch((err) => {
         setAlertText(err.response.data.error);

@@ -194,7 +194,7 @@ function App() {
             </Route>
             <Route path={['/contact', '/contact-us']} exact>
               <div className='log-sign-app-container'>
-                <Contact />
+                <Contact checkToken={checkToken()} />
               </div>
             </Route>
             <Route path={['/account-recovery', '/forgot-password']} exact>

@@ -1,27 +1,108 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import Footer from '../components/Footer';
 
-const Contact = () => {
-  return (
+const Contact = ({ checkToken }) => {
+  let [username, setUsername] = useState('');
+  let [userEmail, setUserEmail] = useState('');
+  let [contactMessage, setContactMessage] = useState('');
+  const [alertText, setAlertText] = useState('');
+  const [btnDisable, setDisabled] = useState();
+  const [alertStyle, setAlertStyle] = useState();
+  const [btnCursor, setCursor] = useState('');
+
+  const fadeOutAlert = (background, border) => {
+    setAlertStyle({
+      display: 'flex',
+      opacity: '1',
+      backgroundColor: background,
+      borderColor: border,
+    });
+
+    setTimeout(() => {
+      setAlertStyle({
+        display: 'flex',
+        opacity: '0',
+        backgroundColor: background,
+        borderColor: border,
+        transition: 'opacity .75s linear',
+      });
+    }, 750);
+
+    setTimeout(() => {
+      setAlertStyle({
+        display: 'none',
+      });
+    }, 1500);
+  };
+
+  const contactSubmit = async (e) => {
+    e.preventDefault();
+    axios
+      .post('http://localhost:8000/api/contact/create', {
+        username: username.toLowerCase(),
+        email: userEmail.toLowerCase(),
+        message: contactMessage,
+        contactDate: new Date().toLocaleDateString(),
+      })
+      .then((res) => {
+        setAlertText('Message Submitted!');
+        fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green');
+        setCursor('not-allowed');
+        setDisabled(true);
+
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 500);
+      })
+      .catch((err) => {
+        setAlertText(err.response.data.error);
+        fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red');
+      });
+  };
+
+  return checkToken ? (
     <div id='log-sign-page'>
       <div class='log-sign-container'>
         <div class='form-container'>
           <h1>Contact Us</h1>
+          <span id='calc-alert' style={alertStyle}>
+            {alertText}
+          </span>
           <form>
             <div class='form-input-div'>
-              <input type='text' placeholder='First Name' required />
-              <input type='text' placeholder='Last Name' required />
+              <input
+                id='email-input'
+                type='text'
+                placeholder='Username'
+                required
+                onChange={(e) => setUsername(e.target.value)}
+              />
+
+              <input
+                id='email-input'
+                type='email'
+                placeholder='E-Mail'
+                required
+                onChange={(e) => setUserEmail(e.target.value)}
+              />
             </div>
 
-            <input
-              id='email-input'
-              type='email'
-              placeholder='E-Mail'
+            <textarea
+              placeholder='Messsage...'
               required
+              onChange={(e) => setContactMessage(e.target.value)}
             />
-            <textarea placeholder='Messsage...' />
             <br />
-            <button class=''>Submit</button>
+            <button
+              disabled={btnDisable}
+              style={{ cursor: `${btnCursor}` }}
+              type='submit'
+              onClick={contactSubmit}
+            >
+              Submit
+            </button>
           </form>
         </div>
       </div>
@@ -33,6 +114,8 @@ const Contact = () => {
 
       <Footer />
     </div>
+  ) : (
+    (window.location.href = '/login')
   );
 };
 
