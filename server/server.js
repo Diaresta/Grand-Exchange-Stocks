@@ -355,6 +355,29 @@ app.get('/api/transaction/:accountID/:itemID', (req, res) => {
   });
 });
 
+// Parsedb for transaction by account and item id and delete
+app.delete('/api/transaction/delete', async (req, res) => {
+  const dbTransaction = req.body;
+
+  Transactions.findOneAndUpdate(
+    {
+      accountID: dbTransaction.userID,
+    },
+    {
+      $pull: {
+        transactions: { _id: dbTransaction._id },
+      },
+    },
+    { new: true }
+  )
+    .then((data) => {
+      res.status(200).send('Item removed from history!');
+    })
+    .catch((err) => {
+      res.status(500).send('Something went wrong. Try again');
+    });
+});
+
 // Parses item API and updates our item db to parity
 app.get('/admin/api/items/itemupdate/', async (req, res) => {
   let itemDB = [];

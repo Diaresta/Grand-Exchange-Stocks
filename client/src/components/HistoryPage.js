@@ -16,6 +16,23 @@ const itemHistoryCall = async (accountID) => {
     });
 };
 
+// Deletes selected item from user's db
+const itemDelete = async (accountID, itemID) => {
+  axios
+    .delete('http://localhost:8000/api/transaction/delete', {
+      data: {
+        userID: accountID,
+        _id: itemID,
+      },
+    })
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.err(err);
+    });
+};
+
 // Sort array by its object key/values
 const sortItems = (arrayToSort, sortBy) => {
   if (sortBy === 'itemName') {
@@ -36,9 +53,12 @@ const sortItems = (arrayToSort, sortBy) => {
 
 const HistoryPage = ({ checkToken, logData }) => {
   const [itemHistory, setItemHistory] = useState([]);
+  const [id, setID] = useState();
 
   useEffect(() => {
     accountInfoCall().then((data) => {
+      setID(data._id);
+
       itemHistoryCall(data._id).then((data) => {
         if (!data) {
           return;
@@ -132,7 +152,13 @@ const HistoryPage = ({ checkToken, logData }) => {
                 <td>{item.price.toLocaleString()}g</td>
                 <td>{item.overall.toLocaleString()}g</td>
                 <td>{item.date}</td>
-                <i class='fas fa-times' />
+                <i
+                  onClick={(e) => {
+                    itemDelete(id, item._id);
+                    console.log(item._id);
+                  }}
+                  class='fas fa-times'
+                />
               </tr>
             ))}
           </tbody>
