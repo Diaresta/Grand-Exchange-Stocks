@@ -665,6 +665,85 @@ table td {
   color: #e5e5e5;
 }
 
+#history-container #account-button-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0 0 0;
+}
+
+#history-container #account-button-div div {
+  display: flex;
+}
+
+#history-container #account-button-div button {
+  width: 75px;
+  height: 50px;
+  margin: 0 15px;
+}
+
+#history-container #account-button-div::before {
+  content: '';
+  width: 30%;
+  border-top: solid 1px #b9cbfa;
+  margin-bottom: 20px;
+}
+
+#history-container #account-delete-window {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  height: 175px;
+  width: 500px;
+  background-color: #e7edfd;
+  border: 3px solid #1652f0;
+  border-radius: 5px;
+  box-shadow: 3px 2px rgba(6, 41, 128, 0.6);
+}
+
+#history-container #account-delete-window button {
+  color: #1652f0;
+  background-color: #fff;
+  border: 1px solid #b9cbfa;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  margin: 15px 5px 5px 5px;
+  border-radius: 5px;
+  height: 30px;
+  width: 100px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease, border 0.25s ease;
+}
+
+#history-container #account-delete-window button:hover {
+  color: #1141c0;
+  background-color: #e5e5e5;
+  border: 1px solid #94a2c8;
+}
+
+#history-container #account-delete-window button:active {
+  background-color: #94a2c8;
+  border: 1px solid #9495c8;
+}
+
+#history-container #account-delete-window #account-delete-btn:hover {
+  color: #ff0000;
+  background-color: #e5e5e5;
+  border: 1px solid #e60000;
+}
+
+#history-container #account-delete-window #account-delete-btn:active {
+  color: #e60000;
+  background-color: #94a2c8;
+  border: 1px solid #cc0000;
+}
+
 #search-container {
   display: flex;
   margin: 15px;

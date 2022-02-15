@@ -52,10 +52,19 @@ const sortItems = (arrayToSort, sortBy) => {
 };
 
 const HistoryPage = ({ checkToken, logData }) => {
+  const [update, setUpdate] = useState('');
   const [itemHistory, setItemHistory] = useState([]);
   const [id, setID] = useState();
+  const [showDiv, setShowDiv] = useState('none');
+  const [alertStyle, setAlertStyle] = useState({});
+  const [deleteAlertText, setDeleteAlertText] = useState('');
+  const [deleteItem, setDeleteItem] = useState({
+    transID: '',
+    itemID: '',
+    itemName: '',
+  });
 
-  useEffect(() => {
+  const accountHistoryCall = () => {
     accountInfoCall().then((data) => {
       setID(data._id);
 
@@ -67,12 +76,80 @@ const HistoryPage = ({ checkToken, logData }) => {
         }
       });
     });
+  };
+
+  const showDeleteItem = () => {
+    if (showDiv === 'none') {
+      setShowDiv('flex');
+    } else {
+      setShowDiv('none');
+    }
+  };
+
+  const fadeOutAlert = (background, border) => {
+    setAlertStyle({
+      display: 'flex',
+      opacity: '1',
+      backgroundColor: background,
+      borderColor: border,
+    });
+
+    setTimeout(() => {
+      setAlertStyle({
+        display: 'flex',
+        opacity: '0',
+        backgroundColor: background,
+        borderColor: border,
+        transition: 'opacity .75s linear',
+      });
+    }, 750);
+
+    setTimeout(() => {
+      setAlertStyle({
+        display: 'none',
+      });
+    }, 1500);
+  };
+
+  useEffect(() => {
+    accountHistoryCall();
   }, []);
 
   return checkToken ? (
     <div id='history-container'>
       <h1>Buy/Sell History</h1>
       <div id='table-container'>
+        <div
+          id='account-delete-window'
+          style={{
+            display: `${showDiv}`,
+          }}
+        >
+          <div>
+            <span id='calc-alert' style={alertStyle}>
+              {deleteAlertText}
+            </span>
+            <h2>
+              Are you sure you want to delete your {deleteItem.itemName}{' '}
+              transaction?
+            </h2>
+          </div>
+          <div>
+            <button
+              id='account-delete-btn'
+              onClick={() => {
+                itemDelete(deleteItem.transID, deleteItem.itemID);
+                setDeleteAlertText('Deleted!');
+                fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green');
+                showDeleteItem();
+                accountHistoryCall();
+              }}
+            >
+              Yes, delete
+            </button>
+            <button onClick={showDeleteItem}>No, keep</button>
+          </div>
+        </div>
         <div id='sort-menu'>
           <button className='drop-btn'>Sort</button>
           <div id='sort-content'>
@@ -154,8 +231,17 @@ const HistoryPage = ({ checkToken, logData }) => {
                 <td>{item.date}</td>
                 <i
                   onClick={(e) => {
-                    itemDelete(id, item._id);
-                    console.log(item._id);
+                    if (showDiv === 'flex') {
+                      return;
+                    } else {
+                      setDeleteItem({
+                        transID: id,
+                        itemID: item._id,
+                        itemName: item.name,
+                      });
+
+                      showDeleteItem();
+                    }
                   }}
                   class='fas fa-times'
                 />
