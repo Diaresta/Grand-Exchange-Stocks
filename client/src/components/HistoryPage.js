@@ -52,7 +52,6 @@ const sortItems = (arrayToSort, sortBy) => {
 };
 
 const HistoryPage = ({ checkToken, logData }) => {
-  const [update, setUpdate] = useState('');
   const [itemHistory, setItemHistory] = useState([]);
   const [id, setID] = useState();
   const [showDiv, setShowDiv] = useState('none');

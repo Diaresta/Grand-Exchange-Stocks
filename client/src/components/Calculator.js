@@ -143,69 +143,75 @@ const Calculator = ({ checkToken, itemArray }) => {
   return (
     <div id='calculator-container'>
       <h4>Buy/Sell</h4>
-      <div id='input-container'>
-        <form
-          id='calc-form'
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
-          <label htmlFor='buy-sell-input'>Buy/Sell Price:</label>
-          <input
-            type=''
-            id='buy-sell-input'
-            name='buy-sell'
-            placeholder='Enter price here...'
-            onChange={(e) => {
-              setPriceValue(e.target.value);
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
+        <div id='input-container'>
+          <div
+            id='calc-form'
+            onSubmit={(e) => {
+              e.preventDefault();
             }}
-            autocomplete='off'
-            required
-          ></input>
-        </form>
-
-        <form
-          id='calc-form'
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
-          <label htmlFor='quantity-input'>Quantity:</label>
-          {/* <br /> */}
-          <input
-            type=''
-            id='quantity-input'
-            name='quantity'
-            placeholder='Enter quantity here...'
-            onChange={(e) => {
-              setQuantityValue(e.target.value);
-            }}
-            autocomplete='off'
-            required
-          ></input>
-        </form>
-      </div>
-
-      <div id='input-container'>
-        <div id='price-container'>
-          <p id='form-overall'>Overall:</p>
-          <p id='price-overall'>{calcCheck(priceValue, quantityValue)}g</p>
-        </div>
-        <div id='submit-container'>
-          <button
-            id='input-btn'
-            onClick={(e) => {
-              itemPurchase(userID);
-            }}
-            disabled={btnDisable}
           >
-            Buy/Sell
-          </button>
-          <span id='calc-alert' style={alertStyle}>
-            {alertText}
-          </span>
+            <label htmlFor='buy-sell-input'>Buy/Sell Price:</label>
+            <input
+              type=''
+              id='buy-sell-input'
+              name='buy-sell'
+              placeholder='Enter price here...'
+              onChange={(e) => {
+                setPriceValue(e.target.value);
+              }}
+              autocomplete='off'
+              required
+            ></input>
+          </div>
+
+          <div
+            id='calc-form'
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+          >
+            <label htmlFor='quantity-input'>Quantity:</label>
+            {/* <br /> */}
+            <input
+              type=''
+              id='quantity-input'
+              name='quantity'
+              placeholder='Enter quantity here...'
+              onChange={(e) => {
+                setQuantityValue(e.target.value);
+              }}
+              autocomplete='off'
+              required
+            ></input>
+          </div>
         </div>
-      </div>
+
+        <div id='input-container'>
+          <div id='price-container'>
+            <p id='form-overall'>Overall:</p>
+            <p id='price-overall'>{calcCheck(priceValue, quantityValue)}g</p>
+          </div>
+          <div id='submit-container'>
+            <button
+              id='input-btn'
+              onClick={(e) => {
+                itemPurchase(userID);
+              }}
+              disabled={btnDisable}
+            >
+              Buy/Sell
+            </button>
+            <span id='calc-alert' style={alertStyle}>
+              {alertText}
+            </span>
+          </div>
+        </div>
+      </form>
     </div>
   );
 };
