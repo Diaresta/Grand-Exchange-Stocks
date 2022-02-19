@@ -128,14 +128,16 @@ function App() {
                 /> */}
                 </div>
                 <div id='stats-cal-container'>
-                  <Stats
-                    itemArray={homeGraphItem}
-                    // itemID={itemID}
-                  />
-                  <Calculator
-                    checkToken={checkToken()}
-                    itemArray={homeGraphItem}
-                  />
+                  <div id='stats-cal-mediaQ'>
+                    <Stats
+                      itemArray={homeGraphItem}
+                      // itemID={itemID}
+                    />
+                    <Calculator
+                      checkToken={checkToken()}
+                      itemArray={homeGraphItem}
+                    />
+                  </div>
                   <History
                     checkToken={checkToken()}
                     itemArray={homeGraphItem}
