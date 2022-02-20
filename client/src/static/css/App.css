@@ -145,7 +145,10 @@ input::placeholder {
     width: 98% !important;
   }
   #account-page {
-    background-color: pink;
+    flex-direction: column;
+  }
+  #account-page #table-right {
+    margin-left: 0px !important;
   }
 }
 
