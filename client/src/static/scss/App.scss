@@ -87,7 +87,6 @@ body,
   display: flex;
   // width: 100%;
   // height: 100%;
-  // background-color: yellow;
 
   #stats-cal-container {
     width: 50%;
@@ -114,14 +113,14 @@ input::placeholder {
     }
 
     #stats-cal-mediaQ {
-      display: flex;
+      display: flex !important;
       margin-top: 15px;
       margin-bottom: 15px;
       padding-right: 5px;
     }
+  }
 
-    // respective sass files
-
+  @media (min-width: 806px) and (max-width: 1099px) {
     #stats-container {
       width: 50% !important;
     }
@@ -136,35 +135,34 @@ input::placeholder {
     }
   }
 
-  // @media (min-width: 0) and (max-width: 805) {
-  //   #stats-cal-container {
-  //     width: 100% !important;
-  //     background-color: red !important;
-  //   }
+  @media (min-width: 0px) and (max-width: 805px) {
+    #stats-cal-mediaQ {
+      flex-direction: column;
+      margin-bottom: 0px;
+    }
 
-  //   #stats-cal-mediaQ {
-  //     display: flex;
-  //     flex-direction: column;
-  //     margin-top: 15px;
-  //     margin-bottom: 15px;
-  //     padding-right: 5px;
-  //   }
+    #stats-container {
+      margin-right: auto !important;
+      margin-left: auto !important;
+      width: 98% !important;
+    }
 
-  //   // respective sass files
+    #calculator-container {
+      margin-right: auto !important;
+      margin-left: auto !important;
+      width: 98% !important;
+    }
 
-  //   #stats-container {
-  //     // width: 50% !important;
-  //   }
+    #history-container {
+      margin-right: auto !important;
+      margin-left: auto !important;
+      width: 98% !important;
+    }
 
-  //   #calculator-container {
-  //     // width: 50% !important;
-  //   }
-
-  //   #history-container {
-  //     width: 98.5% !important;
-  //     margin: auto !important;
-  //   }
-  // }
+    #account-page {
+      background-color: pink;
+    }
+  }
 }
 
 @import 'header';
