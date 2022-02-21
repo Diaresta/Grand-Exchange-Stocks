@@ -183,6 +183,19 @@ input::placeholder {
       position: fixed !important;
     }
   }
+
+  @media (min-width: 0px) and (max-width: 500) {
+    // Fix header name overflowing
+    // Hide user photo
+
+    /* Fix graph name and buttons
+      Item name + picture
+      5min 1hr 6hr
+    */
+
+    // Fix item history overflow
+    // Fix item history sort button
+  }
 }
 
 @import 'header';

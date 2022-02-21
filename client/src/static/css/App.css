@@ -162,6 +162,13 @@ input::placeholder {
   }
 }
 
+@media screen and (min-width: 0px) and (max-width: 500) {
+  /* Fix graph name and buttons
+      Item name + picture
+      5min 1hr 6hr
+    */
+}
+
 header {
   width: 100%;
   height: 8%;
