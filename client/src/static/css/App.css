@@ -110,6 +110,10 @@ input::placeholder {
     margin-bottom: 15px;
     padding-right: 5px;
   }
+  #moving-container a {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+  }
 }
 
 @media screen and (min-width: 806px) and (max-width: 1099px) {
@@ -162,11 +166,22 @@ input::placeholder {
   }
 }
 
-@media screen and (min-width: 0px) and (max-width: 500) {
-  /* Fix graph name and buttons
-      Item name + picture
-      5min 1hr 6hr
-    */
+@media screen and (min-width: 0px) and (max-width: 700px) {
+  #moving-container a {
+    margin: 0px 10px !important;
+  }
+}
+
+@media screen and (min-width: 0px) and (max-width: 501px) {
+  #graph-header {
+    flex-direction: column;
+  }
+  #graph-header #stats-btns {
+    margin-top: 5px;
+  }
+  #graph-header #stats-btns ul {
+    padding-left: 0;
+  }
 }
 
 header {

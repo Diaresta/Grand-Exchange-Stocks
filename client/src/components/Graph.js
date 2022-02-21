@@ -146,23 +146,25 @@ const Graph = ({ itemArray }) => {
             <h2 id='item-name'>{itemName}</h2>
             <img id='item-img' src={itemIcon} alt='' />
           </div>
-          <ul id='graph-btn-ul'>
-            <li className='graph-btn-li'>
-              <button className='price-btn' onClick={setChartBtn}>
-                5min
-              </button>
-            </li>
-            <li className='graph-btn-li'>
-              <button className='price-btn' onClick={setChartBtn}>
-                1hr
-              </button>
-            </li>
-            <li className='graph-btn-li'>
-              <button className='price-btn' onClick={setChartBtn}>
-                6hrs
-              </button>
-            </li>
-          </ul>
+          <div id='stats-btns'>
+            <ul id='graph-btn-ul'>
+              <li className='graph-btn-li'>
+                <button className='price-btn' onClick={setChartBtn}>
+                  5min
+                </button>
+              </li>
+              <li className='graph-btn-li'>
+                <button className='price-btn' onClick={setChartBtn}>
+                  1hr
+                </button>
+              </li>
+              <li className='graph-btn-li'>
+                <button className='price-btn' onClick={setChartBtn}>
+                  6hrs
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
         {/* <canvas id='cart'></canvas> */}
         <Line

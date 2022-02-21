@@ -119,6 +119,14 @@ input::placeholder {
       margin-bottom: 15px;
       padding-right: 5px;
     }
+
+    // ---------- Ticker ----------
+    #moving-container {
+      a {
+        margin-left: 5px !important;
+        margin-right: 5px !important;
+      }
+    }
   }
 
   @media (min-width: 806px) and (max-width: 1099px) {
@@ -184,17 +192,33 @@ input::placeholder {
     }
   }
 
-  @media (min-width: 0px) and (max-width: 500) {
-    // Fix header name overflowing
-    // Hide user photo
+  @media (min-width: 0px) and (max-width: 700px) {
+    // ---------- Ticker ----------
+    #moving-container {
+      a {
+        margin: 0px 10px !important;
+      }
+    }
+  }
 
-    /* Fix graph name and buttons
-      Item name + picture
-      5min 1hr 6hr
-    */
+  @media (min-width: 0px) and (max-width: 501px) {
+    #graph-header {
+      flex-direction: column;
+
+      #stats-btns {
+        margin-top: 5px;
+        ul {
+          padding-left: 0;
+        }
+      }
+    }
+    // Fix header name overflowing
+    // Hide user photo or username
 
     // Fix item history overflow
     // Fix item history sort button
+
+    // Fix page not responding pop up on home page
   }
 }
 
