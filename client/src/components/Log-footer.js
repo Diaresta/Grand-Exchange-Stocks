@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-const Footer = () => {
+const LogFooter = () => {
   return (
-    <div className='footer'>
+    <div className='footer log-footer'>
       {/* <hr /> */}
       <Link to='/privacy-policy'>
         <p>&copy; ge.teller</p>
@@ -17,4 +17,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default LogFooter;

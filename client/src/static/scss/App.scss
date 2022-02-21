@@ -110,6 +110,7 @@ input::placeholder {
 
     #stats-cal-container {
       width: 100% !important;
+      margin-bottom: 15px;
     }
 
     #stats-cal-mediaQ {
@@ -159,7 +160,7 @@ input::placeholder {
       width: 98% !important;
     }
 
-    // Account page
+    // ------- Account page -------
     #account-page {
       flex-direction: column;
 
@@ -168,7 +169,19 @@ input::placeholder {
       }
     }
 
-    // Fix footer
+    #account-page-footer-fix {
+      // margin-bottom: 50px;
+      padding-bottom: 50px;
+    }
+
+    // ---------- Footer ----------
+    .footer {
+      position: relative !important;
+    }
+
+    .log-footer {
+      position: fixed !important;
+    }
   }
 }
 

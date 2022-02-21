@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // import { checkToken } from '../static/scripts/Utilities';
-import Footer from '../components/Footer';
+import LogFooter from '../components/Log-footer';
 
 const ForgotPassword = ({ checkToken }) => {
   const [passwordAccept, setpasswordAccept] = useState(false);
@@ -52,7 +52,7 @@ const ForgotPassword = ({ checkToken }) => {
         <Link to='/privacy-policy'>Privacy Policy</Link>
       </div>
 
-      <Footer />
+      <LogFooter />
     </div>
   );
 };

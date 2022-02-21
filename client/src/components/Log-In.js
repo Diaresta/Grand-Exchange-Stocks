@@ -1,7 +1,6 @@
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import PropTypes from 'prop-types';
-import Footer from '../components/Footer';
+import LogFooter from '../components/Log-footer';
 
 const LogIn = ({ checkToken, setToken }) => {
   const [username, setUsername] = useState();
@@ -98,7 +97,7 @@ const LogIn = ({ checkToken, setToken }) => {
         <Link to='/privacy-policy'>Privacy Policy</Link>
       </div>
 
-      <Footer />
+      <LogFooter />
     </div>
   );
 };
