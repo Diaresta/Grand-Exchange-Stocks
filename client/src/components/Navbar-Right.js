@@ -30,7 +30,9 @@ const NavbarRight = ({ checkToken }) => {
       <Link to='/account'>
         <i className='fas fa-user-circle fa-2x' />
       </Link>
-      <Link to='/account'>{accountUsername}</Link>
+      <Link to='/account' id='account-name-link'>
+        {accountUsername}
+      </Link>
     </div>
   ) : (
     <div id='navbar-right'>

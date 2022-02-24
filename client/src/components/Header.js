@@ -12,7 +12,8 @@ const Header = ({ checkToken }) => {
         <form id='header-form' action='/search/' method='GET'>
           <input type='text' placeholder='Search...' name='s'></input>
           <button id='input-btn' type='submit'>
-            <i className='fas fa-search'></i>Search
+            <i className='fas fa-search'></i>
+            <span id='search-text'>Search</span>
           </button>
         </form>
       </div>

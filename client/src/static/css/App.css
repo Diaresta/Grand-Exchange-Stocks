@@ -173,6 +173,29 @@ input::placeholder {
 }
 
 @media screen and (min-width: 0px) and (max-width: 501px) {
+  #navbar-left #logo {
+    height: 1em !important;
+    width: 1em !important;
+  }
+  #navbar-left input {
+    width: 50%;
+  }
+  #navbar-left #input-btn {
+    height: 20px !important;
+    width: 20px !important;
+  }
+  #navbar-left .fa-search {
+    margin: auto;
+  }
+  #navbar-left #search-text {
+    display: none;
+  }
+  #navbar-right #account-name-link {
+    display: none;
+  }
+  #navbar-right i {
+    font-size: 25px;
+  }
   #graph-header {
     flex-direction: column;
   }
@@ -181,6 +204,9 @@ input::placeholder {
   }
   #graph-header #stats-btns ul {
     padding-left: 0;
+  }
+  #calc-form {
+    background-color: red;
   }
 }
 
