@@ -215,7 +215,7 @@ const HistoryPage = ({ checkToken, logData }) => {
               <th>Quantity</th>
               <th>Buy/Sell Price</th>
               <th>Overall</th>
-              <th>Date(M/D/Y)</th>
+              <th className='table-date'>Date(M/D/Y)</th>
             </tr>
           </thead>
           <tbody>
@@ -227,7 +227,7 @@ const HistoryPage = ({ checkToken, logData }) => {
                 <td>{item.quantity.toLocaleString()}</td>
                 <td>{item.price.toLocaleString()}g</td>
                 <td>{item.overall.toLocaleString()}g</td>
-                <td>{item.date}</td>
+                <td className='table-date'>{item.date}</td>
                 <i
                   onClick={(e) => {
                     if (showDiv === 'flex') {

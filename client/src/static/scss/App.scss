@@ -199,10 +199,20 @@ input::placeholder {
         margin: 0px 10px !important;
       }
     }
+
+    // ---------- History Page ----------
+    #sort-menu {
+      width: 10% !important;
+    }
   }
 
   @media (min-width: 0px) and (max-width: 501px) {
     // ---------- Header ----------
+    header {
+      margin-bottom: 15px;
+      border-bottom: 1px solid gray;
+    }
+
     #navbar-left {
       #logo {
         height: 1em !important;
@@ -237,6 +247,12 @@ input::placeholder {
       }
     }
 
+    // ---------- Ticker ----------
+    #ticker-container {
+      display: none;
+    }
+
+    // ---------- Graph ----------
     #graph-header {
       flex-direction: column;
 
@@ -248,14 +264,25 @@ input::placeholder {
       }
     }
 
-    #calc-form {
-      background-color: red;
+    // ---------- History Page ----------
+    #sort-menu {
+      width: 13% !important;
     }
 
-    // Fix item history overflow
-    // Fix item history sort button
+    .table-date {
+      display: none;
+    }
 
     // Fix page not responding pop up on home page
+    // Fix delete account/delete item history pop up 500px
+  }
+
+  @media (min-width: 0px) and (max-width: 415px) {
+    // ---------- Calculator ----------
+    #calc-form {
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+    }
   }
 }
 

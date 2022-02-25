@@ -170,9 +170,16 @@ input::placeholder {
   #moving-container a {
     margin: 0px 10px !important;
   }
+  #sort-menu {
+    width: 10% !important;
+  }
 }
 
 @media screen and (min-width: 0px) and (max-width: 501px) {
+  header {
+    margin-bottom: 15px;
+    border-bottom: 1px solid gray;
+  }
   #navbar-left #logo {
     height: 1em !important;
     width: 1em !important;
@@ -196,6 +203,9 @@ input::placeholder {
   #navbar-right i {
     font-size: 25px;
   }
+  #ticker-container {
+    display: none;
+  }
   #graph-header {
     flex-direction: column;
   }
@@ -205,8 +215,18 @@ input::placeholder {
   #graph-header #stats-btns ul {
     padding-left: 0;
   }
+  #sort-menu {
+    width: 13% !important;
+  }
+  .table-date {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 0px) and (max-width: 415px) {
   #calc-form {
-    background-color: red;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
   }
 }
 
