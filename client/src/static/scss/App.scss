@@ -204,6 +204,11 @@ input::placeholder {
     #sort-menu {
       width: 10% !important;
     }
+
+    // ---------- Loading ----------
+    #refresh-span-true {
+      width: 50%;
+    }
   }
 
   @media (min-width: 0px) and (max-width: 501px) {
@@ -273,8 +278,15 @@ input::placeholder {
       display: none;
     }
 
-    // Fix page not responding pop up on home page
-    // Fix delete account/delete item history pop up 500px
+    // ------- Account page -------
+    #account-delete-window {
+      width: 400px !important;
+    }
+
+    // ---------- Loading ----------
+    #refresh-span-true {
+      width: 70%;
+    }
   }
 
   @media (min-width: 0px) and (max-width: 415px) {
@@ -282,6 +294,11 @@ input::placeholder {
     #calc-form {
       padding-left: 0px !important;
       padding-right: 0px !important;
+    }
+
+    // ------- Account page -------
+    #account-delete-window {
+      width: 300px !important;
     }
   }
 }
