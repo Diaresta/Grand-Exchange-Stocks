@@ -17,6 +17,7 @@ import AccountPage from './components/Account-Page';
 import Contact from './components/Contact';
 import ForgotPassword from './components/ForgotPassword';
 import Terms from './components/Terms';
+import PageNotFound from './components/Page-Not-Found';
 import useToken from './components/useToken';
 import useInterval from './components/useInterval';
 import { checkToken } from './static/scripts/Utilities';
@@ -206,6 +207,9 @@ function App() {
             </Route>
             <Route path={['/privacy-policy']} exact>
               <Terms />
+            </Route>
+            <Route path='*' exact>
+              <PageNotFound />
             </Route>
           </Switch>
         </div>

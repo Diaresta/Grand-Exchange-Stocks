@@ -92,154 +92,43 @@ input::placeholder {
   color: #b9cbfa;
 }
 
-@media screen and (max-width: 1100px) {
-  #item-page-container {
-    flex-direction: column;
-  }
-  #graph-container {
-    width: 100%;
-    height: 100%;
-  }
-  #stats-cal-container {
-    width: 100% !important;
-    margin-bottom: 15px;
-  }
-  #stats-cal-mediaQ {
-    display: flex !important;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    padding-right: 5px;
-  }
-  #moving-container a {
-    margin-left: 5px !important;
-    margin-right: 5px !important;
-  }
+#Not-found-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
 }
 
-@media screen and (min-width: 806px) and (max-width: 1099px) {
-  #stats-container {
-    width: 50% !important;
-  }
-  #calculator-container {
-    width: 50% !important;
-  }
-  #history-container {
-    width: 98.5% !important;
-    margin: auto !important;
-  }
+#Not-found-container h1 {
+  margin-bottom: 0;
 }
 
-@media screen and (min-width: 0px) and (max-width: 805px) {
-  #stats-cal-mediaQ {
-    flex-direction: column;
-    margin-bottom: 0px;
-  }
-  #stats-container {
-    margin-right: auto !important;
-    margin-left: auto !important;
-    width: 98% !important;
-  }
-  #calculator-container {
-    margin-right: auto !important;
-    margin-left: auto !important;
-    width: 98% !important;
-  }
-  #history-container {
-    margin-right: auto !important;
-    margin-left: auto !important;
-    width: 98% !important;
-  }
-  #account-page {
-    flex-direction: column;
-  }
-  #account-page #table-right {
-    margin-left: 0px !important;
-  }
-  #account-page-footer-fix {
-    padding-bottom: 50px;
-  }
-  .footer {
-    position: relative !important;
-  }
-  .log-footer {
-    position: fixed !important;
-  }
+#Not-found-container #death-rune {
+  width: 20%;
+  height: 20%;
 }
 
-@media screen and (min-width: 0px) and (max-width: 700px) {
-  #moving-container a {
-    margin: 0px 10px !important;
-  }
-  #sort-menu {
-    width: 10% !important;
-  }
-  #refresh-span-true {
-    width: 50%;
-  }
+#Not-found-container button {
+  color: #fff;
+  background-color: #1652f0;
+  border: 1px solid #b9cbfa;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 15px;
+  border-radius: 5px;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease, border 0.25s ease;
 }
 
-@media screen and (min-width: 0px) and (max-width: 501px) {
-  header {
-    margin-bottom: 15px;
-    border-bottom: 1px solid gray;
-  }
-  #navbar-left #logo {
-    height: 1em !important;
-    width: 1em !important;
-  }
-  #navbar-left input {
-    width: 50%;
-  }
-  #navbar-left #input-btn {
-    height: 20px !important;
-    width: 20px !important;
-  }
-  #navbar-left .fa-search {
-    margin: auto;
-  }
-  #navbar-left #search-text {
-    display: none;
-  }
-  #navbar-right #account-name-link {
-    display: none;
-  }
-  #navbar-right i {
-    font-size: 25px;
-  }
-  #ticker-container {
-    display: none;
-  }
-  #graph-header {
-    flex-direction: column;
-  }
-  #graph-header #stats-btns {
-    margin-top: 5px;
-  }
-  #graph-header #stats-btns ul {
-    padding-left: 0;
-  }
-  #sort-menu {
-    width: 13% !important;
-  }
-  .table-date {
-    display: none;
-  }
-  #account-delete-window {
-    width: 400px !important;
-  }
-  #refresh-span-true {
-    width: 70%;
-  }
-}
-
-@media screen and (min-width: 0px) and (max-width: 415px) {
-  #calc-form {
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-  }
-  #account-delete-window {
-    width: 300px !important;
-  }
+#Not-found-container button:hover {
+  color: #e5e5e5;
+  background-color: #1141c0;
+  border: 1px solid #1141c0;
 }
 
 header {
@@ -1290,4 +1179,154 @@ textarea::placeholder {
 #account-delete-window button {
   width: 100px;
   margin-top: 15px;
+}
+
+@media screen and (max-width: 1100px) {
+  #item-page-container {
+    flex-direction: column;
+  }
+  #graph-container {
+    width: 100%;
+    height: 100%;
+  }
+  #stats-cal-container {
+    width: 100% !important;
+    margin-bottom: 15px;
+  }
+  #stats-cal-mediaQ {
+    display: flex !important;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-right: 5px;
+  }
+  #moving-container a {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+  }
+}
+
+@media screen and (min-width: 806px) and (max-width: 1099px) {
+  #stats-container {
+    width: 50% !important;
+  }
+  #calculator-container {
+    width: 50% !important;
+  }
+  #history-container {
+    width: 98.5% !important;
+    margin: auto !important;
+  }
+}
+
+@media screen and (min-width: 0px) and (max-width: 805px) {
+  #stats-cal-mediaQ {
+    flex-direction: column;
+    margin-bottom: 0px;
+  }
+  #stats-container {
+    margin-right: auto !important;
+    margin-left: auto !important;
+    width: 98% !important;
+  }
+  #calculator-container {
+    margin-right: auto !important;
+    margin-left: auto !important;
+    width: 98% !important;
+  }
+  #history-container {
+    margin-right: auto !important;
+    margin-left: auto !important;
+    width: 98% !important;
+  }
+  #account-page {
+    flex-direction: column;
+  }
+  #account-page #table-right {
+    margin-left: 0px !important;
+  }
+  #account-page-footer-fix {
+    padding-bottom: 50px;
+  }
+  .footer {
+    position: relative !important;
+  }
+  .log-footer {
+    position: fixed !important;
+  }
+}
+
+@media screen and (min-width: 0px) and (max-width: 700px) {
+  #moving-container a {
+    margin: 0px 10px !important;
+  }
+  #sort-menu {
+    width: 10% !important;
+  }
+  #refresh-span-true {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 0px) and (max-width: 501px) {
+  header {
+    margin-bottom: 15px;
+    border-bottom: 1px solid gray;
+  }
+  #navbar-left #logo {
+    height: 1em !important;
+    width: 1em !important;
+  }
+  #navbar-left input {
+    width: 50%;
+  }
+  #navbar-left #input-btn {
+    height: 20px !important;
+    width: 20px !important;
+  }
+  #navbar-left .fa-search {
+    margin: auto;
+  }
+  #navbar-left #search-text {
+    display: none;
+  }
+  #navbar-right #account-name-link {
+    display: none;
+  }
+  #navbar-right i {
+    font-size: 25px;
+  }
+  #ticker-container {
+    display: none;
+  }
+  #graph-header {
+    flex-direction: column;
+  }
+  #graph-header #stats-btns {
+    margin-top: 5px;
+  }
+  #graph-header #stats-btns ul {
+    padding-left: 0;
+  }
+  #sort-menu {
+    width: 13% !important;
+  }
+  .table-date {
+    display: none;
+  }
+  #account-delete-window {
+    width: 400px !important;
+  }
+  #refresh-span-true {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 0px) and (max-width: 415px) {
+  #calc-form {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  #account-delete-window {
+    width: 300px !important;
+  }
 }
