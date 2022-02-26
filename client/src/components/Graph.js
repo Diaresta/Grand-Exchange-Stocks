@@ -82,6 +82,8 @@ const Graph = ({ itemArray }) => {
     setItemName(data.name);
     setItemIcon(data.icon);
 
+    document.title = `ge.teller - ${data.name}`;
+
     for (let key in data.fiveMinGraph) {
       fiveMinPrice.push(data.fiveMinGraph[key].price);
       fiveMinVolume.push(data.fiveMinGraph[key].volume);

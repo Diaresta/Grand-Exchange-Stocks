@@ -111,6 +111,8 @@ const HistoryPage = ({ checkToken, logData }) => {
   };
 
   useEffect(() => {
+    document.title = 'ge.teller - History';
+
     accountHistoryCall();
   }, []);
 

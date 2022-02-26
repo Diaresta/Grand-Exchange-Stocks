@@ -1,4 +1,10 @@
+import { useEffect } from 'react';
+
 const Terms = () => {
+  useEffect(() => {
+    document.title = 'ge.teller - Privacy Policy';
+  }, []);
+
   return (
     <div id='terms-container'>
       <section>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LogFooter from '../components/Log-footer';
 
 const LogIn = ({ checkToken, setToken }) => {
@@ -60,6 +60,10 @@ const LogIn = ({ checkToken, setToken }) => {
       fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red');
     }
   };
+
+  useEffect(() => {
+    document.title = 'ge.teller - Log In';
+  }, []);
 
   return checkToken ? (
     (window.location.href = '/')

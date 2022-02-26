@@ -1,6 +1,11 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const PageNotFound = () => {
+  useEffect(() => {
+    document.title = 'ge.teller - 404 Not Found';
+  }, []);
+
   return (
     <div id='Not-found-container'>
       <h1>Page Not Found</h1>

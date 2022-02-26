@@ -41,6 +41,8 @@ const SearchPage = () => {
   };
 
   useEffect(() => {
+    document.title = `ge.teller - Search: ${query}`;
+
     itemSearch();
   }, []);
 

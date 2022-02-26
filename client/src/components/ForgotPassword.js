@@ -13,6 +13,10 @@ const ForgotPassword = ({ checkToken }) => {
     setpassValue('');
   };
 
+  useEffect(() => {
+    document.title = 'ge.teller - Forgot Password';
+  }, []);
+
   return checkToken ? (
     (window.location.href = '/')
   ) : (

@@ -210,6 +210,8 @@ const AccountPage = ({ checkToken }) => {
   };
 
   useEffect(() => {
+    document.title = 'ge.teller - Account';
+
     accountInfoCall().then((data) => setData(data));
   }, []);
 

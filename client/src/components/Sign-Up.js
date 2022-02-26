@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import LogFooter from '../components/Log-footer';
 import axios from 'axios';
@@ -62,6 +62,10 @@ const SignUp = ({ checkToken }) => {
         fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red');
       });
   };
+
+  useEffect(() => {
+    document.title = 'ge.teller - Sign Up';
+  }, []);
 
   return checkToken ? (
     (window.location.href = '/')

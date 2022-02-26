@@ -6,8 +6,18 @@ const Header = ({ checkToken }) => {
     <header>
       <div id='navbar-left'>
         <Link to='/home'>
-          <img id='logo' src='/images/coins.png' alt='site logo' />
-          <img id='name-logo' src='/images/gelogo.png' alt='site name logo' />
+          <img
+            id='logo'
+            src='/images/coins.png'
+            alt='site logo'
+            onClick={() => (window.location.href = '/home')}
+          />
+          <img
+            id='name-logo'
+            src='/images/gelogo.png'
+            alt='site name logo'
+            onClick={() => (window.location.href = '/home')}
+          />
         </Link>
         <form id='header-form' action='/search/' method='GET'>
           <input type='text' placeholder='Search...' name='s'></input>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Footer from '../components/Footer';
@@ -61,6 +61,10 @@ const Contact = ({ checkToken }) => {
         fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red');
       });
   };
+
+  useEffect(() => {
+    document.title = 'ge.teller - Contact Us';
+  }, []);
 
   return checkToken ? (
     <div id='log-sign-page'>
