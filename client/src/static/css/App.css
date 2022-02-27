@@ -71,6 +71,23 @@ body,
   height: 25%;
 }
 
+#refresh-span-true i {
+  position: absolute;
+  height: 15%;
+  width: 15%;
+  right: 0;
+  top: 0;
+  color: red;
+}
+
+#refresh-span-true i:hover {
+  color: darkred;
+}
+
+#refresh-span-true i:active {
+  color: #5e0000;
+}
+
 #refresh-span-false {
   display: none;
 }
@@ -1328,5 +1345,8 @@ textarea::placeholder {
   }
   #account-delete-window {
     width: 300px !important;
+  }
+  #refresh-span-true {
+    width: 85%;
   }
 }

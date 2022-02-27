@@ -71,6 +71,23 @@ body,
     width: 45%;
     height: 25%;
   }
+
+  i {
+    position: absolute;
+    height: 15%;
+    width: 15%;
+    right: 0;
+    top: 0;
+    color: red;
+  }
+
+  i:hover {
+    color: darkred;
+  }
+
+  i:active {
+    color: #5e0000;
+  }
 }
 
 #refresh-span-false {

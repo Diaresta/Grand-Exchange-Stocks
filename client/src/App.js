@@ -28,6 +28,8 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [refreshCheck, setRefreshCheck] = useState(false);
   const [logData, setLogData] = useState();
+  const [loadMouse, setLoadMouse] = useState('not-allowed');
+  const [closeLoadWindow, setLoadWindow] = useState('');
 
   const { token, setToken } = useToken();
 
@@ -79,6 +81,15 @@ function App() {
     setTickerData(data.ticker);
   };
 
+  //
+  const closeLoading = (loading) => {
+    if (loading === false) {
+      setLoadWindow('none');
+    } else {
+      return;
+    }
+  };
+
   // Check for loading state then prompts user to refresh page if loading !== false
   useInterval(
     () => {
@@ -95,6 +106,7 @@ function App() {
   useEffect(() => {
     apiCall('').then(() => {
       setLoading(false);
+      setLoadMouse('default');
     });
     logDataCheck();
   }, []);
@@ -103,7 +115,17 @@ function App() {
     <div className='App'>
       <Router>
         <Header checkToken={checkToken()} logData={logData} />
-        <div id={`refresh-span-${refreshCheck.toString()}`}>
+        <div
+          id={`refresh-span-${refreshCheck.toString()}`}
+          style={{ display: closeLoadWindow }}
+        >
+          <i
+            className='far fa-times'
+            style={{ cursor: loadMouse }}
+            onClick={() => {
+              closeLoading(loading);
+            }}
+          />
           <h2>Page Not Responding?</h2>
           <button
             id='input-btn'
