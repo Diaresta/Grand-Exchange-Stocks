@@ -1,22 +1,14 @@
-import { Bar, Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import { useState, useEffect } from 'react';
 
-const BarGraph = ({ fiveMin, oneHour, sixHour }) => {
-  // -------------------- testing --------------------
+const BarGraph = () => {
   const [chartData, setChartData] = useState();
-  const [volumeGraph, setVolumeGraph] = useState();
   const tempVolume = [];
   const tempLabel = {
     fiveMin: ['5 Minute', '4 Minute', '3 Minute', '2 Minute', '1 Minute'],
     oneHour: ['1 Hour', '45 Minute', '30 Minute', '15 Minute'],
     sixHour: ['6 Hour', '5 Hour', '4 Hour', '3 Hour', '2 Hour', '1 Hour'],
   };
-
-  // for (let key in fiveMin) {
-  //   tempVolume.push(fiveMin[key].volume);
-  // }
-
-  // };
 
   const chart = async () => {
     const url = await 'http://localhost:8000/';
@@ -26,8 +18,6 @@ const BarGraph = ({ fiveMin, oneHour, sixHour }) => {
     for (let key in data.fiveMinGraph) {
       tempVolume.push(data.fiveMinGraph[key].volume);
     }
-
-    // setVolumeGraph(tempVolume);
 
     setChartData({
       labels: tempLabel.fiveMin,
@@ -43,14 +33,8 @@ const BarGraph = ({ fiveMin, oneHour, sixHour }) => {
   };
 
   useEffect(() => {
-    // setVolumeGraph(tempVolume);
-    // for (let key in fiveMin) {
-    //   volumeGraph.push(fiveMin[key].volume);
-    // }
     chart();
   }, []);
-
-  // -------------------- testing --------------------
 
   return (
     <div id='bar-graph-container'>
@@ -64,7 +48,6 @@ const BarGraph = ({ fiveMin, oneHour, sixHour }) => {
             title: {
               display: true,
               text: 'Item Volume',
-              // color: 'black',
             },
             legend: {
               display: false,

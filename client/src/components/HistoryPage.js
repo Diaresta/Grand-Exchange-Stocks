@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import LogIn from './Log-In';
 import { accountInfoCall } from '../static/scripts/Utilities';
 
 // Gets transactions from server by account

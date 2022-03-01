@@ -14,7 +14,7 @@ const History = ({ checkToken, itemArray }) => {
       var url =
         await `http://localhost:8000/api/transaction/${accountID}/${itemArray}`;
     } else {
-      var url =
+      url =
         await `http://localhost:8000/api/transaction/${accountID}/${itemLinkID}`;
     }
 

@@ -39,7 +39,7 @@ const Calculator = ({ checkToken, itemArray }) => {
         var url = await `http://localhost:8000/item/${itemArray}`;
         setItemID(itemArray);
       } else {
-        var url = await `http://localhost:8000/item/${itemLinkID}`;
+        url = await `http://localhost:8000/item/${itemLinkID}`;
         setItemID(itemLinkID);
       }
 

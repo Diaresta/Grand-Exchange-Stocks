@@ -13,11 +13,7 @@ const PageNotFound = () => {
         Sorry about that. <br />
         Try searching somewhere else
       </p>
-      <img
-        id='death-rune'
-        src='/images/death-rune.png'
-        alt='Death Rune 404 Image'
-      />
+      <img id='death-rune' src='/images/death-rune.png' alt='Death Rune 404' />
       <Link to='/'>
         <button>Return home</button>
       </Link>

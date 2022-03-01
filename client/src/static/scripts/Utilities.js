@@ -8,7 +8,7 @@ export const itemNameCall = async (itemArray) => {
   if (defaultWindow === '' || defaultWindow === 'home') {
     var url = await `http://localhost:8000/item/${itemArray}`;
   } else {
-    var url = await `http://localhost:8000/item/${itemLinkID}`;
+    url = await `http://localhost:8000/item/${itemLinkID}`;
   }
 
   const response = await fetch(url);

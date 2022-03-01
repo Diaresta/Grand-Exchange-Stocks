@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import LogIn from './Log-In';
 import Footer from './Footer';
 import {
   accountInfoCall,

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import LogFooter from '../components/Log-footer';
 import axios from 'axios';
-import { emailValidate } from '../static/scripts/Utilities';
 
 const SignUp = ({ checkToken }) => {
   const [accountFirstName, setAccountFirstName] = useState('');

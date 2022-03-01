@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const Stats = ({ loading, itemArray, itemID }) => {
+const Stats = ({ itemArray }) => {
   const [highAlchColor, setHighAlchColor] = useState();
 
   const [currentPrice, setCurrentPrice] = useState();
@@ -19,7 +19,7 @@ const Stats = ({ loading, itemArray, itemID }) => {
     if (defaultWindow === '' || defaultWindow === 'home') {
       var url = await `http://localhost:8000/item/${itemArray}`;
     } else {
-      var url = await `http://localhost:8000/item/${itemLinkID}`;
+      url = await `http://localhost:8000/item/${itemLinkID}`;
     }
 
     const response = await fetch(url);
@@ -38,11 +38,11 @@ const Stats = ({ loading, itemArray, itemID }) => {
   useEffect(() => {
     apiCall(itemArray);
 
-    if (highAlchProfit >= 0) {
-      setHighAlchColor('alch-prof');
-    } else if (highAlchProfit < 0) {
-      setHighAlchColor('alch-neg');
-    }
+    // if (highAlchProfit >= 0) {
+    //   setHighAlchColor('alch-prof');
+    // } else if (highAlchProfit < 0) {
+    //   setHighAlchColor('alch-neg');
+    // }
   }, []);
 
   return (

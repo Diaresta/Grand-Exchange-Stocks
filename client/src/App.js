@@ -5,7 +5,6 @@ import './static/css/App.css';
 import Header from './components/Header';
 import Ticker from './components/Ticker';
 import Graph from './components/Graph';
-import BarGraph from './components/Bar-Graph';
 import Stats from './components/Stats';
 import Calculator from './components/Calculator';
 import SearchPage from './components/Search-Page';
@@ -23,7 +22,6 @@ import useInterval from './components/useInterval';
 import { checkToken } from './static/scripts/Utilities';
 
 function App() {
-  const [apiData, setApiData] = useState([]);
   const [tickerData, setTickerData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [refreshCheck, setRefreshCheck] = useState(false);
@@ -70,18 +68,17 @@ function App() {
       var url = await `http://localhost:8000/item/${homeGraphItem}`;
     } else if (defaultWindow === 'item') {
       setLoading(true);
-      var url = await `http://localhost:8000/item/${itemLinkID}`;
+      url = await `http://localhost:8000/item/${itemLinkID}`;
     } else {
-      var url = await `http://localhost:8000/item/${itemLinkID}`;
+      url = await `http://localhost:8000/item/${itemLinkID}`;
     }
 
     const response = await fetch(url);
     const data = await response.json();
-    setApiData(data);
     setTickerData(data.ticker);
   };
 
-  //
+  // Closes loading window if page loads and loading window is still open
   const closeLoading = (loading) => {
     if (loading === false) {
       setLoadWindow('none');
@@ -144,18 +141,10 @@ function App() {
               <div id='item-page-container'>
                 <div id='graph-container'>
                   <Graph itemArray={homeGraphItem} />
-                  {/* <BarGraph
-                  fiveMin={apiData.fiveMinGraph}
-                  oneHour={apiData.oneHourGraph}
-                  sixHour={apiData.sixHourGraph}
-                /> */}
                 </div>
                 <div id='stats-cal-container'>
                   <div id='stats-cal-mediaQ'>
-                    <Stats
-                      itemArray={homeGraphItem}
-                      // itemID={itemID}
-                    />
+                    <Stats itemArray={homeGraphItem} />
                     <Calculator
                       checkToken={checkToken()}
                       itemArray={homeGraphItem}
@@ -175,17 +164,9 @@ function App() {
               <div id='item-page-container'>
                 <div id='graph-container'>
                   <Graph />
-                  {/* <BarGraph
-                  fiveMin={apiData.fiveMinGraph}
-                  oneHour={apiData.oneHourGraph}
-                  sixHour={apiData.sixHourGraph}
-                /> */}
                 </div>
                 <div id='stats-cal-container'>
-                  <Stats
-                    itemArray={homeGraphItem}
-                    // itemID={itemID}
-                  />
+                  <Stats itemArray={homeGraphItem} />
                   <Calculator
                     checkToken={checkToken()}
                     itemArray={homeGraphItem}
