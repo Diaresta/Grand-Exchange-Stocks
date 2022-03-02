@@ -6,7 +6,7 @@
 
 _**ge.teller**_ _OldSchool RuneScape_ **_ge.teller_**
 
-![Site example](/public/images/readme-ex.png)
+![Site example](/client/public/images/readme-ex.png)
 
 ## How to Contribute
 
