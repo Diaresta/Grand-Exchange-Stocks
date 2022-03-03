@@ -12,6 +12,7 @@ const Stats = ({ itemArray }) => {
   const [highAlchProfit, setHighAlchProfit] = useState();
   const [margin, setMargin] = useState();
 
+  // Calls api for item data
   const apiCall = async (itemArray) => {
     const defaultWindow = window.location.pathname.split('/')[1];
     const itemLinkID = window.location.pathname.split('/')[3];

@@ -49,7 +49,7 @@ const sortItems = (arrayToSort, sortBy) => {
   return arrayToSort;
 };
 
-const HistoryPage = ({ checkToken, logData }) => {
+const HistoryPage = ({ checkToken }) => {
   const [itemHistory, setItemHistory] = useState([]);
   const [id, setID] = useState();
   const [showDiv, setShowDiv] = useState('none');
@@ -61,6 +61,7 @@ const HistoryPage = ({ checkToken, logData }) => {
     itemName: '',
   });
 
+  // Calls api and pulls item transaction history
   const accountHistoryCall = () => {
     accountInfoCall().then((data) => {
       setID(data._id);
@@ -75,6 +76,7 @@ const HistoryPage = ({ checkToken, logData }) => {
     });
   };
 
+  // Shows delete item div
   const showDeleteItem = () => {
     if (showDiv === 'none') {
       setShowDiv('flex');
@@ -83,6 +85,7 @@ const HistoryPage = ({ checkToken, logData }) => {
     }
   };
 
+  // Pop up alert for forms/input elements
   const fadeOutAlert = (background, border) => {
     setAlertStyle({
       display: 'flex',
@@ -210,7 +213,6 @@ const HistoryPage = ({ checkToken, logData }) => {
         <table id='page-table'>
           <thead>
             <tr>
-              {/* <th>Item</th> */}
               <th>Item</th>
               <th>Quantity</th>
               <th>Buy/Sell Price</th>

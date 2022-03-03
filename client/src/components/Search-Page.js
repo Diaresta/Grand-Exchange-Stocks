@@ -11,6 +11,7 @@ const SearchPage = () => {
   const [itemData, setitemData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Searches item database for passed in query
   const itemSearch = async () => {
     const url = await '../itemDB.json';
 
@@ -20,6 +21,7 @@ const SearchPage = () => {
     setLoading(false);
   };
 
+  // Filters item db for passed in query
   const filteritemData = (itemData, query) => {
     if (!query) {
       return itemData;

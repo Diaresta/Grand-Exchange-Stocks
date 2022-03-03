@@ -6,12 +6,6 @@
   min-height: 83vh;
 }
 
-// #log-sign-page {
-// display: flex;
-// justify-content: center;
-// margin: auto;
-// }
-
 .log-sign-container {
   width: 50%;
   height: 50%;
@@ -68,7 +62,6 @@
   }
 
   input:focus {
-    // border: 2px solid #fff;
     outline: none;
     border-color: #9ecaed;
     box-shadow: 0 0 3px #9ecaed;

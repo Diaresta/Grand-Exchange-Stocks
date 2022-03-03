@@ -22,6 +22,7 @@ const Graph = ({ itemArray }) => {
     sixHour: ['6 Hour', '5 Hour', '4 Hour', '3 Hour', '2 Hour', '1 Hour'],
   };
 
+  // Updates chart data to respective amount of time
   const setChartBtn = (e) => {
     let label;
     let data;
@@ -66,6 +67,7 @@ const Graph = ({ itemArray }) => {
     });
   };
 
+  // Creates and sets chart data
   const chart = async () => {
     const defaultWindow = window.location.pathname.split('/')[1];
     const itemLinkID = window.location.pathname.split('/')[3];
@@ -168,17 +170,14 @@ const Graph = ({ itemArray }) => {
             </ul>
           </div>
         </div>
-        {/* <canvas id='cart'></canvas> */}
         <Line
           data={lineChartData}
           height={125}
           options={{
-            // maintainAspectRatio: false,
             plugins: {
               title: {
                 display: true,
                 text: 'Item Price',
-                // color: 'black',
               },
               legend: {
                 display: false,
@@ -212,7 +211,6 @@ const Graph = ({ itemArray }) => {
               title: {
                 display: true,
                 text: 'Item Volume',
-                // color: 'black',
               },
               legend: {
                 display: false,

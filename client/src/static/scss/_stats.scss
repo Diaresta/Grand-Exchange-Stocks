@@ -1,7 +1,6 @@
 @import 'config';
 
 #stats-container {
-  // width: 100%;
   width: 96%;
 
   background-color: #fff;
@@ -16,20 +15,11 @@ h4 {
   margin: 10px 10px 0 10px;
 }
 
-// #stats-name {
-//   display: flex;
-//   // justify-content: space-between;
-//   align-items: center;
-//   margin-left: 25px;
-// }
-
 #stats-list-container {
   display: flex;
 }
 
 .stats-li {
-  // display: flex;
-
   p {
     margin: 0 0 10px 0;
   }
@@ -47,14 +37,3 @@ h4 {
     text-decoration: underline;
   }
 }
-
-// @media screen and (asdasd){
-//     #stats-container{
-//         width: whatever;
-//     }
-
-// small screen vvvvvvv
-// #ul-1 {
-//   padding-left: 25px;
-// }
-// }

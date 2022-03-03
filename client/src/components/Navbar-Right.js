@@ -5,6 +5,7 @@ import axios from 'axios';
 const NavbarRight = ({ checkToken }) => {
   const [accountUsername, setAccountUsername] = useState('');
 
+  // Gets account info from server by account
   const accountInfoCall = async () => {
     if (checkToken === false) {
     } else {

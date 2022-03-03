@@ -97,13 +97,10 @@ body,
 #graph-container {
   width: 100%;
   height: 100%;
-  // margin: 0px 5px 5px 5px;
 }
 
 #item-page-container {
   display: flex;
-  // width: 100%;
-  // height: 100%;
 
   #stats-cal-container {
     width: 50%;
@@ -112,47 +109,6 @@ body,
 
 input::placeholder {
   color: $placeholder-color;
-}
-
-// ---------- 404 Page ----------
-#Not-found-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-
-  h1 {
-    margin-bottom: 0;
-  }
-
-  #death-rune {
-    width: 20%;
-    height: 20%;
-  }
-
-  button {
-    color: #fff;
-    background-color: $accent-color;
-    border: 1px solid $placeholder-color;
-    text-align: center;
-
-    font-size: 1.5rem;
-    font-weight: 500;
-    text-align: center;
-    margin-top: 15px;
-    border-radius: 5px;
-    height: 100%;
-    width: 100%;
-    cursor: pointer;
-    transition: background-color 0.25s ease, color 0.25s ease, border 0.25s ease;
-  }
-
-  button:hover {
-    color: #e5e5e5;
-    background-color: $hover-color;
-    border: 1px solid $hover-color;
-  }
 }
 
 @import 'header';
@@ -167,4 +123,5 @@ input::placeholder {
 @import 'footer';
 @import 'terms';
 @import 'account';
+@import '404-page';
 @import 'media-queries';

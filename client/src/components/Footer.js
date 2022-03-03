@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <div className='footer'>
-      {/* <hr /> */}
       <Link to='/privacy-policy'>
         <p>&copy; ge.teller</p>
       </Link>

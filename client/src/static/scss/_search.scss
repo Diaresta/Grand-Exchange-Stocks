@@ -27,7 +27,6 @@
   display: flex;
   color: black;
   font-size: 1.2em;
-  //   list-style: none;
   text-decoration: none;
 }
 
@@ -63,8 +62,6 @@
 
   a:hover {
     color: $hover-color;
-    // font-size: 1.25em;
-    // text-decoration: underline;
     font-weight: bold;
   }
 

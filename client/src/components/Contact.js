@@ -12,6 +12,7 @@ const Contact = ({ checkToken }) => {
   const [alertStyle, setAlertStyle] = useState();
   const [btnCursor, setCursor] = useState('');
 
+  // Pops up and fades out alerts
   const fadeOutAlert = (background, border) => {
     setAlertStyle({
       display: 'flex',
@@ -37,6 +38,7 @@ const Contact = ({ checkToken }) => {
     }, 1500);
   };
 
+  // Submits contact form to db
   const contactSubmit = async (e) => {
     e.preventDefault();
     axios

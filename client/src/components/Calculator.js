@@ -10,7 +10,6 @@ const Calculator = ({ checkToken, itemArray }) => {
   const [alertText, setAlertText] = useState('');
   const [alertStyle, setAlertStyle] = useState();
 
-  // Move to App component?
   const [userID, setUserID] = useState('');
   const accountInfoCall = async () => {
     if (checkToken === false) {
@@ -176,7 +175,6 @@ const Calculator = ({ checkToken, itemArray }) => {
             }}
           >
             <label htmlFor='quantity-input'>Quantity:</label>
-            {/* <br /> */}
             <input
               type=''
               id='quantity-input'

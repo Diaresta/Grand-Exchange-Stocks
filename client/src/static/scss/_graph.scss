@@ -1,7 +1,6 @@
 @import 'config';
 
 #graphs-container {
-  // width: 100%;
   height: 100%;
   background-color: $graph-color;
 
@@ -18,7 +17,6 @@
 }
 
 canvas {
-  // background-color: $graph-color;
   height: 100%;
   width: 100%;
   border-top: 1px solid grey;
@@ -26,7 +24,6 @@ canvas {
 
 #stats-name {
   display: flex;
-  // justify-content: space-between;
   align-items: center;
   margin-left: 5px;
 }
@@ -36,13 +33,8 @@ canvas {
   margin: 0 5px 0 5px;
 }
 
-// #item-img {
-// margin-top: 5px;
-// }
-
 #graph-btn-ul {
   display: flex;
-  // justify-content: flex-end;
   align-items: center;
   margin: 5px 5px 0 5px;
   list-style: none;
@@ -69,22 +61,11 @@ canvas {
   color: #e5e5e5;
 }
 
-// --------------------------------
-
 #bar-graph-container {
-  // width: 100%;
   height: 100%;
   background-color: $graph-color;
-
-  // background-color: #fff;
   border: 2px solid $accent-color;
   border-radius: 1%;
   margin: 0px 5px 5px 5px;
   box-shadow: 3px 2px rgba(22, 82, 240, 0.3);
 }
-
-// @media screen and (asdasd){
-//     #graph-container {
-//         width: whatever;
-//     }
-// }

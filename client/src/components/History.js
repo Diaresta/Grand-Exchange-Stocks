@@ -6,6 +6,7 @@ import { accountInfoCall } from '../static/scripts/Utilities';
 const History = ({ checkToken, itemArray }) => {
   const [itemHistory, setItemHistory] = useState([]);
 
+  // Calls API for item data
   const itemLinkCheck = async (accountID) => {
     const defaultWindow = window.location.pathname.split('/')[1];
     const itemLinkID = window.location.pathname.split('/')[3];
@@ -65,11 +66,11 @@ const History = ({ checkToken, itemArray }) => {
               ))}
             </tbody>
           </table>
-          <div id='history-btn-div'>
+          {/* <div id='history-btn-div'>
             <button id='next-btn'>Next</button>
             <button id='prev-btn'>Previous</button>
           </div>
-          <p id='page-text'>Page 1 of 4</p>
+          <p id='page-text'>Page 1 of 4</p> */}
         </div>
       </div>
     ) : (

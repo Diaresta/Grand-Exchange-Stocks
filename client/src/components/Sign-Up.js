@@ -12,6 +12,7 @@ const SignUp = ({ checkToken }) => {
   const [alertText, setAlertText] = useState('');
   const [alertStyle, setAlertStyle] = useState();
 
+  // Pop up alert for forms/input elements
   const fadeOutAlert = (background, border) => {
     setAlertStyle({
       display: 'flex',
@@ -37,6 +38,7 @@ const SignUp = ({ checkToken }) => {
     }, 1500);
   };
 
+  // Calls api to authenticate account data and creates account
   const accountSignUp = async (e) => {
     e.preventDefault();
     axios

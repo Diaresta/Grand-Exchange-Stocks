@@ -8,6 +8,7 @@ const LogIn = ({ checkToken, setToken }) => {
   const [alertText, setAlertText] = useState('');
   const [alertStyle, setAlertStyle] = useState();
 
+  // Pop up alert for forms/input elements
   const fadeOutAlert = (background, border) => {
     setAlertStyle({
       display: 'flex',
@@ -33,7 +34,8 @@ const LogIn = ({ checkToken, setToken }) => {
     }, 1500);
   };
 
-  const loginBoys = async (e, username, password) => {
+  // Calls api to authenticate account data and log account in
+  const accountLogIn = async (e, username, password) => {
     e.preventDefault();
 
     const logResult = await fetch('http://localhost:8000/api/account/login', {
@@ -75,7 +77,7 @@ const LogIn = ({ checkToken, setToken }) => {
           <span id='calc-alert' style={alertStyle}>
             {alertText}
           </span>
-          <form onSubmit={(e) => loginBoys(e, username, password)}>
+          <form onSubmit={(e) => accountLogIn(e, username, password)}>
             <input
               type='text'
               placeholder='Username'
@@ -105,9 +107,5 @@ const LogIn = ({ checkToken, setToken }) => {
     </div>
   );
 };
-
-// LogIn.propTypes = {
-//   setToken: PropTypes.func.isRequired,
-// };
 
 export default LogIn;
