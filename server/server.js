@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import axios from 'axios';
-
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
@@ -459,25 +458,7 @@ var itemArray = [
 ];
 var tickerArray = [];
 
-// var itemID = itemArray[Math.floor(Math.random() * itemArray.length)];
-
-// app.use('*', (req, res) => {
-//   res.status(404).json({ error: 'Route not found' });
-// });
-
 app.get('/', (req, res) => res.status(200).send('welcome gamers'));
-
-// app.get('/', async (req, res) => {
-// for (let i = 0; i < 7; i++) {
-//   setTickerArray(itemArray[i]);
-// }
-// itemApiCall(
-//   req,
-//   res,
-//   itemArray[Math.floor(Math.random() * itemArray.length)],
-//   tickerArray
-// );
-// });
 
 app.get(`/item/:itemID`, async (req, res) => {
   let parsedArray = itemArray[Math.floor(Math.random() * 4)];
@@ -545,10 +526,6 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
   } catch {
     var itemIcon = '';
   }
-  // const itemTrend = apiNameChange.item.today.trend;
-  // const item30DayChange = apiNameChange.item.day30.change;
-  // const item90DayChange = apiNameChange.item.day90.change;
-  // const item180DayChange = apiNameChange.item.day180.change;
 
   // --------------------------------------------------------
 
@@ -563,7 +540,6 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
   const apiGeLimit = await urlAlchGeLimit.data;
 
   let mappingTest;
-  // let itemUpdateObject = [];
 
   for (let i = 0; i < apiGeLimit.length; i++) {
     if (apiGeLimit[i].id === itemID) {
@@ -587,8 +563,6 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
   // --------------------------------------------------------
 
   // Grabs current/offer price from 5min avg
-
-  // const urlFiveMin = await 'https://prices.runescape.wiki/api/v1/osrs/5m';
   const urlFiveMin = await axios.get(
     `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=5m&id=${itemID}`,
     {
@@ -622,11 +596,6 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
 
   const highAlchProfit = highAlchVal - fiveMinCurrentPrice;
 
-  // const fiveMinCurrentPrice = apiFiveMin.data[itemID].avgHighPrice;
-  // const fiveMinOfferPrice = apiFiveMin.data[itemID].avgLowPrice;
-  // const fiveMinVolume =
-  //   apiFiveMin.data[itemID].highPriceVolume +
-  //   apiFiveMin.data[itemID].lowPriceVolume;
   // --------------------------------------------------------
 
   // Grabs current/offer/sell price from latest
@@ -648,7 +617,6 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
   // --------------------------------------------------------
 
   // Grabs average high/low prices/hour and hourly volume
-  // const urlHour = await 'https://prices.runescape.wiki/api/v1/osrs/1h';
   const urlHour = await axios.get(
     `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=5m&id=${itemID}`,
     {
@@ -680,10 +648,6 @@ const itemApiCall = async (req, res, itemID, tickerArray) => {
       apiHour.data[0].highPriceVolume + apiHour.data[0].lowPriceVolume;
   }
 
-  // const avgHighHour = apiHour.data[itemID].avgHighPrice;
-  // const avgLowHour = apiHour.data[itemID].avgLowPrice;
-  // const hourVolume =
-  //   apiHour.data[itemID].highPriceVolume + apiHour.data[itemID].lowPriceVolume;
   // ------------------------- **************** -------------------------------
 
   const fiveMin = '5m';
@@ -1019,6 +983,3 @@ app.listen(PORT, () => {
 });
 
 export default app;
-
-// CD TO SERVER BEFORE NODEMON SERVER
-// localhost:5000 for api call
