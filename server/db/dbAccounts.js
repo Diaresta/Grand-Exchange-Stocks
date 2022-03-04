@@ -23,7 +23,12 @@ const accountSchema = mongoose.Schema({
     required: true,
     maxLength: 300,
   },
-  recoveryAnswer: { type: String, required: true, maxLength: 100 },
+  recoveryAnswer: {
+    type: String,
+    required: true,
+    minLength: 2,
+    maxLength: 100,
+  },
   signUpDate: { type: Date, required: true },
 });
 
