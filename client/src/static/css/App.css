@@ -972,6 +972,19 @@ textarea::placeholder {
   box-shadow: 0 1px 25px -4px rgba(0, 0, 0, 0.28);
 }
 
+select {
+  width: 90% !important;
+  font-size: 0.9em;
+  height: 25px;
+  margin-bottom: 15px;
+  border-radius: 2px;
+  border: 2px solid #e7edfd;
+}
+
+select:focus {
+  border: 2px solid #b9cbfa;
+}
+
 .footer {
   width: 100%;
   display: flex;

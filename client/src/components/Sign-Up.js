@@ -9,6 +9,8 @@ const SignUp = ({ checkToken }) => {
   const [accountUsername, setAccountUsername] = useState('');
   const [accountPassword, setAccountPassword] = useState('');
   const [accountEmail, setAccountEmail] = useState('');
+  const [recoveryPrompt, setRecoveryPrompt] = useState('');
+  const [accountRecovery, setAccountRecovery] = useState('');
   const [alertText, setAlertText] = useState('');
   const [alertStyle, setAlertStyle] = useState();
 
@@ -48,6 +50,8 @@ const SignUp = ({ checkToken }) => {
         firstName: accountFirstName,
         lastName: accountLastName,
         email: accountEmail.toLowerCase(),
+        recoveryQuestion: recoveryPrompt,
+        recoveryAnswer: accountRecovery,
         signUpDate: new Date().toLocaleDateString(),
       })
       .then((res) => {
@@ -123,6 +127,47 @@ const SignUp = ({ checkToken }) => {
               placeholder='E-Mail'
               onChange={(e) => {
                 setAccountEmail(e.target.value);
+              }}
+              required
+            />
+
+            <select
+              id='email-input'
+              onChange={(e) => {
+                setRecoveryPrompt(e.target.value);
+              }}
+            >
+              <option disabled selected>
+                Select Recovery Question
+              </option>
+              <option value="What is your mother's maiden name?">
+                What is your mother's maiden name?
+              </option>
+              <option value='What is the name of your first pet?'>
+                What is the name of your first pet?
+              </option>
+              <option value='What elementary school did you attend?'>
+                What elementary school did you attend?
+              </option>
+              <option value='What is the name of the town where you were born?'>
+                What is the name of the town where you were born?
+              </option>
+              <option value='What was your favorite class in school?'>
+                What was your favorite class in school?
+              </option>
+              <option value='What was your favorite food as a child?'>
+                What was your favorite food as a child?
+              </option>
+              <option value='What was the name of your first pet?'>
+                What was the name of your first pet?
+              </option>
+            </select>
+            <input
+              id='email-input'
+              type='text'
+              placeholder='Recovery Answer'
+              onChange={(e) => {
+                setAccountRecovery(e.target.value);
               }}
               required
             />
