@@ -25,10 +25,12 @@ app.post('/api/account/create', async (req, res) => {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
+    recoveryQuestion: req.body.recoveryQuestion,
+    recoveryAnswer: req.body.recoveryAnswer,
     signUpDate: req.body.signUpDate,
   };
 
-  // Cackend check for form parameters ----------
+  // Backend check for form parameters ----------
   if (!dbAccount.username || typeof dbAccount.username !== 'string') {
     return res
       .status(400)
@@ -78,6 +80,26 @@ app.post('/api/account/create', async (req, res) => {
     return res.status(400).send({
       status: 'Error',
       error: 'Password must be >5 characters',
+    });
+  }
+
+  if (
+    !dbAccount.recoveryQuestion ||
+    typeof dbAccount.recoveryQuestion !== 'string'
+  ) {
+    return res.status(400).json({
+      status: 'Error',
+      error: 'Please choose a valid recovery question',
+    });
+  }
+
+  if (
+    !dbAccount.recoveryAnswer ||
+    typeof dbAccount.recoveryAnswer !== 'string'
+  ) {
+    return res.status(400).json({
+      status: 'Error',
+      error: 'Please enter a valid recovery answer',
     });
   }
 
