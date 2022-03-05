@@ -173,6 +173,8 @@ app.get('/api/account/email/search/:accountEmail', (req, res) => {
     (err, data) => {
       if (err) {
         res.status(500).send(err);
+      } else if (!data) {
+        res.status(500).send({ error: 'Email Not Found' });
       } else {
         res.status(200).send(data);
       }
@@ -241,6 +243,51 @@ app.post('/api/account/password/change', async (req, res) => {
         success: false,
       });
     }
+  }
+});
+
+// Parse db for account and recover and update password
+app.post('/api/account/password/recover', async (req, res) => {
+  const { accountID, newPassword } = req.body;
+
+  if (!newPassword || typeof newPassword !== 'string') {
+    return res.status(400).send({
+      status: 'Error',
+      error: 'Please enter a valid password',
+    });
+  }
+
+  if (newPassword.length < 5) {
+    return res.status(400).send({
+      status: 'Error',
+      error: 'Password must be >5 characters',
+    });
+  }
+
+  try {
+    const passHash = await bcrypt.hash(newPassword, 10);
+
+    await Account.updateOne(
+      { _id: accountID },
+      {
+        $set: { password: passHash },
+      }
+    )
+      .then((data) => {})
+      .catch((err) => res.send(err));
+
+    res.json({
+      status: 'ok',
+      data: accountID,
+      text: `Password Successfully Updated!`,
+      success: true,
+    });
+  } catch (err) {
+    res.json({
+      status: 'error',
+      error: `Couldn't verify log-in authenticity `,
+      success: false,
+    });
   }
 });
 

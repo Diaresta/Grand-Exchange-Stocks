@@ -962,6 +962,12 @@ textarea::placeholder {
   width: 300px;
 }
 
+#password-reset-form p {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #e7edfd;
+}
+
 #password-reset-alert {
   background-color: #9dff9d;
   display: flex;

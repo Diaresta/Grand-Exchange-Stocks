@@ -133,6 +133,12 @@ textarea::placeholder {
   padding-right: 15px;
   padding-left: 15px;
   width: 300px;
+
+  p {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: $graph-color;
+  }
 }
 
 #password-reset-alert {

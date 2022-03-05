@@ -51,7 +51,7 @@ const SignUp = ({ checkToken }) => {
         lastName: accountLastName,
         email: accountEmail.toLowerCase(),
         recoveryQuestion: recoveryPrompt,
-        recoveryAnswer: accountRecovery,
+        recoveryAnswer: accountRecovery.toLowerCase(),
         signUpDate: new Date().toLocaleDateString(),
       })
       .then((res) => {
@@ -109,6 +109,7 @@ const SignUp = ({ checkToken }) => {
                 onChange={(e) => {
                   setAccountUsername(e.target.value);
                 }}
+                spellCheck='false'
                 required
               />
               <input
