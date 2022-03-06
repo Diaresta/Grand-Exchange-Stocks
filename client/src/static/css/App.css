@@ -966,6 +966,7 @@ textarea::placeholder {
   font-size: 1.1em;
   font-weight: bold;
   color: #e7edfd;
+  margin-top: 0 !important;
 }
 
 #password-reset-alert {

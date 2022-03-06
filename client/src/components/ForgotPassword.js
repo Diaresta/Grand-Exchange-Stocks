@@ -11,6 +11,11 @@ const ForgotPassword = ({ checkToken }) => {
   const [confirmPass, setConfirmPass] = useState('');
   const [passAlertText, setPassAlertText] = useState('');
   const [alertStyle, setAlertStyle] = useState({});
+  const [recoverDisplay, setRecoverDisplay] = useState({
+    email: '',
+    answer: 'none',
+    pass: 'none',
+  });
 
   // Pop up alert for forms/input elements
   const fadeOutAlert = (background, border) => {
@@ -46,6 +51,11 @@ const ForgotPassword = ({ checkToken }) => {
       .get(`http://localhost:8000/api/account/email/search/${emailSearch}`)
       .then(({ data }) => {
         setAD(data);
+        setRecoverDisplay({
+          email: 'none',
+          answer: '',
+          pass: 'none',
+        });
       })
       .catch((err) => {
         console.error(err);
@@ -58,7 +68,11 @@ const ForgotPassword = ({ checkToken }) => {
   const recoveryAnswerCheck = (e) => {
     e.preventDefault();
     if (AD.recoveryAnswer === recoveryAnswer) {
-      console.log(recoveryAnswer, AD.recoveryAnswer);
+      setRecoverDisplay({
+        email: 'none',
+        answer: 'none',
+        pass: '',
+      });
     } else {
       fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red');
       setPassAlertText('Wrong Recovery Answer');
@@ -105,7 +119,10 @@ const ForgotPassword = ({ checkToken }) => {
           <span id='calc-alert' style={alertStyle}>
             {passAlertText}
           </span>
-          <form id='password-reset-form'>
+          <form
+            id='password-reset-form'
+            style={{ display: recoverDisplay.email }}
+          >
             <input
               id='email-input'
               type='email'
@@ -126,7 +143,10 @@ const ForgotPassword = ({ checkToken }) => {
             </button>
           </form>
 
-          <form id='password-reset-form'>
+          <form
+            id='password-reset-form'
+            style={{ display: recoverDisplay.answer }}
+          >
             <p>{AD.recoveryQuestion}</p>
             <input
               id='email-input'
@@ -142,7 +162,10 @@ const ForgotPassword = ({ checkToken }) => {
             </button>
           </form>
 
-          <form id='password-reset-form'>
+          <form
+            id='password-reset-form'
+            style={{ display: recoverDisplay.pass }}
+          >
             <p>Set New Password</p>
             <input
               id='email-input'

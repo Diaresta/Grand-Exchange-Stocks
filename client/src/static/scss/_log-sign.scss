@@ -138,6 +138,7 @@ textarea::placeholder {
     font-size: 1.1em;
     font-weight: bold;
     color: $graph-color;
+    margin-top: 0 !important;
   }
 }
 
