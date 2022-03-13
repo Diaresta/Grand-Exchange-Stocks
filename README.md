@@ -6,7 +6,7 @@
 
 _**ge.teller**_ is a tool to assist players in traversing the [OldSchool RuneScape](https://oldschool.runescape.com) _Grand Exchange_. We congregate data from the official [OldSchool RuneScape](https://oldschool.runescape.com) and [OSRS Wiki](https://oldschool.runescape.wiki) APIs to provide players with up to date item information. _**ge.teller's**_ buy/sell feature provides players a medium to make mock item transactions, allowing them to track their purchase history, speculate market trends, and practice playing the market.
 
-![Site example](/client/public/images/readme-ex.png)
+![Site example](/client/public/images/readme-ex.jpg)
 
 ## How to Contribute
 
