@@ -682,6 +682,10 @@ table td {
   color: #e5e5e5;
 }
 
+#history-container {
+  margin: auto;
+}
+
 #history-container #account-button-div {
   display: flex;
   flex-direction: column;
