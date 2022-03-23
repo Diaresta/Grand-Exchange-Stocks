@@ -475,7 +475,7 @@ app.post('/api/contact/create', async (req, res) => {
     contactDate: req.body.contactDate,
   };
 
-  // Cackend check for form parameters ----------
+  // Backend check for form parameters ----------
   if (!dbContact.username || typeof dbContact.username !== 'string') {
     return res
       .status(400)
