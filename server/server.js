@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import path from 'path';
 import Account from './db/dbAccounts.js';
 import Transactions from './db/dbTransactions.js';
 import Contact from './db/dbContact.js';
@@ -15,6 +16,16 @@ app.use(cors());
 app.use(express.json());
 dotenv.config();
 mongoose.connect(process.env.GETELLERDB, {});
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+} else {
+  app.get('/', (req, res) => res.status(200).send('welcome gamers'));
+}
 
 // Create account in db
 app.post('/api/account/create', async (req, res) => {
@@ -526,8 +537,6 @@ var itemArray = [
   [561, 20097, 21012, 21021, 21024, 21034, 21079],
 ];
 var tickerArray = [];
-
-app.get('/', (req, res) => res.status(200).send('welcome gamers'));
 
 app.get(`/item/:itemID`, async (req, res) => {
   let parsedArray = itemArray[Math.floor(Math.random() * 4)];
