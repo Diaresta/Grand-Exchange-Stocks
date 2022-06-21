@@ -1,6 +1,10 @@
 {
   "name": "ge.teller",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.16.1",
+    "npm": "8.12.1"
+  },
   "description": "",
   "main": "server.js",
   "type": "module",
