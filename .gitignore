@@ -8,3 +8,5 @@ server/.env
 /client/public/_redirects
 /client/build
 node_modules
+.DS_Store
+
