@@ -4,7 +4,7 @@ client/node_modules
 server/node_modules
 server/.env
 .env
-.Procfile
+server/Procfile
 /client/public/_redirects
 /client/build
 node_modules
