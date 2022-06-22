@@ -17,15 +17,17 @@ app.use(express.json());
 dotenv.config();
 mongoose.connect(process.env.GETELLERDB, {});
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static('client/build'));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-} else {
-  app.get('/', (req, res) => res.status(200).send('welcome gamers'));
-}
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+//   });
+// } else {
+//   app.get('/', (req, res) => res.status(200).send('welcome gamers'));
+// }
+
+app.get('/', (req, res) => res.status(200).send('welcome gamers'));
 
 // Create account in db
 app.post('/api/account/create', async (req, res) => {
