@@ -130,7 +130,7 @@ function App() {
               window.location.reload();
             }}
           >
-            Click to Refeshhhh
+            Click to Refesh
           </button>
         </div>
         <span id={`loading-span-${loading.toString()}`} />
