@@ -39,7 +39,7 @@ const AccountPage = ({ checkToken }) => {
     axios
       .get(`http://localhost:8000/api/account/email/search/${emailToCheck}`)
       .then((emailData) => {
-        if (emailData.data !== '') {
+        if (emailData.data.response !== 'Email Not Found') {
           setEmailAlertText('Email is currently in use');
           fadeOutAlert('rgba(245, 0, 0, 0.8)', 'red', 'email');
         } else {
@@ -50,7 +50,7 @@ const AccountPage = ({ checkToken }) => {
             .catch((err) => {
               console.error(err);
             });
-          setEmailAlertText('Email Successfully emd');
+          setEmailAlertText('Email Successfully Changed');
           fadeOutAlert('rgba(51, 185, 78, 0.8)', 'green', 'email');
         }
       })

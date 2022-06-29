@@ -187,7 +187,7 @@ app.get('/api/account/email/search/:accountEmail', (req, res) => {
       if (err) {
         res.status(500).send(err);
       } else if (!data) {
-        res.status(500).send({ error: 'Email Not Found' });
+        res.status(205).send({ response: 'Email Not Found' });
       } else {
         res.status(200).send(data);
       }
