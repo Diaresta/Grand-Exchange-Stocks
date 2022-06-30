@@ -92,6 +92,9 @@ function App() {
     () => {
       if (loading !== false) {
         setRefreshCheck(true);
+        if (tickerData.length === 0) {
+          window.location.href = '/not-found';
+        }
       } else {
         setRefreshCheck(false);
       }
