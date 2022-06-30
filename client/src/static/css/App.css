@@ -155,7 +155,7 @@ header i:hover {
 }
 
 #navbar-left a:hover {
-  opacity: 75%;
+  opacity: 0.75;
 }
 
 #navbar-left #logo {
