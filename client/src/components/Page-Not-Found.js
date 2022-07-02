@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 const PageNotFound = () => {
   useEffect(() => {
@@ -14,9 +13,9 @@ const PageNotFound = () => {
         Try searching somewhere else
       </p>
       <img id='death-rune' src='/images/death-rune.png' alt='Death Rune 404' />
-      <Link to='/'>
+      <a href='/'>
         <button>Return home</button>
-      </Link>
+      </a>
     </div>
   );
 };
