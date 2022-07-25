@@ -131,8 +131,10 @@
       }
 
       #input-btn {
-        height: 25px !important;
-        width: 25px !important;
+        height: 20px;
+        width: 20px;
+        text-align: center !important;
+        padding: auto !important;
       }
 
       .fa-search {
@@ -196,15 +198,25 @@
       width: 400px !important;
     }
 
+    #account-button-div {
+      button {
+        width: 100px;
+      }
+    }
+
     // ---------- Loading ----------
     #refresh-span-true {
       width: 70%;
     }
-  }
 
-  // ---------- Login/Signup ----------
-  .log-sign-container {
-    width: 75%;
+    // ---------- Login/Signup ----------
+    .log-sign-container {
+      width: 80%;
+
+      button {
+        width: 90px;
+      }
+    }
   }
 
   @media (min-width: 0px) and (max-width: 415px) {

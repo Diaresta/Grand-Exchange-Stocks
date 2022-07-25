@@ -1321,8 +1321,10 @@ select:focus {
     width: 50%;
   }
   #navbar-left #input-btn {
-    height: 25px !important;
-    width: 25px !important;
+    height: 20px;
+    width: 20px;
+    text-align: center !important;
+    padding: auto !important;
   }
   #navbar-left .fa-search {
     margin: auto;
@@ -1364,14 +1366,17 @@ select:focus {
   #account-delete-window {
     width: 400px !important;
   }
+  #account-button-div button {
+    width: 100px;
+  }
   #refresh-span-true {
     width: 70%;
   }
-}
-
-@media screen {
   .log-sign-container {
-    width: 75%;
+    width: 80%;
+  }
+  .log-sign-container button {
+    width: 90px;
   }
 }
 
