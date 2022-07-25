@@ -1321,8 +1321,8 @@ select:focus {
     width: 50%;
   }
   #navbar-left #input-btn {
-    height: 20px !important;
-    width: 20px !important;
+    height: 25px !important;
+    width: 25px !important;
   }
   #navbar-left .fa-search {
     margin: auto;
@@ -1351,14 +1351,27 @@ select:focus {
   #sort-menu {
     width: 13% !important;
   }
+  #sort-menu .drop-btn,
+  #sort-menu #sort-content {
+    width: 75px;
+  }
   .table-date {
     display: none;
+  }
+  #account-container button {
+    text-align: center !important;
   }
   #account-delete-window {
     width: 400px !important;
   }
   #refresh-span-true {
     width: 70%;
+  }
+}
+
+@media screen {
+  .log-sign-container {
+    width: 75%;
   }
 }
 

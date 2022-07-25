@@ -131,8 +131,8 @@
       }
 
       #input-btn {
-        height: 20px !important;
-        width: 20px !important;
+        height: 25px !important;
+        width: 25px !important;
       }
 
       .fa-search {
@@ -174,6 +174,11 @@
     // ---------- History Page ----------
     #sort-menu {
       width: 13% !important;
+
+      .drop-btn,
+      #sort-content {
+        width: 75px;
+      }
     }
 
     .table-date {
@@ -181,6 +186,12 @@
     }
 
     // ------- Account page -------
+    #account-container {
+      button {
+        text-align: center !important;
+      }
+    }
+
     #account-delete-window {
       width: 400px !important;
     }
@@ -189,6 +200,11 @@
     #refresh-span-true {
       width: 70%;
     }
+  }
+
+  // ---------- Login/Signup ----------
+  .log-sign-container {
+    width: 75%;
   }
 
   @media (min-width: 0px) and (max-width: 415px) {
