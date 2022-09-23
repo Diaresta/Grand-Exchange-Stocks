@@ -6,6 +6,10 @@ body,
   height: 100%;
 }
 
+body {
+  -webkit-text-size-adjust: none !important;
+}
+
 #true {
   opacity: 0;
 }
@@ -180,6 +184,8 @@ header i:hover {
   margin: 5px;
   cursor: pointer;
   transition: background-color 0.25s ease, color 0.25s ease;
+  -webkit-text-size-adjust: none;
+  -webkit-appearance: none;
 }
 
 #navbar-left #input-btn:hover {
@@ -1061,6 +1067,8 @@ select:focus {
   width: 55px;
   cursor: pointer;
   transition: background-color 0.25s ease, color 0.25s ease, border 0.25s ease;
+  -webkit-text-size-adjust: none;
+  -webkit-appearance: none;
 }
 
 #account-container button:hover {

@@ -7,6 +7,10 @@ body,
   height: 100%;
 }
 
+body {
+  -webkit-text-size-adjust: none !important;
+}
+
 #true {
   opacity: 0;
 }
