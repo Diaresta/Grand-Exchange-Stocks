@@ -820,6 +820,42 @@
     "name": "ancient bracers"
   },
   {
+    "id": 26346,
+    "name": "ancient brew(1)"
+  },
+  {
+    "id": 26344,
+    "name": "ancient brew(2)"
+  },
+  {
+    "id": 26342,
+    "name": "ancient brew(3)"
+  },
+  {
+    "id": 26340,
+    "name": "ancient brew(4)"
+  },
+  {
+    "id": 26229,
+    "name": "ancient ceremonial boots"
+  },
+  {
+    "id": 26227,
+    "name": "ancient ceremonial gloves"
+  },
+  {
+    "id": 26223,
+    "name": "ancient ceremonial legs"
+  },
+  {
+    "id": 26225,
+    "name": "ancient ceremonial mask"
+  },
+  {
+    "id": 26221,
+    "name": "ancient ceremonial top"
+  },
+  {
     "id": 12494,
     "name": "ancient chaps"
   },
@@ -868,6 +904,14 @@
     "name": "ancient full helm"
   },
   {
+    "id": 26233,
+    "name": "ancient godsword"
+  },
+  {
+    "id": 26370,
+    "name": "ancient hilt"
+  },
+  {
     "id": 12468,
     "name": "ancient kiteshield"
   },
@@ -882,6 +926,14 @@
   {
     "id": 12203,
     "name": "ancient mitre"
+  },
+  {
+    "id": 26353,
+    "name": "ancient mix(1)"
+  },
+  {
+    "id": 26350,
+    "name": "ancient mix(2)"
   },
   {
     "id": 12621,
@@ -1324,6 +1376,10 @@
     "name": "armadyl stole"
   },
   {
+    "id": 27269,
+    "name": "armadylean plate"
+  },
+  {
     "id": 52,
     "name": "arrow shaft"
   },
@@ -1678,6 +1734,10 @@
   {
     "id": 11834,
     "name": "bandos tassets"
+  },
+  {
+    "id": 26394,
+    "name": "bandosian components"
   },
   {
     "id": 47,
@@ -2404,6 +2464,10 @@
     "name": "blighted vengeance sack"
   },
   {
+    "id": 26390,
+    "name": "blood essence"
+  },
+  {
     "id": 24774,
     "name": "blood pint"
   },
@@ -2414,6 +2478,14 @@
   {
     "id": 24777,
     "name": "blood shard"
+  },
+  {
+    "id": 1450,
+    "name": "blood talisman"
+  },
+  {
+    "id": 5549,
+    "name": "blood tiara"
   },
   {
     "id": 3339,
@@ -3456,6 +3528,14 @@
     "name": "cat mask"
   },
   {
+    "id": 26798,
+    "name": "catalytic talisman"
+  },
+  {
+    "id": 26801,
+    "name": "catalytic tiara"
+  },
+  {
     "id": 24961,
     "name": "catherby teleport (tablet)"
   },
@@ -3774,6 +3854,10 @@
   {
     "id": 6470,
     "name": "compost potion(4)"
+  },
+  {
+    "id": 26266,
+    "name": "condensed gold"
   },
   {
     "id": 2140,
@@ -5024,6 +5108,14 @@
     "name": "elemental talisman"
   },
   {
+    "id": 26804,
+    "name": "elemental tiara"
+  },
+  {
+    "id": 25985,
+    "name": "elidinis' ward"
+  },
+  {
     "id": 24003,
     "name": "elven boots"
   },
@@ -5262,6 +5354,10 @@
   {
     "id": 13448,
     "name": "ensouled goblin head"
+  },
+  {
+    "id": 26997,
+    "name": "ensouled hellhound head"
   },
   {
     "id": 13487,
@@ -6034,6 +6130,10 @@
   {
     "id": 9040,
     "name": "gold seal"
+  },
+  {
+    "id": 26788,
+    "name": "gold tiara"
   },
   {
     "id": 20208,
@@ -7532,6 +7632,10 @@
     "name": "kodai wand"
   },
   {
+    "id": 27014,
+    "name": "kovac's grog"
+  },
+  {
     "id": 12004,
     "name": "kraken tentacle"
   },
@@ -7770,6 +7874,14 @@
   {
     "id": 19982,
     "name": "light tuxedo shoes"
+  },
+  {
+    "id": 25975,
+    "name": "lightbearer"
+  },
+  {
+    "id": 27272,
+    "name": "lily of the sands"
   },
   {
     "id": 2120,
@@ -8212,6 +8324,34 @@
     "name": "mask of ranul"
   },
   {
+    "id": 27355,
+    "name": "masori armour set (f)"
+  },
+  {
+    "id": 27229,
+    "name": "masori body"
+  },
+  {
+    "id": 27238,
+    "name": "masori body (f)"
+  },
+  {
+    "id": 27232,
+    "name": "masori chaps"
+  },
+  {
+    "id": 27241,
+    "name": "masori chaps (f)"
+  },
+  {
+    "id": 27226,
+    "name": "masori mask"
+  },
+  {
+    "id": 27235,
+    "name": "masori mask (f)"
+  },
+  {
     "id": 21387,
     "name": "master scroll book (empty)"
   },
@@ -8270,6 +8410,22 @@
   {
     "id": 6402,
     "name": "menaphite red top"
+  },
+  {
+    "id": 27211,
+    "name": "menaphite remedy(1)"
+  },
+  {
+    "id": 27208,
+    "name": "menaphite remedy(2)"
+  },
+  {
+    "id": 27205,
+    "name": "menaphite remedy(3)"
+  },
+  {
+    "id": 27202,
+    "name": "menaphite remedy(4)"
   },
   {
     "id": 21649,
@@ -8833,7 +8989,7 @@
   },
   {
     "id": 7066,
-    "name": "mushroom & onion"
+    "name": "mushroom &amp; onion"
   },
   {
     "id": 21690,
@@ -9070,6 +9226,18 @@
   {
     "id": 24422,
     "name": "nightmare staff"
+  },
+  {
+    "id": 26368,
+    "name": "nihil dust"
+  },
+  {
+    "id": 26372,
+    "name": "nihil horn"
+  },
+  {
+    "id": 26231,
+    "name": "nihil shard"
   },
   {
     "id": 11254,
@@ -9329,7 +9497,7 @@
   },
   {
     "id": 1875,
-    "name": "onion & tomato"
+    "name": "onion &amp; tomato"
   },
   {
     "id": 5319,
@@ -9488,6 +9656,14 @@
     "name": "ornate maul handle"
   },
   {
+    "id": 26602,
+    "name": "osman's report"
+  },
+  {
+    "id": 26219,
+    "name": "osmumten's fang"
+  },
+  {
     "id": 24951,
     "name": "ourania teleport (tablet)"
   },
@@ -9541,7 +9717,7 @@
   },
   {
     "id": 12399,
-    "name": "partyhat & specs"
+    "name": "partyhat &amp; specs"
   },
   {
     "id": 13173,
@@ -9600,12 +9776,8 @@
     "name": "pestle and mortar"
   },
   {
-    "id": 9050,
-    "name": "pharaoh's sceptre"
-  },
-  {
-    "id": 9044,
-    "name": "pharaoh's sceptre (3)"
+    "id": 26945,
+    "name": "pharaoh's sceptre (uncharged)"
   },
   {
     "id": 11090,
@@ -9733,7 +9905,7 @@
   },
   {
     "id": 12412,
-    "name": "pirate hat & patch"
+    "name": "pirate hat &amp; patch"
   },
   {
     "id": 7116,
@@ -10674,6 +10846,10 @@
   {
     "id": 19550,
     "name": "ring of suffering"
+  },
+  {
+    "id": 26815,
+    "name": "ring of the elements"
   },
   {
     "id": 12601,
@@ -11674,6 +11850,94 @@
   {
     "id": 385,
     "name": "shark"
+  },
+  {
+    "id": 26424,
+    "name": "shattered banner"
+  },
+  {
+    "id": 26436,
+    "name": "shattered boots (t1)"
+  },
+  {
+    "id": 26448,
+    "name": "shattered boots (t2)"
+  },
+  {
+    "id": 26460,
+    "name": "shattered boots (t3)"
+  },
+  {
+    "id": 26517,
+    "name": "shattered cane"
+  },
+  {
+    "id": 26528,
+    "name": "shattered cannon ornament kit"
+  },
+  {
+    "id": 26427,
+    "name": "shattered hood (t1)"
+  },
+  {
+    "id": 26439,
+    "name": "shattered hood (t2)"
+  },
+  {
+    "id": 26451,
+    "name": "shattered hood (t3)"
+  },
+  {
+    "id": 26554,
+    "name": "shattered relic hunter (t1) armour set"
+  },
+  {
+    "id": 26557,
+    "name": "shattered relic hunter (t2) armour set"
+  },
+  {
+    "id": 26560,
+    "name": "shattered relic hunter (t3) armour set"
+  },
+  {
+    "id": 26541,
+    "name": "shattered relics mystic ornament kit"
+  },
+  {
+    "id": 26421,
+    "name": "shattered relics variety ornament kit"
+  },
+  {
+    "id": 26479,
+    "name": "shattered relics void ornament kit"
+  },
+  {
+    "id": 26500,
+    "name": "shattered teleport scroll"
+  },
+  {
+    "id": 26430,
+    "name": "shattered top (t1)"
+  },
+  {
+    "id": 26442,
+    "name": "shattered top (t2)"
+  },
+  {
+    "id": 26454,
+    "name": "shattered top (t3)"
+  },
+  {
+    "id": 26433,
+    "name": "shattered trousers (t1)"
+  },
+  {
+    "id": 26445,
+    "name": "shattered trousers (t2)"
+  },
+  {
+    "id": 26457,
+    "name": "shattered trousers (t3)"
   },
   {
     "id": 8596,
@@ -13677,7 +13941,7 @@
   },
   {
     "id": 12434,
-    "name": "top hat & monocle"
+    "name": "top hat &amp; monocle"
   },
   {
     "id": 21114,
@@ -13790,6 +14054,30 @@
   {
     "id": 20062,
     "name": "torture ornament kit"
+  },
+  {
+    "id": 26382,
+    "name": "torva full helm"
+  },
+  {
+    "id": 26376,
+    "name": "torva full helm (damaged)"
+  },
+  {
+    "id": 26384,
+    "name": "torva platebody"
+  },
+  {
+    "id": 26378,
+    "name": "torva platebody (damaged)"
+  },
+  {
+    "id": 26386,
+    "name": "torva platelegs"
+  },
+  {
+    "id": 26380,
+    "name": "torva platelegs (damaged)"
   },
   {
     "id": 12924,
@@ -13980,6 +14268,10 @@
     "name": "trouver parchment"
   },
   {
+    "id": 27277,
+    "name": "tumeken's shadow (uncharged)"
+  },
+  {
     "id": 361,
     "name": "tuna"
   },
@@ -14117,11 +14409,11 @@
   },
   {
     "id": 1877,
-    "name": "ugthanki & onion"
+    "name": "ugthanki &amp; onion"
   },
   {
     "id": 1879,
-    "name": "ugthanki & tomato"
+    "name": "ugthanki &amp; tomato"
   },
   {
     "id": 1885,
@@ -15282,6 +15574,14 @@
   {
     "id": 11824,
     "name": "zamorakian spear"
+  },
+  {
+    "id": 26374,
+    "name": "zaryte crossbow"
+  },
+  {
+    "id": 26235,
+    "name": "zaryte vambraces"
   },
   {
     "id": 19493,
