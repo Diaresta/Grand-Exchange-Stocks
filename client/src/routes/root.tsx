@@ -2,6 +2,7 @@ import { useState } from 'react';
 import viteLogo from '../../public/vite.svg';
 import '../styles/App.scss';
 import reactLogo from '../assets/react.svg';
+import { Link } from 'react-router-dom';
 
 const Root = () => {
   const [count, setCount] = useState(0);
@@ -28,6 +29,7 @@ const Root = () => {
       <p className='read-the-docs'>
         Click on the Vite and React logos to learn more
       </p>
+      <Link to={'search'}>Search Page pls</Link>
     </>
   );
 };
