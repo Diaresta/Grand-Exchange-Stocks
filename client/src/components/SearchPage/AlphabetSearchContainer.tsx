@@ -18,4 +18,5 @@ const AlphabetSearchContainer = () => {
     </div>
   );
 };
+
 export default AlphabetSearchContainer;
