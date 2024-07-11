@@ -1,4 +1,4 @@
-export const ALPHABET = () => {
+export const ALPHABET = (): string[] => {
   return Array.from({ length: 26 }, (_e, i) => String.fromCharCode(65 + i));
 };
 
