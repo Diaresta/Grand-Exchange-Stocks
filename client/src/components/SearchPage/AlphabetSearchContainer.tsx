@@ -11,7 +11,7 @@ const AlphabetSearchContainer = () => {
         </li>
         {ALPHABET().map((letter: string) => (
           <li key={letter}>
-            <a href={'#' + letter.toLowerCase()}>{letter}</a>
+            <a href={'#' + letter}>{letter}</a>
           </li>
         ))}
       </ul>

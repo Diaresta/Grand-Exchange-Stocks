@@ -70,10 +70,7 @@ describe('AlphabetSearchContainer Component:', () => {
       const linkElement = screen.getByText(letter);
 
       expect(linkElement).toBeInTheDocument();
-      expect(linkElement.closest('a')).toHaveAttribute(
-        'href',
-        `#${letter.toLowerCase()}`
-      );
+      expect(linkElement.closest('a')).toHaveAttribute('href', `#${letter}`);
     });
   });
 
