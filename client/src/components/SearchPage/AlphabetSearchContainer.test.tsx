@@ -13,8 +13,8 @@ describe('ALPHABET():', () => {
   it('Should return an array where first index is A and last index is Z', () => {
     const alphabet = ALPHABET();
 
-    expect(alphabet[0]).toBe('A');
-    expect(alphabet[25]).toBe('Z');
+    expect(alphabet[0]).toStrictEqual('A');
+    expect(alphabet[25]).toStrictEqual('Z');
   });
 
   it('Should return an array containing letters A through Z', () => {
