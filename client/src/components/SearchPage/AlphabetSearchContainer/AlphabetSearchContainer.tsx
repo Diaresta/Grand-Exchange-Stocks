@@ -4,7 +4,7 @@ export const ALPHABET = (): string[] => {
 
 const AlphabetSearchContainer = () => {
   return (
-    <div id='alphabet-container'>
+    <div id='alphabet-container' data-testid='alphabet-search-container'>
       <ul>
         <li key={0}>
           <a href='#3'>0</a>

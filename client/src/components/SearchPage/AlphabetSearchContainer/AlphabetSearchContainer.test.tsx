@@ -46,6 +46,8 @@ describe('ALPHABET():', () => {
 describe('AlphabetSearchContainer Component:', () => {
   it('Should render AlphabetSearchContainer component', () => {
     render(<AlphabetSearchContainer />);
+
+    expect(screen.getByTestId('alphabet-search-container')).toBeInTheDocument();
   });
 
   it('Should render the correct number of list items', () => {

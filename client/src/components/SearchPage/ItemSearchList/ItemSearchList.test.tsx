@@ -23,6 +23,20 @@ describe('ItemSearchList Component:', () => {
     },
   ];
 
+  it('Should render ItemSearchList component', () => {
+    render(
+      <ItemSearchList
+        query=''
+        itemsList={itemsList}
+        setSearchResultsAmount={() => {}}
+      />
+    );
+
+    expect(
+      screen.getByTestId('item-search-list-container')
+    ).toBeInTheDocument();
+  });
+
   it('Should render <ul> with all items (4) when query is not present', () => {
     render(
       <ItemSearchList

@@ -25,7 +25,10 @@ const ItemSearchList = ({
   setSearchResultsAmount(filteredItems?.length);
 
   return (
-    <div id='query-container'>
+    <div
+      id='item-search-list-container'
+      data-testid={'item-search-list-container'}
+    >
       <ul id='item-search-ul'>
         {filteredItems?.map((item: any) => (
           <a
