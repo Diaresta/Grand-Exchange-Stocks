@@ -4,7 +4,7 @@ import './styles/index.scss';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Root from './routes/root.tsx';
 import PageNotFound from './components/PageNotFound.tsx';
-import SearchPage from './components/Search-Page.tsx';
+import SearchPage from './components/SearchPage/SearchPage.tsx';
 
 const router = createBrowserRouter([
   {
