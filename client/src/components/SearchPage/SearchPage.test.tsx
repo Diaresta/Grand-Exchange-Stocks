@@ -95,7 +95,23 @@ describe('SearchPage Component:', () => {
     expect(screen.getByText('Dragon scimitar')).toBeInTheDocument();
   });
 
-  it('Should render the correct number of search results (0) when no results returned', async () => {
+  it('Should render the correct number of search results (1) when query is present and partially matches item name', async () => {
+    const mockLocation = vitest.spyOn(routeData, 'useLocation');
+    mockLocation.mockReturnValue({ search: '?s=2h' } as any);
+    await act(async () => {
+      render(
+        <BrowserRouter>
+          <SearchPage />
+        </BrowserRouter>
+      );
+    });
+
+    expect(document.title).toBe('ge.teller - Search: 2h');
+    expect(screen.getByText('1 Results')).toBeInTheDocument();
+    expect(screen.getByText('Rune 2h sword')).toBeInTheDocument();
+  });
+
+  it('Should render the correct number of search results (0) when query is present and does not match item name', async () => {
     const mockLocation = vitest.spyOn(routeData, 'useLocation');
     mockLocation.mockReturnValue({ search: '?s=Item+Not+Found' } as any);
     await act(async () => {
