@@ -1,3 +1,9 @@
+import { useLocation } from 'react-router-dom';
+
+export const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
+};
+
 const ITEM_NAME_ID_API: string =
   'https://oldschool.runescape.wiki/?title=Module:GEIDs/data.json&action=raw&ctype=application%2Fjson';
 
