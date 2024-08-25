@@ -1,36 +1,121 @@
-// import { Moon, Sun } from 'lucide-react';
-import { Button } from './ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from './ui/dropdown-menu';
-import { useTheme } from './theme-provider';
+// import { useTheme } from './theme-provider';
 
-export function ModeToggle() {
-  const { setTheme } = useTheme();
+// export function ModeToggle() {
+//   // const { setTheme } = useTheme();
 
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant='outline' size='icon'>
-          {/* <Sun className='h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
-          <Moon className='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' /> */}
-          <span className='sr-only'>Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align='end'>
-        <DropdownMenuItem onClick={() => setTheme('light')}>
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('system')}>
-          System
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-}
+//   return (
+//     // <DropdownMenu>
+//     //   <DropdownMenuContent align='end'>
+//     //     <DropdownMenuItem onClick={() => setTheme('light')}>
+//     //       Light
+//     //     </DropdownMenuItem>
+//     //     <DropdownMenuItem onClick={() => setTheme('dark')}>
+//     //       Dark
+//     //     </DropdownMenuItem>
+//     //   </DropdownMenuContent>
+//     // </DropdownMenu>
+//   );
+
+//   // import { useEffect, useState } from 'react';
+//   // import { useTheme } from './theme-provider';
+//   // import { DropdownMenu, DropdownMenuItem } from './ui/dropdown-menu';
+
+//   // const THEME = localStorage.getItem('vite-ui-theme');
+//   // const MODE_PROPS = {
+//   //   light: {
+//   //     modeName: 'light',
+//   //     modeText: 'Light Mode',
+//   //     oppositeMode: 'dark',
+//   //     oppositeModeText: 'Dark Mode',
+//   //   },
+//   //   dark: {
+//   //     modeName: 'dark',
+//   //     modeText: 'Dark Mode',
+//   //     oppositeMode: 'light',
+//   //     oppositeModeText: 'Light Mode',
+//   //   },
+//   // };
+
+//   // export function ModeToggle() {
+//   //   const { setTheme }: any = useTheme();
+//   //   const [modeTheme, setModeTheme] = useState<ModeProps>();
+
+//   //   useEffect(() => {
+//   //     console.log(THEME);
+//   //     if (!THEME || THEME === 'dark') {
+//   //       console.log('first');
+//   //       setModeTheme(MODE_PROPS.light);
+//   //     } else if (THEME === 'light') {
+//   //       console.log('second');
+//   //       setModeTheme(MODE_PROPS.dark);
+//   //     }
+//   //   }, []);
+
+//   //   return (
+//   //     <DropdownMenu>
+//   //       <DropdownMenuItem
+//   //         onClick={() => {
+//   //           console.log(modeTheme?.modeName);
+//   //           setTheme(modeTheme?.modeName);
+//   //         }}
+//   //       >
+//   //         {modeTheme?.modeText}
+//   //       </DropdownMenuItem>
+//   //     </DropdownMenu>
+//   //   );
+
+//   // if (!THEME || THEME === 'dark') {
+//   //   return (
+//   //     <DropdownMenu>
+//   //       <DropdownMenuItem
+//   //         onClick={() => {
+//   //           setTheme('light');
+//   //         }}
+//   //       >
+//   //         Light Mode
+//   //       </DropdownMenuItem>
+//   //     </DropdownMenu>
+//   //   );
+//   // } else if (THEME === 'light') {
+//   //   return (
+//   //     <DropdownMenu>
+//   //       <DropdownMenuItem
+//   //         onClick={() => {
+//   //           setTheme('dark');
+//   //         }}
+//   //       >
+//   //         Dark Mode
+//   //       </DropdownMenuItem>
+//   //     </DropdownMenu>
+//   //   );
+//   // }
+
+//   // return (
+//   //   <DropdownMenu>
+//   //     {/* {THEME === 'dark' ? (
+//   //       <DropdownMenuItem
+//   //         onClick={() => {
+//   //           setTheme('light');
+//   //         }}
+//   //       >
+//   //         Light Mode
+//   //       </DropdownMenuItem>
+//   //     ) : (
+//   //       <DropdownMenuItem
+//   //         onClick={() => {
+//   //           setTheme('dark');
+//   //         }}
+//   //       >
+//   //         Dark Mode
+//   //       </DropdownMenuItem>
+//   //     )} */}
+//   //   </DropdownMenu>
+//   // );
+// }
+
+// interface ModeProps {
+//   modeName: string;
+//   modeText: string;
+//   oppositeMode: string;
+//   oppositeModeText: string;
+// }

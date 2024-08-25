@@ -4,6 +4,10 @@ export const useQuery = () => {
   return new URLSearchParams(useLocation().search);
 };
 
+export const checkLoginToken = () => {
+  return localStorage.getItem('token') ? true : false;
+};
+
 const ITEM_NAME_ID_API: string =
   'https://oldschool.runescape.wiki/?title=Module:GEIDs/data.json&action=raw&ctype=application%2Fjson';
 
