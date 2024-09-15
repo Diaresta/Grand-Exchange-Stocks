@@ -31,7 +31,7 @@ const HeaderRight = ({ loggedIn }: { loggedIn: boolean }) => {
 
   return loggedIn ? (
     <div className='flex gap-4' data-testid={'header-right-container'}>
-      <div>
+      <div data-testid={'dropdown-menu-container'}>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
@@ -81,34 +81,6 @@ const HeaderRight = ({ loggedIn }: { loggedIn: boolean }) => {
         <Link to='/register' className={buttonVariants({ variant: 'default' })}>
           Register
         </Link>
-      </div>
-      <div>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant='secondary'
-              size='icon'
-              className='rounded-full'
-              name='toggle-menu'
-            >
-              <PersonIcon className='h-5 w-5' />
-              <span className='sr-only'>Toggle user menu</span>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align='end'>
-            <DropdownMenuItem className='cursor-pointer'>
-              <MoonIcon className='pr-1' />
-              Dark Mode
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Link to='/login' className='cursor-pointer flex items-center'>
-                <EnterIcon className='pr-1' />
-                Log In
-              </Link>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
       </div>
     </div>
   );
