@@ -33,8 +33,24 @@ describe('HeaderRight Component:', () => {
     });
 
     expect(screen.getByTestId('header-right-container')).toBeInTheDocument();
+    expect(screen.queryByTestId('dropdown-menu-container')).toBeInTheDocument();
     expect(() => screen.getByText('Log In')).toThrow();
     expect(() => screen.getByText('Register')).toThrow();
+  });
+
+  it('Should render HeaderRight component without user menu when logged out', async () => {
+    await act(async () => {
+      render(
+        <BrowserRouter>
+          <HeaderRight loggedIn={false} />
+        </BrowserRouter>
+      );
+    });
+
+    expect(screen.getByTestId('header-right-container')).toBeInTheDocument();
+    expect(
+      screen.queryByTestId('dropdown-menu-container')
+    ).not.toBeInTheDocument();
   });
 
   it('Should render HeaderRight component with Log In and Register buttons when logged out', async () => {
