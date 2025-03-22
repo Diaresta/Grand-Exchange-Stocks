@@ -5,13 +5,20 @@ export const ALPHABET = (): string[] => {
 const AlphabetSearchContainer = () => {
   return (
     <div id='alphabet-container' data-testid='alphabet-search-container'>
-      <ul>
+      <ul className='fixed text-sm'>
         <li key={0}>
-          <a href='#3'>0</a>
+          <a href='#3' className='hover:text-blue-700 hover:font-bold'>
+            0
+          </a>
         </li>
         {ALPHABET().map((letter: string) => (
           <li key={letter}>
-            <a href={'#' + letter}>{letter}</a>
+            <a
+              href={'#' + letter}
+              className='hover:text-blue-700 hover:font-bold'
+            >
+              {letter}
+            </a>
           </li>
         ))}
       </ul>
