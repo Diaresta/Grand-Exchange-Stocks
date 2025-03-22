@@ -33,7 +33,7 @@ describe('HeaderRight Component:', () => {
     });
 
     expect(screen.getByTestId('header-right-container')).toBeInTheDocument();
-    expect(screen.queryByTestId('dropdown-menu-container')).toBeInTheDocument();
+    expect(screen.getByTestId('dropdown-menu-container')).toBeInTheDocument();
     expect(() => screen.getByText('Log In')).toThrow();
     expect(() => screen.getByText('Register')).toThrow();
   });
