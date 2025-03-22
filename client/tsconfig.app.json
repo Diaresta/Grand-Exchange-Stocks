@@ -21,11 +21,13 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
-  },
-  "baseUrl": ".",
-  "paths": {
-    "@/*": ["./src/*"]
+    "noFallthroughCasesInSwitch": true,
+
+    /* Addresses @/lib/utils error */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src"]
 }
