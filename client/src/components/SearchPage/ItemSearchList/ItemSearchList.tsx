@@ -31,15 +31,15 @@ const ItemSearchList = ({
     >
       <ul id='item-search-ul'>
         {filteredItems?.map((item: any) => (
-          <a
-            href={`/item/${item.name}/${item.id}`}
-            className='item-search-li'
-            key={item.id}
-          >
-            <li key={item.id} id={item.name[0]}>
+          <li key={item.id} id={item.name[0]}>
+            <a
+              href={`/item/${item.name}/${item.id}`}
+              key={item.id}
+              className='hover:text-blue-700 hover:font-bold'
+            >
               {item.name[0].toUpperCase() + item.name.slice(1)}
-            </li>
-          </a>
+            </a>
+          </li>
         ))}
       </ul>
     </div>

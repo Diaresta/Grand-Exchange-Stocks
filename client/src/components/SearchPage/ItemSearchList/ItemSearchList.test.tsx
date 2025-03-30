@@ -45,7 +45,7 @@ describe('ItemSearchList Component:', () => {
         setSearchResultsAmount={() => {}}
       />
     );
-    const listItems = screen.getAllByRole('listitem');
+    const listItems = screen.getAllByRole('link');
 
     expect(listItems.length).toBe(4);
     listItems.forEach((item, i) => {
@@ -65,7 +65,7 @@ describe('ItemSearchList Component:', () => {
         setSearchResultsAmount={() => {}}
       />
     );
-    const listItems = screen.getAllByRole('listitem');
+    const listItems = screen.getAllByRole('link');
 
     expect(listItems.length).toBe(1);
     expect(listItems[0]).toHaveTextContent(itemsList[1].name);
@@ -82,7 +82,7 @@ describe('ItemSearchList Component:', () => {
         setSearchResultsAmount={() => {}}
       />
     );
-    const listItems = screen.getAllByRole('listitem');
+    const listItems = screen.getAllByRole('link');
 
     expect(listItems.length).toBe(2);
     expect(listItems[0]).toHaveTextContent(itemsList[0].name);
@@ -104,7 +104,7 @@ describe('ItemSearchList Component:', () => {
       />
     );
 
-    expect(screen.queryByRole('listitem')).not.toBeInTheDocument();
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
 
   it('Should render <ul> with all items (4) with proper id and href', () => {
@@ -115,7 +115,7 @@ describe('ItemSearchList Component:', () => {
         setSearchResultsAmount={() => {}}
       />
     );
-    const listItems = screen.getAllByRole('listitem');
+    const listItems = screen.getAllByRole('link');
 
     expect(listItems.length).toBe(4);
     listItems.forEach((item, i) => {
