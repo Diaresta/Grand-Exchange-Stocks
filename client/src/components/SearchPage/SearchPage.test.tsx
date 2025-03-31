@@ -126,7 +126,7 @@ describe('SearchPage Component:', () => {
     expect(screen.getByText('0 Results')).toBeInTheDocument();
   });
 
-  it('Should show loading indicator while fetching data', async () => {
+  it('Should show loading spinner while fetching data', async () => {
     vitest.stubGlobal('fetch', () => new Promise(() => {}));
     await act(async () => {
       render(
@@ -136,7 +136,19 @@ describe('SearchPage Component:', () => {
       );
     });
 
-    expect(screen.getByText('Loading...')).toBeInTheDocument();
+    expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
+  });
+
+  it('Should not show loading spinner when data fetching has completed', async () => {
+    await act(async () => {
+      render(
+        <BrowserRouter>
+          <SearchPage />
+        </BrowserRouter>
+      );
+    });
+
+    expect(screen.queryByTestId('loading-spinner')).not.toBeInTheDocument();
   });
 
   it('Should show error message when fetch fails', async () => {

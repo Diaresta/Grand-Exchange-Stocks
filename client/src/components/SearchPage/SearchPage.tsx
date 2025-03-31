@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from '../../scripts/Utilities';
+import LoadingSpinner from '../ui/loadingSpinner';
 import AlphabetSearchContainer from './AlphabetSearchContainer/AlphabetSearchContainer';
 import ItemSearchList from './ItemSearchList/ItemSearchList';
 
@@ -29,16 +30,24 @@ const SearchPage = () => {
   }, []);
 
   return (
-    <div id='search-container' data-testid={'search-container'}>
+    <div
+      className='container'
+      id='search-container'
+      data-testid={'search-container'}
+    >
       {loading ? (
-        <div>Loading...</div>
+        <LoadingSpinner size={40} />
       ) : (
         <>
-          <div>
-            <h2>{errorText || `Search Results: '${query}'`}</h2>
-            <small>{searchResultsAmount || 0} Results</small>
+          <div className='pt-4'>
+            <h2 className='text-xl font-bold'>
+              {errorText || `Search Results: '${query}'`}
+            </h2>
+            <small className='text-blue-700'>
+              {searchResultsAmount || 0} Results
+            </small>
           </div>
-          <div>
+          <div className='flex justify-between pt-2'>
             <ItemSearchList
               query={query}
               itemsList={itemsList}
